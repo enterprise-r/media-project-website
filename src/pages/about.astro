@@ -25,7 +25,7 @@ import "../styles/about.css";
       <div class="r-term">
         {page.text.map((t) => <p>{t}</p>)}
         <p class="email">
-          <a href={`mailto:${page.email}`}>{user}<span class="email-at">@</span>{domain}</a>
+          <a class="r-glow-run" href={`mailto:${page.email}`}>{user}<span class="email-at">@</span>{domain}</a>
         </p>
       </div>
     </div>
