@@ -1,0 +1,55 @@
+/* Dark-R status stripe: a notice (.r-notice) under the bar that holds a few keys and values, such as
+   a status, an id and two times. It takes the notice's ground, line, role stripe and roles: no role is
+   information (Blue), .r-ok Green, .r-warn Amber, .r-error Red. A value marked .r-role takes the role
+   color, as a notice's title does; the others stay the text color.
+   The pairs fill two sides, in reading order: the first pair on the left, the second on the right, and
+   so on. A side's keys share a column, right-aligned and on one line, and so do its values,
+   left-aligned and wrapping; .r-nowrap keeps a value (an id) on one line. Three equal gaps, at least
+   --r-box-pad each, share the free space: before the left side, between the sides and after the right.
+   In the column it steps back by --r-box-pad, like a box. Add .r-glow when the status changes, so the
+   border flashes.
+   <dl class="r-notice r-stripe r-warn" role="status">
+     <div><dt>Status</dt><dd class="r-role">Running</dd></div>
+     <div><dt>Started</dt><dd><time datetime="…">…</time></dd></div>
+     <div><dt>Run</dt><dd class="r-nowrap"><code>…</code></dd></div>
+     <div><dt>Duration</dt><dd>…</dd></div>
+   </dl>
+   Print drops it. */
+.r-stripe {
+  --r-stripe-gap: minmax(var(--r-box-pad, 0.75rem), 1fr);
+  display: grid;
+  grid-template-columns:
+    var(--r-stripe-gap) max-content max-content
+    var(--r-stripe-gap) max-content max-content
+    var(--r-stripe-gap);
+  row-gap: 0.15em;
+  margin: 0 calc(-1 * var(--r-box-pad, 0px)) 1rem;
+  padding: 0.7rem 0;
+  line-height: 1.45;
+}
+.r-stripe > div {
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+}
+.r-stripe > div:nth-child(odd) { grid-column: 2 / span 2; }
+.r-stripe > div:nth-child(even) { grid-column: 5 / span 2; }
+.r-stripe :is(dt, dd) { min-width: 0; margin: 0; padding: 0; }
+.r-stripe dt {
+  justify-self: end;
+  padding-right: 0.4em;
+  color: var(--r-text-small);
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+.r-stripe dd {
+  font-weight: 600;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.r-stripe dd.r-role { color: var(--r-notice); letter-spacing: 0.04em; }
+.r-stripe dd.r-nowrap { min-width: auto; white-space: nowrap; overflow-wrap: normal; }
+@media print {
+  .r-stripe { display: none; }
+}

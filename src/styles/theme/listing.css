@@ -1,0 +1,46 @@
+/* Dark-R listing: a table of entries, such as the items of a collection or the runs of a job. Each
+   entry is one tbody of two rows: the main row, and a detail row (.r-detail) under it with no rule
+   between them. The id cell (.r-id) spans both rows, stays at the top and is in the code face; its link
+   is drawn plain and underlined while pointed at. Every other entry is banded with a tint of the text
+   color, and a hover keeps that fill. .r-tag is a small label in front of a value in the detail row.
+   In the column the table steps back by --r-box-pad, like a box, so its words line up with the text.
+   Below 40rem the id column is --r-listing-id wide (7ch unless the page sets it), so a longer id breaks onto two
+   equal lines; set it to the length of the ids the table holds.
+   <table class="r-listing">
+     <thead><tr><th>Run</th><th>Status</th><th>Started</th></tr></thead>
+     <tbody>
+       <tr><td class="r-id" rowspan="2"><a href="…">a1b2c3d4e5f6</a></td><td>Done</td><td><time>…</time></td></tr>
+       <tr class="r-detail"><td><span class="r-tag">Version</span> 3</td><td><span class="r-tag">Duration</span> 2 minutes</td></tr>
+     </tbody>
+   </table> */
+.r-listing {
+  display: table;
+  box-sizing: border-box;
+  width: calc(100% + 2 * var(--r-box-pad, 0px));
+  max-width: none;
+  margin-inline: calc(-1 * var(--r-box-pad, 0px));
+  table-layout: fixed;
+}
+.r-listing :is(th, td) { padding-inline: var(--r-box-pad, 0.8rem); overflow-wrap: anywhere; }
+.r-listing th { text-align: start; }
+.r-listing td.r-id { vertical-align: top; font-family: var(--r-font-mono); }
+.r-listing td.r-id a { text-decoration: none; }
+.r-listing td.r-id a:hover { text-decoration: underline; }
+.r-listing tr:has(+ tr.r-detail) > :not(.r-id) { border-bottom: 0; }
+.r-listing tr.r-detail > td { border-top: 0; }
+.r-listing > tbody > tr { background-color: transparent; }
+.r-listing > tbody > tr:hover > * { background: none; }
+.r-listing > tbody:nth-of-type(even) { background-color: color-mix(in srgb, currentColor 8%, transparent); }
+.r-listing .r-tag { margin-right: 0.35em; font-weight: 500; }
+@media screen and (max-width: 40rem) {
+  .r-listing :is(thead th:first-child, td.r-id) {
+    box-sizing: content-box;
+    /* ch is the width of "0"; a bold face runs a pixel past it, which would drop the last character. */
+    width: calc(var(--r-listing-id, 7ch) + 1px);
+    font-family: var(--r-font-mono);
+    font-size: 1em;
+  }
+}
+@media print {
+  .r-listing { width: 100%; margin-inline: 0; }
+}

@@ -18,12 +18,19 @@ It needs no framework and no build step. Any page or app can use it with `<link>
 <link rel="stylesheet" href="theme/palette.css">
 <link rel="stylesheet" href="theme/base.css">
 <link rel="stylesheet" href="theme/components.css">
+<link rel="stylesheet" href="theme/column.css">
+<link rel="stylesheet" href="theme/bar.css">
+<link rel="stylesheet" href="theme/foot.css">
+<link rel="stylesheet" href="theme/swatch.css">
+<link rel="stylesheet" href="theme/stripe.css">
+<link rel="stylesheet" href="theme/listing.css">
+<link rel="stylesheet" href="theme/kv.css">
 <link rel="stylesheet" href="theme/doc.css">
 <script src="theme/rows.js"></script>
 <script src="theme/guard.js"></script>
 ```
 
-`doc.css` is optional: include it only on pages that hold documents. `rows.js` is optional too: include it only on pages that use `.r-rows`. It runs on `DOMContentLoaded` (or immediately if the document is already ready) and enhances every `.r-rows` it finds. To enhance a list added later, call `rRows.enhance(element)` or `rRows.enhanceAll(container)`. `guard.js` is optional: include it once on pages that should guard button clicks. It listens on the document and applies to every `button` and `input` of type button, submit or reset, not to links. Add `.r-unguarded` on a control or an ancestor (for example a nav) to opt out.
+The app shell, `column.css` to `kv.css`, is optional: include `column.css` and the parts a page uses. `bar.css`, `stripe.css` and `listing.css` read the tokens of `column.css`. `doc.css` is optional: include it only on pages that hold documents. `rows.js` is optional too: include it only on pages that use `.r-rows`. It runs on `DOMContentLoaded` (or immediately if the document is already ready) and enhances every `.r-rows` it finds. To enhance a list added later, call `rRows.enhance(element)` or `rRows.enhanceAll(container)`. `guard.js` is optional: include it once on pages that should guard button clicks. It listens on the document and applies to every `button` and `input` of type button, submit or reset, not to links. Add `.r-unguarded` on a control or an ancestor (for example a nav) to opt out.
 
 ## Files
 
@@ -32,7 +39,14 @@ It needs no framework and no build step. Any page or app can use it with `<link>
 | `palette.css` | The `--ui-*` colour variables, the striped gradient and the separator. Generated from `palette/palette.json`; `build.sh` copies it here in `dist/theme/`. | Shipped |
 | `base.css` | Fonts and plain HTML elements: body, headings h1-h6 (a ladder of colours; Audiowide for h1-h3 and Rajdhani uppercase for h4-h6 by default; `--r-font-heading` (h1, and the default for h2-h3), `--r-font-sub` (h2-h3) and `--r-font-minor` (h4-h6) switch each tier), text, lists, quotes, marks, details, figures, tables (rounded outline, header row, row dividers; corner cell radii account for a caption so a filled header stays inside the curve), links, the separator rule, code and keys (Monaspace Neon, `--r-font-mono`), form fields and field groups, radios and checkboxes (Dark-R field look, `--r-choice-*`), progress and meter, dialog, media that scale down, focus ring, text selection. Element selectors sit inside `:where()`, so they weigh nothing and an app's own rules win. Role variables start with `--r-` (text, heading, link, focus, field highlight, choice tokens, font stacks). `.r-name-r` is the picture of the R in the name Dark-R. It loads its fonts from `../fonts/woff2/`, the existing fonts export next to `theme/`. This is the web scale. | Shipped |
 | `doc.css` | The document scale, for long text, scoped to `.r-doc`: Audiowide for h1, Rajdhani for h2-h6, Saira for the body (`--r-font-doc`), at most `--r-doc-measure` (68ch) wide. It loads Saira from `../fonts/woff2/`. | Shipped |
-| `components.css` | Buttons (`.r-btn`) with the current page (`aria-current="page"`) and the form roles `.r-primary`, `.r-clear` (also any reset button) and `.r-cancel`; no role class is generic. Width and padding are `--r-btn-min`, `--r-btn-pad-x`, `--r-btn-pad-b`, `--r-btn-pad-flat`, `--r-btn-pad-curve` and `--r-btn-tracking`; below `40rem` the min-width and padding scale down, the label stays end-aligned, and curved group ends keep enough inset to clear `--r-pill-r`. Pill groups (`.r-group`, including a single button with both ends curved), dropdown menus (`.r-menu`, `.r-menu-list`, `.r-to-right`), slanted breadcrumbs (`.r-crumbs`, with `.r-crumb-root` for the ® root; crumbs size to their label, `min-width: 0`) and separators (`.r-sep`, `.r-striped`) number columns in tables (`.r-num`), panels and cards (`.r-panel`, `.r-card` with `.r-active` and `.r-selected`), status pills (`.r-pill`), notification boxes (`.r-notice` with `.r-ok`, `.r-warn`, `.r-error`), the terminal panel for text over a picture (`.r-term`), the prompt (`.r-prompt`), the update glow (`.r-glow`, `.r-glow-run`), a brief iridescent border that marks a box that just changed, and the dynamic list (`.r-rows`, with `.r-vh` for its live region). The markup for each is in a comment above its rules. | Shipped |
+| `components.css` | Buttons (`.r-btn`) with the current page (`aria-current="page"`) and the form roles `.r-primary`, `.r-clear` (also any reset button) and `.r-cancel`; no role class is generic. Width and padding are `--r-btn-min`, `--r-btn-pad-x`, `--r-btn-pad-b`, `--r-btn-pad-flat`, `--r-btn-pad-curve` and `--r-btn-tracking`; below `40rem` the min-width and padding scale down, the label stays end-aligned, and curved group ends keep enough inset to clear `--r-pill-r`. Pill groups (`.r-group`, including a single button with both ends curved; the ends are the first and last buttons that show, so a button hidden with `hidden` or an inline `display: none` does not count), groups at the end of their line (`.r-group.r-end`, a form's actions), dropdown menus (`.r-menu`, `.r-menu-list`, `.r-to-right`, `.r-side` for a second level that opens to the left; a checked `menuitemradio` is Green, an open role button keeps its hover), slanted breadcrumbs (`.r-crumbs`, with `.r-crumb-root` for the ® root; crumbs size to their label, `min-width: 0`) and separators (`.r-sep`, `.r-striped`) number columns in tables (`.r-num`), panels and cards (`.r-panel`, `.r-card` with `.r-active` and `.r-selected`), status pills (`.r-pill`), notification boxes (`.r-notice` with `.r-ok`, `.r-warn`, `.r-error`), the terminal panel for text over a picture (`.r-term`), the prompt (`.r-prompt`), the update glow (`.r-glow`, `.r-glow-run` with two laps of a band, and `.r-glow-shape` with `--r-glow-mask` for a box that is not a rounded rectangle), a brief iridescent border that marks a box that just changed, and the dynamic list (`.r-rows`, with `.r-vh` for its live region; it stacks below `30rem` of its own width). The markup for each is in a comment above its rules. | Shipped |
+| `column.css` | The measure and the insets the shell shares: `--r-measure` (880px), `--r-text-min`, `--r-text-pad`, `--r-box-gap`, `--r-box-pad`, `--r-text-inline` and `--r-bar-inline`, one inset below `40rem`. The page (`.r-page`: bar, content, footer, at least the window tall), the column (`.r-column`: the content under the bar, clearing `--r-bar-h`), and the step back (`.r-step-back`: a box whose words line up with the text outside it). | Shipped |
+| `bar.css` | The app bar (`.r-bar`), fixed across the top on the Border fill: the root on the left (a trail of `.r-crumbs`, or any element), `.r-bar-end` on the right with an actions pill (`.r-group`) and the mark menu (`.r-mark`, a framed picture as tall as a button, sized by `--r-mark-view`, `--r-mark-plate` and `--r-mark-round`). Below `52rem` a trail meets the window edge, square, 8px deep. `--r-bar-pad`, `--r-bar-gap`. | Shipped |
+| `foot.css` | The footer stripe (`.r-foot`): the Border fill, the company word in Enterprsr, linked. | Shipped |
+| `swatch.css` | Theme choices that show the page they set (`.r-swatch`, with `--r-swatch-bg`, `--r-swatch-fg` and `--r-swatch-font`); `.r-swatch-dark-r` is Dark-R's page. | Shipped |
+| `stripe.css` | The status stripe (`.r-stripe` on a `dl.r-notice`): keys and values on two sides under the bar, the value `.r-role` in the role color, `.r-nowrap` on one line. | Shipped |
+| `listing.css` | The listing table (`table.r-listing`): an entry per `tbody`, a detail row (`.r-detail`), an id cell (`.r-id`) across both, banded entries, two-line ids below `40rem` (`--r-listing-id`). | Shipped |
+| `kv.css` | The key/value table (`.r-kv`): right-aligned keys against a rule, nested tables flush in their cells, `--r-kv-line`. | Shipped |
 | `rows.js` | Plain script that enhances any `.r-rows` fieldset: add and remove, keyboard, live-region announcements and `data-name` templates. No dependencies, no build step. | Shipped |
 | `guard.js` | Plain script that guards button clicks. Moving the pointer (or stopping) accepts presses immediately, including during movement, for `--r-guard-gap2` (10s); the window restarts on each movement. After 10s with no movement, presses stay off until the pointer moves again. An accepted press turns clicks off for `--r-guard-cool` (400ms), then off until movement again. Touch and keyboard use the cooldown only. Acceptance is decided on button press, not release; a discarded press also suppresses the click. A discarded press flashes the waiting cursor for 300ms. Opt out with `.r-unguarded` on the button or an ancestor. No dependencies, no build step. | Shipped |
 | `icons/` | Waiting icons: `icons/wait.svg` (animated) and `icons/wait-static.svg` (the full W, unanimated, 128). `icons/wait-cursor.svg` is the same W at 32 CSS px for the `.r-wait` cursor (hotspot 16 16, `progress` fallback). Disabled controls use that cursor too, never the system not-allowed pointer. `--r-icon-wait`, `--r-icon-wait-static` and `--r-icon-wait-cursor` in `base.css`. | Shipped |
@@ -85,10 +99,99 @@ Radios and checkboxes share `--r-choice-size` (1.5rem), `--r-choice-bg`, `--r-ch
 - Optional attributes on the fieldset: `data-remove` (default `Remove row {n}`, used for the × button's `aria-label`), `data-added` and `data-removed` (live-region announcements, default `Row added` and `Row removed`).
 - Keyboard: Enter in the last row adds a row and focuses its first field. Backspace at the start of an empty row (every field blank, more than one row) removes it and focuses the previous row's last field.
 - The last remaining row cannot be removed, and its remove control is hidden. The ghost row is not in the tab order (`disabled`, `tabindex="-1"`, `aria-hidden`). `.r-vh` hides the live region visually. Reduced motion drops the row-in animation; forced colours keep the control edges visible.
+- Below `30rem` of its own width the list stacks: each row is one column of fields beside its ×, the header row goes and the placeholders name the fields. The ghost row stacks the same way; its fields (inputs, selects, textareas) fill their columns and keep the default pointer.
+
+## App shell
+
+The shell is the frame of a page: the bar, the column, the footer. A site and an app share it; only the root of the bar differs.
+
+```html
+<body class="r-page">
+  <header class="r-bar">
+    <nav class="r-crumbs" aria-label="Breadcrumb"><ol>
+      <li><a class="r-btn r-crumb-root" href="/" aria-label="Home">®</a></li>
+      <li><a class="r-btn" href="/jobs" aria-current="page">jobs</a></li>
+    </ol></nav>
+    <div class="r-bar-end">
+      <div class="r-group"><button type="button" class="r-btn r-cancel">Cancel</button><button type="button" class="r-btn">Run again</button></div>
+      <details class="r-menu r-mark">
+        <summary aria-label="Menu" aria-haspopup="menu"><img src="mark.svg" alt="" width="32" height="32"></summary>
+        <div class="r-menu-list" role="menu" aria-label="Menu">
+          <details class="r-menu r-side">
+            <summary class="r-btn r-clear" role="menuitem" aria-haspopup="menu">Theme</summary>
+            <div class="r-menu-list" role="menu" aria-label="Theme">
+              <button type="button" class="r-btn r-swatch" role="menuitemradio" aria-checked="false" style="--r-swatch-bg: var(--app-light-bg); --r-swatch-fg: var(--app-light-fg)">Light</button>
+              <button type="button" class="r-btn r-swatch r-swatch-dark-r" role="menuitemradio" aria-checked="true" aria-label="Dark-R"><span aria-hidden="true">Dark-<span class="r-name-r">®</span></span></button>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+  </header>
+  <main class="r-column">…</main>
+  <footer class="r-foot"><a href="https://www.enterprise-r.com">Enterprise-R</a></footer>
+</body>
+```
+
+- **Column.** The text is `--r-measure` (880px) wide, centered, at least `--r-text-min` (26px) from the window: `--r-text-inline`. A box pads its sides by `--r-box-pad` and steps back by the same length (`.r-step-back`), so its words line up with the text outside it; `--r-box-gap` (4px) stays outside its border for the glow. The bar's inset, `--r-bar-inline`, lines it up with the boxes. Below `40rem` the text and the bar share `--r-text-pad` (1rem). `.r-column` starts a button's height below the bar; a page whose bar wraps sets `--r-bar-h` to the bar's measured height.
+- **Bar.** The root comes first and stays on the left; `.r-bar-end` stays on the right, also when the bar wraps. In the bar a trail's labels sit against the slant. The actions pill ends square against the mark. A disabled button takes the page ground, as the theme's disabled fill is the bar's. Below `52rem` a trail meets the left edge of the window: the first crumb is square, 8px deep, and a lone first crumb is a plain box. Any other root keeps the inset.
+- **Mark.** A menu whose button is a square picture as tall as a button, framed like an active card. The picture is a square view box with a rounded plate centered in it: `--r-mark-view`, `--r-mark-plate` and `--r-mark-round` (128, 120 and 26 by default) fit the plate to the square and the frame to its curve. Focus draws the frame in the focus color. A second level (`.r-menu.r-side`) fills the list's width and opens to its left.
+- **Swatches.** Each theme choice is the page it sets, also on hover: the app sets `--r-swatch-bg`, `--r-swatch-fg` and `--r-swatch-font` for each of its own pages. `.r-swatch-dark-r` is Dark-R's: the ground, sage ink, the title face. The checked choice has a Green inner ring; pointing at another draws it in the dim ink.
+- **Footer.** The Border fill, the company word in Enterprsr in the darkest ink; pointing at it fills the word with the striped gradient. Inside `.r-page` it stays on the bottom of the window.
+- Print drops the bar, the footer and the stripe, and the column keeps the page edge.
+
+## Status stripe
+
+A notice under the bar with a few keys and values. It takes the notice's roles; the value `.r-role` takes the role color. The pairs fill a left and a right side in reading order; a side's keys are right-aligned and its values left-aligned and wrapping, `.r-nowrap` on one line. Three equal gaps share the free space. Add `.r-glow` when the status changes.
+
+```html
+<dl class="r-notice r-stripe r-warn" role="status">
+  <div><dt>Status</dt><dd class="r-role">Running</dd></div>
+  <div><dt>Started</dt><dd><time datetime="2026-11-15T09:30Z">09:30</time></dd></div>
+  <div><dt>Run</dt><dd class="r-nowrap"><code>a1b2c3d4e5f6</code></dd></div>
+  <div><dt>Duration</dt><dd>2 minutes</dd></div>
+</dl>
+```
+
+## Listing
+
+A table of entries, one `tbody` each: a main row and a detail row, with the id cell across both. The id is in the code face, drawn plain and underlined while pointed at. Every other entry is banded. The table steps back like a box. Below `40rem` the id column is `--r-listing-id` wide (7ch), so a longer id breaks onto equal lines.
+
+```html
+<table class="r-listing">
+  <thead><tr><th>Run</th><th>Status</th><th>Started</th></tr></thead>
+  <tbody>
+    <tr><td class="r-id" rowspan="2"><a href="/runs/a1b2c3d4e5f6">a1b2c3d4e5f6</a></td><td>Done</td><td>09:30</td></tr>
+    <tr class="r-detail"><td><span class="r-tag">Version</span> 3</td><td><span class="r-tag">Duration</span> 2 minutes</td></tr>
+  </tbody>
+</table>
+```
+
+## Key/value table
+
+Keys right-aligned against a rule, values beside them; a value may be a table of its own, flush in its cell, parted from the row before by a double rule. The box scrolls when the text runs past it. The lines are `--r-kv-line`.
+
+```html
+<div class="r-kv"><table><tbody>
+  <tr><th>name</th><td>Weekly report</td></tr>
+  <tr><th>owner</th><td><table><tbody>
+    <tr><th>team</th><td>Ops</td></tr>
+    <tr><th>email</th><td>ops@example.com</td></tr>
+  </tbody></table></td></tr>
+</tbody></table></div>
+```
+
+## Form actions
+
+`.r-group.r-end` is a group at the end of its line: a form's Clear and Send as one pill at the right edge, or a lone Send.
+
+```html
+<div class="r-group r-end"><button type="reset" class="r-btn">Clear</button><button type="submit" class="r-btn r-primary">Send</button></div>
+```
 
 ## Rules
 
 - Standard CSS only: no preprocessor, no nesting, no framework scoping. Newer features need a fallback for browsers without them.
 - Colours come only from `--ui-*` variables. To change a colour, change `palette/palette.json`.
 - Every class starts with `r-`, so the theme cannot clash with an app's own classes. Custom properties the theme adds for roles start with `--r-`.
-- Site-specific parts (a site's title bar, footer and pages) stay in that site.
+- A site's own content (its pages, and what it puts in the bar and the footer) stays in that site.

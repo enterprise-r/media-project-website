@@ -1,0 +1,141 @@
+/* Dark-R bar: the app bar fixed across the top of the window, on the Border fill (--ui-border).
+   Link after column.css; it reads --r-bar-inline. The root of the bar comes first and stays on the
+   left: breadcrumbs (.r-crumbs) on an app, or any other element on a site. .r-bar-end holds the rest
+   and stays on the right, also when the bar wraps: an actions pill (.r-group) and the mark menu
+   (.r-mark), which closes the bar.
+   <header class="r-bar">
+     <nav class="r-crumbs" aria-label="Breadcrumb"><ol><li><a class="r-btn r-crumb-root" href="/" aria-label="Home">®</a></li>…</ol></nav>
+     <div class="r-bar-end">
+       <div class="r-group">r-btn…</div>
+       <details class="r-menu r-mark"><summary aria-label="Menu"><img src="mark.svg" alt="" width="32" height="32"></summary><div class="r-menu-list" role="menu">…</div></details>
+     </div>
+   </header>
+   Print drops the bar. */
+:root {
+  --r-bar-pad: 0.65rem;
+  --r-bar-gap: 0.3rem;
+}
+.r-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--r-bar-gap);
+  padding: var(--r-bar-pad) var(--r-bar-inline);
+  background-color: var(--ui-border);
+  /* A disabled button's fill is the bar's own; it takes the page ground instead. */
+  --r-disabled: var(--ui-bg);
+  /* The straight outer edges of the trail keep the button padding, saved before the crumbs shrink it. */
+  --r-crumb-edge: var(--r-btn-pad-x);
+}
+.r-bar > :first-child { margin-right: auto; }
+.r-bar-end {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--r-bar-gap);
+  margin-left: auto;
+}
+
+/* Crumbs in the bar sit their labels against the slant. The first crumb's straight left side keeps
+   two thirds of the button padding, the last crumb's straight right side all of it. */
+.r-bar > .r-crumbs { --r-btn-pad-x: 0.2rem; }
+.r-bar > .r-crumbs li:first-child > .r-btn,
+.r-bar > .r-crumbs li:first-child > .r-menu > summary { padding-left: calc(var(--r-crumb-edge) * 2 / 3); }
+.r-bar > .r-crumbs li:last-child > .r-btn,
+.r-bar > .r-crumbs li:last-child > .r-menu > summary { padding-right: var(--r-crumb-edge); }
+
+/* Below 52rem the trail meets the left edge of the window: the first crumb is square, 8px deep,
+   so its label sits just off the glass and the row keeps the inset it gives back. A lone first crumb
+   is the whole trail, so it is a plain box. A bar whose root is not a trail keeps its inset. */
+@media (max-width: 52rem) {
+  .r-bar:has(> .r-crumbs:first-child) { padding-left: 0; }
+  .r-bar > .r-crumbs:first-child li:first-child > .r-btn,
+  .r-bar > .r-crumbs:first-child li:first-child > .r-menu > summary {
+    padding-left: 8px;
+    border-radius: 0;
+  }
+  .r-bar > .r-crumbs:first-child li:only-child > .r-btn,
+  .r-bar > .r-crumbs:first-child li:only-child > .r-menu > summary { clip-path: none; }
+  @supports (clip-path: shape(from 0 0, line to 1px 1px)) {
+    .r-bar > .r-crumbs:first-child li:first-child:not(:only-child) > .r-btn,
+    .r-bar > .r-crumbs:first-child li:first-child:not(:only-child) > .r-menu > summary {
+      clip-path: shape(from 0 0,
+        line to calc(100% - var(--r-c)) 0,
+        curve to calc(100% - var(--r-c) * var(--r-kr)) var(--r-c) with 100% 0,
+        line to calc(100% - var(--r-r) + var(--r-c) * var(--r-kr)) calc(100% - var(--r-c)),
+        curve to calc(100% - var(--r-r) - var(--r-c)) 100% with calc(100% - var(--r-r)) 100%,
+        line to 0 100%,
+        close);
+    }
+  }
+}
+
+/* The mark closes the bar, so the actions pill before it ends square on its last button that shows. */
+.r-bar-end > .r-group:has(~ .r-mark) > .r-btn:not([hidden], [style*="display: none"]):not(:has(~ :not([hidden], [style*="display: none"]))) {
+  border-start-end-radius: 0.25rem;
+  border-end-end-radius: 0.25rem;
+  padding-inline-end: var(--r-btn-pad-flat);
+}
+
+/* Mark: a menu whose button is a square picture as tall as a button (--r-btn-h), framed like an
+   active card (one pixel of --ui-border-active outside, one inside). The picture is a square view
+   box of --r-mark-view units with a rounded plate of --r-mark-plate units centered in it, corner
+   radius --r-mark-round; the plate fills the square and the frame follows its curve. The defaults
+   fit a 128 view box with a 120 plate at (4,4), rx 26. The list opens under it, right-aligned.
+   Focus draws the frame in the focus color. */
+.r-mark {
+  --r-mark-view: 128;
+  --r-mark-plate: 120;
+  --r-mark-round: 26;
+  margin: 0;
+}
+.r-mark > summary {
+  position: relative;
+  display: block;
+  width: var(--r-btn-h);
+  height: var(--r-btn-h);
+  padding: 0;
+  background: none;
+  border-radius: calc(var(--r-mark-round) / var(--r-mark-plate) * 100%);
+  outline: none;
+  line-height: 0;
+  cursor: pointer;
+}
+.r-mark > summary::before { content: none; }
+.r-mark > summary > img {
+  position: absolute;
+  left: calc((var(--r-mark-plate) - var(--r-mark-view)) / 2 / var(--r-mark-plate) * 100%);
+  top: calc((var(--r-mark-plate) - var(--r-mark-view)) / 2 / var(--r-mark-plate) * 100%);
+  display: block;
+  width: calc(var(--r-mark-view) / var(--r-mark-plate) * 100%);
+  height: calc(var(--r-mark-view) / var(--r-mark-plate) * 100%);
+  max-width: none;
+}
+.r-mark > summary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--ui-border-active);
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--ui-border-active);
+  pointer-events: none;
+}
+.r-mark[open] > summary,
+.r-mark > summary:hover { background: none; }
+.r-mark > summary:focus-visible::after {
+  border-color: var(--r-focus);
+  box-shadow: inset 0 0 0 1px var(--r-focus);
+}
+
+@media (forced-colors: active) {
+  .r-mark > summary:focus-visible { outline: 2px solid Highlight; outline-offset: 3px; }
+}
+@media print {
+  .r-bar { display: none; }
+}

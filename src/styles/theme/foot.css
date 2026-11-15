@@ -1,0 +1,26 @@
+/* Dark-R footer: a stripe on the Border fill, the same as the bar, closing the page. The word is the
+   darkest ink (--ui-bg) in Enterprsr, centered, and links to the company site. The link keeps that
+   ink; pointing at it fills the word with the striped gradient. Inside .r-page it stays on the bottom
+   of the window. Print drops it.
+   <footer class="r-foot"><a href="https://www.enterprise-r.com">Enterprise-R</a></footer> */
+.r-foot {
+  margin: 0;
+  padding: var(--r-bar-pad, 0.65rem) var(--r-bar-inline, 1rem);
+  color: var(--ui-bg);
+  background-color: var(--ui-border);
+  font-family: var(--r-font-brand);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-align: center;
+}
+.r-foot a { color: inherit; text-decoration: none; }
+.r-foot a:hover {
+  color: transparent;
+  background: var(--ui-striped);
+  background-clip: text;
+}
+@media print {
+  .r-foot { display: none; }
+}

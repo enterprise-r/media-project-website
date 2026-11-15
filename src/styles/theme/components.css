@@ -52,21 +52,22 @@
   letter-spacing: var(--r-btn-tracking);
   text-transform: uppercase;
   text-decoration: none;
+  white-space: nowrap;
   line-height: 1;
   cursor: pointer;
 }
-.r-btn:hover { color: var(--r-btn-text); background-color: var(--r-btn-hover); }
+.r-btn:hover:not(:disabled, [aria-disabled="true"]) { color: var(--r-btn-text); background-color: var(--r-btn-hover); }
 .r-btn:focus-visible { outline: 2px solid var(--r-focus); outline-offset: 3px; }
 .r-btn[aria-current="page"],
 .r-btn.r-primary { background-color: var(--r-primary); }
-.r-btn[aria-current="page"]:hover,
-.r-btn.r-primary:hover { background-color: var(--r-primary-hover); }
+.r-btn[aria-current="page"]:hover:not(:disabled, [aria-disabled="true"]),
+.r-btn.r-primary:hover:not(:disabled, [aria-disabled="true"]) { background-color: var(--r-primary-hover); }
 .r-btn.r-clear,
 button.r-btn[type="reset"] { background-color: var(--r-clear); }
-.r-btn.r-clear:hover,
-button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
+.r-btn.r-clear:hover:not(:disabled, [aria-disabled="true"]),
+button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { background-color: var(--r-clear-hover); }
 .r-btn.r-cancel { background-color: var(--r-cancel); }
-.r-btn.r-cancel:hover { background-color: var(--r-cancel-hover); }
+.r-btn.r-cancel:hover:not(:disabled, [aria-disabled="true"]) { background-color: var(--r-cancel-hover); }
 .r-btn[aria-disabled="true"],
 .r-btn:disabled {
   color: var(--r-disabled-text);
@@ -74,24 +75,38 @@ button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
   cursor: var(--r-icon-wait-cursor) 16 16, progress;
 }
 
-/* Group: buttons side by side, joined into one pill. <span class="r-group">r-btn…</span> */
+/* Group: buttons side by side, joined into one pill. <span class="r-group">r-btn…</span>
+   A disabled button keeps its --r-disabled fill on hover; set --r-disabled where that fill would
+   match the ground. The ends are the first and last buttons that show: a button hidden with the
+   hidden attribute or an inline display: none (as script libraries hide one) does not count. */
 .r-group { display: flex; flex-wrap: wrap; gap: var(--r-gap); }
-.r-group > .r-btn:first-child,
-.r-group > .r-menu:first-child > summary {
+/* A group at the end of its line, such as a form's actions: Clear and Send as one pill at the right
+   edge, or a lone Send. It drops below a float before it. <div class="r-group r-end">r-btn…</div> */
+.r-group.r-end {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline-start: auto;
+  justify-content: flex-end;
+  clear: both;
+}
+.r-group > .r-btn:not([hidden], [style*="display: none"], :not([hidden], [style*="display: none"]) ~ *),
+.r-group > .r-menu:not([hidden], [style*="display: none"], :not([hidden], [style*="display: none"]) ~ *) > summary {
   border-start-start-radius: var(--r-pill-r);
   border-end-start-radius: var(--r-pill-r);
   padding-inline-start: var(--r-btn-pad-curve);
   padding-inline-end: var(--r-btn-pad-flat);
 }
-.r-group > .r-btn:last-child,
-.r-group > .r-menu:last-child > summary {
+.r-group > .r-btn:not([hidden], [style*="display: none"]):not(:has(~ :not([hidden], [style*="display: none"]))),
+.r-group > .r-menu:not([hidden], [style*="display: none"]):not(:has(~ :not([hidden], [style*="display: none"]))) > summary {
   border-start-end-radius: var(--r-pill-r);
   border-end-end-radius: var(--r-pill-r);
   padding-inline-start: var(--r-btn-pad-flat);
   padding-inline-end: var(--r-btn-pad-curve);
 }
-.r-group > .r-btn:only-child,
-.r-group > .r-menu:only-child > summary { padding-inline: var(--r-btn-pad-curve); }
+.r-group > .r-btn:not([hidden], [style*="display: none"], :not([hidden], [style*="display: none"]) ~ *):not(:has(~ :not([hidden], [style*="display: none"]))),
+.r-group > .r-menu:not([hidden], [style*="display: none"], :not([hidden], [style*="display: none"]) ~ *):not(:has(~ :not([hidden], [style*="display: none"]))) > summary {
+  padding-inline: var(--r-btn-pad-curve);
+}
 
 /* On a narrow screen keep the desktop shape, scaled down: the label stays
    tucked to the end (flex-end), min-width leaves spare on the start side, and
@@ -144,6 +159,26 @@ button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
 }
 .r-menu.r-to-right > .r-menu-list { right: auto; left: 0; }
 .r-menu-list > .r-btn { white-space: nowrap; }
+/* An open menu on a role button keeps that role's hover. */
+.r-menu[open] > summary.r-primary { background-color: var(--r-primary-hover); }
+.r-menu[open] > summary.r-clear { background-color: var(--r-clear-hover); }
+.r-menu[open] > summary.r-cancel { background-color: var(--r-cancel-hover); }
+/* A choice in a list (role="menuitemradio") that is checked is the current one: Green. */
+.r-menu-list > .r-btn[aria-checked="true"] { background-color: var(--r-primary); }
+.r-menu-list > .r-btn[aria-checked="true"]:hover:not(:disabled, [aria-disabled="true"]) { background-color: var(--r-primary-hover); }
+/* A second level: a menu inside a list fills its width and opens beside it, to the left, top-aligned,
+   for a menu at the right edge of the window. Its caret points left, at the list, and stays put.
+   <details class="r-menu r-side"><summary class="r-btn r-clear">Theme</summary><div class="r-menu-list">…</div></details> */
+.r-menu-list > .r-menu.r-side,
+.r-menu-list > .r-menu.r-side > summary { width: 100%; }
+.r-menu.r-side > .r-menu-list { top: 0; right: calc(100% + var(--r-gap)); left: auto; }
+.r-menu.r-side > summary::before {
+  border-top: 0.28rem solid transparent;
+  border-bottom: 0.28rem solid transparent;
+  border-left: 0;
+  border-right: 0.32rem solid currentColor;
+}
+.r-menu.r-side[open] > summary::before { transform: none; }
 
 /* Breadcrumbs: the same buttons, one per level, joined on a diagonal ("/", like the striped gradient):
    squared on the left, only the last rounded on the right.
@@ -329,11 +364,17 @@ button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
 /* Update glow: a brief iridescent border, in the striped gradient, that tells the user a box has just
    changed (a notification, a warning, a live value).
    .r-glow      the whole border lights up at once, then fades.
-   .r-glow-run  a band of the stripe travels once around the border, corner to corner.
+   .r-glow-run  a band of the stripe travels twice around the border, corner to corner.
    <div class="r-glow">…</div>. The effect plays when the class is added. To play it again, remove the
    class, force a reflow (el.offsetWidth) and add it back. The box keeps its own border; set --r-glow-r
    to its radius so the corners match. The glow sits just outside it: a thin crisp line (::after) and a
-   soft halo (::before), so the box must not use those pseudo-elements itself. */
+   soft halo (::before), so the box must not use those pseudo-elements itself.
+   .r-glow-run takes --r-glow-run-time for two full laps of the band: the angle runs from 0 to 720deg.
+   A box that is not a rounded rectangle (an open side, an arc, an arrow) adds .r-glow-shape and sets
+   --r-glow-mask to a mask of its outline. Both pseudo-elements then reach --r-glow-reach past the box
+   on every side and are masked to that outline, which is placed in that larger box. The layers of the
+   mask add, so pieces may overlap. The halo is blurred first, so the mask holds it to the line.
+   <div class="r-glow-run r-glow-shape" style="--r-glow-mask: …">…</div> */
 @property --r-glow-a {
   syntax: "<angle>";
   inherits: false;
@@ -345,7 +386,8 @@ button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
   --r-glow-w: 2px;        /* the crisp line */
   --r-glow-halo: 14px;    /* how far the soft halo reaches */
   --r-glow-time: 1.6s;    /* .r-glow */
-  --r-glow-run-time: 2s;  /* .r-glow-run, one lap */
+  --r-glow-run-time: 4s;  /* .r-glow-run, two laps */
+  --r-glow-reach: 20px;   /* .r-glow-shape: how far past the box its outline mask may draw */
 }
 
 :where(.r-glow, .r-glow-run) { position: relative; }
@@ -379,6 +421,19 @@ button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
   mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0);
 }
 
+.r-glow-shape:is(.r-glow, .r-glow-run)::before,
+.r-glow-shape:is(.r-glow, .r-glow-run)::after {
+  inset: calc(-1 * var(--r-glow-reach));
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-clip: border-box;
+  -webkit-mask: var(--r-glow-mask);
+  -webkit-mask-composite: source-over;
+  mask: var(--r-glow-mask);
+  mask-composite: add;
+}
+
 .r-glow::before, .r-glow::after {
   background-image: var(--ui-striped);
   animation: r-glow-flash var(--r-glow-time) ease-out;
@@ -408,9 +463,9 @@ button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
 }
 @keyframes r-glow-run {
   0% { --r-glow-a: 0deg; opacity: 0; }
-  10% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { --r-glow-a: 360deg; opacity: 0; }
+  5% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { --r-glow-a: 720deg; opacity: 0; }
 }
 
 /* Without motion, both are a plain fade of the whole border. Menu caret does not spin. */
@@ -557,7 +612,10 @@ button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
   pointer-events: none;
   transition: opacity 0.15s ease, visibility 0s linear 0.15s;
 }
-.r-row-ghost input {
+.r-row-ghost :is(input, select, textarea) {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
   border-color: var(--r-clear);
 }
 .r-rows-foot:has(.r-row-add:focus-visible) .r-row-ghost {
@@ -581,6 +639,19 @@ button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
   .r-rows-foot:has(.r-row-add:hover) .r-row-ghost {
     transition: none;
   }
+}
+
+/* A narrow list stacks: below 30rem of list width each row is one column of fields beside its ×,
+   which stays at the top, and the header row goes (the placeholders name the fields). The ghost row
+   stacks the same way. */
+.r-rows { container: r-rows / inline-size; }
+@container r-rows (max-width: 30rem) {
+  .r-rows-head { display: none; }
+  .r-rows .r-row,
+  .r-rows-foot { grid-template-columns: var(--r-choice-size) minmax(0, 1fr); }
+  .r-rows .r-row > :not(.r-row-bubble) { grid-column: 2; }
+  .r-rows .r-row > .r-row-bubble { grid-column: 1; grid-row: 1; align-self: start; }
+  .r-row-ghost { grid-column: 2; grid-template-columns: minmax(0, 1fr); gap: 0.45rem; }
 }
 
 @keyframes r-row-in {
@@ -623,7 +694,7 @@ button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
   }
   .r-rows .r-row:has(.r-row-remove:hover:not(:disabled)) :is(input, textarea, select),
   .r-rows .r-row:has(.r-row-remove:focus-visible:not(:disabled)) :is(input, textarea, select),
-  .r-row-ghost input {
+  .r-row-ghost :is(input, select, textarea) {
     border-color: Highlight;
   }
 }
@@ -632,6 +703,8 @@ button.r-btn[type="reset"]:hover { background-color: var(--r-clear-hover); }
    Repeated here so it wins over cursor: pointer on .r-btn and .r-row-remove. */
 :disabled,
 [aria-disabled="true"] { cursor: var(--r-icon-wait-cursor) 16 16, progress; }
+/* The ghost row is a preview, not a waiting control: its disabled fields keep the default pointer. */
+.r-row-ghost :disabled { cursor: default; }
 
 /* Click guard: the W cursor flashes for 300ms when a press is discarded. See theme/guard.js. */
 button.r-guard-wait,

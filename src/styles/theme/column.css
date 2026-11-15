@@ -1,0 +1,63 @@
+/* Dark-R column: the measure and the insets the bar, the column and the boxes in it share.
+   Link after components.css. bar.css, stripe.css and listing.css read these tokens.
+   The text is --r-measure wide (880px), centered, at least --r-text-min (26px) from the window.
+   --r-text-inline is the text's side inset and --r-bar-inline the bar's: on a wide screen the bar
+   lines up with the boxes. A box pads its sides by --r-box-pad and steps back by the same length,
+   so the words in it line up with the words outside it. --r-box-gap stays outside the border:
+   the room an update glow keeps before the window clips it.
+   Below 40rem, the theme's narrow screen, the text and the bar share --r-text-pad.
+   <body class="r-page"><header class="r-bar">…</header><main class="r-column">…</main><footer class="r-foot">…</footer></body> */
+:root {
+  --r-measure: 880px;
+  --r-text-min: 26px;
+  --r-text-pad: 1rem;
+  --r-box-gap: 4px;
+  --r-box-pad: calc(var(--r-text-pad) - var(--r-box-gap));
+  /* Percentages resolve against the element that uses the token: the bar and the column span the window. */
+  --r-text-inline: max(var(--r-text-min), calc((100% - var(--r-measure)) / 2));
+  --r-bar-inline: calc(var(--r-text-inline) - var(--r-box-pad));
+}
+@media (max-width: 40rem) {
+  :root {
+    --r-text-inline: var(--r-text-pad);
+    --r-bar-inline: var(--r-text-pad);
+  }
+}
+
+/* Page: a column of bar, content and footer, at least the window tall, so a short page keeps the
+   footer on the bottom and a long one carries it after the text. The bar is fixed, outside that flow. */
+.r-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Column: the content under the bar. It grows to fill the page, insets its text by --r-text-inline
+   and starts a button's height (--r-btn-h) below the bar. --r-bar-h is the bar's height; a page whose
+   bar wraps measures it and sets it, and otherwise one row of buttons is assumed. The horizontal
+   overflow is clipped, so a glow on a stepped-back box never widens the page.
+   <main class="r-column">…</main> */
+.r-column {
+  flex: 1 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  padding:
+    calc(var(--r-bar-h, calc(var(--r-btn-h) + 2 * var(--r-bar-pad, 0.65rem))) + var(--r-btn-h))
+    var(--r-text-inline)
+    3rem;
+  overflow-x: clip;
+}
+
+/* Step back: a box whose words line up with the text outside it. It pads its sides by --r-box-pad
+   and pulls out by the same length. Use it on a panel, a card, a notice, a quote or a code block
+   in the column. <div class="r-notice r-step-back">…</div> */
+.r-step-back {
+  margin-inline: calc(-1 * var(--r-box-pad));
+  padding-inline: var(--r-box-pad);
+}
+
+@media print {
+  .r-column { padding: 0; }
+  .r-step-back { margin-inline: 0; }
+}

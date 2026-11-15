@@ -1,0 +1,52 @@
+/* Dark-R key/value table: a table of keys and values whose values may be tables of their own, such
+   as a record or the settings at the head of a document. Put the table in a .r-kv box.
+   A key is right-aligned against a vertical rule, on one line, as narrow as its text. The table fills
+   the box; when its text runs past the box, the box scrolls. The outer table draws no line around
+   itself. A nested table sits flush in its cell, with no lines on its sides, top or bottom, and its rows
+   stay one line, as wide as their text. A row that holds a nested table is parted from the row before
+   it by a double rule (3px). Rows share one ground: no band, and nothing highlights on hover.
+   The lines are --r-kv-line, --ui-border unless the page sets it.
+   <div class="r-kv"><table><tbody>
+     <tr><th>name</th><td>Weekly report</td></tr>
+     <tr><th>owner</th><td><table><tbody><tr><th>team</th><td>Ops</td></tr><tr><th>email</th><td>…</td></tr></tbody></table></td></tr>
+   </tbody></table></div> */
+.r-kv { margin: 0 0 1rem; overflow-x: auto; }
+.r-kv :is(th, td) { border-bottom-color: var(--r-kv-line, var(--ui-border)); }
+.r-kv table {
+  display: table;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+.r-kv > table { border: 0; border-radius: 0; }
+.r-kv > table > tbody > tr > * { border-radius: 0; }
+.r-kv > table > tbody > tr:first-child > * { border-top: 0; }
+.r-kv > table > tbody > tr:last-child > * { border-bottom: 0; }
+.r-kv > table > tbody > tr > :first-child { border-left: 0; }
+.r-kv > table > tbody > tr > :last-child { border-right: 0; }
+.r-kv th {
+  width: 1%;
+  min-width: 0;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: right;
+  border-right: 1px solid var(--r-kv-line, var(--ui-border));
+}
+.r-kv table table { border: 0; border-radius: 0; }
+.r-kv table table :is(th, td) {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  white-space: nowrap;
+}
+.r-kv table table th { border-right: 1px solid var(--r-kv-line, var(--ui-border)); }
+.r-kv table table tr:first-child > * { border-top: 0; }
+.r-kv table table tr:last-child > * { border-bottom: 0; }
+.r-kv table table tr:has(+ tr > :is(th, td) > table) > * { border-bottom: 0; }
+.r-kv table table tr:has(> :is(th, td) > table) > * { border-top: 3px double var(--r-kv-line, var(--ui-border)); }
+.r-kv :is(th, td):has(> table) { padding: 0; }
+.r-kv tr { background: none; border: 0; }
+.r-kv td { border-left: 0; }
+.r-kv tr:hover > * { background: none; }
