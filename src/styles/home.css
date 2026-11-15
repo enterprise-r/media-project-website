@@ -7,29 +7,10 @@
    carousel, and a prompt underneath. The prompt is its own carousel, each line
    held three times as long as one Please Wait word, tearing in like a broken
    screen. Home runs five prompt lines. The 404 runs three, on the same loop. */
-html.is-home header,
 html.is-home footer,
 html.is-home .home-wait {
   position: relative;
   z-index: 1;
-}
-
-/* Home only: the root R is already here, so the pointer and press do nothing.
-   Hover still turns the fill Bright green. The letter stays the button ink. */
-html.is-home .r-crumb-root[aria-current="page"] {
-  cursor: default;
-}
-html.is-home .r-crumb-root[aria-current="page"]:active {
-  color: var(--r-btn-text);
-  background: var(--ui-striped);
-}
-
-/* When the compact logo docks left, it already marks the root,
-   so the ® crumb can go. Home and the 404 have no further crumb. */
-@container (max-width: 40rem) {
-  html.is-home .sc-nav-bar .r-crumbs {
-    display: none;
-  }
 }
 
 main.home {

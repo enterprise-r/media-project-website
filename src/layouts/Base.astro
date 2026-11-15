@@ -3,6 +3,8 @@
 import "../styles/palette.css";
 import "../styles/theme/base.css";
 import "../styles/theme/components.css";
+import "../styles/theme/column.css";
+import "../styles/theme/bar.css";
 import "../styles/bar.css";
 import "../styles/footer.css";
 import Footer from "../components/Footer.astro";
@@ -34,13 +36,11 @@ const pages = [
   { href: "/login/", label: "Login" },
 ];
 const crumbs = [
-  { href: "/", label: "®", name: "Home", root: true },
+  { href: "/", label: "Home", root: true },
 ];
 const current = pages.find((p) => p.href === here);
-if (current) crumbs.push({ href: current.href, label: current.label, name: current.label });
+if (current) crumbs.push({ href: current.href, label: current.label });
 const nav = pages.filter((p) => p.href !== here);
-// The title in the bar is the page heading on Home only.
-const Brand = isHome ? "h1" : "div";
 const url = new URL(Astro.url.pathname, Astro.site).href;
 ---
 <!DOCTYPE html>
@@ -67,37 +67,36 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
 </head>
 <body>
   {header && (
-    <header class="sc-nav-bar">
-      <Brand class="sc-nav-logo">
-        <a href="/" aria-label="Enterprise-R home">
-          <img class="sc-nav-logo-wide" src="/assets/logo-wide.svg" width="320" height="61" alt="">
-          <img class="sc-nav-logo-compact" src="/assets/logo-compact.svg" width="320" height="128" alt="">
-        </a>
-      </Brand>
+    <header class="r-bar">
       <nav class="r-crumbs" aria-label="Breadcrumb">
         <ol>
-          {crumbs.map((c) => (
-            <li>
-              {c.root && isHome ? (
-                <span class="r-btn r-crumb-root" aria-label={c.name} aria-current="page">{c.label}</span>
-              ) : (
-                <a
+          {crumbs.map((c) => {
+            const Tag = c.root && isHome ? "h1" : "a";
+            const currentPage = c.root ? isHome : here === c.href;
+            return (
+              <li>
+                <Tag
                   class:list={["r-btn", c.root && "r-crumb-root"]}
-                  href={c.href}
-                  aria-label={c.root ? c.name : undefined}
-                  aria-current={here === c.href ? "page" : undefined}
-                >{c.label}</a>
-              )}
-            </li>
-          ))}
+                  href={c.root && isHome ? undefined : c.href}
+                  aria-current={currentPage ? "page" : undefined}
+                >
+                  {c.root ? (
+                    <img src="/assets/logo-compact.svg" width="320" height="128" alt="Enterprise-R">
+                  ) : c.label}
+                </Tag>
+              </li>
+            );
+          })}
         </ol>
       </nav>
       {nav.length > 0 && (
-        <nav class="r-group" aria-label="Main">
-          {nav.map((item) => (
-            <a class="r-btn" href={item.href}>{item.label}</a>
-          ))}
-        </nav>
+        <div class="r-bar-end">
+          <nav class="r-group" aria-label="Main">
+            {nav.map((item) => (
+              <a class="r-btn" href={item.href}>{item.label}</a>
+            ))}
+          </nav>
+        </div>
       )}
     </header>
   )}

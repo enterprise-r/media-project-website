@@ -73,7 +73,8 @@ main.showcase + footer p {
 .sc-row > * { min-width: min(100%, 16rem); max-width: 100%; }
 .sc-row > :first-child { flex: 0 1 auto; }
 .sc-row > :last-child { flex: 1 1 20rem; }
-/* Nav bar layout (.sc-nav-bar, logo, wrap) lives in bar.css, shared with the site header. */
+/* The navigation specimen is the theme bar, held in the page instead of fixed to the window. */
+.showcase .r-bar { position: static; }
 
 /* Split row: the first block on the left, the last pushed to the right edge. */
 .sc-split { justify-content: space-between; }

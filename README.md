@@ -11,7 +11,7 @@ Pages: Home (`/`), About (`/about/`), Login (`/login/`), 404 (`/404.html`) and `
 | To change… | Edit |
 |---|---|
 | Page text (title, heading, contact email) | the `page` block at the top of the page in `src/pages/` |
-| Logo and favicons | `public/assets/`. The bar shows `logo-wide.svg`, then `logo-compact.svg` at 52rem and below |
+| Logo and favicons | `public/assets/`. The root breadcrumb shows `logo-compact.svg` |
 | Styles | `src/styles/`: `palette.css` (colours), `theme/` (Dark-R), `bar.css` (title bar), `footer.css`, `home.css`, `about.css`, `login.css`, `ui.css` (style guide) |
 | Shared head, title bar and navigation | `src/layouts/Base.astro` |
 | Social links | the `social` list in `src/components/Footer.astro` |
@@ -58,9 +58,7 @@ A lockup is the wordmark and the mark together (wide and compact). The plate is 
 
 ## Pages
 
-The bar (`bar.css`) is one stripe: breadcrumbs on the left, the logo in the middle, links and submenus on the right. Breadcrumbs show the active page. A page that also has a nav button leaves the nav while you are on it and shows there as the self-link. On Home the right nav is About and Login. On About it is Login. On Login it is About. Breakpoints follow the bar's width, not the window's. At 52rem and below the lockup becomes compact. At 40rem and below the compact logo docks to the left edge and the breadcrumbs wrap onto a second row. On Home the logo is the page heading (`h1`). It links home.
-
-The ® crumb is Home. On Home it is the current page and does not navigate. When the logo docks, that crumb is hidden, because the docked logo already marks the root.
+The bar is the theme's app bar (`theme/bar.css`): breadcrumbs on the left, links on the right. The root crumb is the compact logo, as tall as the crumb, on Inactive border, with no hover. On Home that crumb is the page heading (`h1`) and does not navigate. Breadcrumbs show the active page. A page that also has a nav button leaves the nav while you are on it and shows there as the self-link. On Home the right nav is About and Login. On About it is Login. On Login it is About.
 
 hyper-j is the site wallpaper, set once in `bar.css`. The style guide and the login page keep the flat page colour. Home and the 404 share one terminal and a mote field (`HomeWait.astro`, `Motes.astro`, `home.css`). The 404 turns the terminal 45 degrees. About's plates are in `about.css`.
 

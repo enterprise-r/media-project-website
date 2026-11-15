@@ -1,8 +1,7 @@
-/* Title bar and the page column. The site header uses the showcase nav-bar layout:
-   crumbs on the left, the logo in the middle (wide, then compact), a group on the right.
-   The bar is a container so the logo swap and the wrap follow its width, not the viewport. */
+/* Page column and wallpaper. The title bar is the theme's .r-bar.
+   The footer still reads --bar-pad, the same length as the theme's bar padding. */
 :root {
-  --bar-pad: 0.65rem;
+  --bar-pad: var(--r-bar-pad);
 }
 
 html { height: 100%; }
@@ -54,11 +53,52 @@ html:not(:has(.showcase, main.login)) body {
   background: transparent;
 }
 
-/* Open stripes so the wallpaper shows through. Footer icons are Background,
-   meant for the stripe; on the picture they switch to Foreground. */
-html:not(:has(.showcase, main.login)) header,
-html:not(:has(.showcase, main.login)) footer {
+/* Open stripes on the wallpaper (Home, the 404, About) so the picture shows
+   through the bar and the footer. Icons are Background, meant for the stripe;
+   on the picture they switch to Foreground. Login and the style guide stay solid. */
+html:not(:has(.showcase, main.login)) :is(header, footer) {
   background-color: transparent;
+}
+
+/* The theme bar is fixed. One row of it stays clear of the page. */
+body:has(> .r-bar) {
+  padding-top: calc(var(--r-btn-h) + 2 * var(--r-bar-pad));
+}
+
+/* Root crumb: the compact logo, as tall as the crumb, on Inactive border.
+   The plate in the file is the same colour, so it sits in the button.
+   Hover stays this fill for now. Shape, padding and focus stay with the theme. */
+.r-bar .r-crumbs .r-crumb-root {
+  margin: 0;
+  padding-block: 0;
+  align-items: stretch;
+  background-color: var(--ui-border);
+  background-image: none;
+  overflow: hidden;
+}
+.r-bar .r-crumbs .r-crumb-root:hover,
+.r-bar .r-crumbs .r-crumb-root:active {
+  color: var(--r-btn-text);
+  background-color: var(--ui-border);
+  background-image: none;
+}
+.r-bar .r-crumbs .r-crumb-root[aria-current="page"] {
+  cursor: default;
+}
+.r-bar .r-crumbs .r-crumb-root img {
+  display: block;
+  height: var(--r-btn-h);
+  width: auto;
+  max-width: none;
+}
+
+/* Below 52rem the lone root meets the left edge and the theme squares every corner.
+   The right end stays a pill, as it is on a wide screen. Home and the 404 are that lone root. */
+@media (max-width: 52rem) {
+  html.is-home .r-bar > .r-crumbs:first-child li:only-child > .r-crumb-root {
+    border-top-right-radius: var(--r-pill-r);
+    border-bottom-right-radius: var(--r-pill-r);
+  }
 }
 
 html:not(:has(.showcase, main.login)) footer a {
@@ -66,125 +106,3 @@ html:not(:has(.showcase, main.login)) footer a {
 }
 
 main { flex: 1 0 auto; width: 100%; }
-
-.sc-nav-bar {
-  --bar-pad-x: clamp(0.75rem, 2vw, 1.5rem);
-  display: grid;
-  grid-template-columns: 1fr minmax(max-content, auto) 1fr;
-  align-items: center;
-  column-gap: 1.2rem;
-  row-gap: var(--r-gap);
-  padding: var(--bar-pad) var(--bar-pad-x);
-  background-color: var(--ui-border);
-  overflow: visible;
-  container-type: inline-size;
-}
-
-/* The transparent lockups sit on a pill of the bar stripe (--ui-border), the same
-   height as a button (--r-btn-h), so they stay legible when the bar itself is open.
-   Same plate on every page, including the showcase. */
-.sc-nav-logo {
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: center;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  /* One pixel over the button box: at the painted edge the plate otherwise lands a pixel short. */
-  height: calc(var(--r-btn-h) + 1px);
-  min-width: max-content;
-  flex-shrink: 0;
-  margin: 0;
-  padding: 0 0.9rem;
-  line-height: 0;
-  color: inherit;
-  text-decoration: none;
-  background-color: var(--ui-border);
-  border-radius: 999px;
-}
-
-.sc-nav-logo a {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  line-height: 0;
-  color: inherit;
-  text-decoration: none;
-}
-
-.sc-nav-logo img {
-  display: block;
-  height: 100%;
-  width: auto;
-  max-width: none;
-  flex-shrink: 0;
-}
-
-.sc-nav-logo img.sc-nav-logo-wide { min-width: calc(var(--r-btn-h) * 320 / 61); }
-.sc-nav-logo img.sc-nav-logo-compact { display: none; min-width: calc(var(--r-btn-h) * 320 / 128); }
-
-.sc-nav-bar .r-crumbs {
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: start;
-  min-width: 0;
-}
-
-.sc-nav-bar > .r-group,
-.sc-nav-bar .sc-nav-end {
-  grid-column: 3;
-  grid-row: 1;
-  justify-self: end;
-  min-width: 0;
-}
-
-/* Right-nav links stay on one row, each label on one line. */
-.sc-nav-bar > .r-group {
-  flex-wrap: nowrap;
-  width: max-content;
-  min-width: max-content;
-}
-.sc-nav-bar > .r-group > .r-btn {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-.sc-nav-end {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--r-gap);
-  align-items: center;
-}
-
-/* Compact logo, still centred, while the single row still fits. */
-@container (max-width: 52rem) {
-  .sc-nav-logo img.sc-nav-logo-wide { display: none; }
-  .sc-nav-logo img.sc-nav-logo-compact { display: block; }
-}
-
-/* Wrapped: compact logo on the top row, flush with the left of the screen,
-   the right group top right, breadcrumbs below left.
-   DOM order is logo, crumbs, then the right group.
-   Row gap stays --r-gap, so the wrap is still a slim two-row stripe.
-   The bar is its own query container, so it cannot change its own columns.
-   The group spans the row and sits at the end, only as wide as its buttons,
-   beside the docked logo. */
-@container (max-width: 40rem) {
-  .sc-nav-logo {
-    grid-column: 1;
-    justify-self: start;
-    /* Cancel the bar's side padding so the plate meets the screen.
-       Square on the left, pill-round on the right. */
-    margin-left: calc(-1 * var(--bar-pad-x));
-    border-radius: 0 999px 999px 0;
-  }
-  .sc-nav-logo img.sc-nav-logo-wide { display: none; }
-  .sc-nav-logo img.sc-nav-logo-compact { display: block; }
-  .sc-nav-bar > .r-group,
-  .sc-nav-bar .sc-nav-end {
-    grid-column: 1 / -1;
-    justify-self: end;
-    width: max-content;
-  }
-  .sc-nav-bar .r-crumbs { grid-column: 1 / -1; grid-row: 2; }
-}
