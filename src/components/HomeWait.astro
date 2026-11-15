@@ -37,40 +37,43 @@ const mark = (p: Part) =>
 ---
 <Motes />
 <main class="home">
-  <div class="r-term home-wait">
-    <div class="home-line">
-      <img src={waitIcon} width="32" height="32" alt="">
-      <p class="home-sentence">
-        {sentence ? phrase : parts.map((p, i) => {
-          const m = mark(p);
-          return <>{i > 0 && " "}{m.tone ? <><span class={`home-w home-w-${m.tone}`}>{m.letter}</span>{m.rest}</> : m.letter}</>;
-        })}
-      </p>
-      <span class={countClass} aria-hidden="true">
-        {parts.map((p) => {
-          const m = mark(p);
-          return <span>{m.tone ? <><span class={`home-w home-w-${m.tone}`}>{m.letter}</span>{m.rest}</> : m.letter}</span>;
-        })}
-      </span>
-    </div>
-    <p class="r-prompt home-status">
-      <span class="home-prompt-live">
-        <span class="home-prompt-primary">
-          {prompts[0].map((piece) => piece.brand ? <span class="home-brand">{piece.text}</span> : piece.text)}
+  <div class="home-stage">
+    <div class="r-term home-wait">
+      <div class="home-line">
+        <img src={waitIcon} width="32" height="32" alt="">
+        <p class="home-sentence">
+          {sentence ? phrase : parts.map((p, i) => {
+            const m = mark(p);
+            return <>{i > 0 && " "}{m.tone ? <><span class={`home-w home-w-${m.tone}`}>{m.letter}</span>{m.rest}</> : m.letter}</>;
+          })}
+        </p>
+        <span class={countClass} aria-hidden="true">
+          {parts.map((p) => {
+            const m = mark(p);
+            return <span>{m.tone ? <><span class={`home-w home-w-${m.tone}`}>{m.letter}</span>{m.rest}</> : m.letter}</span>;
+          })}
         </span>
-        {promptMore && <span class="home-prompt-more">. {promptMore}</span>}
-      </span>
-      <span class="home-prompts" aria-hidden="true">
-        {prompts.map((line) => (
-          <span class:list={["home-prompt", line.some((piece) => piece.brand) && "home-prompt-url"]}>
-            {slices.map((slice) => (
-              <span class="home-slice" data-slice={slice}>
-                {line.map((piece) => piece.brand ? <span class="home-brand">{piece.text}</span> : piece.text)}
-              </span>
-            ))}
+      </div>
+      <p class="r-prompt home-status">
+        <span class="home-prompt-live">
+          <span class="home-prompt-primary">
+            {prompts[0].map((piece) => piece.brand ? <span class="home-brand">{piece.text}</span> : piece.text)}
           </span>
-        ))}
-      </span>
-    </p>
+          {promptMore && <span class="home-prompt-more">. {promptMore}</span>}
+        </span>
+        <span class="home-prompts" aria-hidden="true">
+          {prompts.map((line) => (
+            <span class:list={["home-prompt", line.some((piece) => piece.brand) && "home-prompt-url"]}>
+              {slices.map((slice) => (
+                <span class="home-slice" data-slice={slice}>
+                  {line.map((piece) => piece.brand ? <span class="home-brand">{piece.text}</span> : piece.text)}
+                </span>
+              ))}
+            </span>
+          ))}
+        </span>
+      </p>
+    </div>
+    <img class="home-logo" src="/assets/logo-wide.svg" width="320" height="61" alt="">
   </div>
 </main>

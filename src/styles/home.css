@@ -3,6 +3,10 @@
    45 degrees. The mote layer is fixed at z-index 0, so the bar, the footer
    and the terminal sit above it. Do not raise main itself: it fills the
    viewport and would hide the motes.
+   Both pages place the wide logo the same way: the terminal's width, centred
+   halfway between the header and that panel. The logo stays in normal flow,
+   so the motes paint over it. The 404 then shifts its panel from that place
+   onto the diamond. The shift does not move the logo.
    A large terminal sits in the middle, with the waiting icon, a pulsing word
    carousel, and a prompt underneath. The prompt is its own carousel, each line
    held three times as long as one Please Wait word, tearing in like a broken
@@ -21,6 +25,49 @@ main.home {
   padding: 2rem 1rem;
 }
 
+/* The terminal sets the width. The logo contributes no width of its own
+   (width 0, then min-width 100%), so it stretches to that border box.
+   No position and no z-index: the motes stay in front of the logo.
+   The stage fills the page between the header and the footer.
+   Equal 1fr rows above and below the terminal centre the panel. The logo
+   is centred in the upper row, halfway from the header to the panel.
+   Home and the 404 share this. The panel is not stretched by the grid:
+   its content sets the width, and the aspect ratio sets the height. */
+.home-stage {
+  display: grid;
+  grid-template-columns: minmax(0, max-content);
+  justify-items: stretch;
+  width: fit-content;
+  max-width: 100%;
+}
+
+html.is-home main.home {
+  align-items: stretch;
+  padding-block: 0;
+}
+
+html.is-home .home-stage {
+  flex: 1 1 auto;
+  align-self: stretch;
+  grid-template-rows: 1fr auto 1fr;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.home-logo {
+  display: block;
+  grid-row: 1;
+  align-self: center;
+  width: 0;
+  min-width: 100%;
+  height: auto;
+}
+
+html.is-home .home-wait {
+  grid-row: 2;
+}
+
 /* A landscape golden-ratio rectangle (φ ≈ 1.618), only as wide as the prompt line
    (or the icon plus the longest carousel word, if that is wider) plus padding.
    The icon and carousel sit in the exact vertical middle; the prompt is in the
@@ -29,9 +76,11 @@ main.home {
   display: grid;
   grid-template-rows: 1fr auto 1fr;
   justify-items: center;
+  justify-self: center;
   position: relative;
   width: max-content;
   max-width: 100%;
+  min-height: 0;
   aspect-ratio: 1.618 / 1;
   padding: clamp(1.5rem, 5vw, 3.5rem) clamp(1.75rem, 6vw, 4.5rem);
 }
@@ -41,20 +90,25 @@ main.home {
    reads level. The panel's centre is the junction diamond on hyper-j
    (at 1685,1388), then 1rem right and 1rem up.
    The picture covers the body (bar.css). That box is at least 768px tall, and a
-   shorter window scrolls the picture. The panel is absolute on the same box, so
-   it stays on the diamond and scrolls with it. A fixed panel would stay on the
-   window while the diamond moved.
+   shorter window scrolls the picture. The panel stays in the centred column,
+   so the logo does not move, and is shifted from there onto the diamond.
+   It scrolls with the picture. A fixed panel would stay on the window while
+   the diamond moved.
    --cover is the cover scale: the picture is as wide as the page, or as tall,
    whichever fills it. On a wide page the diamond sits --wall-shift below where
-   a centred cover would put it. */
+   a centred cover would put it. The shift is that diamond offset. Half the
+   footer-and-bar difference is added because the column is centred on the
+   page and the diamond is centred on the body. */
 html.is-home.not-found .home-wait {
-  position: absolute;
   z-index: 1;
   margin: 0;
   --cover: max(100vw / var(--wall-w), var(--about-h) / var(--wall-h));
-  left: calc(50% + (1685 - var(--wall-w) / 2) * var(--cover) + 1rem);
-  top: calc(50% + (1388 - var(--wall-h) / 2) * var(--cover) - 1rem + var(--wall-shift));
-  transform: translate(-50%, -50%) rotate(-45deg);
+  --foot-h: calc(2 * var(--r-bar-pad) + 1.5rem);
+  --bar-h: calc(var(--r-btn-h) + 2 * var(--r-bar-pad));
+  translate:
+    calc((1685 - var(--wall-w) / 2) * var(--cover) + 1rem)
+    calc((1388 - var(--wall-h) / 2) * var(--cover) - 1rem + var(--wall-shift) + (var(--foot-h) - var(--bar-h)) / 2);
+  transform: rotate(-45deg);
 }
 
 html.not-found .home-words {
