@@ -19,9 +19,11 @@ interface Props {
   prompts: PromptPiece[][];
   // Screen-reader sentence, also shown when motion is reduced. Defaults to the words joined up.
   sentence?: string;
+  // 404 only. The wide logo stays in this layout. throw-logo.js then flies that box.
+  throwable?: boolean;
 }
 
-const { parts, prompts, sentence } = Astro.props;
+const { parts, prompts, sentence, throwable = false } = Astro.props;
 const phrase = sentence ?? parts.map((p) => p.text).join(" ");
 const countClass = parts.length === 3 ? "home-words home-words-3" : "home-words";
 const promptMore = prompts.slice(1).map((line) => line.map((piece) => piece.text).join("")).join(". ");
@@ -74,6 +76,14 @@ const mark = (p: Part) =>
         </span>
       </p>
     </div>
-    <img class="home-logo" src="/assets/logo-wide.svg" width="320" height="61" alt="">
+    <img
+      class="home-logo"
+      src="/assets/logo-wide.svg"
+      width="320"
+      height="61"
+      alt=""
+      draggable={throwable ? "false" : undefined}
+      data-throwable={throwable ? "" : undefined}
+    >
   </div>
 </main>

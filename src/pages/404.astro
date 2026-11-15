@@ -23,5 +23,10 @@ import Base from "../layouts/Base.astro";
 import HomeWait from "../components/HomeWait.astro";
 ---
 <Base title={page.title} description={page.description} noindex hero>
-  <HomeWait parts={parts} prompts={prompts} sentence="404" />
+  <HomeWait parts={parts} prompts={prompts} sentence="404" throwable />
 </Base>
+<script>
+  import { throwLogo } from "../scripts/throw-logo.js";
+  const el = document.querySelector("[data-throwable]");
+  if (el) throwLogo(el);
+</script>

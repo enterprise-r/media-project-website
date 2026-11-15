@@ -6,7 +6,8 @@
    Both pages place the wide logo the same way: the terminal's width, centred
    halfway between the header and that panel. The logo stays in normal flow,
    so the motes paint over it. The 404 then shifts its panel from that place
-   onto the diamond. The shift does not move the logo.
+   onto the diamond. The shift does not move the logo. The 404 throw script
+   reads that placed box and flies the same image. Home never does.
    A large terminal sits in the middle, with the waiting icon, a pulsing word
    carousel, and a prompt underneath. The prompt is its own carousel, each line
    held three times as long as one Please Wait word, tearing in like a broken
@@ -62,6 +63,41 @@ html.is-home .home-stage {
   width: 0;
   min-width: 100%;
   height: auto;
+}
+
+/* Thrown logo. Fixed to the window, at the bottom of the stack: behind the
+   motes, the terminal and the bar. The wallpaper is the only layer under it.
+   The page box would sit on top and take the grab, so the empty stage lets
+   the pointer through. Width and height are set on the element. max-width:
+   none beats the theme rule that caps images at 100%. */
+html.not-found main.home,
+html.not-found .home-stage {
+  pointer-events: none;
+}
+
+html.not-found .home-logo.is-thrown {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  pointer-events: auto;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  height: auto;
+  margin: 0;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: center;
+  will-change: transform;
+  filter: drop-shadow(0 8px 12px rgb(0 0 0 / 0.25));
+}
+
+html.not-found .home-logo.is-thrown.is-grab {
+  cursor: grabbing;
 }
 
 html.is-home .home-wait {
