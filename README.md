@@ -11,7 +11,7 @@ Pages: Home (`/`), About (`/about/`), Login (`/login/`), 404 (`/404.html`) and `
 | To change… | Edit |
 |---|---|
 | Page text (title, heading, contact email) | the `page` block at the top of the page in `src/pages/` |
-| Logo and favicons | `public/assets/`. The root breadcrumb shows `logo-compact-black.svg`, and `logo-compact-pulse.svg` on hover |
+| Logo and favicons | `public/assets/`. The root breadcrumb shows `logo-compact-black.svg`, and `logo-compact-white.svg` on hover |
 | Styles | `src/styles/`: `palette.css` (colours), `theme/` (Dark-R), `bar.css` (title bar), `footer.css`, `home.css`, `about.css`, `login.css`, `ui.css` (style guide) |
 | Shared head, title bar and navigation | `src/layouts/Base.astro` |
 | Social links | the `social` list in `src/components/Footer.astro` |
@@ -41,7 +41,7 @@ Brand files come from the project-branding build (`build.sh`), shipped to Drive 
 
 | In this repo | From |
 |---|---|
-| `public/assets/logo-wide.svg`, `logo-wide-pulse.svg`, `logo-compact-black.svg`, `logo-compact-pulse.svg`, `favicon.svg` | Drive `assets/logos/svg/` `logo-wide-transparent-color.svg`, `logo-wide-transparent-pulse.svg`, `logo-compact-transparent-black.svg`, `logo-compact-transparent-pulse.svg`, `logo-normal-chipped-color-low.svg`, renamed |
+| `public/assets/logo-wide.svg`, `logo-wide-pulse.svg`, `logo-compact-black.svg`, `logo-compact-white.svg`, `favicon.svg` | Drive `assets/logos/svg/` `logo-wide-transparent-color.svg`, `logo-wide-transparent-pulse.svg`, `logo-compact-transparent-black-low.svg`, `logo-compact-transparent-white-low.svg`, `logo-normal-chipped-color-low.svg`, renamed |
 | `public/assets/favicon.ico`, `favicon-32.png` | Drive `assets/logos/favicon/` |
 | `public/assets/apple-touch-icon.png`, `icon-192.png`, `icon-512.png` | Drive `assets/logos/favicon/` `favicon-180.png`, `favicon-192.png`, `favicon-512.png`, renamed |
 | `public/assets/warpchi.*`, `hyper-j.*` | Showcase terminal sample (warpchi). Site wallpaper is hyper-j, set once in `bar.css`. Sources are project-branding `wallpapers/`, saved here as jpg, avif and webp |
@@ -58,7 +58,7 @@ A lockup is the wordmark and the mark together (wide and compact). The plate is 
 
 ## Pages
 
-The bar is the theme's app bar (`theme/bar.css`): breadcrumbs on the left, links on the right. The root crumb is the compact logo, as tall as the crumb: black on the striped gradient, and on hover the pulse logo on Inactive border. On Home that crumb is the page heading (`h1`) and does not navigate. Breadcrumbs show the active page. A page that also has a nav button leaves the nav while you are on it and shows there as the self-link. On Home the right nav is About and Login. On About it is Login. On Login it is About.
+The bar is the theme's app bar (`theme/bar.css`): breadcrumbs on the left, links on the right. The root crumb is the compact logo, as tall as the crumb: black on the striped gradient, and on hover white on Inactive border. On Home that crumb is the page heading (`h1`) and does not navigate. Breadcrumbs show the active page. A page that also has a nav button leaves the nav while you are on it and shows there as the self-link. On Home the right nav is About and Login. On About it is Login. On Login it is About.
 
 hyper-j is the site wallpaper, set once in `bar.css`. The style guide and the login page keep the flat page colour. Home and the 404 share one terminal and a mote field (`HomeWait.astro`, `Motes.astro`, `home.css`). The 404 turns the terminal 45 degrees. About's plates are in `about.css`.
 

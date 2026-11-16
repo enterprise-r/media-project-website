@@ -66,7 +66,7 @@ body:has(> .r-bar) {
 }
 
 /* Root crumb: the compact logo, as tall as the crumb. At rest, the black logo on the
-   striped gradient. On hover and press, the pulse logo on Inactive border.
+   striped gradient. On hover and press, the white logo on Inactive border.
    Shape, padding and focus stay with the theme. */
 .r-bar .r-crumbs .r-crumb-root {
   margin: 0;
