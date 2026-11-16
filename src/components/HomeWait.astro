@@ -1,5 +1,5 @@
 ---
-// Home and 404 terminal: waiting icon, word carousel, prompt carousel.
+// Home and 404 terminal: waiting icon, word carousel, static prompt.
 import Motes from "./Motes.astro";
 import "../styles/home.css";
 import waitIcon from "../styles/theme/icons/wait.svg?url";
@@ -9,25 +9,19 @@ interface Part {
   tone?: string | null;
 }
 
-interface PromptPiece {
-  text: string;
-  brand?: boolean;
-}
-
 interface Props {
   parts: Part[];
-  prompts: PromptPiece[][];
+  // The static line under the words.
+  prompt: string;
   // Screen-reader sentence, also shown when motion is reduced. Defaults to the words joined up.
   sentence?: string;
   // 404 only. The wide logo stays in this layout. throw-logo.js then flies that box.
   throwable?: boolean;
 }
 
-const { parts, prompts, sentence, throwable = false } = Astro.props;
+const { parts, prompt, sentence, throwable = false } = Astro.props;
 const phrase = sentence ?? parts.map((p) => p.text).join(" ");
 const countClass = parts.length === 3 ? "home-words home-words-3" : "home-words";
-const promptMore = prompts.slice(1).map((line) => line.map((piece) => piece.text).join("")).join(". ");
-const slices = ["0", "1", "2"];
 
 // W-words colour only the first W; every other tinted item is coloured in full.
 const mark = (p: Part) =>
@@ -56,29 +50,11 @@ const mark = (p: Part) =>
           })}
         </span>
       </div>
-      <p class="r-prompt home-status">
-        <span class="home-prompt-live">
-          <span class="home-prompt-primary">
-            {prompts[0].map((piece) => piece.brand ? <span class="home-brand">{piece.text}</span> : piece.text)}
-          </span>
-          {promptMore && <span class="home-prompt-more">. {promptMore}</span>}
-        </span>
-        <span class="home-prompts" aria-hidden="true">
-          {prompts.map((line) => (
-            <span class:list={["home-prompt", line.some((piece) => piece.brand) && "home-prompt-url"]}>
-              {slices.map((slice) => (
-                <span class="home-slice" data-slice={slice}>
-                  {line.map((piece) => piece.brand ? <span class="home-brand">{piece.text}</span> : piece.text)}
-                </span>
-              ))}
-            </span>
-          ))}
-        </span>
-      </p>
+      <p class="r-prompt home-status">{prompt}</p>
     </div>
     <img
       class="home-logo"
-      src="/assets/logo-wide.svg"
+      src="/assets/logo-wide-pulse.svg"
       width="320"
       height="56"
       alt=""

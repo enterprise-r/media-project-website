@@ -8,22 +8,13 @@ const parts = [
   { text: "0", tone: "magenta" },
   { text: "4", tone: "green" },
 ];
-// Three prompt lines. Enterprise-R is Enterprsr (that face only draws this word).
-const prompts = [
-  [{ text: "PAGE NOT FOUND" }],
-  [{ text: "¡Br0k3n l1nk!" }],
-  [
-    { text: "www." },
-    { text: "Enterprise-R", brand: true },
-    { text: ".com" },
-  ],
-];
+const prompt = "404 - PAGE NOT FOUND";
 
 import Base from "../layouts/Base.astro";
 import HomeWait from "../components/HomeWait.astro";
 ---
 <Base title={page.title} description={page.description} noindex hero>
-  <HomeWait parts={parts} prompts={prompts} sentence="404" throwable />
+  <HomeWait parts={parts} prompt={prompt} sentence="404" throwable />
 </Base>
 <script>
   import { throwLogo } from "../scripts/throw-logo.js";
