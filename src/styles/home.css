@@ -222,6 +222,22 @@ html.not-found .home-words {
 .home-words > span:nth-child(7) { animation-delay: 6s; }
 .home-words > span:nth-child(8) { animation-delay: 7s; }
 
+/* The joined words, shown only once everything has stopped. */
+.home-words > .home-still-line {
+  display: none;
+  opacity: 1;
+  animation: none;
+  white-space: nowrap;
+}
+
+html.home-still .home-words > span:not(.home-still-line) { display: none; }
+html.home-still .home-words > .home-still-line { display: inline; }
+
+/* Home: the joined line is much longer than one word, so it is set smaller to fit the screen. */
+html.home-still:not(.not-found) .home-words {
+  font-size: min(clamp(2.25rem, 6vw, 4.5rem), 3.6vw);
+}
+
 /* Each word flows in from the right, holds for its slot (1/8 of the loop),
    then flows out to the left as the next one arrives. */
 @keyframes home-word-flow {
