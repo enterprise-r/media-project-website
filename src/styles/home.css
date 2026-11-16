@@ -222,21 +222,27 @@ html.not-found .home-words {
 .home-words > span:nth-child(7) { animation-delay: 6s; }
 .home-words > span:nth-child(8) { animation-delay: 7s; }
 
-/* The joined words, shown only once everything has stopped. */
+/* The joined words, shown only once everything has stopped. The words stay in
+   the slot, hidden, so it keeps its width; the joined line adds none of its own
+   (width 0, then min-width 100%) and reflows inside it. */
 .home-words > .home-still-line {
   display: none;
   opacity: 1;
   animation: none;
-  white-space: nowrap;
+  width: 0;
+  min-width: 100%;
 }
 
-html.home-still .home-words > span:not(.home-still-line) { display: none; }
-html.home-still .home-words > .home-still-line { display: inline; }
+html.home-still .home-words > span:not(.home-still-line) { visibility: hidden; }
+html.home-still .home-words > .home-still-line { display: block; }
 
-/* Home: the joined line is much longer than one word, so it is set smaller to fit the screen. */
-html.home-still:not(.not-found) .home-words {
-  font-size: min(clamp(2.25rem, 6vw, 4.5rem), 3.6vw);
+/* Home only: the joined line reads as plain text, at the prompt's size. */
+.home-still-text {
+  font-size: clamp(0.95rem, 1.4vw, 1rem);
+  color: #fff !important;
+  text-transform: lowercase;
 }
+.home-still-text .home-w { color: #fff !important; }
 
 /* Each word flows in from the right, holds for its slot (1/8 of the loop),
    then flows out to the left as the next one arrives. */

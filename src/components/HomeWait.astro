@@ -52,7 +52,7 @@ const mark = (p: Part) =>
             const m = mark(p);
             return <span>{m.tone ? <><span class={`home-w home-w-${m.tone}`}>{m.letter}</span>{m.rest}</> : m.letter}</span>;
           })}
-          <span class="home-still-line">
+          <span class={sentence ? "home-still-line" : "home-still-line home-still-text"}>
             {parts.map((p, i) => {
               const m = mark(p);
               return <>{i > 0 && joiner}{m.tone ? <><span class={`home-w home-w-${m.tone}`}>{m.letter}</span>{m.rest}</> : m.letter}</>;
