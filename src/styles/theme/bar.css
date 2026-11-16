@@ -4,7 +4,7 @@
    and stays on the right, also when the bar wraps: an actions pill (.r-group) and the mark menu
    (.r-mark), which closes the bar.
    <header class="r-bar">
-     <nav class="r-crumbs" aria-label="Breadcrumb"><ol><li><a class="r-btn r-crumb-root" href="/" aria-label="Home">®</a></li>…</ol></nav>
+     <nav class="r-crumbs" aria-label="Breadcrumb"><ol><li><a class="r-btn r-crumb-root" href="/">Home</a></li>…</ol></nav>
      <div class="r-bar-end">
        <div class="r-group">r-btn…</div>
        <details class="r-menu r-mark"><summary aria-label="Menu"><img src="mark.svg" alt="" width="32" height="32"></summary><div class="r-menu-list" role="menu">…</div></details>
@@ -51,13 +51,14 @@
 
 /* Below 52rem the trail meets the left edge of the window: the first crumb is square, 8px deep,
    so its label sits just off the glass and the row keeps the inset it gives back. A lone first crumb
-   is the whole trail, so it is a plain box. A bar whose root is not a trail keeps its inset. */
+   is the whole trail: square on the left, its right end still round, never a whole pill. A bar whose root is not a trail keeps its inset. */
 @media (max-width: 52rem) {
   .r-bar:has(> .r-crumbs:first-child) { padding-left: 0; }
   .r-bar > .r-crumbs:first-child li:first-child > .r-btn,
   .r-bar > .r-crumbs:first-child li:first-child > .r-menu > summary {
     padding-left: 8px;
-    border-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
   .r-bar > .r-crumbs:first-child li:only-child > .r-btn,
   .r-bar > .r-crumbs:first-child li:only-child > .r-menu > summary { clip-path: none; }
