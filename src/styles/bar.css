@@ -65,20 +65,13 @@ body:has(> .r-bar) {
   padding-top: calc(var(--r-btn-h) + 2 * var(--r-bar-pad));
 }
 
-/* Root crumb: the compact logo, as tall as the crumb. At rest, the black logo on the
-   striped gradient. On hover and press, the white logo on Inactive border.
-   Shape, padding and focus stay with the theme. */
+/* Root crumb: the black compact logo, as tall as the crumb.
+   Fill, hover, shape, padding and focus stay with the theme. */
 .r-bar .r-crumbs .r-crumb-root {
   margin: 0;
   padding-block: 0;
   align-items: stretch;
-  background: var(--ui-striped);
   overflow: hidden;
-}
-.r-bar .r-crumbs .r-crumb-root:hover,
-.r-bar .r-crumbs .r-crumb-root:active {
-  color: var(--r-btn-text);
-  background: var(--ui-border);
 }
 .r-bar .r-crumbs .r-crumb-root[aria-current="page"] {
   cursor: default;
@@ -88,13 +81,6 @@ body:has(> .r-bar) {
   height: var(--r-btn-h);
   width: auto;
   max-width: none;
-}
-.r-bar .r-crumbs .r-crumb-root .r-crumb-hover,
-.r-bar .r-crumbs .r-crumb-root:is(:hover, :active) img:not(.r-crumb-hover) {
-  display: none;
-}
-.r-bar .r-crumbs .r-crumb-root:is(:hover, :active) .r-crumb-hover {
-  display: block;
 }
 
 /* Below 52rem the lone root meets the left edge and the theme squares every corner.
