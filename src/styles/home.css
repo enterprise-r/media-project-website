@@ -236,13 +236,11 @@ html.not-found .home-words {
 html.home-still .home-words > span:not(.home-still-line) { visibility: hidden; }
 html.home-still .home-words > .home-still-line { display: block; }
 
-/* Home only: the joined line reads as plain text, at the prompt's size. */
+/* Home only: the joined line reads as plain text at the prompt's size, keeping its coloured Ws. */
 .home-still-text {
   font-size: clamp(0.95rem, 1.4vw, 1rem);
-  color: #fff !important;
   text-transform: lowercase;
 }
-.home-still-text .home-w { color: #fff !important; }
 
 /* Each word flows in from the right, holds for its slot (1/8 of the loop),
    then flows out to the left as the next one arrives. */
