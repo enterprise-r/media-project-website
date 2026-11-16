@@ -202,7 +202,7 @@ html.not-found .home-words {
   grid-area: 1 / 1;
   text-align: center;
   opacity: 0;
-  animation: home-word-pulse 11.2s linear infinite;
+  animation: home-word-flow 11.2s linear infinite;
 }
 
 /* Initial W of each W-word, in carousel order. */
@@ -222,29 +222,28 @@ html.not-found .home-words {
 .home-words > span:nth-child(7) { animation-delay: 8.4s; }
 .home-words > span:nth-child(8) { animation-delay: 9.8s; }
 
-/* Each word pulses in, holds for its slot (1/8 of the loop), then yields to the next. */
-@keyframes home-word-pulse {
-  0% { opacity: 0; transform: scale(0.86); }
-  1.2% { opacity: 1; transform: scale(1.08); }
-  2.5% { transform: scale(1); }
-  12.5% { opacity: 1; transform: scale(1); }
-  14% { opacity: 0; transform: scale(1); }
-  100% { opacity: 0; }
+/* Each word flows in from the right, holds for its slot (1/8 of the loop),
+   then flows out to the left as the next one arrives. */
+@keyframes home-word-flow {
+  0% { opacity: 0; transform: translateX(0.6em); }
+  2.5% { opacity: 1; transform: translateX(0); }
+  12.5% { opacity: 1; transform: translateX(0); }
+  14% { opacity: 0; transform: translateX(-0.6em); }
+  100% { opacity: 0; transform: translateX(-0.6em); }
 }
 
-/* Three items keep the same 1.4s slot and pulse, in a shorter loop, so the
+/* Three items keep the same 1.4s slot and flow, in a shorter loop, so the
    sequence does not sit empty for five unused eight-word slots. */
 .home-words-3 > span {
-  animation-name: home-word-pulse-3;
+  animation-name: home-word-flow-3;
   animation-duration: 4.2s;
 }
-@keyframes home-word-pulse-3 {
-  0% { opacity: 0; transform: scale(0.86); }
-  3.2% { opacity: 1; transform: scale(1.08); }
-  6.6667% { transform: scale(1); }
-  33.3333% { opacity: 1; transform: scale(1); }
-  37.3333% { opacity: 0; transform: scale(1); }
-  100% { opacity: 0; }
+@keyframes home-word-flow-3 {
+  0% { opacity: 0; transform: translateX(0.6em); }
+  6.6667% { opacity: 1; transform: translateX(0); }
+  33.3333% { opacity: 1; transform: translateX(0); }
+  37.3333% { opacity: 0; transform: translateX(-0.6em); }
+  100% { opacity: 0; transform: translateX(-0.6em); }
 }
 
 /* Theme .r-prompt: Bright green, heading font, widely tracked, uppercase.
