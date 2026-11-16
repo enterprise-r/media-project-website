@@ -10,7 +10,7 @@ let wTone = 0;
 const parts = words.map((text) => (
   text.startsWith("W") ? { text, tone: wTones[wTone++] } : { text, tone: null }
 ));
-const prompt = "WE WORD IT, WORDCARDS WORK IT";
+const prompt = "WORD IT AND IT WORKS";
 
 import Base from "../layouts/Base.astro";
 import HomeWait from "../components/HomeWait.astro";
