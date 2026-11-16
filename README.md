@@ -31,7 +31,7 @@ Every push to `main` runs `.github/workflows/deploy.yml`, which builds the site 
 
 ```sh
 npm ci
-npm run dev      # http://localhost:4321
+npm run dev      # http://127.0.0.1:4321
 npm run build    # output in dist/
 ```
 
