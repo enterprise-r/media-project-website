@@ -66,7 +66,7 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
 <Base title="UI showcase · Enterprise-R" description="Enterprise-R UI style guide." noindex header={false}>
   <main class="showcase">
     <h1 class="sc-title">
-      <img src="/assets/logo-wide.svg" width="320" height="61" alt="Enterprise-R">
+      <img src="/assets/logo-wide.svg" width="320" height="56" alt="Enterprise-R">
     </h1>
     <p class="sc-subtitle">UI showcase</p>
     <p class="sc-lede"><DarkR />, the <span class="sc-brand">Enterprise-R</span> theme. Plain elements and the r- components, on the palette.</p>
@@ -78,7 +78,7 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
       <header class="r-bar">
         <nav class="r-crumbs" aria-label="Breadcrumb">
           <ol>
-            <li><a class="r-btn r-crumb-root" href="/"><img src="/assets/logo-compact.svg" width="320" height="128" alt="Enterprise-R"></a></li>
+            <li><a class="r-btn r-crumb-root" href="/"><picture><source media="(min-width: 48rem)" srcset="/assets/logo-wide-black.svg" width="320" height="56"><img src="/assets/logo-compact-black.svg" width="320" height="109" alt="Enterprise-R"></picture></a></li>
             <li>
               <details class="r-menu">
                 <summary class="r-btn">Docs</summary>
@@ -104,7 +104,7 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
           </span>
         </div>
       </header>
-      <p class="sc-note">The bar is the theme's. Breadcrumbs lead, and the group sits at the end. The root crumb is the compact logo, as tall as the crumb, on Inactive border (<code>--ui-border</code>). Hover leaves that fill. Parents are Magenta, Bright magenta on hover. The page you are on is Green (sage), Bright cyan on hover. A crumb can be a menu of its siblings. Focus on a crumb is a dual inner ring (dark then bright), because the slant would clip an outline.</p>
+      <p class="sc-note">The bar is the theme's. Breadcrumbs lead, and the group sits at the end. The root crumb is the black logo, as tall as the crumb (wide from 48rem, compact below), on the striped gradient. On hover it takes the crumb hover. Parents are Magenta, Bright magenta on hover. The page you are on is Green (sage), Bright cyan on hover. A crumb can be a menu of its siblings. Focus on a crumb is a dual inner ring (dark then bright), because the slant would clip an outline.</p>
     </section>
 
     <hr>

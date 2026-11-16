@@ -8,7 +8,7 @@
 </div>
 
 <script>
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const canvas = document.querySelector(".home-motes canvas");
   const ctx = canvas && canvas.getContext("2d");
   if (ctx) {
@@ -166,6 +166,12 @@
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) running = false;
       else start();
+    });
+
+    // The home terminal stops everything after a minute; the motes freeze where they are.
+    document.addEventListener("home-still", function () {
+      reduced = true;
+      running = false;
     });
 
     layout();

@@ -65,40 +65,24 @@ body:has(> .r-bar) {
   padding-top: calc(var(--r-btn-h) + 2 * var(--r-bar-pad));
 }
 
-/* Root crumb: the compact logo, as tall as the crumb, on Inactive border.
-   The plate in the file is the same colour, so it sits in the button.
-   Hover stays this fill for now. Shape, padding and focus stay with the theme. */
+/* Root crumb: the black logo, as tall as the crumb, so the crumb drops its vertical
+   padding and clips the picture to its shape. Wide from 48rem, a little before the trail meets
+   the window edge at 52rem; compact below. Fill, hover, shape and focus stay with the theme. */
 .r-bar .r-crumbs .r-crumb-root {
   margin: 0;
   padding-block: 0;
   align-items: stretch;
-  background-color: var(--ui-border);
-  background-image: none;
   overflow: hidden;
-}
-.r-bar .r-crumbs .r-crumb-root:hover,
-.r-bar .r-crumbs .r-crumb-root:active {
-  color: var(--r-btn-text);
-  background-color: var(--ui-border);
-  background-image: none;
 }
 .r-bar .r-crumbs .r-crumb-root[aria-current="page"] {
   cursor: default;
 }
+.r-bar .r-crumbs .r-crumb-root picture { display: contents; }
 .r-bar .r-crumbs .r-crumb-root img {
   display: block;
   height: var(--r-btn-h);
   width: auto;
   max-width: none;
-}
-
-/* Below 52rem the lone root meets the left edge and the theme squares every corner.
-   The right end stays a pill, as it is on a wide screen. Home and the 404 are that lone root. */
-@media (max-width: 52rem) {
-  html.is-home .r-bar > .r-crumbs:first-child li:only-child > .r-crumb-root {
-    border-top-right-radius: var(--r-pill-r);
-    border-bottom-right-radius: var(--r-pill-r);
-  }
 }
 
 html:not(:has(.showcase, main.login)) footer a {
