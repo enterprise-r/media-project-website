@@ -11,7 +11,7 @@
   /* Primary action and the current page: Green (sage), Bright green on hover. */
   --r-primary: var(--ui-green);
   --r-primary-hover: var(--ui-green-bright);
-  /* Clear (reset the fields): Bright blue, the mirrored R of the logo, Bright cyan on hover. */
+  /* Clear (reset the fields): Bright blue, the ship-trail of the logo, Bright cyan on hover. */
   --r-clear: var(--ui-blue-bright);
   --r-clear-hover: var(--ui-cyan-bright);
   /* Cancel (abort, leave without saving): Red, Bright red on hover. */

@@ -41,7 +41,7 @@ Brand files come from the project-branding build (`build.sh`), shipped to Drive 
 
 | In this repo | From |
 |---|---|
-| `public/assets/logo-wide.svg`, `logo-compact.svg`, `favicon.svg` | Drive `assets/logos/svg/` |
+| `public/assets/logo-wide.svg`, `logo-compact.svg`, `favicon.svg` | Drive `assets/logos/svg/` `logo-wide-transparent-color.svg`, `logo-compact-chipped-color-low.svg`, `logo-normal-chipped-color-low.svg`, renamed |
 | `public/assets/favicon.ico`, `favicon-32.png` | Drive `assets/logos/favicon/` |
 | `public/assets/apple-touch-icon.png`, `icon-192.png`, `icon-512.png` | Drive `assets/logos/favicon/` `favicon-180.png`, `favicon-192.png`, `favicon-512.png`, renamed |
 | `public/assets/warpchi.*`, `hyper-j.*` | Showcase terminal sample (warpchi). Site wallpaper is hyper-j, set once in `bar.css`. Sources are project-branding `wallpapers/`, saved here as jpg, avif and webp |

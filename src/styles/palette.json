@@ -85,7 +85,7 @@
           "name": "Orange",
           "var": "--ui-orange",
           "hex": "#F4B965",
-          "use": "logo bowl (counter), other-page buttons, email @, striped gradient start, separator centre"
+          "use": "other-page buttons, striped gradient start, separator centre"
         },
         {
           "name": "Amber (Accent)",
@@ -97,13 +97,13 @@
           "name": "Green (sage)",
           "var": "--ui-green",
           "hex": "#77AF8A",
-          "use": "logo R, current-page button, headings, email bubble, striped gradient end, separator edges"
+          "use": "logo R, current-page button, headings, striped gradient end, separator edges"
         },
         {
           "name": "Bright green",
           "var": "--ui-green-bright",
           "hex": "#9ADD6D",
-          "use": "Home mark hover, current-page button hover, email bubble hover, prompt text"
+          "use": "Home mark (®), current-page button hover, prompt text"
         },
         {
           "name": "Cyan",
@@ -124,7 +124,7 @@
           "name": "Bright blue",
           "var": "--ui-blue-bright",
           "hex": "#BDCBD9",
-          "use": "logo mirrored R, wordmark text"
+          "use": "logo ship-trail, wordmark text"
         },
         {
           "name": "Magenta",
