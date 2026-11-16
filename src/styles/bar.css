@@ -65,8 +65,9 @@ body:has(> .r-bar) {
   padding-top: calc(var(--r-btn-h) + 2 * var(--r-bar-pad));
 }
 
-/* Root crumb: the black compact logo, as tall as the crumb, so the crumb drops its vertical
-   padding and clips the picture to its shape. Fill, hover, shape and focus stay with the theme. */
+/* Root crumb: the black logo, as tall as the crumb, so the crumb drops its vertical
+   padding and clips the picture to its shape. Wide from 48rem, a little before the trail meets
+   the window edge at 52rem; compact below. Fill, hover, shape and focus stay with the theme. */
 .r-bar .r-crumbs .r-crumb-root {
   margin: 0;
   padding-block: 0;
@@ -76,6 +77,7 @@ body:has(> .r-bar) {
 .r-bar .r-crumbs .r-crumb-root[aria-current="page"] {
   cursor: default;
 }
+.r-bar .r-crumbs .r-crumb-root picture { display: contents; }
 .r-bar .r-crumbs .r-crumb-root img {
   display: block;
   height: var(--r-btn-h);
