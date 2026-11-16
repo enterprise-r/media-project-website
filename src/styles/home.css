@@ -202,7 +202,7 @@ html.not-found .home-words {
   grid-area: 1 / 1;
   text-align: center;
   opacity: 0;
-  animation: home-word-flow 11.2s linear infinite;
+  animation: home-word-flow 8s linear infinite;
 }
 
 /* Initial W of each W-word, in carousel order. */
@@ -214,13 +214,13 @@ html.not-found .home-words {
 .home-w-green-bright { color: var(--ui-green-bright); }
 
 .home-words > span:nth-child(1) { animation-delay: 0s; }
-.home-words > span:nth-child(2) { animation-delay: 1.4s; }
-.home-words > span:nth-child(3) { animation-delay: 2.8s; }
-.home-words > span:nth-child(4) { animation-delay: 4.2s; }
-.home-words > span:nth-child(5) { animation-delay: 5.6s; }
-.home-words > span:nth-child(6) { animation-delay: 7s; }
-.home-words > span:nth-child(7) { animation-delay: 8.4s; }
-.home-words > span:nth-child(8) { animation-delay: 9.8s; }
+.home-words > span:nth-child(2) { animation-delay: 1s; }
+.home-words > span:nth-child(3) { animation-delay: 2s; }
+.home-words > span:nth-child(4) { animation-delay: 3s; }
+.home-words > span:nth-child(5) { animation-delay: 4s; }
+.home-words > span:nth-child(6) { animation-delay: 5s; }
+.home-words > span:nth-child(7) { animation-delay: 6s; }
+.home-words > span:nth-child(8) { animation-delay: 7s; }
 
 /* Each word flows in from the right, holds for its slot (1/8 of the loop),
    then flows out to the left as the next one arrives. */
@@ -232,11 +232,11 @@ html.not-found .home-words {
   100% { opacity: 0; transform: translateX(-0.6em); }
 }
 
-/* Three items keep the same 1.4s slot and flow, in a shorter loop, so the
+/* Three items keep the same 1s slot and flow, in a shorter loop, so the
    sequence does not sit empty for five unused eight-word slots. */
 .home-words-3 > span {
   animation-name: home-word-flow-3;
-  animation-duration: 4.2s;
+  animation-duration: 3s;
 }
 @keyframes home-word-flow-3 {
   0% { opacity: 0; transform: translateX(0.6em); }
