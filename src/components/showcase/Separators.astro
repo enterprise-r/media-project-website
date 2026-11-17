@@ -1,0 +1,26 @@
+---
+// Separators: the plain rule, .r-sep and .r-striped, and the gradient tokens.
+import Notes from "./Notes.astro";
+
+const markup = `
+<hr>                         <!-- the separator -->
+<div class="r-sep"></div>    <!-- the same rule on any element -->
+<div class="r-striped"></div><!-- a thin bar of the striped gradient -->`;
+---
+{/* .sc-striped is a showcase-only box filled with --ui-striped, the gradient of the badge ring and the logo words. */}
+<section class="sc-section" id="separators">
+  <h2 class="sc-label">Separators</h2>
+  <div class="r-sep"></div>
+  <span class="sc-cap">Separator: <code>.r-sep</code> or <code>hr</code></span>
+  <div class="r-striped"></div>
+  <span class="sc-cap">Striped rule: <code>.r-striped</code></span>
+  <div class="sc-striped"></div>
+  <span class="sc-cap">Striped gradient: <code>--ui-striped</code></span>
+  <Notes
+    markup={markup}
+    classes="`.r-sep`, `.r-striped`."
+    tokens="`--ui-separator`, `--ui-striped`."
+    do="Use `hr` between sections of text."
+    dont="Rebuild the gradients from color stops."
+  />
+</section>

@@ -67,8 +67,9 @@ body:has(> .r-bar) {
 
 /* Root crumb: the black logo, as tall as the crumb, so the crumb drops its vertical
    padding and clips the picture to its shape. Wide from 48rem, a little before the trail meets
-   the window edge at 52rem; compact below. Fill, hover, shape and focus stay with the theme. */
-.r-bar .r-crumbs .r-crumb-root {
+   the window edge at 52rem; compact below. Fill, hover, shape and focus stay with the theme.
+   Only a root that holds the picture: a root with a text label (the showcase samples) keeps the theme's. */
+.r-bar .r-crumbs .r-crumb-root:has(> picture) {
   margin: 0;
   padding-block: 0;
   align-items: stretch;

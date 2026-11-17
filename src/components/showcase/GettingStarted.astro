@@ -1,0 +1,86 @@
+---
+// Getting started: the include order, required and optional files, and the rules.
+import DarkR from "../DarkR.astro";
+import Notes from "./Notes.astro";
+
+const layout = `
+site/
+  theme/   palette.css, base.css, components.css, column.css … kv.css, doc.css, rows.js, guard.js, icons/
+  fonts/   woff2/, licenses/`;
+
+const order = `
+<link rel="stylesheet" href="theme/palette.css">
+<link rel="stylesheet" href="theme/base.css">
+<link rel="stylesheet" href="theme/components.css">
+<link rel="stylesheet" href="theme/column.css">
+<link rel="stylesheet" href="theme/bar.css">
+<link rel="stylesheet" href="theme/foot.css">
+<link rel="stylesheet" href="theme/swatch.css">
+<link rel="stylesheet" href="theme/stripe.css">
+<link rel="stylesheet" href="theme/listing.css">
+<link rel="stylesheet" href="theme/kv.css">
+<link rel="stylesheet" href="theme/doc.css">
+<script src="theme/rows.js"></script>
+<script src="theme/guard.js"></script>`;
+
+const files = [
+  ["palette.css", "Required", "The --ui-* colors and gradients, unless the page already has them."],
+  ["base.css", "Required", "Fonts and plain elements."],
+  ["components.css", "Required", "The r- components."],
+  ["column.css", "Optional", "Page, column and step back. Needed by bar.css, stripe.css and listing.css."],
+  ["bar.css", "Optional", "The app bar and the mark menu."],
+  ["foot.css", "Optional", "The footer stripe."],
+  ["swatch.css", "Optional", "Theme choices that show the page they set."],
+  ["stripe.css", "Optional", "The status stripe under the bar."],
+  ["listing.css", "Optional", "The listing table."],
+  ["kv.css", "Optional", "The key/value table."],
+  ["doc.css", "Optional", "The document scale, for long text."],
+  ["rows.js", "Optional", "The dynamic list script."],
+  ["guard.js", "Optional", "The click guard, once per page."],
+];
+
+const rules = `
+.app-intro h2 { color: var(--ui-cyan); }
+.app-danger { --r-btn: var(--r-cancel); --r-btn-hover: var(--r-cancel-hover); }`;
+
+const name = `
+<span class="r-vh">Dark-R</span><span aria-hidden="true">Dark-<span class="r-name-r">®</span></span>`;
+---
+<section class="sc-section" id="getting-started">
+  <h2 class="sc-label">Getting started</h2>
+  <h3 class="sc-subhead">Include order</h3>
+  <Notes markup={order} extra={layout} />
+  <table>
+    <caption>Theme files</caption>
+    <thead><tr><th>File</th><th>What it adds</th></tr></thead>
+    <tbody>
+      {files.map(([f, need, what]) => (<tr><td><code>{f}</code></td><td>{need}. {what}</td></tr>))}
+    </tbody>
+  </table>
+  <p class="sc-prose">The root crumb's label or logo, the bar's actions and the footer's content belong to the site, not to <code>theme/</code>.</p>
+
+  <h3 class="sc-subhead">Rules</h3>
+  <ul class="sc-prose">
+    <li>Colors only from <code>--ui-*</code>. Theme roles are <code>--r-*</code>.</li>
+    <li>Theme classes start with <code>r-</code>.</li>
+    <li>Element rules sit in <code>:where()</code>, so the app's own rules win.</li>
+  </ul>
+  <Notes
+    markup={rules}
+    do="Retune a role by pointing it at another token."
+    dont="Write hex values, `!important` or cascade layers."
+  />
+
+  <h3 class="sc-subhead">The name</h3>
+  <p class="sc-name-sample"><DarkR /></p>
+  {/* This site's painting of the pattern is src/components/DarkR.astro (adds .sc-aw for Audiowide). */}
+  <Notes
+    markup={name}
+    classes="`.r-name-r`, `.r-vh`."
+    attributes={`\`aria-hidden="true"\` on the picture.`}
+    do="Let readers hear the text Dark-R."
+    dont="Type a plain ® from another face."
+  />
+
+  <p class="sc-note">Classes starting with <code>sc-</code>, and <code>.is-hover</code> / <code>.is-focus</code>, are this page's only. They are not part of <DarkR />.</p>
+</section>

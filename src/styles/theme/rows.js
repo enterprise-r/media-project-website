@@ -1,5 +1,12 @@
-/* Dark-R dynamic list. Enhances any .r-rows: add and remove rows, keyboard,
-   live-region announcements, and data-name="…{i}…" templates. No dependencies.
+/* Dark-R dynamic list. Enhances any .r-rows that has a .r-rows-list and a
+   .r-row-add: add and remove rows, keyboard, live-region announcements, and
+   data-name="…{i}…" templates (also data-id and data-label; {i} is the
+   0-based index, {n} the 1-based row number). A new row is cloned from a
+   <template> in the .r-rows, or from the last .r-row if there is no
+   template. The clone's fields are reset: text empty, boxes off, each
+   select on its first option. data-min and data-max on the .r-rows cap the
+   list: remove is disabled at min, add at max. With a template, min
+   defaults to 0; otherwise it defaults to 1. No dependencies.
    <script src="theme/rows.js"></script> */
 (function (global) {
   "use strict";
@@ -13,6 +20,13 @@
     });
   }
 
+  function bound(root, name, fallback) {
+    var raw = root.getAttribute(name);
+    if (raw === null || raw === "") return fallback;
+    var n = Number(raw);
+    return Number.isFinite(n) && n >= 0 ? n : fallback;
+  }
+
   function enhance(root) {
     if (!root || ready.has(root)) return;
     var list = root.querySelector(".r-rows-list");
@@ -21,9 +35,12 @@
     if (!list || !addBtn) return;
     ready.add(root);
 
+    var tpl = root.querySelector("template");
     var addedMsg = root.getAttribute("data-added") || "Row added";
     var removedMsg = root.getAttribute("data-removed") || "Row removed";
     var removeTpl = root.getAttribute("data-remove") || "Remove row {n}";
+    var min = bound(root, "data-min", tpl ? 0 : 1);
+    var max = bound(root, "data-max", Infinity);
 
     function rows() {
       return Array.prototype.slice.call(list.querySelectorAll(":scope > .r-row"));
@@ -51,26 +68,41 @@
         if (rm) {
           var label = fill(removeTpl, i, n);
           rm.setAttribute("aria-label", label);
-          rm.disabled = all.length === 1;
+          rm.disabled = all.length <= min;
         }
+      });
+      addBtn.disabled = all.length >= max;
+    }
+
+    function source() {
+      if (tpl) {
+        var fromTpl = tpl.content.querySelector(".r-row");
+        if (fromTpl) return fromTpl;
+      }
+      var all = rows();
+      return all[all.length - 1] || null;
+    }
+
+    function reset(row) {
+      Array.prototype.forEach.call(row.querySelectorAll("input, select, textarea"), function (inp) {
+        if (inp.type === "checkbox" || inp.type === "radio") inp.checked = false;
+        else if (inp.tagName === "SELECT") inp.selectedIndex = 0;
+        else inp.value = "";
       });
     }
 
     function makeRow() {
-      var all = rows();
-      var src = all[all.length - 1];
+      var src = source();
       if (!src) return null;
       var row = src.cloneNode(true);
       row.classList.remove("is-new");
       row.classList.add("is-new");
-      Array.prototype.forEach.call(row.querySelectorAll("input, select, textarea"), function (inp) {
-        if (inp.type === "checkbox" || inp.type === "radio") inp.checked = false;
-        else inp.value = "";
-      });
+      reset(row);
       return row;
     }
 
     function add() {
+      if (rows().length >= max) return;
       var row = makeRow();
       if (!row) return;
       list.appendChild(row);
@@ -82,7 +114,7 @@
 
     function removeRow(row) {
       var all = rows();
-      if (all.length === 1) return;
+      if (all.length <= min) return;
       var i = all.indexOf(row);
       var target = all[i + 1] || all[i - 1];
       row.parentNode.removeChild(row);
@@ -115,7 +147,7 @@
         add();
       }
       if (e.key === "Backspace" && input.selectionStart === 0 && input.selectionEnd === 0
-          && all.length > 1) {
+          && all.length > min) {
         var fields = Array.prototype.slice.call(row.querySelectorAll("input"));
         var empty = fields.every(function (el) { return el.value === ""; });
         if (!empty) return;

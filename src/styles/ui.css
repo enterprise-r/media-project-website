@@ -1,5 +1,6 @@
 /* Style guide (/showcase/ only). Type, fields and components come from the Dark-R theme.
-   What remains is the guide's layout, and static samples of hover and focus. */
+   What remains is the guide's layout, the tutorial notes, and static samples of hover and focus.
+   None of it is part of the theme: these classes start with sc-, and .is-hover / .is-focus. */
 
 html:has(.showcase) { height: auto; }
 html:has(.showcase) body { height: auto; }
@@ -14,11 +15,11 @@ main.showcase {
 }
 
 .sc-title { margin: 0 0 0.75rem; line-height: 0; }
-.sc-title img { display: block; width: min(24.68rem, 100%); height: auto; }
+.sc-title img { display: block; width: min(24.68rem, 100%); height: auto; margin-inline-start: auto; }
 .sc-aw { font-family: var(--r-font-heading); }
 .sc-brand { font-family: var(--r-font-brand); letter-spacing: 0; }
 /* Anchors the visually hidden name Dark-R next to its picture. */
-.sc-name { position: relative; }
+.sc-name { position: relative; white-space: nowrap; }
 main.showcase + footer p {
   margin: 0;
   color: var(--ui-bg);
@@ -49,7 +50,6 @@ main.showcase + footer p {
 .r-card p { margin: 0; color: var(--ui-fg-light); }
 .r-card .r-pill { margin-top: 0.8rem; }
 .sc-meters { display: grid; grid-template-columns: 7rem 1fr; gap: 0.7rem 1rem; align-items: center; }
-.sc-dialog-actions { display: flex; justify-content: flex-end; gap: var(--r-gap); margin: 0; }
 .sc-dialog-open { display: flex; justify-content: center; margin-top: 1rem; }
 #accessibility table { margin-inline: auto; }
 .sc-glow-actions { display: flex; justify-content: flex-end; gap: 0.6rem; margin-top: 1.2rem; }
@@ -112,9 +112,7 @@ main.showcase + footer p {
   box-shadow: 0 0 0 var(--r-hl-ring-w) var(--r-hl-ring);
 }
 
-.sc-sep { height: 2px; margin: 1.2rem 0 0.5rem; border: 0; background: var(--ui-separator); }
-.sc-striped { height: 3.4rem; border-radius: 0.8rem; background: var(--ui-striped); }
-.sc-striped-thin { height: 4px; margin: 1.2rem 0 0.5rem; border-radius: 2px; background: var(--ui-striped); }
+.sc-striped { height: 3.4rem; margin-top: 1.2rem; border-radius: 0.8rem; background: var(--ui-striped); }
 .sc-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr)); gap: 0.7rem; }
 .sc-swatch { border: 1px solid var(--ui-border); border-radius: 0.8rem; overflow: hidden; background: var(--ui-bg); }
 .sc-swatch i { display: block; height: 3.4rem; }
@@ -123,6 +121,11 @@ main.showcase + footer p {
 .sc-swatch code { color: var(--ui-fg-dark); font-size: 0.8rem; }
 .sc-swatch small { display: block; color: var(--ui-fg-dark); font-size: 0.78rem; }
 .sc-subhead { margin: 1.8rem 0 0.7rem; color: var(--ui-magenta); font-family: var(--r-font-text); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+/* The palette badge floats at the right of the section; the accent box flows beside it. */
+.sc-badge { float: right; width: 12rem; margin: 0 0 1rem 2rem; display: grid; justify-items: center; gap: 0.4rem; text-align: center; }
+#palette .sc-brand-box { display: flow-root; }
+.sc-badge picture { display: contents; }
+.sc-badge img { display: block; width: 100%; height: auto; }
 .sc-brand-box { padding: 1rem 1.2rem 1.2rem; border: 1px dashed var(--ui-fg-dark); border-radius: 1rem; }
 
 .sc-type { display: grid; grid-template-columns: 11rem 1fr; gap: 0.9rem 1.5rem; align-items: baseline; }
@@ -135,15 +138,15 @@ main.showcase + footer p {
 
 .sc-form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem 1.2rem; }
 .sc-span-2 { grid-column: span 2; }
-.sc-field { display: grid; gap: 0.35rem; }
+.sc-field { display: grid; gap: 0.35rem; align-content: start; }
 .sc-checks { display: flex; gap: 1.4rem; flex-wrap: wrap; }
 .sc-checks label { display: inline-flex; align-items: center; gap: 0.45rem; }
 .sc-help { color: var(--ui-fg-dark); font-size: 0.85rem; }
 /* Form actions sit on their own row, at the right edge of the form. */
 .sc-actions { grid-column: 1 / -1; display: grid; gap: 0.35rem; justify-items: end; }
 
-/* .r-rows is a theme component. In this form grid it has to span the row. */
-.sc-form .r-rows { grid-column: 1 / -1; min-width: 0; }
+/* The dynamic list samples keep a form's width. */
+.sc-rows-demo { max-width: 46rem; }
 
 .showcase pre .k { color: var(--ui-magenta); }
 .showcase pre .v { color: var(--ui-accent); }
@@ -209,21 +212,75 @@ a.sc-closer-fill:hover {
 }
 
 /* Working row: a compact card with the animated waiting icon. */
+/* The three wait samples: equal columns, same card height, captions on one line below. */
+.sc-wait-row { display: grid; grid-template-columns: repeat(3, minmax(0, 11rem)); grid-template-rows: auto auto; gap: 0.45rem 0.9rem; }
+.sc-wait-row figure { margin: 0; display: grid; grid-row: span 2; grid-template-rows: subgrid; min-width: 0; }
 .sc-working {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  width: max-content;
-  max-width: 100%;
-  margin-inline: auto;
+  min-height: calc(32px + 2rem);
+  margin: 0;
+  flex-wrap: wrap;
+  padding-block: 0.5rem;
 }
-.sc-working img { display: block; width: 32px; height: 32px; }
+.sc-working img, .sc-icon { display: block; width: 32px; height: 32px; }
+
+/* Greeting: a picture beside a speech bubble (a theme notice). */
+.sc-greet { display: flex; align-items: center; gap: 1rem; max-width: 52rem; margin: 0.4rem 0 1.5rem; }
+.sc-greet picture { flex: none; }
+.sc-avatar { display: block; width: 5.5rem; height: 5.5rem; }
+.sc-bubble { flex: 1 1 auto; margin: 0; font-size: 1.15rem; }
+
+/* Contents. */
+.sc-contents ol { columns: 3 12rem; margin: 0 0 1.5rem; padding-left: 1.4rem; }
+
+/* Tutorial notes: the markup to copy, then a list of what the part needs. */
+.sc-prose { max-width: 52rem; }
+.sc-notes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.8rem; margin: 1rem 0 0; }
+/* Code to copy: closed by default in the theme's details box; left out of print. */
+.sc-code { margin: 0; min-width: 0; }
+/* Open, the details frame steps aside so the code block is the only box. */
+.sc-code[open] { padding: 0; border-color: transparent; }
+.sc-code[open] > summary { padding: 0.5rem 0.8rem 0; }
+.sc-code > pre { margin: 0; }
+.sc-code > pre + pre { margin-top: 0.8rem; }
+@media print { .sc-code { display: none; } }
+.sc-notes + ul { margin-top: 1rem; }
+.sc-spec { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 0.4rem 1.2rem; max-width: 64rem; margin: 0; }
+.sc-spec dt { margin: 0; }
+.sc-spec dd { margin: 0; color: var(--r-text-small); }
+.sc-name-sample { font-size: 2rem; }
+.sc-top { margin-top: 0; }
+.sc-flush { margin: 0; }
+.sc-panel { margin-top: 1rem; }
+
+/* A box with no bottom side, for the glow on a shape. */
+.sc-tab { position: relative; max-width: 30rem; margin: 1.5rem 0 0; padding: 1rem 1.2rem 0.4rem; border: 1px solid var(--ui-fg-dark); border-bottom: 0; }
+.sc-tab > p { margin: 0 0 0.6rem; }
+
+/* Click guard samples. */
+.sc-guard { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.sc-guard .r-card { display: grid; gap: 0.6rem; justify-items: start; align-content: start; }
+.sc-guard .sc-cap { margin: 0; }
+
+/* The app shell in a frame: the page is as tall as its content, and the bar (static here) takes no room above the column. */
+.sc-frame { min-height: 0; --r-bar-h: 0px; margin: 1rem 0; border: 1px solid var(--ui-border); border-radius: 1rem; overflow: clip; }
+.sc-mark { --r-mark-view: 1024; --r-mark-plate: 1024; --r-mark-round: 102; }
+.sc-swatch-light { --r-swatch-bg: var(--ui-fg-bright); --r-swatch-fg: var(--ui-bg); }
+
+/* Listing and key/value samples: a column's width, with room for the step back. */
+.sc-measure { max-width: 46rem; padding-inline: var(--r-box-pad); }
 
 @media (max-width: 900px) {
   main.showcase { padding: 2rem 1rem 4rem; }
-  .sc-grid.cols-2, .sc-grid.cols-3, .sc-form { grid-template-columns: 1fr; }
+  .sc-grid.cols-2, .sc-grid.cols-3, .sc-form, .sc-guard, .sc-spec { grid-template-columns: 1fr; }
   .sc-span-2 { grid-column: auto; }
   .sc-type { grid-template-columns: 1fr; }
   .sc-type > .sc-cap { text-align: left; }
+}
+@media (max-width: 40rem) {
+  .sc-working { padding-inline: 0.8rem; gap: 0.3rem 0.6rem; }
+  .sc-badge { float: none; width: 9rem; margin: 0 auto 1.2rem; }
 }
 

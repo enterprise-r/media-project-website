@@ -1,0 +1,110 @@
+---
+// Accessibility: the contrast table, reduced motion, forced colors, print and narrow screens.
+import DarkR from "../DarkR.astro";
+import palette from "../../styles/palette.json";
+
+const colours = palette.groups.flatMap((g) => g.colours);
+const hex = (v: string) => colours.find((c) => c.var === v)!.hex;
+
+// WCAG contrast from the palette hex values.
+const lin = (c: number) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+const lum = (h: string) => {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map(lin);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const contrast = (a: string, b: string) => {
+  const [hi, lo] = [lum(hex(a)), lum(hex(b))].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+const wcagLevel = (ratio: number, kind: string) => {
+  if (kind === "nontext") return ratio >= 3 ? "3:1" : "fail";
+  if (ratio >= 7) return "AAA";
+  if (ratio >= 4.5) return `AA (−${(7 - ratio).toFixed(2)})`;
+  if (ratio >= 3) return "AA large";
+  return "fail";
+};
+const wcagPairs = [
+  ["Body text on Background", "--ui-fg", "--ui-bg", "text"],
+  ["Body text on Lighter", "--ui-fg", "--ui-bg-lighter", "text"],
+  ["Small text on Background", "--ui-fg-light", "--ui-bg", "text"],
+  ["Dim / placeholder on Background", "--ui-fg-dark", "--ui-bg", "text"],
+  ["Bright on Background", "--ui-fg-bright", "--ui-bg", "text"],
+  ["h1 Green on Background", "--ui-green", "--ui-bg", "text"],
+  ["h2 Bright on Background", "--ui-fg-bright", "--ui-bg", "text"],
+  ["h3 Magenta on Background", "--ui-magenta", "--ui-bg", "text"],
+  ["h4 Amber on Background", "--ui-accent", "--ui-bg", "text"],
+  ["h5 Light on Background", "--ui-fg-light", "--ui-bg", "text"],
+  ["h6 Dark on Background", "--ui-fg-dark", "--ui-bg", "text"],
+  ["Link (Bright magenta) on Background", "--ui-magenta-bright", "--ui-bg", "text"],
+  ["Button text on Orange (generic)", "--ui-bg", "--ui-orange", "text"],
+  ["Primary text on Green", "--ui-bg", "--ui-green", "text"],
+  ["Clear text on Bright blue", "--ui-bg", "--ui-blue-bright", "text"],
+  ["Cancel text on Red", "--ui-bg", "--ui-red", "text"],
+  ["Notice title info (Blue) on Lighter", "--ui-blue", "--ui-bg-lighter", "text"],
+  ["Notice title ok (Green) on Lighter", "--ui-green", "--ui-bg-lighter", "text"],
+  ["Notice title warn (Amber) on Lighter", "--ui-accent", "--ui-bg-lighter", "text"],
+  ["Notice title error (Red) on Lighter", "--ui-red", "--ui-bg-lighter", "text"],
+  ["Mark text on Blue", "--ui-bg", "--ui-blue", "text"],
+  ["Field border (Dark) on Lighter", "--ui-fg-dark", "--ui-bg-lighter", "nontext"],
+  ["Field border (Dark) on Background", "--ui-fg-dark", "--ui-bg", "nontext"],
+  ["Active / focus line on Lighter", "--ui-border-active", "--ui-bg-lighter", "nontext"],
+  ["Focus outline on Background", "--ui-fg-bright", "--ui-bg", "nontext"],
+  ["Card / panel border (Dark) on Background", "--ui-fg-dark", "--ui-bg", "nontext"],
+];
+const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
+  const ratio = contrast(fg, bg);
+  return { label, fg, bg, ratio: ratio.toFixed(2), level: wcagLevel(ratio, kind) };
+});
+---
+<section class="sc-section" id="accessibility">
+  <h2 class="sc-label">Accessibility</h2>
+  <p><DarkR /> meets WCAG 2.2 AA throughout and is effectively AAA most of the time. The few exceptions are intentional and only used when visibility is not the priority. <DarkR /> is meant to be easy on the eyes and optimized for fast use.</p>
+  <p>Borders and focus rings clear 3:1. Links are underlined, targets are at least 24px, motion stops when you ask for less, and high-contrast mode keeps every edge visible.</p>
+  <table>
+    <caption>Contrast scores for <DarkR /></caption>
+    <thead>
+      <tr>
+        <th>Pair</th>
+        <th class="r-num">Ratio</th>
+        <th>WCAG</th>
+      </tr>
+    </thead>
+    <tbody>
+      {wcagRows.map((row) => (
+        <tr>
+          <td>
+            <span class="sc-chip" aria-hidden="true">
+              <i style={`background:var(${row.fg})`}></i>
+              <i style={`background:var(${row.bg})`}></i>
+            </span>
+            {row.label}
+          </td>
+          <td class="r-num">{row.ratio}:1</td>
+          <td>{row.level}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  {/* Ratios are computed at build time from the palette hex values. */}
+
+  <h3 class="sc-subhead">Reduced motion</h3>
+  <p class="sc-prose">Glows become a plain fade, and list rows and menu carets stop moving.</p>
+
+  <h3 class="sc-subhead">Forced colors</h3>
+  <p class="sc-prose">Edges, focus rings and glows stay visible in system colors. Radios and checkboxes become native.</p>
+
+  <h3 class="sc-subhead">Print</h3>
+  <p class="sc-prose">Print drops the bar, the footer and the status stripe, and the column loses its insets. This page also leaves out its code boxes.</p>
+  <p class="sc-dialog-open"><span class="r-group"><button type="button" class="r-btn" id="sc-print">Print this page</button></span></p>
+
+  <h3 class="sc-subhead">Narrow screens</h3>
+  <table>
+    <caption>Breakpoints the theme defines</caption>
+    <thead><tr><th>Width</th><th>Measured on</th><th>What changes</th></tr></thead>
+    <tbody>
+      <tr><td><code>40rem</code></td><td>The window</td><td>One inset for bar and column; smaller buttons; narrow listing ids.</td></tr>
+      <tr><td><code>52rem</code></td><td>The window</td><td>Crumbs meet the left edge.</td></tr>
+      <tr><td><code>30rem</code></td><td>The list's own width</td><td><code>.r-rows</code> stacks its fields.</td></tr>
+    </tbody>
+  </table>
+</section>
