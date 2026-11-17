@@ -1,8 +1,9 @@
 ---
-// Type: the web scale of base.css, the document scale of doc.css, the fonts and the prompt.
+// Type: the web scale of base.css, the document scale of doc.css, and the fonts.
 // The woff2 files are subset to Latin and Latin Extended by the branding build.
 import DarkR from "../DarkR.astro";
 import Notes from "./Notes.astro";
+import Enterprsr from "./Enterprsr.astro";
 
 const tiers = `
 :root {
@@ -30,10 +31,10 @@ fonts/woff2/MonaspaceNeon.woff2        Monaspace Neon, code
 fonts/woff2/Saira.woff2                Saira roman, document body (doc.css)
 fonts/woff2/Saira-Italic.woff2         Saira italic, document body (doc.css)`;
 
-const prompt = `<span class="r-prompt">Click or press</span>`;
 ---
 <section class="sc-section" id="type">
   <h2 class="sc-label">Type</h2>
+  <p class="sc-prose">Two typefaces carry the interface. Audiowide, the face the logotype is drawn from, is wide and geometric, so it is kept for headings, where a few words should stand out. Rajdhani is narrower and holds up at small sizes, so it sets body text, labels and buttons. Together they keep the look of the logo without making long text tiring to read.</p>
   <div class="sc-type">
     <span class="sc-cap"><b>h1</b> Audiowide, Green</span><h1>Mission control</h1>
     <span class="sc-cap"><b>h2</b> Audiowide, Bright</span><h2>A quiet view from orbit</h2>
@@ -46,7 +47,7 @@ const prompt = `<span class="r-prompt">Click or press</span>`;
     <span class="sc-cap"><b>Link</b></span><p>Read the <a href="#type">mission notes</a> before you start.</p>
     <span class="sc-cap"><b>Mark</b></span><p>The <mark>launch window</mark> opens at dawn.</p>
     <span class="sc-cap"><b>Keys</b></span><p>Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search.</p>
-    <span class="sc-cap"><b>Prompt</b></span><p><span class="r-prompt">Click or press</span></p>
+    <span class="sc-cap"><b>Prompt</b> <code>.r-prompt</code></span><p><span class="r-prompt">Click or press</span></p>
     <span class="sc-cap"><b>Code</b></span><p><code>--r-text</code></p>
     <span class="sc-cap"><b>Quote</b></span><blockquote>Make it so, but make it small.</blockquote>
     <span class="sc-cap"><b>List</b></span><ul><li>Plain lists keep the body text.</li><li>Nested items indent.</li></ul>
@@ -95,19 +96,20 @@ const prompt = `<span class="r-prompt">Click or press</span>`;
   />
 
   <h3 class="sc-subhead">Fonts</h3>
-  <p class="sc-prose">The theme loads Enterprsr, Audiowide, Rajdhani (Medium, SemiBold), Monaspace Neon and Saira (roman, italic) from <code>../fonts/woff2/</code>.</p>
+  <p class="sc-prose"><Enterprsr /> is the logotype font. It is drawn from Audiowide and holds only the characters of the name: E, n, t, e, r, p, i and s, the hyphen, R and ®. Its R is the logo's mark, and its ® is the lone R that paints the R in <DarkR />. It has no other characters, so it is for the name only.</p>
+  <div class="sc-type sc-fonts">
+    <span class="sc-cap"><b>Name</b></span><p><Enterprsr /></p>
+    <span class="sc-cap"><b>Headings</b></span><p class="sc-aw">Audiowide</p>
+    <span class="sc-cap"><b>Text</b> 500</span><p class="sc-f-text">Rajdhani Medium</p>
+    <span class="sc-cap"><b>Labels</b> 600</span><p class="sc-f-label">Rajdhani SemiBold</p>
+    <span class="sc-cap"><b>Code</b></span><p class="sc-f-mono">Monaspace Neon</p>
+    <span class="sc-cap"><b>Documents</b></span><p class="sc-f-doc">Saira</p>
+    <span class="sc-cap"><b>Documents</b> italic</span><p class="sc-f-doc"><i>Saira Italic</i></p>
+  </div>
+  <p class="sc-prose">The theme loads <Enterprsr />, Audiowide, Rajdhani (Medium, SemiBold), Monaspace Neon and Saira (roman, italic) from <code>../fonts/woff2/</code>.</p>
   <Notes
     markup={fonts}
     do="Ship the licenses with the fonts."
     dont="Load the same faces from a font service as well."
-  />
-
-  <h3 class="sc-subhead">Prompt</h3>
-  <p><span class="r-prompt">Click or press</span></p>
-  <Notes
-    markup={prompt}
-    classes="`.r-prompt`."
-    do="Use it for a short call to act."
-    dont="Use it for a heading."
   />
 </section>

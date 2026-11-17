@@ -35,7 +35,7 @@ const meters = `
 <meter value="0.8" low="0.3" high="0.6" optimum="1">80%</meter>`;
 
 const dialog = `
-<button type="button" class="r-btn" onclick="document.getElementById('leave').showModal()">Open dialog</button>
+<button type="button" class="r-btn r-primary" onclick="document.getElementById('leave').showModal()">Open dialog</button>
 <dialog id="leave">
   <h3>Leave orbit?</h3>
   <form method="dialog" class="r-group r-end">
@@ -66,6 +66,11 @@ const dialog = `
     do="Give every field a `label`."
     dont="Use a placeholder as the only label."
   />
+  <h3 class="sc-subhead">Fieldset and choices</h3>
+  <fieldset class="sc-fieldset">
+    <legend>Crew</legend>
+    <div class="sc-checks"><label><input type="checkbox" checked> Captain</label><label><input type="checkbox"> Pilot</label><label><input type="radio" name="sc-r" checked> Day</label><label><input type="radio" name="sc-r"> Night</label></div>
+  </fieldset>
   <Notes
     markup={choices}
     classes="None: plain radios and checkboxes."
@@ -76,17 +81,11 @@ const dialog = `
   />
 
   <h3 class="sc-subhead" id="groups">Progress, meter and dialog</h3>
-  <div class="sc-grid cols-2">
-    <fieldset>
-      <legend>Crew</legend>
-      <div class="sc-checks"><label><input type="checkbox" checked> Captain</label><label><input type="checkbox"> Pilot</label><label><input type="radio" name="sc-r" checked> Day</label><label><input type="radio" name="sc-r"> Night</label></div>
-    </fieldset>
-    <div class="sc-meters">
-      <span class="sc-cap"><b>Progress</b></span><progress value="62" max="100">62%</progress>
-      <span class="sc-cap"><b>Meter</b> good</span><meter value="0.8" low="0.3" high="0.6" optimum="1">80%</meter>
-      <span class="sc-cap"><b>Meter</b> fair</span><meter value="0.5" low="0.3" high="0.6" optimum="1">50%</meter>
-      <span class="sc-cap"><b>Meter</b> poor</span><meter value="0.2" low="0.3" high="0.6" optimum="1">20%</meter>
-    </div>
+  <div class="sc-meters">
+    <span class="sc-cap"><b>Progress</b></span><progress value="62" max="100">62%</progress>
+    <span class="sc-cap"><b>Meter</b> good</span><meter value="0.8" low="0.3" high="0.6" optimum="1">80%</meter>
+    <span class="sc-cap"><b>Meter</b> fair</span><meter value="0.5" low="0.3" high="0.6" optimum="1">50%</meter>
+    <span class="sc-cap"><b>Meter</b> poor</span><meter value="0.2" low="0.3" high="0.6" optimum="1">20%</meter>
   </div>
   <Notes
     markup={meters}
@@ -94,7 +93,7 @@ const dialog = `
     do="Repeat the value in the element's text."
     dont="Use a meter for progress over time."
   />
-  <p class="sc-dialog-open"><span class="r-group"><button class="r-btn" type="button" onclick="document.getElementById('sc-dialog').showModal()">Open dialog</button></span></p>
+  <p class="sc-dialog-open"><span class="r-group"><button class="r-btn r-primary" type="button" onclick="document.getElementById('sc-dialog').showModal()">Open dialog</button></span></p>
   <dialog id="sc-dialog">
     <h3>Leave orbit?</h3>
     <p>A card over the dimmed page.</p>

@@ -4,7 +4,15 @@ import DarkR from "../DarkR.astro";
 import Notes from "./Notes.astro";
 import palette from "../../styles/palette.json";
 
-const groups = palette.groups.map((g) => ({ ...g, colours: g.colours.filter((c) => c.var !== "--ui-accent") }));
+// The showcase order: Brown right after Orange, the greens last. palette.json stays as branding ships it.
+const last = ["--ui-green", "--ui-green-bright"];
+const order = (colours) => {
+  const rest = colours.filter((c) => c.var !== "--ui-brown" && !last.includes(c.var));
+  const brown = colours.filter((c) => c.var === "--ui-brown");
+  const at = rest.findIndex((c) => c.var === "--ui-orange") + 1;
+  return [...(at ? [...rest.slice(0, at), ...brown, ...rest.slice(at)] : [...rest, ...brown]), ...last.flatMap((v) => colours.filter((c) => c.var === v))];
+};
+const groups = palette.groups.map((g) => ({ ...g, colours: order(g.colours.filter((c) => c.var !== "--ui-accent")) }));
 const accent = palette.groups.flatMap((g) => g.colours).filter((c) => c.var === "--ui-accent");
 
 const use = `
@@ -23,13 +31,11 @@ const use = `
       </picture>
       <figcaption class="sc-cap">The <DarkR /> spectrum</figcaption>
     </figure>
-  <div class="sc-brand-box">
-    <h3 class="sc-subhead sc-top">Amber (Accent)</h3>
-    <div class="sc-swatches">
-        {accent.map((c) => (
-          <div class="sc-swatch"><i style={`background:var(${c.var})`}></i><div><b>{c.name}</b><code>{c.hex}</code><small>{c.var} · {c.use}</small></div></div>
-        ))}
-    </div>
+  <h3 class="sc-subhead sc-top">Amber (Accent)</h3>
+  <div class="sc-swatches">
+    {accent.map((c) => (
+      <div class="sc-swatch"><i style={`background:var(${c.var})`}></i><div><b>{c.name}</b><code>{c.hex}</code><small>{c.var} · {c.use}</small></div></div>
+    ))}
   </div>
   {groups.map((g) => (<>
     <h3 class="sc-subhead">{g.title}</h3>

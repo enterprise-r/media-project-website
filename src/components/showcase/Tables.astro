@@ -1,5 +1,5 @@
 ---
-// Tables: the plain table of base.css, the listing (listing.css) and the key/value table (kv.css).
+// Tables: the plain table of base.css and the key/value table (kv.css).
 import Notes from "./Notes.astro";
 
 const plain = `
@@ -11,16 +11,6 @@ const plain = `
   </tbody>
 </table>`;
 
-const listing = `
-<table class="r-listing">
-  <thead><tr><th>Run</th><th>Status</th><th>Started</th></tr></thead>
-  <tbody>
-    <tr><td class="r-id" rowspan="2"><a href="/runs/a1b2c3d4e5f6">a1b2c3d4e5f6</a></td><td>Done</td><td>09:30</td></tr>
-    <tr class="r-detail"><td><span class="r-tag">Version</span> 3</td><td><span class="r-tag">Duration</span> 2 minutes</td></tr>
-  </tbody>
-  <tbody>…</tbody>
-</table>`;
-
 const kv = `
 <div class="r-kv"><table><tbody>
   <tr><th>name</th><td>Weekly report</td></tr>
@@ -30,11 +20,6 @@ const kv = `
   </tbody></table></td></tr>
 </tbody></table></div>`;
 
-const runs = [
-  ["a1b2c3d4e5f6", "Done", "09:30", "3", "2 minutes"],
-  ["b2c3d4e5f6a1", "Running", "10:05", "4", "1 minute"],
-  ["c3d4e5f6a1b2", "Failed", "10:40", "4", "20 seconds"],
-];
 ---
 <section class="sc-section" id="tables">
   <h2 class="sc-label">Tables</h2>
@@ -66,27 +51,6 @@ const runs = [
     classes="None; `.r-num` on a number column."
     do="Give a table a `caption`."
     dont="Use a table for layout."
-  />
-
-  <h3 class="sc-subhead">Listing</h3>
-  <div class="sc-measure">
-    <table class="r-listing">
-      <thead><tr><th>Run</th><th>Status</th><th>Started</th></tr></thead>
-      {runs.map(([id, status, at, version, took]) => (
-        <tbody>
-          <tr><td class="r-id" rowspan="2"><a href="#tables">{id}</a></td><td>{status}</td><td><time>{at}</time></td></tr>
-          <tr class="r-detail"><td><span class="r-tag">Version</span> {version}</td><td><span class="r-tag">Duration</span> {took}</td></tr>
-        </tbody>
-      ))}
-    </table>
-  </div>
-  <Notes
-    markup={listing}
-    classes="`table.r-listing`, one `tbody` per entry, `.r-detail`, `.r-id`, `.r-tag`."
-    attributes="`rowspan=2` on the id cell."
-    tokens="`--r-listing-id`: the id width on narrow screens."
-    do="Keep each entry in its own `tbody`."
-    dont="Use it without `column.css`."
   />
 
   <h3 class="sc-subhead">Key/value table</h3>

@@ -49,7 +49,8 @@ main.showcase + footer p {
 .r-card h3 { margin-bottom: 0.4rem; font-family: var(--r-font-heading); font-size: 1.15rem; letter-spacing: 0.05em; }
 .r-card p { margin: 0; color: var(--ui-fg-light); }
 .r-card .r-pill { margin-top: 0.8rem; }
-.sc-meters { display: grid; grid-template-columns: 7rem 1fr; gap: 0.7rem 1rem; align-items: center; }
+.sc-meters { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 0.7rem 1rem; align-items: center; max-width: 36rem; }
+.sc-fieldset { max-width: 46rem; }
 .sc-dialog-open { display: flex; justify-content: center; margin-top: 1rem; }
 #accessibility table { margin-inline: auto; }
 .sc-glow-actions { display: flex; justify-content: flex-end; gap: 0.6rem; margin-top: 1.2rem; }
@@ -69,17 +70,12 @@ main.showcase + footer p {
   overflow: hidden;
 }
 .sc-chip i { display: block; width: 0.7rem; height: 0.7rem; }
-.sc-row { display: flex; flex-wrap: wrap; gap: 2rem 3rem; align-items: flex-start; }
-.sc-row > * { min-width: min(100%, 16rem); max-width: 100%; }
-.sc-row > :first-child { flex: 0 1 auto; }
-.sc-row > :last-child { flex: 1 1 20rem; }
 /* The navigation specimen is the theme bar, held in the page instead of fixed to the window. */
 .showcase .r-bar { position: static; }
 
-/* Split row: the first block on the left, the last pushed to the right edge. */
-.sc-split { justify-content: space-between; }
-.sc-split > :first-child { flex: 1 1 20rem; max-width: 36rem; }
-.sc-split > :last-child { flex: 0 1 auto; display: grid; justify-items: end; }
+/* The menus sample: Sort at the left edge, View at the right, on one line at any width. */
+.sc-menus { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+
 /* A menu is a block flex box, so in a wide column it would stretch and the
    list (min-width: 100%) would become a full-width bar. Stay as wide as the label. */
 .showcase .r-menu { width: max-content; max-width: 100%; }
@@ -121,12 +117,10 @@ main.showcase + footer p {
 .sc-swatch code { color: var(--ui-fg-dark); font-size: 0.8rem; }
 .sc-swatch small { display: block; color: var(--ui-fg-dark); font-size: 0.78rem; }
 .sc-subhead { margin: 1.8rem 0 0.7rem; color: var(--ui-magenta); font-family: var(--r-font-text); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-/* The palette badge floats at the right of the section; the accent box flows beside it. */
+/* The palette badge floats at the right of the section; the accent swatches flow beside it. */
 .sc-badge { float: right; width: 12rem; margin: 0 0 1rem 2rem; display: grid; justify-items: center; gap: 0.4rem; text-align: center; }
-#palette .sc-brand-box { display: flow-root; }
 .sc-badge picture { display: contents; }
 .sc-badge img { display: block; width: 100%; height: auto; }
-.sc-brand-box { padding: 1rem 1.2rem 1.2rem; border: 1px dashed var(--ui-fg-dark); border-radius: 1rem; }
 
 .sc-type { display: grid; grid-template-columns: 11rem 1fr; gap: 0.9rem 1.5rem; align-items: baseline; }
 .sc-type > * { margin: 0; }
@@ -176,13 +170,13 @@ main.showcase + footer p {
   background-position: center center;
   background-repeat: no-repeat;
 }
-.sc-term-stack { position: absolute; left: 1.4rem; right: 1.4rem; top: 50%; transform: translateY(-50%); z-index: 2; }
+.sc-term-stack { position: absolute; left: 1.4rem; right: 1.4rem; top: 50%; transform: translateY(-50%); z-index: 2; display: flex; flex-direction: column; gap: 0.5rem; }
 .sc-term-stack .r-term { max-width: 34rem; }
 .sc-term-stack .about-heading { margin: 0; font-family: var(--r-font-heading); font-size: 2.2rem; letter-spacing: 0.08em; color: transparent; line-height: 1.1; }
 
 /* Decorative closer: Dark-R at h2 size, filled with the striped logo gradient. The ® is the picture. */
 .sc-closer {
-  margin: 4rem 0 0;
+  margin: 2rem;
   text-align: center;
   font-family: var(--r-font-heading);
   font-size: 1.6rem;
@@ -251,6 +245,13 @@ a.sc-closer-fill:hover {
 .sc-spec dt { margin: 0; }
 .sc-spec dd { margin: 0; color: var(--r-text-small); }
 .sc-name-sample { font-size: 2rem; }
+/* Each font name set in its own face. */
+.sc-fonts { margin-bottom: 1rem; }
+.sc-fonts > p { font-size: 1.6rem; line-height: 1.2; }
+.sc-f-text { font-family: var(--r-font-text); font-weight: 500; }
+.sc-f-label { font-family: var(--r-font-text); font-weight: 600; }
+.sc-f-mono { font-family: var(--r-font-mono); }
+.sc-f-doc { font-family: var(--r-font-doc); }
 .sc-top { margin-top: 0; }
 .sc-flush { margin: 0; }
 .sc-panel { margin-top: 1rem; }
@@ -260,7 +261,7 @@ a.sc-closer-fill:hover {
 .sc-tab > p { margin: 0 0 0.6rem; }
 
 /* Click guard samples. */
-.sc-guard { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.sc-guard { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; max-width: 46rem; }
 .sc-guard .r-card { display: grid; gap: 0.6rem; justify-items: start; align-content: start; }
 .sc-guard .sc-cap { margin: 0; }
 
@@ -269,7 +270,7 @@ a.sc-closer-fill:hover {
 .sc-mark { --r-mark-view: 1024; --r-mark-plate: 1024; --r-mark-round: 102; }
 .sc-swatch-light { --r-swatch-bg: var(--ui-fg-bright); --r-swatch-fg: var(--ui-bg); }
 
-/* Listing and key/value samples: a column's width, with room for the step back. */
+/* Key/value sample: a column's width, with room for the step back. */
 .sc-measure { max-width: 46rem; padding-inline: var(--r-box-pad); }
 
 @media (max-width: 900px) {
