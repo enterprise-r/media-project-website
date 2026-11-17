@@ -1,12 +1,6 @@
-/* Dark-R dynamic list. Enhances any .r-rows that has a .r-rows-list and a
-   .r-row-add: add and remove rows, keyboard, live-region announcements, and
-   data-name="…{i}…" templates (also data-id and data-label; {i} is the
-   0-based index, {n} the 1-based row number). A new row is cloned from a
-   <template> in the .r-rows, or from the last .r-row if there is no
-   template. The clone's fields are reset: text empty, boxes off, each
-   select on its first option. data-min and data-max on the .r-rows cap the
-   list: remove is disabled at min, add at max. With a template, min
-   defaults to 0; otherwise it defaults to 1. No dependencies.
+/* Dark-R dynamic list. Enhances any .r-rows: add and remove rows, keyboard,
+   live-region announcements, data-name="…{i}…" templates, an optional
+   <template> row and data-min / data-max caps. No dependencies.
    <script src="theme/rows.js"></script> */
 (function (global) {
   "use strict";

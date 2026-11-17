@@ -9,12 +9,12 @@
   --ui-fg-dark: #9385A5; /* Dark foreground */
   --ui-fg: #E0E6E2; /* Foreground */
   --ui-fg-light: #B6C1CC; /* Light foreground */
-  --ui-fg-bright: #FFF3E6; /* Bright foreground: keyboard focus outline, link hover */
+  --ui-fg-bright: #FFF3E6; /* Bright foreground: keyboard focus outline */
   /* Named colours */
   --ui-red: #EC8790; /* Red */
   --ui-red-bright: #FFA5AD; /* Bright red */
-  --ui-yellow: #E4D58B; /* Yellow */
-  --ui-yellow-bright: #EFE3A6; /* Bright yellow */
+  --ui-yellow: #E4D58B; /* Yellow: visited links, h4 labels */
+  --ui-yellow-bright: #EFE3A6; /* Bright yellow: link hover */
   --ui-orange: #F4B965; /* Orange: other-page buttons, striped gradient start, separator centre */
   --ui-accent: #F0A202; /* Amber (Accent): other-page button hover, footer icon hover, accent text */
   --ui-green: #77AF8A; /* Green (sage): logo R, current-page button, headings, striped gradient end, separator edges */
@@ -24,7 +24,7 @@
   --ui-blue: #A5ACE1; /* Blue */
   --ui-blue-bright: #BDCBD9; /* Bright blue: logo ship-trail, Clear button */
   --ui-magenta: #BA9EDA; /* Magenta: striped gradient, separator */
-  --ui-magenta-bright: #D2BCED; /* Bright magenta */
+  --ui-magenta-bright: #D2BCED; /* Bright magenta: unvisited links */
   --ui-brown: #A88070; /* Brown */
   /* Striped gradient: badge ring, and the words of the wide and compact logos */
   --ui-striped: linear-gradient(to top right,
