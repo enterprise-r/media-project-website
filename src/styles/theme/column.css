@@ -1,5 +1,5 @@
 /* Dark-R column: the measure and the insets the bar, the column and the boxes in it share.
-   Link after components.css. bar.css, stripe.css and listing.css read these tokens.
+   Link after components.css. bar.css reads these tokens.
    The text is --r-measure wide (880px), centered, at least --r-text-min (26px) from the window.
    --r-text-inline is the text's side inset and --r-bar-inline the bar's: on a wide screen the bar
    lines up with the boxes. A box pads its sides by --r-box-pad and steps back by the same length,

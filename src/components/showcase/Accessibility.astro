@@ -94,7 +94,7 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
   <p class="sc-prose">Edges, focus rings and glows stay visible in system colors. Radios and checkboxes become native.</p>
 
   <h3 class="sc-subhead">Print</h3>
-  <p class="sc-prose">Print drops the bar, the footer and the column loses its insets. This page also leaves out its code boxes.</p>
+  <p class="sc-prose">Print drops the bar and the footer, and the column loses its insets. This page also leaves out its code boxes.</p>
   <p class="sc-dialog-open"><span class="r-group"><button type="button" class="r-btn" id="sc-print">Print this page</button></span></p>
 
   <h3 class="sc-subhead">Narrow screens</h3>
@@ -102,7 +102,7 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
     <caption>Breakpoints the theme defines</caption>
     <thead><tr><th>Width</th><th>Measured on</th><th>What changes</th></tr></thead>
     <tbody>
-      <tr><td><code>40rem</code></td><td>The window</td><td>One inset for bar and column; smaller buttons; narrow listing ids.</td></tr>
+      <tr><td><code>40rem</code></td><td>The window</td><td>One inset for bar and column; smaller buttons.</td></tr>
       <tr><td><code>52rem</code></td><td>The window</td><td>Crumbs meet the left edge.</td></tr>
       <tr><td><code>30rem</code></td><td>The list's own width</td><td><code>.r-rows</code> stacks its fields.</td></tr>
     </tbody>
