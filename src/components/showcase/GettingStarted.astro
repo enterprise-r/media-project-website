@@ -1,5 +1,5 @@
 ---
-// Getting started: vendoring the theme, the include order, required and optional files, and the rules.
+// Getting started: the include order, required and optional files, and the rules.
 import DarkR from "../DarkR.astro";
 import Notes from "./Notes.astro";
 
@@ -48,18 +48,6 @@ const name = `
 ---
 <section class="sc-section" id="getting-started">
   <h2 class="sc-label">Getting started</h2>
-
-  <h3 class="sc-subhead">Vendoring the theme</h3>
-  {/* The theme is built in project-branding and shipped to the Drive assets/ release. palette.css ships
-       inside theme/ and also in assets/palette/. Copied files are never edited; changes go through branding.
-       rows.js comes from project-wcard vendor/theme/rows.js until branding carries that contract. */}
-  <ul class="sc-prose">
-    <li>Copy <code>assets/theme/</code> and <code>assets/fonts/</code> from the Drive <code>assets/</code> release, side by side: the theme loads fonts from <code>../fonts/woff2/</code>.</li>
-    <li>Ship the font licenses from <code>assets/fonts/licenses/</code>.</li>
-    <li>Do not edit copied files. Check the branding <code>CHANGELOG.md</code> for new versions and copy again.</li>
-    <li>For now, take <code>rows.js</code> from project-wcard <code>vendor/theme/rows.js</code>.</li>
-  </ul>
-
   <h3 class="sc-subhead">Include order</h3>
   <Notes markup={order} extra={layout} />
   <table>
