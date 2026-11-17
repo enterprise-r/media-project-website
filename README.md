@@ -46,6 +46,7 @@ Brand files come from the project-branding build (`build.sh`), shipped to Drive 
 | `public/assets/favicon.ico`, `favicon-32.png` | Drive `assets/logos/favicon/` |
 | `public/assets/apple-touch-icon.png`, `icon-192.png`, `icon-512.png` | Drive `assets/logos/favicon/` `favicon-180.png`, `favicon-192.png`, `favicon-512.png`, renamed |
 | `public/assets/warpchi.*`, `hyper-j.*` | Showcase terminal sample (warpchi). Site wallpaper is hyper-j, set once in `bar.css`. Sources are project-branding `wallpapers/`, saved here as jpg, avif and webp |
+| `public/assets/logo-badge-pulse.svg`, `logo-badge-spectrum.svg` | Showcase palette badge, animated, with the still spectrum badge for reduced motion. Source is project-branding `logo/svg/` `logo-normal-badge-pulse.svg` and `logo-normal-badge-spectrum.svg`, renamed |
 | `public/assets/engy.png`, `engy.webp`, `engy.avif` | Showcase greeting avatar. Source is Drive `assets/badges/engy.png`, scaled to 256px and saved here as png, webp and avif |
 | `src/styles/theme/` | Drive `assets/theme/`, the whole directory except `palette.css` (see below), copied as-is |
 | `src/styles/theme/rows.js` | project-wcard `vendor/theme/rows.js`, until branding carries that version; then Drive `assets/theme/` with the rest |
