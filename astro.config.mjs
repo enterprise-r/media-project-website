@@ -2,6 +2,9 @@ import { defineConfig } from "astro/config";
 
 export default defineConfig({
   site: "https://www.enterprise-r.com",
+  redirects: {
+    "/login": "/r/",
+  },
   // localhost resolves to ::1 first, so the default bind is IPv6 only.
   // ra.hq.enterprise-r.com proxies here and sends its own Host header.
   server: {

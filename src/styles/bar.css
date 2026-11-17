@@ -78,6 +78,8 @@ body:has(> .r-bar) {
 .r-bar .r-crumbs .r-crumb-root[aria-current="page"] {
   cursor: default;
 }
+/* An account crumb keeps its written case. Button labels stay uppercase. */
+.r-bar .r-crumbs .r-crumb-literal { text-transform: none; }
 .r-bar .r-crumbs .r-crumb-root picture { display: contents; }
 .r-bar .r-crumbs .r-crumb-root img {
   display: block;
