@@ -10,7 +10,7 @@ The name is Dark-R wherever it is read. In HTML the R is the character ® in Ent
 
 Dark-R is futuristic with a hint of retro, on a fresh palette you don't often see in everyday interfaces. It is made for night mode and for night-light filters that warm the screen in the evening. Its purples and magentas carry a lot of blue, so Dark-R changes more than most themes when the night light comes on.
 
-The theme targets WCAG 2.2 AA; the website showcase lists the contrast scores.
+The theme targets WCAG 2.2 AA.
 
 It needs no framework and no build step. Any page or app can use it with `<link>` tags, in this order. Keep `theme/` and `fonts/` side by side, as in the assets:
 
@@ -48,11 +48,8 @@ The app shell, `column.css` to `kv.css`, is optional: include `column.css` and t
 | `listing.css` | The listing table (`table.r-listing`): an entry per `tbody`, a detail row (`.r-detail`), an id cell (`.r-id`) across both, banded entries, two-line ids below `40rem` (`--r-listing-id`). | Shipped |
 | `kv.css` | The key/value table (`.r-kv`): right-aligned keys against a rule, nested tables flush in their cells, `--r-kv-line`. | Shipped |
 | `rows.js` | Plain script that enhances any `.r-rows` fieldset: add and remove, keyboard, live-region announcements and `data-name` templates. No dependencies, no build step. | Shipped |
-| `guard.js` | Plain script that guards button clicks. Moving the pointer (or stopping) accepts presses immediately, including during movement, for `--r-guard-gap2` (10s); the window restarts on each movement. After 10s with no movement, presses stay off until the pointer moves again. An accepted press turns clicks off for `--r-guard-cool` (400ms), then off until movement again. Touch and keyboard use the cooldown only. Acceptance is decided on button press, not release; a discarded press also suppresses the click. A discarded press flashes the waiting cursor for 300ms. Opt out with `.r-unguarded` on the button or an ancestor. No dependencies, no build step. | Shipped |
+| `guard.js` | Plain script that guards button clicks. Moving the pointer (or stopping) accepts presses immediately, including during movement, for `--r-guard-gap2` (10s); the window restarts on each movement. After 10s with no movement, presses stay off until the pointer moves again. An accepted press turns clicks off for `--r-guard-cool` (400ms), then off until movement again. Touch and keyboard use the cooldown only. Only trusted events are judged; clicks a script dispatches, such as `el.click()`, pass through. Acceptance is decided on button press, not release; a discarded press also suppresses the click. A discarded press flashes the waiting cursor for 300ms. Opt out with `.r-unguarded` on the button or an ancestor. No dependencies, no build step. | Shipped |
 | `icons/` | Waiting icons: `icons/wait.svg` (animated) and `icons/wait-static.svg` (the full W, unanimated, 128). `icons/wait-cursor.svg` is the same W at 32 CSS px for the `.r-wait` cursor (hotspot 16 16, `progress` fallback). Disabled controls use that cursor too, never the system not-allowed pointer. `--r-icon-wait`, `--r-icon-wait-static` and `--r-icon-wait-cursor` in `base.css`. | Shipped |
-
-The showcase of the website, [project-www](https://github.com/enterprise-r/project-www), shows every element and component.
-
 
 ## Typography
 
@@ -109,7 +106,7 @@ The shell is the frame of a page: the bar, the column, the footer. A site and an
 <body class="r-page">
   <header class="r-bar">
     <nav class="r-crumbs" aria-label="Breadcrumb"><ol>
-      <li><a class="r-btn r-crumb-root" href="/" aria-label="Home">®</a></li>
+      <li><a class="r-btn r-crumb-root" href="/">Home</a></li>
       <li><a class="r-btn" href="/jobs" aria-current="page">jobs</a></li>
     </ol></nav>
     <div class="r-bar-end">
@@ -134,7 +131,7 @@ The shell is the frame of a page: the bar, the column, the footer. A site and an
 ```
 
 - **Column.** The text is `--r-measure` (880px) wide, centered, at least `--r-text-min` (26px) from the window: `--r-text-inline`. A box pads its sides by `--r-box-pad` and steps back by the same length (`.r-step-back`), so its words line up with the text outside it; `--r-box-gap` (4px) stays outside its border for the glow. The bar's inset, `--r-bar-inline`, lines it up with the boxes. Below `40rem` the text and the bar share `--r-text-pad` (1rem). `.r-column` starts a button's height below the bar; a page whose bar wraps sets `--r-bar-h` to the bar's measured height.
-- **Bar.** The root comes first and stays on the left; `.r-bar-end` stays on the right, also when the bar wraps. In the bar a trail's labels sit against the slant. The actions pill ends square against the mark. A disabled button takes the page ground, as the theme's disabled fill is the bar's. Below `52rem` a trail meets the left edge of the window: the first crumb is square, 8px deep, and a lone first crumb is a plain box. Any other root keeps the inset.
+- **Bar.** The root comes first and stays on the left; `.r-bar-end` stays on the right, also when the bar wraps. In the bar a trail's labels sit against the slant. The actions pill ends square against the mark. A disabled button takes the page ground, as the theme's disabled fill is the bar's. Below `52rem` a trail meets the left edge of the window: the first crumb is square, 8px deep, and a lone first crumb is square on the left with its right end still round, never a whole pill. Any other root keeps the inset.
 - **Mark.** A menu whose button is a square picture as tall as a button, framed like an active card. The picture is a square view box with a rounded plate centered in it: `--r-mark-view`, `--r-mark-plate` and `--r-mark-round` (128, 120 and 26 by default) fit the plate to the square and the frame to its curve. Focus draws the frame in the focus color. A second level (`.r-menu.r-side`) fills the list's width and opens to its left.
 - **Swatches.** Each theme choice is the page it sets, also on hover: the app sets `--r-swatch-bg`, `--r-swatch-fg` and `--r-swatch-font` for each of its own pages. `.r-swatch-dark-r` is Dark-R's: the ground, sage ink, the title face. The checked choice has a Green inner ring; pointing at another draws it in the dim ink.
 - **Footer.** The Border fill, the company word in Enterprsr in the darkest ink; pointing at it fills the word with the striped gradient. Inside `.r-page` it stays on the bottom of the window.

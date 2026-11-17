@@ -9,6 +9,8 @@
    A discarded press flashes the waiting cursor for 300ms.
    Touch and keyboard use the cooldown only.
    Applies to button and input type=button/submit/reset, not links.
+   Only trusted events, from a person or a test driving the pointer, are
+   judged; events a script dispatches, such as el.click(), pass through.
    Opt out with .r-unguarded on the control or an ancestor.
    <script src="theme/guard.js"></script> */
 (function () {
@@ -44,7 +46,9 @@
     COOL_MS = msVar("--r-guard-cool", 400);
   }
 
-  function target(el) {
+  function target(e) {
+    if (!e.isTrusted) return null;
+    var el = e.target;
     if (!el || !el.closest) return null;
     var btn = el.closest(SELECTOR);
     if (!btn || btn.closest(".r-unguarded")) return null;
@@ -156,7 +160,7 @@
   }
 
   document.addEventListener("pointermove", function (e) {
-    var btn = target(e.target);
+    var btn = target(e);
     if (!btn) return;
     timings();
     var s = get(btn);
@@ -168,7 +172,7 @@
   }, true);
 
   document.addEventListener("pointerover", function (e) {
-    var btn = target(e.target);
+    var btn = target(e);
     if (!btn || sameButton(btn, e.relatedTarget)) return;
     timings();
     var s = get(btn);
@@ -180,7 +184,7 @@
   }, true);
 
   document.addEventListener("pointerout", function (e) {
-    var btn = target(e.target);
+    var btn = target(e);
     if (!btn || sameButton(btn, e.relatedTarget)) return;
     var s = get(btn);
     s.hover = false;
@@ -192,7 +196,7 @@
 
   document.addEventListener("pointerdown", function (e) {
     if (e.button !== 0) return;
-    var btn = target(e.target);
+    var btn = target(e);
     if (!btn) return;
     timings();
     var s = get(btn);
@@ -215,7 +219,7 @@
   }, true);
 
   document.addEventListener("click", function (e) {
-    var btn = target(e.target);
+    var btn = target(e);
     if (!btn) return;
     timings();
     var s = get(btn);
@@ -249,7 +253,7 @@
 
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Enter" && e.key !== " ") return;
-    var btn = target(e.target);
+    var btn = target(e);
     if (!btn || (e.target !== btn && !btn.contains(e.target))) return;
     timings();
     var s = get(btn);
