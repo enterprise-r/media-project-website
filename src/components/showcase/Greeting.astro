@@ -1,0 +1,13 @@
+---
+import DarkR from "../DarkR.astro";
+// The showcase opens with a greeting: a picture beside a speech bubble.
+// The bubble is a theme notice that plays the update glow once on load.
+---
+<div class="sc-greet">
+  <picture>
+    <source srcset="/assets/engy.avif" type="image/avif">
+    <source srcset="/assets/engy.webp" type="image/webp">
+    <img class="sc-avatar" src="/assets/engy.png" width="256" height="256" alt="Engy">
+  </picture>
+  <p class="r-notice r-glow-run sc-bubble">Hello, I'm Engy. This is <DarkR />: try each live example, then copy its markup.</p>
+</div>

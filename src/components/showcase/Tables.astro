@@ -1,0 +1,111 @@
+---
+// Tables: the plain table of base.css, the listing (listing.css) and the key/value table (kv.css).
+import Notes from "./Notes.astro";
+
+const plain = `
+<table>
+  <caption>Crew on this watch</caption>
+  <thead><tr><th>Name</th><th>Role</th><th class="r-num">Watch</th></tr></thead>
+  <tbody>
+    <tr><td>Beverly Crusher</td><td>Chief medical officer</td><td class="r-num">1</td></tr>
+  </tbody>
+</table>`;
+
+const listing = `
+<table class="r-listing">
+  <thead><tr><th>Run</th><th>Status</th><th>Started</th></tr></thead>
+  <tbody>
+    <tr><td class="r-id" rowspan="2"><a href="/runs/a1b2c3d4e5f6">a1b2c3d4e5f6</a></td><td>Done</td><td>09:30</td></tr>
+    <tr class="r-detail"><td><span class="r-tag">Version</span> 3</td><td><span class="r-tag">Duration</span> 2 minutes</td></tr>
+  </tbody>
+  <tbody>…</tbody>
+</table>`;
+
+const kv = `
+<div class="r-kv"><table><tbody>
+  <tr><th>name</th><td>Weekly report</td></tr>
+  <tr><th>owner</th><td><table><tbody>
+    <tr><th>team</th><td>Ops</td></tr>
+    <tr><th>email</th><td>ops@example.com</td></tr>
+  </tbody></table></td></tr>
+</tbody></table></div>`;
+
+const runs = [
+  ["a1b2c3d4e5f6", "Done", "09:30", "3", "2 minutes"],
+  ["b2c3d4e5f6a1", "Running", "10:05", "4", "1 minute"],
+  ["c3d4e5f6a1b2", "Failed", "10:40", "4", "20 seconds"],
+];
+---
+<section class="sc-section" id="tables">
+  <h2 class="sc-label">Tables</h2>
+  <table>
+    <caption>Crew on this watch</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th class="r-num">Watch</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Beverly Crusher</td>
+        <td>Chief medical officer</td>
+        <td class="r-num">1</td>
+      </tr>
+      <tr>
+        <td>Geordi La Forge</td>
+        <td>Chief engineer</td>
+        <td class="r-num">2</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="sc-note">A plain table: rounded outline, header row on the Border fill, dividers between rows, Lighter background on hover. <code>.r-num</code> right-aligns the number column.</p>
+  <Notes
+    markup={plain}
+    classes="None for the table itself. `.r-num` on a header and its cells: right-aligned, figures of equal width."
+    do="Give a table a `caption`; the corner radii allow for it."
+    dont="Put layout in a table; use it for data only."
+  />
+
+  <h3 class="sc-subhead">Listing</h3>
+  <div class="sc-measure">
+    <table class="r-listing">
+      <thead><tr><th>Run</th><th>Status</th><th>Started</th></tr></thead>
+      {runs.map(([id, status, at, version, took]) => (
+        <tbody>
+          <tr><td class="r-id" rowspan="2"><a href="#tables">{id}</a></td><td>{status}</td><td><time>{at}</time></td></tr>
+          <tr class="r-detail"><td><span class="r-tag">Version</span> {version}</td><td><span class="r-tag">Duration</span> {took}</td></tr>
+        </tbody>
+      ))}
+    </table>
+  </div>
+  <Notes
+    markup={listing}
+    classes="`table.r-listing`; one `tbody` per entry; `.r-detail` on the second row of an entry; `.r-id` on the id cell; `.r-tag` on a small label before a value."
+    attributes="`rowspan=2` on the id cell, so it spans the main row and the detail row."
+    tokens="`--r-listing-id` (7ch): the id column below `40rem`, so a longer id breaks onto equal lines. Set it to the length of the ids the table holds. `--r-box-pad` (the step back)."
+    do="Keep each entry in its own `tbody`; banding and the detail row depend on it."
+    dont="Put the listing outside the column without `column.css`; it reads the column's tokens."
+  />
+
+  <h3 class="sc-subhead">Key/value table</h3>
+  <div class="sc-measure">
+    <div class="r-kv"><table><tbody>
+      <tr><th>name</th><td>Weekly report</td></tr>
+      <tr><th>schedule</th><td>Mondays, 09:00</td></tr>
+      <tr><th>owner</th><td><table><tbody>
+        <tr><th>team</th><td>Ops</td></tr>
+        <tr><th>email</th><td>ops@example.com</td></tr>
+      </tbody></table></td></tr>
+      <tr><th>format</th><td>PDF</td></tr>
+    </tbody></table></div>
+  </div>
+  <Notes
+    markup={kv}
+    classes="`.r-kv` on a box around the table. A value may be a table of its own: it sits flush in its cell, and a double rule parts its row from the row before."
+    tokens="`--r-kv-line` (the lines; `--ui-border` unless the page sets it)."
+    do="Use it for a record or the settings at the head of a document."
+    dont="Expect banding or a hover highlight; rows share one ground."
+  />
+</section>

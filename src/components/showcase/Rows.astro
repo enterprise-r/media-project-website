@@ -1,0 +1,134 @@
+---
+// The dynamic list: .r-rows markup from components.css, behavior from rows.js
+// (the project-wcard vendor/theme/rows.js contract).
+import Notes from "./Notes.astro";
+
+const roles = ["Chief medical officer", "Chief engineer", "Pilot"];
+const crew = [["Beverly Crusher", "Chief medical officer"], ["Geordi La Forge", "Chief engineer"]];
+
+const markup = `
+<fieldset class="r-rows" data-min="1" data-max="4" data-remove="Remove member {n}">
+  <legend>Team members</legend>
+  <div class="r-rows-head" aria-hidden="true"><span></span><span>Name</span><span>Role</span></div>
+  <div class="r-rows-list">
+    <div class="r-row">
+      <span class="r-row-bubble"><button type="button" class="r-row-remove"><span class="r-row-glyph" aria-hidden="true">×</span></button></span>
+      <input data-name="team[{i}][name]" data-id="team-{n}-name" data-label="Name, row {n}" placeholder="Name" autocomplete="off">
+      <select data-name="team[{i}][role]" data-label="Role, row {n}"><option value="">Role</option><option>Pilot</option></select>
+    </div>
+  </div>
+  <template>
+    <div class="r-row">
+      <span class="r-row-bubble"><button type="button" class="r-row-remove"><span class="r-row-glyph" aria-hidden="true">×</span></button></span>
+      <input data-name="team[{i}][name]" data-id="team-{n}-name" data-label="Name, row {n}" placeholder="Name" autocomplete="off">
+      <select data-name="team[{i}][role]" data-label="Role, row {n}"><option value="">Role</option><option>Pilot</option></select>
+    </div>
+  </template>
+  <div class="r-rows-foot">
+    <span class="r-row-bubble"><button type="button" class="r-row-add" aria-label="Add row"><span class="r-row-glyph" aria-hidden="true">+</span></button></span>
+    <div class="r-row-ghost" aria-hidden="true">
+      <input placeholder="Name" disabled tabindex="-1" aria-hidden="true" autocomplete="off">
+      <select disabled tabindex="-1" aria-hidden="true"><option>Role</option></select>
+    </div>
+  </div>
+  <p class="r-rows-live r-vh" aria-live="polite"></p>
+</fieldset>
+<script src="theme/rows.js"></script>`;
+
+const hooks = `
+// A list added after the page loaded:
+container.insertAdjacentHTML("beforeend", listMarkup);
+rRows.enhance(container.querySelector(".r-rows:last-of-type"));
+// or every .r-rows inside a container (lists already enhanced are skipped):
+rRows.enhanceAll(container);`;
+---
+<section class="sc-section" id="rows">
+  <h2 class="sc-label">Dynamic list</h2>
+  <form onsubmit="return false" class="sc-rows-demo">
+    <fieldset class="r-rows" data-min="1" data-max="4" data-remove="Remove member {n}">
+      <legend>Team members</legend>
+      <div class="r-rows-head" aria-hidden="true"><span></span><span>Name</span><span>Role</span></div>
+      <div class="r-rows-list">
+        {crew.map(([who, role], i) => (
+          <div class="r-row">
+            <span class="r-row-bubble"><button type="button" class="r-row-remove" aria-label={`Remove member ${i + 1}`}><span class="r-row-glyph" aria-hidden="true">×</span></button></span>
+            <input data-name="team[{i}][name]" data-id="team-{n}-name" data-label="Name, row {n}" name={`team[${i}][name]`} id={`team-${i + 1}-name`} value={who} placeholder="Name" autocomplete="off">
+            <select data-name="team[{i}][role]" data-label="Role, row {n}" name={`team[${i}][role]`}>
+              <option value="">Role</option>
+              {roles.map((r) => <option selected={r === role}>{r}</option>)}
+            </select>
+          </div>
+        ))}
+      </div>
+      <template>
+        <div class="r-row">
+          <span class="r-row-bubble"><button type="button" class="r-row-remove"><span class="r-row-glyph" aria-hidden="true">×</span></button></span>
+          <input data-name="team[{i}][name]" data-id="team-{n}-name" data-label="Name, row {n}" placeholder="Name" autocomplete="off">
+          <select data-name="team[{i}][role]" data-label="Role, row {n}">
+            <option value="">Role</option>
+            {roles.map((r) => <option>{r}</option>)}
+          </select>
+        </div>
+      </template>
+      <div class="r-rows-foot">
+        <span class="r-row-bubble"><button type="button" class="r-row-add" aria-label="Add row"><span class="r-row-glyph" aria-hidden="true">+</span></button></span>
+        <div class="r-row-ghost" aria-hidden="true">
+          <input placeholder="Name" disabled tabindex="-1" aria-hidden="true" autocomplete="off">
+          <select disabled tabindex="-1" aria-hidden="true"><option>Role</option></select>
+        </div>
+      </div>
+      <p class="r-rows-live r-vh" aria-live="polite"></p>
+    </fieldset>
+  </form>
+  <p class="sc-note">This list holds one to four members. Add rows until the + turns off, remove them until the last × is gone, and narrow the window to see the list stack.</p>
+  <Notes
+    markup={markup}
+    classes="`.r-rows` on the fieldset; `.r-rows-list` around the rows; `.r-row` per row; `.r-row-bubble` around `.r-row-remove` (×) and `.r-row-add` (+), each holding a `.r-row-glyph`; optional `.r-rows-head` (column labels) and `.r-rows-foot` (the add control and a `.r-row-ghost` preview row); `.r-rows-live.r-vh` for announcements."
+    attributes="On each field, `data-name` and optional `data-id` and `data-label` are templates: `{i}` is the 0-based index, `{n}` the 1-based row number; the script writes `name`, `id` and `aria-label` from them whenever rows change. On the fieldset, optional `data-remove` (default `Remove row {n}`, the × label), `data-added` and `data-removed` (announcements, default `Row added` and `Row removed`), and `data-min` and `data-max`."
+    tokens="`--r-choice-size` (the control column), `--r-clear` (glyphs and ghost row)."
+    js="Include `rows.js`; it enhances every `.r-rows` on `DOMContentLoaded`, or at once if the document is ready."
+    do="Put one `.r-row` in a `template` inside the `.r-rows`: it is the source for new rows. Without a template the last row is cloned, which is only a fallback."
+    dont="Rely on a new row keeping values: new rows are reset, text fields empty, checkboxes and radios off, each select on its first option."
+  />
+  <ul class="sc-prose">
+    <li><code>data-min</code> and <code>data-max</code> cap the list: remove is disabled (and its × hidden) at the minimum, add at the maximum. With a template the minimum defaults to 0; without one it defaults to 1. The maximum defaults to no limit.</li>
+    <li>Keyboard: Enter in the last row adds a row, below the maximum, and focuses its first field. Backspace at the start of an empty row removes it when the list is above the minimum, and focuses the previous row's last field.</li>
+    <li>Below <code>30rem</code> of its own width the list stacks: each row becomes one column of fields beside its ×, the header row goes, and the placeholders name the fields.</li>
+    <li>Reduced motion drops the row-in animation and the ghost transition; forced colors keep the control edges visible.</li>
+  </ul>
+
+  <h3 class="sc-subhead">A list added later</h3>
+  <div id="sc-rows-later"></div>
+  <template id="sc-rows-tpl">
+    <fieldset class="r-rows" data-max="3">
+      <legend>Next watch</legend>
+      <div class="r-rows-list"></div>
+      <template>
+        <div class="r-row">
+          <span class="r-row-bubble"><button type="button" class="r-row-remove"><span class="r-row-glyph" aria-hidden="true">×</span></button></span>
+          <input data-name="watch[{i}][name]" data-label="Name, row {n}" placeholder="Name" autocomplete="off">
+          <select data-name="watch[{i}][role]" data-label="Role, row {n}">
+            <option value="">Role</option>
+            {roles.map((r) => <option>{r}</option>)}
+          </select>
+        </div>
+      </template>
+      <div class="r-rows-foot">
+        <span class="r-row-bubble"><button type="button" class="r-row-add" aria-label="Add row"><span class="r-row-glyph" aria-hidden="true">+</span></button></span>
+        <div class="r-row-ghost" aria-hidden="true">
+          <input placeholder="Name" disabled tabindex="-1" aria-hidden="true" autocomplete="off">
+          <select disabled tabindex="-1" aria-hidden="true"><option>Role</option></select>
+        </div>
+      </div>
+      <p class="r-rows-live r-vh" aria-live="polite"></p>
+    </fieldset>
+  </template>
+  <p class="sc-note">This list starts empty: with a template and no <code>data-min</code>, the minimum is 0, so every row can be removed.</p>
+  <p class="sc-dialog-open"><span class="r-group"><button class="r-btn" type="button" id="sc-rows-add-list">Add a list</button></span></p>
+  <Notes
+    markup={hooks}
+    js="`rRows.enhance(element)` enhances one `.r-rows`; `rRows.enhanceAll(container)` enhances every `.r-rows` in a container. A list is enhanced once, however often it is passed."
+    do="Call a hook after inserting a list; the script only scans the page once, at load."
+    dont="Copy the older list script from a branding release that lacks templates and limits; take `rows.js` from project-wcard until branding carries it."
+  />
+</section>

@@ -1,0 +1,132 @@
+---
+// Buttons: roles, tokens, groups, form actions and pills.
+import Notes from "./Notes.astro";
+
+const roles = `
+<a class="r-btn" href="/log/">Log</a>
+<a class="r-btn" href="/about/" aria-current="page">About</a>
+<button type="submit" class="r-btn r-primary">Send</button>
+<button type="button" class="r-btn r-clear">Clear</button>
+<button type="reset" class="r-btn">Reset</button>
+<button type="button" class="r-btn r-cancel">Cancel</button>
+<button type="button" class="r-btn" disabled>Off</button>
+<a class="r-btn" aria-disabled="true">Off</a>`;
+
+const tokens = `
+:root {
+  --r-btn-h: 2rem;           /* height; the pill radius is half of it */
+  --r-btn-min: 7rem;         /* 4.75rem below 40rem */
+  --r-btn-pad-x: 0.75rem;    /* 0.6rem below 40rem */
+  --r-btn-pad-b: 0.2rem;     /* lifts the label off the bottom */
+  --r-btn-pad-flat: var(--r-btn-pad-x);   /* square end in a group */
+  --r-btn-pad-curve: var(--r-btn-pad-x);  /* round end in a group */
+  --r-btn-tracking: 0.1em;   /* 0.08em below 40rem */
+}`;
+
+const group = `
+<span class="r-group">
+  <a class="r-btn" href="/docs/">Docs</a>
+  <a class="r-btn" href="/about/" aria-current="page">About</a>
+  <a class="r-btn" href="/log/">Log</a>
+</span>
+
+<span class="r-group"><button type="button" class="r-btn">Alone</button></span>`;
+
+const end = `
+<div class="r-group r-end">
+  <button type="reset" class="r-btn">Clear</button>
+  <button type="submit" class="r-btn r-primary">Send</button>
+</div>`;
+
+const pills = `
+<span class="r-pill">Standby</span>
+<span class="r-pill r-primary">Online</span>
+<span class="r-pill r-clear">Draft</span>
+<span class="r-pill r-cancel">Offline</span>`;
+---
+<section class="sc-section" id="buttons">
+  <h2 class="sc-label">Buttons and pills</h2>
+  <div class="sc-states">
+    <figure><a class="r-btn" href="#buttons">Other</a><figcaption class="sc-cap">Generic</figcaption></figure>
+    <figure><a class="r-btn is-hover" href="#buttons">Other</a><figcaption class="sc-cap">Generic, hover*</figcaption></figure>
+    <figure><a class="r-btn is-focus" href="#buttons">Other</a><figcaption class="sc-cap">Generic, focus*</figcaption></figure>
+    <figure><a class="r-btn" href="#buttons" aria-current="page">Current</a><figcaption class="sc-cap">Current page</figcaption></figure>
+    <figure><a class="r-btn is-hover" href="#buttons" aria-current="page">Current</a><figcaption class="sc-cap">Current, hover*</figcaption></figure>
+    <figure><button class="r-btn r-primary" type="button">Send</button><figcaption class="sc-cap">Primary</figcaption></figure>
+    <figure><button class="r-btn r-primary is-hover" type="button">Send</button><figcaption class="sc-cap">Primary, hover*</figcaption></figure>
+    <figure><a class="r-btn r-clear" href="#buttons">Clear</a><figcaption class="sc-cap">Clear</figcaption></figure>
+    <figure><a class="r-btn r-clear is-hover" href="#buttons">Clear</a><figcaption class="sc-cap">Clear, hover*</figcaption></figure>
+    <figure><button class="r-btn" type="reset">Reset</button><figcaption class="sc-cap">Reset</figcaption></figure>
+    <figure><button class="r-btn r-cancel" type="button">Cancel</button><figcaption class="sc-cap">Cancel</figcaption></figure>
+    <figure><button class="r-btn r-cancel is-hover" type="button">Cancel</button><figcaption class="sc-cap">Cancel, hover*</figcaption></figure>
+    <figure><a class="r-btn" aria-disabled="true">Off</a><figcaption class="sc-cap">Disabled</figcaption></figure>
+    <figure><button class="r-btn" type="button" disabled>Off</button><figcaption class="sc-cap">Disabled button</figcaption></figure>
+  </div>
+  <p class="sc-note">* A static sample painted by this page with <code>.is-hover</code> or <code>.is-focus</code>; those classes are showcase only. Point at or tab to the other buttons for the real states.</p>
+  <p class="sc-note">No role class is Generic: Orange, Amber (Accent) on hover. The current page and <code>.r-primary</code> are Green (sage), Bright green on hover. <code>.r-clear</code>, and any reset button, is Bright blue. <code>.r-cancel</code> is Red. Keyboard focus is a 2px Bright foreground outline (<code>--r-focus</code>, 3px off).</p>
+  <p class="sc-note" id="contrast">Label contrast: …</p>
+  <Notes
+    markup={roles}
+    classes="`.r-btn` on an `a` or a `button`. Roles: none (generic), `.r-primary`, `.r-clear`, `.r-cancel`. Any reset button takes the Clear role by itself."
+    attributes={`\`aria-current="page"\` marks the current page (Green). \`disabled\`, or \`aria-disabled="true"\` on a link, shows the disabled fill and the W wait cursor.`}
+    tokens="`--r-btn`, `--r-btn-hover`, `--r-primary`, `--r-primary-hover`, `--r-clear`, `--r-clear-hover`, `--r-cancel`, `--r-cancel-hover`, `--r-disabled`, `--r-disabled-text`, `--r-btn-text`, `--r-focus`."
+    js="None. Buttons are guarded by `guard.js` when the page includes it (see Working)."
+    do="Use one `.r-primary` per form, for the action that completes it."
+    dont="Show the system not-allowed pointer on a disabled control; the theme gives every disabled control the W cursor (`.r-wait` sets it on anything else)."
+  />
+
+  <h3 class="sc-subhead">Button tokens</h3>
+  <p class="sc-prose">The label is tucked to the end of the button, so spare width sits on the start side. Below <code>40rem</code> the minimum width, padding and tracking scale down; the height stays <code>--r-btn-h</code>. Crumbs size to their label and do not use the minimum width.</p>
+  <Notes
+    markup={tokens}
+    do="Retune these variables on `:root` or on a container to change the size of every button inside it."
+    dont="Set a width, padding or height on `.r-btn` directly; groups and crumbs compute their ends from these tokens."
+  />
+
+  <h3 class="sc-subhead">Group</h3>
+  <div class="sc-states">
+    <span class="r-group">
+      <a class="r-btn" href="#buttons">Docs</a>
+      <a class="r-btn" href="#buttons" aria-current="page">About</a>
+      <a class="r-btn" href="#buttons">Log</a>
+    </span>
+    <span class="r-group"><button type="button" class="r-btn">Alone</button></span>
+    <span class="r-group">
+      <button type="button" class="r-btn">First</button>
+      <button type="button" class="r-btn">Shown</button>
+      <button type="button" class="r-btn" hidden>Hidden</button>
+    </span>
+  </div>
+  <Notes
+    markup={group}
+    classes="`.r-group` around `.r-btn` elements (or `.r-menu` menus)."
+    attributes="`hidden` or an inline `display: none` takes a button out of the shape: the ends are the first and last buttons that show, as in the third sample."
+    tokens="`--r-gap` (space between buttons), `--r-pill-r` (radius of the round ends), `--r-btn-pad-flat`, `--r-btn-pad-curve`."
+    do="Wrap a single button in `.r-group` to give it two round ends."
+    dont="Hide a button in a group with a class that sets `display: none`; the group would still count it as an end."
+  />
+
+  <h3 class="sc-subhead">Form actions</h3>
+  <div class="r-group r-end">
+    <button type="button" class="r-btn r-clear">Clear</button>
+    <button type="button" class="r-btn r-primary">Send</button>
+  </div>
+  <Notes
+    markup={end}
+    classes="`.r-group.r-end`: a group at the end of its line, at the right edge, below any float before it."
+    do="Use it for a form's actions, or for a lone Send."
+    dont="Push the group right with a margin or a flex rule of the app; `.r-end` already does it."
+  />
+
+  <h3 class="sc-subhead">Status pills</h3>
+  <div class="sc-states">
+    <span class="r-pill">Standby</span><span class="r-pill r-primary">Online</span><span class="r-pill r-clear">Draft</span><span class="r-pill r-cancel">Offline</span>
+  </div>
+  <Notes
+    markup={pills}
+    classes="`.r-pill` with the button roles: none (Orange), `.r-primary` (Green), `.r-clear` (Bright blue), `.r-cancel` (Red)."
+    tokens="`--r-btn`, `--r-primary`, `--r-clear`, `--r-cancel`, `--r-btn-text`."
+    do="Use a pill for a short status label."
+    dont="Make a pill clickable; for an action, use `.r-btn`."
+  />
+</section>

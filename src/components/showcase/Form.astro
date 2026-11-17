@@ -1,0 +1,112 @@
+---
+// Form fields, choices, progress and meter, and the dialog. All plain elements from base.css.
+import Notes from "./Notes.astro";
+
+const fields = `
+<label for="name">Name</label>
+<input id="name" placeholder="Name">
+
+<label for="dept">Department</label>
+<select id="dept"><option>Engineering</option><option>Science</option></select>
+
+<label for="msg">Message</label>
+<textarea id="msg"></textarea>
+
+<label for="ship">Ship ID</label>
+<input id="ship" value="NCC-1701-R" disabled>`;
+
+const choices = `
+<fieldset>
+  <legend>Crew</legend>
+  <label><input type="checkbox" checked> Captain</label>
+  <label><input type="checkbox"> Pilot</label>
+  <label><input type="radio" name="watch" checked> Day</label>
+  <label><input type="radio" name="watch"> Night</label>
+  <label><input type="checkbox" id="all"> All</label>
+</fieldset>
+
+<script>
+  // Indeterminate is a property, not an attribute.
+  document.getElementById("all").indeterminate = true;
+</script>`;
+
+const meters = `
+<progress value="62" max="100">62%</progress>
+<meter value="0.8" low="0.3" high="0.6" optimum="1">80%</meter>`;
+
+const dialog = `
+<button type="button" class="r-btn" onclick="document.getElementById('leave').showModal()">Open dialog</button>
+<dialog id="leave">
+  <h3>Leave orbit?</h3>
+  <form method="dialog" class="r-group r-end">
+    <button class="r-btn r-clear">Stay</button>
+    <button class="r-btn r-primary">Leave</button>
+  </form>
+</dialog>`;
+---
+<section class="sc-section" id="form">
+  <h2 class="sc-label">Form</h2>
+  <form onsubmit="return false">
+    <div class="sc-form">
+      <div class="sc-field"><label for="f-name">Name</label><input id="f-name" placeholder="Jean-Luc"></div>
+      <div class="sc-field"><label for="f-mail">E-mail (focus*)</label><input class="is-focus" id="f-mail" type="email" value="crew@enterprise-r.com"></div>
+      <div class="sc-field"><label for="f-dis">Ship ID (disabled)</label><input id="f-dis" value="NCC-1701-R" disabled></div>
+      <div class="sc-field"><label for="f-sel">Department</label><select id="f-sel"><option>Engineering</option><option>Science</option><option>Command</option></select></div>
+      <div class="sc-field sc-span-2"><label for="f-msg">Message</label><textarea id="f-msg" placeholder="Your message"></textarea></div>
+      <div class="sc-field"><span class="sc-cap">Options</span><div class="sc-checks"><label><input type="checkbox" checked> Updates</label><label><input type="checkbox"> Newsletter</label><label><input type="checkbox" id="f-some"> Some</label></div></div>
+      <div class="sc-field"><span class="sc-cap">Channel</span><div class="sc-checks"><label><input type="radio" name="ch" checked> E-mail</label><label><input type="radio" name="ch"> Subspace</label><label><input type="radio" name="ch" disabled> Off</label></div></div>
+      <div class="sc-actions"><span class="r-group"><button class="r-btn r-primary" type="submit">Send</button><button class="r-btn" type="button">Save</button><button class="r-btn" type="reset">Clear</button><button class="r-btn r-cancel" type="button">Cancel</button></span><span class="sc-help">Primary Green (sage), Generic Orange, Clear Bright blue, Cancel Red.</span></div>
+    </div>
+  </form>
+  <p class="sc-note">* The focus ring on the e-mail field is a static sample (<code>.is-focus</code>, showcase only). "Some" is an indeterminate checkbox, set by this page's script.</p>
+  <Notes
+    markup={fields}
+    classes="None. Text fields, e-mail, select, textarea and labels are plain elements styled by `base.css`."
+    attributes="`disabled` gives a dashed border on the page ground and the W wait cursor."
+    tokens="`--r-hl-line`, `--r-hl-ring`, `--r-hl-ring-w` (the focus line and ring), `--r-text-dim` (placeholder and select arrow)."
+    do="Give every field a `label`, linked with `for` and `id`."
+    dont="Use a placeholder as the only label."
+  />
+  <Notes
+    markup={choices}
+    classes="None. Radios and checkboxes take the theme's field look (`appearance: none`); a checked radio draws a sage dot, a checked checkbox a sage fill and a dark check, an indeterminate checkbox a sage dash."
+    tokens="`--r-choice-size` (1.5rem), `--r-choice-bg`, `--r-choice-border`, `--r-choice-checked`, `--r-choice-mark`, `--r-choice-radius`, `--r-choice-dot`."
+    js="Only for an indeterminate checkbox: set `el.indeterminate = true`."
+    do="Wrap the input in its label, or link them, so the label text is a target too."
+    dont="Rebuild a custom checkbox; forced colors revert these to the native control, which a custom widget would lose."
+  />
+
+  <h3 class="sc-subhead" id="groups">Progress, meter and dialog</h3>
+  <div class="sc-grid cols-2">
+    <fieldset>
+      <legend>Crew</legend>
+      <div class="sc-checks"><label><input type="checkbox" checked> Captain</label><label><input type="checkbox"> Pilot</label><label><input type="radio" name="sc-r" checked> Day</label><label><input type="radio" name="sc-r"> Night</label></div>
+    </fieldset>
+    <div class="sc-meters">
+      <span class="sc-cap"><b>Progress</b></span><progress value="62" max="100">62%</progress>
+      <span class="sc-cap"><b>Meter</b> good</span><meter value="0.8" low="0.3" high="0.6" optimum="1">80%</meter>
+      <span class="sc-cap"><b>Meter</b> fair</span><meter value="0.5" low="0.3" high="0.6" optimum="1">50%</meter>
+      <span class="sc-cap"><b>Meter</b> poor</span><meter value="0.2" low="0.3" high="0.6" optimum="1">20%</meter>
+    </div>
+  </div>
+  <Notes
+    markup={meters}
+    classes="None. `progress` fills with the striped gradient. A `meter` is Green, Yellow or Red by where its value falls against `low`, `high` and `optimum`."
+    attributes="`value` and `max` on progress; `value`, `low`, `high` and `optimum` on meter."
+    do="Put the value in the element's text as well, for browsers that show it."
+    dont="Use a meter for progress over time; that is `progress`."
+  />
+  <p class="sc-dialog-open"><span class="r-group"><button class="r-btn" type="button" onclick="document.getElementById('sc-dialog').showModal()">Open dialog</button></span></p>
+  <dialog id="sc-dialog">
+    <h3>Leave orbit?</h3>
+    <p>A dialog is a card over the dimmed page.</p>
+    <form method="dialog" class="r-group r-end"><button class="r-btn r-clear">Stay</button><button class="r-btn r-primary">Leave</button></form>
+  </dialog>
+  <Notes
+    markup={dialog}
+    classes="None. `dialog` is a Lighter card with a Border line over a dimmed, blurred page."
+    js="Open it with `showModal()`. A `form` with `method=dialog` closes it with no script."
+    do="Open it with `showModal()`, so focus moves into it and Escape closes it."
+    dont="Open it with the `open` attribute alone; the page behind would stay live and undimmed."
+  />
+</section>

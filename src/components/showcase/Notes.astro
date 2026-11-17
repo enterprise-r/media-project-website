@@ -1,0 +1,33 @@
+---
+// Tutorial notes for one part of the theme: the markup to copy, what it needs, and a do and a don't.
+// Text in backticks is set as code.
+import { md } from "./md";
+
+interface Props {
+  markup?: string;
+  classes?: string;
+  attributes?: string;
+  tokens?: string;
+  js?: string;
+  do?: string;
+  dont?: string;
+}
+const p = Astro.props;
+const rows = [
+  ["Classes", p.classes],
+  ["Attributes", p.attributes],
+  ["Custom properties", p.tokens],
+  ["JavaScript", p.js],
+  ["Do", p.do],
+  ["Don't", p.dont],
+].filter(([, v]) => v) as [string, string][];
+---
+<div class="sc-notes">
+  {p.markup && <pre class="sc-markup"><code>{p.markup.trim()}</code></pre>}
+  {rows.length > 0 && (
+    <dl class="sc-spec">
+      {rows.map(([k, v]) => (<><dt>{k}</dt><dd set:html={md(v)} /></>))}
+    </dl>
+  )}
+  <slot />
+</div>

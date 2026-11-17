@@ -1,0 +1,126 @@
+---
+// Cards, panels, notices, the update glow and the terminal panel.
+import Notes from "./Notes.astro";
+
+interface Props { termBg: string }
+const { termBg } = Astro.props;
+
+const cards = `
+<section class="r-panel">…</section>
+<div class="r-card">…</div>
+<div class="r-card r-active">…</div>
+<div class="r-card r-selected">…</div>`;
+
+const notices = `
+<div class="r-notice" role="status"><strong>Notification</strong> Docking is complete.</div>
+<div class="r-notice r-ok" role="status"><strong>Saved</strong> Your changes are on board.</div>
+<div class="r-notice r-warn" role="status"><strong>Warning</strong> Shield power dropped to 40%.</div>
+<div class="r-notice r-error" role="alert"><strong>Error</strong> Speed is over the limit.</div>`;
+
+const glow = `
+<div class="r-notice r-glow">…</div>
+<div class="r-notice r-glow-run">…</div>
+
+<script>
+  // Replay: remove the class, force a reflow, add it back.
+  function rGlow(el, kind) {
+    el.classList.remove("r-glow", "r-glow-run");
+    void el.offsetWidth;
+    el.classList.add(kind);
+  }
+</script>`;
+
+const shape = `
+<!-- A box with no bottom side. The pseudo-elements reach --r-glow-reach (20px) past the box,
+     so the outline is drawn 18px to 20px in from their edges. -->
+<div class="app-tab r-glow-run r-glow-shape" style="--r-glow-mask:
+  linear-gradient(var(--ui-fg) 0 0) left 18px top 18px / calc(100% - 36px) 2px no-repeat,
+  linear-gradient(var(--ui-fg) 0 0) left 18px top 18px / 2px calc(100% - 38px) no-repeat,
+  linear-gradient(var(--ui-fg) 0 0) right 18px top 18px / 2px calc(100% - 38px) no-repeat">…</div>`;
+
+const term = `
+<div class="r-term">
+  <p>Text over a picture.</p>
+</div>`;
+
+const shapeMask = [
+  "linear-gradient(var(--ui-fg) 0 0) left 18px top 18px / calc(100% - 36px) 2px no-repeat",
+  "linear-gradient(var(--ui-fg) 0 0) left 18px top 18px / 2px calc(100% - 38px) no-repeat",
+  "linear-gradient(var(--ui-fg) 0 0) right 18px top 18px / 2px calc(100% - 38px) no-repeat",
+].join(", ");
+---
+<section class="sc-section" id="cards">
+  <h2 class="sc-label">Cards and panels</h2>
+  <div class="sc-grid cols-3">
+    <div class="r-card"><h3>Card</h3><p>Lighter background with an inactive border. The default container.</p><span class="r-pill r-primary">Online</span></div>
+    <div class="r-card r-active"><h3>Active</h3><p><code>.r-active</code>: an Active border for the item in focus, or selected by the user.</p><span class="r-pill">Standby</span></div>
+    <div class="r-card r-selected"><h3>Selection</h3><p><code>.r-selected</code>, for a highlighted row or a chosen card: Border fill with an Active outline.</p></div>
+  </div>
+  <section class="r-panel sc-panel"><h3>Panel</h3><p><code>.r-panel</code> is the plain box on the page background, with a Border line.</p></section>
+  <Notes
+    markup={cards}
+    classes="`.r-panel` (page background, Border line), `.r-card` (Lighter background), `.r-active` (Active border, for the item in focus), `.r-selected` (Border fill with an Active outline, for a chosen card)."
+    tokens="`--r-glow-r` is set to the box radius (1rem), so a glow on a card or panel follows its corners."
+    do="Use `.r-step-back` on a card or panel in an `.r-column`, so its words line up with the text outside it."
+    dont="Give a card its own `::before` or `::after`; the update glow draws with them."
+  />
+
+  <h3 class="sc-subhead" id="notifications">Notices and update glow</h3>
+  <div class="sc-grid cols-2">
+    <div class="r-notice" id="glow-a" role="status"><strong>Notification</strong> Docking is complete. All crew aboard.</div>
+    <div class="r-notice r-ok" id="glow-b" role="status"><strong>Saved</strong> Your changes are on board.</div>
+    <div class="r-notice r-warn" id="glow-c" role="status"><strong>Warning</strong> Shield power dropped to 40%.</div>
+    <div class="r-notice r-error" id="glow-d" role="alert"><strong>Live value</strong> Speed <b id="glow-v">0.72</b> c, over the limit.</div>
+  </div>
+  <div class="sc-glow-actions">
+    <span class="r-group">
+      <button class="r-btn" type="button" data-glow="r-glow">Glow at once</button>
+      <button class="r-btn" type="button" data-glow="r-glow-run">Glow around</button>
+    </span>
+  </div>
+  <p class="sc-note"><code>.r-notice</code> is information (Blue); <code>.r-ok</code> Green, <code>.r-warn</code> Amber, <code>.r-error</code> Red. <code>.r-glow</code> lights the whole border in the striped gradient and fades. <code>.r-glow-run</code> sends a band of the stripe twice around the border. Add the class to play it; with reduced motion both are a plain fade.</p>
+  <Notes
+    markup={notices}
+    classes="`.r-notice`, with `.r-ok`, `.r-warn` or `.r-error` for the role. A first `strong` is the title, in the role color."
+    attributes={`\`role="status"\` for a polite message, \`role="alert"\` for an error that needs attention now.`}
+    tokens="`--r-notice` (the role color, set by the role class), `--r-text`."
+    do="Add `.r-glow` or `.r-glow-run` when a notice appears or its content changes."
+    dont="Color a notice by hand; pick the role class."
+  />
+  <Notes
+    markup={glow}
+    classes="`.r-glow` (the whole border lights up, then fades), `.r-glow-run` (a band of the stripe travels twice around the border)."
+    tokens="`--r-glow-r` (radius of the box; the theme's boxes set it), `--r-glow-w` (2px line), `--r-glow-halo` (14px), `--r-glow-time` (1.6s), `--r-glow-run-time` (4s for two laps)."
+    js="The effect plays when the class is added. To play it again, remove the class, force a reflow (`el.offsetWidth`) and add it back, as `rGlow()` above."
+    do="Leave `--r-box-gap` (4px) outside a glowing box, so the window does not clip the glow."
+    dont="Use the glow on a box that already uses `::before` or `::after`."
+  />
+
+  <h3 class="sc-subhead">Glow on any shape</h3>
+  <div class="sc-tab r-glow-shape" id="glow-e" style={`--r-glow-mask: ${shapeMask}`}>
+    <p>A tab with no bottom side: the glow follows the three sides it has.</p>
+  </div>
+  <div class="sc-glow-actions">
+    <span class="r-group"><button class="r-btn" type="button" data-glow-shape>Glow the tab</button></span>
+  </div>
+  <Notes
+    markup={shape}
+    classes="`.r-glow-shape` together with `.r-glow` or `.r-glow-run`, on a box that is not a rounded rectangle (an open side, an arc, an arrow)."
+    tokens="`--r-glow-mask`, a CSS mask of the outline, placed in a box that reaches `--r-glow-reach` (20px) past the element on every side. Layers add, so pieces may overlap. Any opaque token color works in the mask."
+    do="Draw the outline just outside the element's own edge, as the sample does."
+    dont="Write a mask with a literal color value; use a token, since only its opacity counts."
+  />
+
+  <h3 class="sc-subhead" id="terminal">Terminal</h3>
+  <figure class="sc-term-sample">
+    <div class="sc-bd"><div class="photo"></div><div class="sc-term-stack"><div class="r-term term-head"><div class="about-heading">Heading</div></div><div class="r-term"><p class="sc-flush">Terminal panel: a small dark backing ({termBg} at 72%) that hugs a block of text on a picture, with a thin inactive border and a soft blur.</p></div></div></div>
+    <figcaption class="sc-cap">Terminal panel, for text over a picture. The picture and the green heading are this site's.</figcaption>
+  </figure>
+  <Notes
+    markup={term}
+    classes="`.r-term`: as wide as its text, at most the container, on the page ground at 72% with a blur."
+    tokens="`--r-glow-r` (0.6rem)."
+    do="Use it for a short block of text over a photograph or wallpaper."
+    dont="Use it on the plain page background; there, a `.r-card` or `.r-notice` is clearer."
+  />
+</section>
