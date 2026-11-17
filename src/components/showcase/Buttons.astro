@@ -1,5 +1,7 @@
 ---
 // Buttons: roles, tokens, groups, form actions and pills.
+// Samples marked * are static states painted by ui.css (.is-hover, .is-focus). The label contrast line is
+// computed on load by the page script from the colors on screen.
 import Notes from "./Notes.astro";
 
 const roles = `
@@ -62,25 +64,23 @@ const pills = `
     <figure><a class="r-btn" aria-disabled="true">Off</a><figcaption class="sc-cap">Disabled</figcaption></figure>
     <figure><button class="r-btn" type="button" disabled>Off</button><figcaption class="sc-cap">Disabled button</figcaption></figure>
   </div>
-  <p class="sc-note">* A static sample painted by this page with <code>.is-hover</code> or <code>.is-focus</code>; those classes are showcase only. Point at or tab to the other buttons for the real states.</p>
-  <p class="sc-note">No role class is Generic: Orange, Amber (Accent) on hover. The current page and <code>.r-primary</code> are Green (sage), Bright green on hover. <code>.r-clear</code>, and any reset button, is Bright blue. <code>.r-cancel</code> is Red. Keyboard focus is a 2px Bright foreground outline (<code>--r-focus</code>, 3px off).</p>
+  <p class="sc-note">* Static sample (<code>.is-hover</code>, <code>.is-focus</code>: showcase only).</p>
   <p class="sc-note" id="contrast">Label contrast: …</p>
   <Notes
     markup={roles}
-    classes="`.r-btn` on an `a` or a `button`. Roles: none (generic), `.r-primary`, `.r-clear`, `.r-cancel`. Any reset button takes the Clear role by itself."
-    attributes={`\`aria-current="page"\` marks the current page (Green). \`disabled\`, or \`aria-disabled="true"\` on a link, shows the disabled fill and the W wait cursor.`}
-    tokens="`--r-btn`, `--r-btn-hover`, `--r-primary`, `--r-primary-hover`, `--r-clear`, `--r-clear-hover`, `--r-cancel`, `--r-cancel-hover`, `--r-disabled`, `--r-disabled-text`, `--r-btn-text`, `--r-focus`."
-    js="None. Buttons are guarded by `guard.js` when the page includes it (see Working)."
-    do="Use one `.r-primary` per form, for the action that completes it."
-    dont="Show the system not-allowed pointer on a disabled control; the theme gives every disabled control the W cursor (`.r-wait` sets it on anything else)."
+    classes="`.r-btn`; roles `.r-primary`, `.r-clear`, `.r-cancel`, or none. A reset button is Clear."
+    attributes={`\`aria-current="page"\`; \`disabled\` or \`aria-disabled="true"\`.`}
+    tokens="`--r-btn`, `--r-primary`, `--r-clear`, `--r-cancel`, each with `-hover`; `--r-disabled`."
+    do="Use one `.r-primary` per form."
+    dont="Use the not-allowed cursor; disabled controls show the W."
   />
 
   <h3 class="sc-subhead">Button tokens</h3>
-  <p class="sc-prose">The label is tucked to the end of the button, so spare width sits on the start side. Below <code>40rem</code> the minimum width, padding and tracking scale down; the height stays <code>--r-btn-h</code>. Crumbs size to their label and do not use the minimum width.</p>
+  <p class="sc-prose">Below <code>40rem</code> the minimum width, padding and tracking scale down.</p>
   <Notes
     markup={tokens}
-    do="Retune these variables on `:root` or on a container to change the size of every button inside it."
-    dont="Set a width, padding or height on `.r-btn` directly; groups and crumbs compute their ends from these tokens."
+    do="Retune the tokens on `:root` or a container."
+    dont="Set width, padding or height on `.r-btn` directly."
   />
 
   <h3 class="sc-subhead">Group</h3>
@@ -99,11 +99,11 @@ const pills = `
   </div>
   <Notes
     markup={group}
-    classes="`.r-group` around `.r-btn` elements (or `.r-menu` menus)."
-    attributes="`hidden` or an inline `display: none` takes a button out of the shape: the ends are the first and last buttons that show, as in the third sample."
-    tokens="`--r-gap` (space between buttons), `--r-pill-r` (radius of the round ends), `--r-btn-pad-flat`, `--r-btn-pad-curve`."
-    do="Wrap a single button in `.r-group` to give it two round ends."
-    dont="Hide a button in a group with a class that sets `display: none`; the group would still count it as an end."
+    classes="`.r-group` around buttons or menus."
+    attributes="`hidden` takes a button out of the shape; the ends are the first and last that show."
+    tokens="`--r-gap`, `--r-pill-r`."
+    do="Wrap a single button to give it two round ends."
+    dont="Hide a grouped button with a class."
   />
 
   <h3 class="sc-subhead">Form actions</h3>
@@ -113,9 +113,9 @@ const pills = `
   </div>
   <Notes
     markup={end}
-    classes="`.r-group.r-end`: a group at the end of its line, at the right edge, below any float before it."
-    do="Use it for a form's actions, or for a lone Send."
-    dont="Push the group right with a margin or a flex rule of the app; `.r-end` already does it."
+    classes="`.r-group.r-end`."
+    do="Use it for a form's actions."
+    dont="Push the group right with your own margin."
   />
 
   <h3 class="sc-subhead">Status pills</h3>
@@ -124,9 +124,8 @@ const pills = `
   </div>
   <Notes
     markup={pills}
-    classes="`.r-pill` with the button roles: none (Orange), `.r-primary` (Green), `.r-clear` (Bright blue), `.r-cancel` (Red)."
-    tokens="`--r-btn`, `--r-primary`, `--r-clear`, `--r-cancel`, `--r-btn-text`."
-    do="Use a pill for a short status label."
-    dont="Make a pill clickable; for an action, use `.r-btn`."
+    classes="`.r-pill` with the button roles."
+    do="Use it for a short status."
+    dont="Make it clickable; use `.r-btn`."
   />
 </section>

@@ -1,5 +1,6 @@
 ---
 // Type: the web scale of base.css, the document scale of doc.css, the fonts and the prompt.
+// The woff2 files are subset to Latin and Latin Extended by the branding build.
 import DarkR from "../DarkR.astro";
 import Notes from "./Notes.astro";
 
@@ -54,13 +55,13 @@ const prompt = `<span class="r-prompt">Click or press</span>`;
     <span class="sc-cap"><b>Figure</b></span><figure><img src="/assets/logo-wide.svg" width="320" height="56" alt="Enterprise-R"><figcaption>A figure scales down to its container.</figcaption></figure>
     <span class="sc-cap"><b>Selection</b></span><p>Select this line to see the selection colors.</p>
   </div>
-  <p class="sc-note">Headings use Audiowide down to h3, then Rajdhani label caps. One variable per tier switches the font: <code>--r-font-heading</code> (h1, and h2 to h3 unless set apart), <code>--r-font-sub</code> (h2 to h3) and <code>--r-font-minor</code> (h4 to h6). Set one to <code>var(--r-font-text)</code> to turn Audiowide off there, or <code>--r-font-minor</code> to <code>var(--r-font-heading)</code> for more Audiowide.</p>
+  <p class="sc-note">Audiowide down to h3, then Rajdhani label caps. One variable per tier switches the font.</p>
   <Notes
     markup={tiers}
-    classes="None: `base.css` styles plain elements (headings, body, small, links, mark, kbd, code, quotes, lists, definitions, details, figures, `hr`, selection and the focus ring)."
-    tokens="`--r-font-heading`, `--r-font-sub`, `--r-font-minor`, `--r-font-text`, `--r-font-mono`, `--r-font-brand`; colors `--r-text`, `--r-text-small`, `--r-text-dim`, `--r-heading` to `--r-heading-6`, `--r-link`, `--r-link-hover`, `--r-focus`."
-    do="Write plain semantic HTML; the element rules sit in `:where()`, so any class of the app overrides them."
-    dont="Pick a heading level for its look; retune the tier variables instead."
+    classes="None: `base.css` styles plain elements."
+    tokens="`--r-font-heading` (h1), `--r-font-sub` (h2 to h3), `--r-font-minor` (h4 to h6), `--r-font-text`, `--r-font-mono`."
+    do="Write plain semantic HTML."
+    dont="Pick a heading level for its look."
   />
 
   <h3 class="sc-subhead">Web and document</h3>
@@ -84,29 +85,29 @@ const prompt = `<span class="r-prompt">Click or press</span>`;
       </div>
     </div>
   </div>
-  <p class="sc-note">The web scale is the default. The document scale is for long text: Audiowide for h1 only, Rajdhani for h2 and h3, Saira for the body. Code is Monaspace Neon in both, <code>--r-font-mono</code>.</p>
+  <p class="sc-note">The web scale is the default. The document scale is for long text, with Saira for the body.</p>
   <Notes
     markup={doc}
-    classes="`.r-doc` on the element that holds the document. Outside it the web scale applies."
-    tokens="`--r-font-doc` (Saira), `--r-doc-measure` (68ch, the widest line)."
-    do="Link `doc.css` only on pages that hold documents, after `base.css`."
-    dont="Put interface controls inside `.r-doc`; it is a reading scale, not an app scale."
+    classes="`.r-doc` around the document."
+    tokens="`--r-font-doc`, `--r-doc-measure` (68ch)."
+    do="Link `doc.css` after `base.css`, only where documents are."
+    dont="Put app controls inside `.r-doc`."
   />
 
   <h3 class="sc-subhead">Fonts</h3>
-  <p class="sc-prose">The theme loads its fonts itself, from <code>../fonts/woff2/</code> next to <code>theme/</code>. Nothing else is needed in the page.</p>
+  <p class="sc-prose">The theme loads Enterprsr, Audiowide, Rajdhani (Medium, SemiBold), Monaspace Neon and Saira (roman, italic) from <code>../fonts/woff2/</code>.</p>
   <Notes
     markup={fonts}
-    do="Ship the licenses from `assets/fonts/licenses/` with the fonts."
-    dont="Load the same faces from a web font service as well; the theme's own files are subset for the web."
+    do="Ship the licenses with the fonts."
+    dont="Load the same faces from a font service as well."
   />
 
   <h3 class="sc-subhead">Prompt</h3>
   <p><span class="r-prompt">Click or press</span></p>
   <Notes
     markup={prompt}
-    classes="`.r-prompt`: a call to act, in Bright green Audiowide caps."
-    do="Use it for a short call to act next to the thing to act on."
-    dont="Use it for a heading or a long sentence."
+    classes="`.r-prompt`."
+    do="Use it for a short call to act."
+    dont="Use it for a heading."
   />
 </section>

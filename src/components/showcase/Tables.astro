@@ -60,12 +60,12 @@ const runs = [
       </tr>
     </tbody>
   </table>
-  <p class="sc-note">A plain table: rounded outline, header row on the Border fill, dividers between rows, Lighter background on hover. <code>.r-num</code> right-aligns the number column.</p>
+  
   <Notes
     markup={plain}
-    classes="None for the table itself. `.r-num` on a header and its cells: right-aligned, figures of equal width."
-    do="Give a table a `caption`; the corner radii allow for it."
-    dont="Put layout in a table; use it for data only."
+    classes="None; `.r-num` on a number column."
+    do="Give a table a `caption`."
+    dont="Use a table for layout."
   />
 
   <h3 class="sc-subhead">Listing</h3>
@@ -82,11 +82,11 @@ const runs = [
   </div>
   <Notes
     markup={listing}
-    classes="`table.r-listing`; one `tbody` per entry; `.r-detail` on the second row of an entry; `.r-id` on the id cell; `.r-tag` on a small label before a value."
-    attributes="`rowspan=2` on the id cell, so it spans the main row and the detail row."
-    tokens="`--r-listing-id` (7ch): the id column below `40rem`, so a longer id breaks onto equal lines. Set it to the length of the ids the table holds. `--r-box-pad` (the step back)."
-    do="Keep each entry in its own `tbody`; banding and the detail row depend on it."
-    dont="Put the listing outside the column without `column.css`; it reads the column's tokens."
+    classes="`table.r-listing`, one `tbody` per entry, `.r-detail`, `.r-id`, `.r-tag`."
+    attributes="`rowspan=2` on the id cell."
+    tokens="`--r-listing-id`: the id width on narrow screens."
+    do="Keep each entry in its own `tbody`."
+    dont="Use it without `column.css`."
   />
 
   <h3 class="sc-subhead">Key/value table</h3>
@@ -103,9 +103,9 @@ const runs = [
   </div>
   <Notes
     markup={kv}
-    classes="`.r-kv` on a box around the table. A value may be a table of its own: it sits flush in its cell, and a double rule parts its row from the row before."
-    tokens="`--r-kv-line` (the lines; `--ui-border` unless the page sets it)."
-    do="Use it for a record or the settings at the head of a document."
-    dont="Expect banding or a hover highlight; rows share one ground."
+    classes="`.r-kv` around the table. A value may be a table of its own."
+    tokens="`--r-kv-line`."
+    do="Use it for a record or settings."
+    dont="Expect banding or hover."
   />
 </section>

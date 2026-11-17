@@ -28,6 +28,10 @@ const guard = `
   --r-guard-cool: 400ms;  /* the pause after an accepted press */
 }`;
 ---
+{/* Guard details kept out of the page: the movement window restarts on each move; acceptance is decided
+     on press, and a dropped press also suppresses its click and flashes the W (.r-guard-wait, 300ms, set
+     by the script); touch and keyboard use the cooldown only; tokens are read once from the root.
+     The wait cursor is 32 CSS px, hotspot 16 16, with progress as the fallback. */}
 <section class="sc-section" id="working">
   <h2 class="sc-label">Working</h2>
   <div class="sc-states">
@@ -38,19 +42,18 @@ const guard = `
     <figure><img class="sc-icon" src={waitStatic} width="32" height="32" alt=""><figcaption class="sc-cap">Still W</figcaption></figure>
     <figure><span class="r-card r-wait sc-working">Point here</span><figcaption class="sc-cap">W cursor, <code>.r-wait</code></figcaption></figure>
   </div>
-  <p class="sc-note">Wait while we work. Every disabled control uses the W cursor, never the system not-allowed pointer.</p>
+  <p class="sc-note">Disabled controls show the W cursor.</p>
   <Notes
     markup={icons}
-    classes="`.r-wait` shows the W cursor on any element. Disabled controls (`:disabled`, `aria-disabled=true`) show it without a class."
-    tokens="`--r-icon-wait` (`icons/wait.svg`, animated), `--r-icon-wait-static` (`icons/wait-static.svg`), `--r-icon-wait-cursor` (`icons/wait-cursor.svg`, 32 CSS px, hotspot 16 16, with `progress` as the system fallback)."
-    do="Give the animated icon an empty `alt` and put the words in the text beside it, inside an element with `role=status`."
-    dont="Use `cursor: not-allowed` anywhere; the theme's disabled cursor is the W."
-  >
-    <pre class="sc-markup"><code>{iconTokens.trim()}</code></pre>
-  </Notes>
+    extra={iconTokens}
+    classes="`.r-wait` on any element; disabled controls need no class."
+    tokens="`--r-icon-wait`, `--r-icon-wait-static`, `--r-icon-wait-cursor`."
+    do="Give the animated icon an empty `alt` and words beside it, in a `role=status` element."
+    dont="Use `cursor: not-allowed`."
+  />
 
   <h3 class="sc-subhead">Click guard</h3>
-  <p class="sc-prose">The guard judges each press on a button and discards a press made without recent pointer movement, or too soon after the last accepted one. Try each case below; the counters show which presses were accepted.</p>
+  <p class="sc-prose">The guard drops a button press made without recent pointer movement, or too soon after the last one.</p>
   <div class="sc-guard">
     <div class="r-card">
       <p class="sc-cap"><b>Guarded</b></p>
@@ -69,24 +72,15 @@ const guard = `
     </div>
   </div>
   <ul class="sc-prose">
-    <li><b>Movement window.</b> Move the pointer onto the guarded button and press: accepted. Then hold the pointer still on it for more than ten seconds and press: the press is discarded and the W flashes. Move a little and it is live again.</li>
-    <li><b>Cooldown.</b> Press the guarded button twice in quick succession: the second press, within 400ms, is discarded.</li>
-    <li><b>Opt out.</b> The unguarded button takes every press, as it sits in a <code>.r-unguarded</code> card.</li>
-    <li><b>Script click.</b> A click a script dispatches is not a trusted event, so it passes the guard: the counter rises even with the pointer away.</li>
+    <li>Hold the pointer still on Guarded for ten seconds, then press: dropped.</li>
+    <li>Double-press Guarded: the second press is dropped.</li>
   </ul>
   <Notes
     markup={guard}
-    classes="`.r-unguarded` on a control or an ancestor opts out. `.r-guard-wait` is set by the script for the 300ms flash of the W; do not set it by hand."
-    tokens="`--r-guard-gap2` (10s), `--r-guard-cool` (400ms). The script reads them once, from the root element."
-    js="Include `guard.js` once. It listens on the document and applies to every `button` and `input` of type button, submit or reset, never to links."
-    do="Leave the guard on for actions; opt out only for safe areas, such as a nav of plain switches."
-    dont="Test the guard with `el.click()`: only trusted events are judged, so a dispatched click always passes."
+    classes="`.r-unguarded` on a control or an ancestor opts out."
+    tokens="`--r-guard-gap2` (10s), `--r-guard-cool` (400ms)."
+    js="Include `guard.js` once. It covers buttons, not links."
+    do="Keep the guard on for actions. Opt out where quick repeated presses are normal, such as the dynamic list."
+    dont="Test it with `el.click()`; script clicks always pass."
   />
-  <ul class="sc-prose">
-    <li>A press is accepted while the pointer moves and for <code>--r-guard-gap2</code> after it; the window restarts on each move. After that, presses stay off until the pointer moves again.</li>
-    <li>An accepted press starts a cooldown of <code>--r-guard-cool</code>, after which presses stay off until the pointer moves again.</li>
-    <li>Acceptance is decided on press, not on release. A discarded press also suppresses its click and flashes the W for 300ms.</li>
-    <li>Touch and keyboard use the cooldown only.</li>
-    <li>Only trusted events are judged: a click a script dispatches, such as <code>el.click()</code>, passes through.</li>
-  </ul>
 </section>

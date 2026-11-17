@@ -1,13 +1,19 @@
 ---
 // The dynamic list: .r-rows markup from components.css, behavior from rows.js
 // (the project-wcard vendor/theme/rows.js contract).
+// Each list carries .r-unguarded: rapid + and × presses are the normal use of a list, so guard.js must not
+// discard them. On the fieldset it also covers rows added later from the template.
+// Rows contract details kept out of the page: data-added / data-removed announce changes (defaults
+// "Row added" / "Row removed"); data-remove defaults to "Remove row {n}"; without a template the minimum
+// is 1 and the last row is cloned; below 30rem of its own width the list stacks; reduced motion drops the
+// row-in animation; forced colors keep the control edges. A list is enhanced once however often passed.
 import Notes from "./Notes.astro";
 
 const roles = ["Chief medical officer", "Chief engineer", "Pilot"];
 const crew = [["Beverly Crusher", "Chief medical officer"], ["Geordi La Forge", "Chief engineer"]];
 
 const markup = `
-<fieldset class="r-rows" data-min="1" data-max="4" data-remove="Remove member {n}">
+<fieldset class="r-rows r-unguarded" data-min="1" data-max="4" data-remove="Remove member {n}">
   <legend>Team members</legend>
   <div class="r-rows-head" aria-hidden="true"><span></span><span>Name</span><span>Role</span></div>
   <div class="r-rows-list">
@@ -45,7 +51,7 @@ rRows.enhanceAll(container);`;
 <section class="sc-section" id="rows">
   <h2 class="sc-label">Dynamic list</h2>
   <form onsubmit="return false" class="sc-rows-demo">
-    <fieldset class="r-rows" data-min="1" data-max="4" data-remove="Remove member {n}">
+    <fieldset class="r-rows r-unguarded" data-min="1" data-max="4" data-remove="Remove member {n}">
       <legend>Team members</legend>
       <div class="r-rows-head" aria-hidden="true"><span></span><span>Name</span><span>Role</span></div>
       <div class="r-rows-list">
@@ -80,27 +86,24 @@ rRows.enhanceAll(container);`;
       <p class="r-rows-live r-vh" aria-live="polite"></p>
     </fieldset>
   </form>
-  <p class="sc-note">This list holds one to four members. Add rows until the + turns off, remove them until the last × is gone, and narrow the window to see the list stack.</p>
+  <p class="sc-note">One to four members. Add and remove rows as fast as you like.</p>
   <Notes
     markup={markup}
-    classes="`.r-rows` on the fieldset; `.r-rows-list` around the rows; `.r-row` per row; `.r-row-bubble` around `.r-row-remove` (×) and `.r-row-add` (+), each holding a `.r-row-glyph`; optional `.r-rows-head` (column labels) and `.r-rows-foot` (the add control and a `.r-row-ghost` preview row); `.r-rows-live.r-vh` for announcements."
-    attributes="On each field, `data-name` and optional `data-id` and `data-label` are templates: `{i}` is the 0-based index, `{n}` the 1-based row number; the script writes `name`, `id` and `aria-label` from them whenever rows change. On the fieldset, optional `data-remove` (default `Remove row {n}`, the × label), `data-added` and `data-removed` (announcements, default `Row added` and `Row removed`), and `data-min` and `data-max`."
-    tokens="`--r-choice-size` (the control column), `--r-clear` (glyphs and ghost row)."
-    js="Include `rows.js`; it enhances every `.r-rows` on `DOMContentLoaded`, or at once if the document is ready."
-    do="Put one `.r-row` in a `template` inside the `.r-rows`: it is the source for new rows. Without a template the last row is cloned, which is only a fallback."
-    dont="Rely on a new row keeping values: new rows are reset, text fields empty, checkboxes and radios off, each select on its first option."
+    classes="`.r-rows.r-unguarded` on the fieldset; `.r-rows-list`, `.r-row`, `.r-row-bubble` with `.r-row-remove` or `.r-row-add` and a `.r-row-glyph`; optional `.r-rows-head`, `.r-rows-foot`, `.r-row-ghost`, `.r-rows-live.r-vh`."
+    attributes="On the fieldset `data-min`, `data-max`, `data-remove`. On each field `data-name`, `data-id`, `data-label`, where `{i}` is the index from 0 and `{n}` the row number."
+    js="Include `rows.js`."
+    do="Put `.r-unguarded` on the `.r-rows`, so the click guard never drops a quick add or remove. Put one `.r-row` in a `template` as the source for new rows."
+    dont="Expect a new row to keep values; it starts empty."
   />
   <ul class="sc-prose">
-    <li><code>data-min</code> and <code>data-max</code> cap the list: remove is disabled (and its × hidden) at the minimum, add at the maximum. With a template the minimum defaults to 0; without one it defaults to 1. The maximum defaults to no limit.</li>
-    <li>Keyboard: Enter in the last row adds a row, below the maximum, and focuses its first field. Backspace at the start of an empty row removes it when the list is above the minimum, and focuses the previous row's last field.</li>
-    <li>Below <code>30rem</code> of its own width the list stacks: each row becomes one column of fields beside its ×, the header row goes, and the placeholders name the fields.</li>
-    <li>Reduced motion drops the row-in animation and the ghost transition; forced colors keep the control edges visible.</li>
+    <li>At <code>data-min</code> the × is hidden; at <code>data-max</code> the + is off. With a template the minimum is 0.</li>
+    <li>Enter in the last row adds a row; Backspace in an empty row removes it.</li>
   </ul>
 
   <h3 class="sc-subhead">A list added later</h3>
   <div id="sc-rows-later"></div>
   <template id="sc-rows-tpl">
-    <fieldset class="r-rows" data-max="3">
+    <fieldset class="r-rows r-unguarded" data-max="3">
       <legend>Next watch</legend>
       <div class="r-rows-list"></div>
       <template>
@@ -123,12 +126,12 @@ rRows.enhanceAll(container);`;
       <p class="r-rows-live r-vh" aria-live="polite"></p>
     </fieldset>
   </template>
-  <p class="sc-note">This list starts empty: with a template and no <code>data-min</code>, the minimum is 0, so every row can be removed.</p>
+  <p class="sc-note">This list starts empty.</p>
   <p class="sc-dialog-open"><span class="r-group"><button class="r-btn" type="button" id="sc-rows-add-list">Add a list</button></span></p>
   <Notes
     markup={hooks}
-    js="`rRows.enhance(element)` enhances one `.r-rows`; `rRows.enhanceAll(container)` enhances every `.r-rows` in a container. A list is enhanced once, however often it is passed."
-    do="Call a hook after inserting a list; the script only scans the page once, at load."
-    dont="Copy the older list script from a branding release that lacks templates and limits; take `rows.js` from project-wcard until branding carries it."
+    js="`rRows.enhance(element)` for one list, `rRows.enhanceAll(container)` for all in a container."
+    do="Call a hook after inserting a list."
+    dont="Take an older list script that lacks templates and limits."
   />
 </section>

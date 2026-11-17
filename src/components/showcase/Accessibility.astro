@@ -85,16 +85,16 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
       ))}
     </tbody>
   </table>
-  <p class="sc-note">Ratios are computed from the palette hex values. <code>.r-num</code> right-aligns the ratio column.</p>
+  {/* Ratios are computed at build time from the palette hex values. */}
 
   <h3 class="sc-subhead">Reduced motion</h3>
-  <p class="sc-prose">With <code>prefers-reduced-motion: reduce</code>, <code>.r-glow</code> and <code>.r-glow-run</code> become a plain fade of the whole border, a new <code>.r-row</code> appears without its row-in animation, the ghost row of <code>.r-rows</code> shows without its transition, and the menu caret no longer turns.</p>
+  <p class="sc-prose">Glows become a plain fade, and list rows and menu carets stop moving.</p>
 
   <h3 class="sc-subhead">Forced colors</h3>
-  <p class="sc-prose">With <code>forced-colors: active</code> (high-contrast modes), control and field edges, the focus ring, crumb focus, card borders and the glow stay visible in system colors. Radios and checkboxes revert to the native control.</p>
+  <p class="sc-prose">Edges, focus rings and glows stay visible in system colors. Radios and checkboxes become native.</p>
 
   <h3 class="sc-subhead">Print</h3>
-  <p class="sc-prose">Print drops the bar, the footer and the status stripe; <code>.r-column</code> and <code>.r-step-back</code> lose their insets, and <code>.r-listing</code> keeps to the page edge. Print or preview this page to check it: the sample bars, the footer and the stripe in the shell frame are left out.</p>
+  <p class="sc-prose">Print drops the bar, the footer and the status stripe, and the column loses its insets. This page also leaves out its code boxes.</p>
   <p class="sc-dialog-open"><span class="r-group"><button type="button" class="r-btn" id="sc-print">Print this page</button></span></p>
 
   <h3 class="sc-subhead">Narrow screens</h3>
@@ -102,9 +102,9 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
     <caption>Breakpoints the theme defines</caption>
     <thead><tr><th>Width</th><th>Measured on</th><th>What changes</th></tr></thead>
     <tbody>
-      <tr><td><code>40rem</code></td><td>The window</td><td>The column and the bar share one inset (<code>--r-text-pad</code>); buttons take a smaller minimum width, padding and tracking; the listing's id column narrows to <code>--r-listing-id</code>.</td></tr>
-      <tr><td><code>52rem</code></td><td>The window</td><td>A trail of crumbs in the bar meets the left edge: the first crumb is square, and a lone first crumb is square on the left and round on the right.</td></tr>
-      <tr><td><code>30rem</code></td><td>The list's own width</td><td><code>.r-rows</code> stacks its fields in one column and drops its header row.</td></tr>
+      <tr><td><code>40rem</code></td><td>The window</td><td>One inset for bar and column; smaller buttons; narrow listing ids.</td></tr>
+      <tr><td><code>52rem</code></td><td>The window</td><td>Crumbs meet the left edge.</td></tr>
+      <tr><td><code>30rem</code></td><td>The list's own width</td><td><code>.r-rows</code> stacks its fields.</td></tr>
     </tbody>
   </table>
 </section>

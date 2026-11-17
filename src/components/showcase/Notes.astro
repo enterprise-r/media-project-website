@@ -1,10 +1,12 @@
 ---
-// Tutorial notes for one part of the theme: the markup to copy, what it needs, and a do and a don't.
-// Text in backticks is set as code.
+// Tutorial notes for one part of the theme. The code to copy sits in a closed details box
+// (the theme's own details style), so the page reads as a showcase first; print leaves it out.
+// Below it, a short list of what the part needs. Text in backticks is set as code.
 import { md } from "./md";
 
 interface Props {
   markup?: string;
+  extra?: string;
   classes?: string;
   attributes?: string;
   tokens?: string;
@@ -23,11 +25,16 @@ const rows = [
 ].filter(([, v]) => v) as [string, string][];
 ---
 <div class="sc-notes">
-  {p.markup && <pre class="sc-markup"><code>{p.markup.trim()}</code></pre>}
+  {(p.markup || p.extra) && (
+    <details class="sc-code">
+      <summary>Code</summary>
+      {p.markup && <pre><code>{p.markup.trim()}</code></pre>}
+      {p.extra && <pre><code>{p.extra.trim()}</code></pre>}
+    </details>
+  )}
   {rows.length > 0 && (
     <dl class="sc-spec">
       {rows.map(([k, v]) => (<><dt>{k}</dt><dd set:html={md(v)} /></>))}
     </dl>
   )}
-  <slot />
 </div>

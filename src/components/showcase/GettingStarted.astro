@@ -24,26 +24,23 @@ const order = `
 <script src="theme/guard.js"></script>`;
 
 const files = [
-  ["palette.css", "Required", "The --ui-* colors, the striped gradient and the separator. Skip it only when the page already loads the palette."],
-  ["base.css", "Required", "Fonts, plain elements, form fields, the focus ring and the wait cursor."],
-  ["components.css", "Required", "Buttons, groups, menus, crumbs, cards, notices, pills, glow, terminal, prompt and the dynamic list."],
-  ["column.css", "Optional", "The shell's measure and insets, .r-page, .r-column and .r-step-back. Needed by bar.css, stripe.css and listing.css."],
+  ["palette.css", "Required", "The --ui-* colors and gradients, unless the page already has them."],
+  ["base.css", "Required", "Fonts and plain elements."],
+  ["components.css", "Required", "The r- components."],
+  ["column.css", "Optional", "Page, column and step back. Needed by bar.css, stripe.css and listing.css."],
   ["bar.css", "Optional", "The app bar and the mark menu."],
   ["foot.css", "Optional", "The footer stripe."],
   ["swatch.css", "Optional", "Theme choices that show the page they set."],
   ["stripe.css", "Optional", "The status stripe under the bar."],
   ["listing.css", "Optional", "The listing table."],
   ["kv.css", "Optional", "The key/value table."],
-  ["doc.css", "Optional", "The document scale, on pages that hold long text."],
-  ["rows.js", "Optional", "The dynamic list script, on pages that use .r-rows."],
-  ["guard.js", "Optional", "The click guard, included once on pages that guard button clicks."],
+  ["doc.css", "Optional", "The document scale, for long text."],
+  ["rows.js", "Optional", "The dynamic list script."],
+  ["guard.js", "Optional", "The click guard, once per page."],
 ];
 
 const rules = `
-/* An app's own rule wins over base.css with no extra weight. */
 .app-intro h2 { color: var(--ui-cyan); }
-
-/* Retune a role with a token, never with a color value. */
 .app-danger { --r-btn: var(--r-cancel); --r-btn-hover: var(--r-cancel-hover); }`;
 
 const name = `
@@ -53,45 +50,49 @@ const name = `
   <h2 class="sc-label">Getting started</h2>
 
   <h3 class="sc-subhead">Vendoring the theme</h3>
-  <p class="sc-prose"><DarkR /> is built in project-branding and shipped in the Google Drive <code>assets/</code> release. Copy <code>assets/theme/</code> and <code>assets/fonts/</code> into the site and keep the two folders side by side: <code>base.css</code> and <code>doc.css</code> load the fonts from <code>../fonts/woff2/</code>. <code>theme/</code> already holds <code>palette.css</code>; the same file is in <code>assets/palette/</code> for a page that keeps the palette elsewhere. Copy the font licenses from <code>assets/fonts/licenses/</code> with the fonts.</p>
-  <p class="sc-prose">Copied files are never edited in place. A change is made in project-branding and reaches the site as a new release. The branding <code>CHANGELOG.md</code> lists the version of every asset; compare it with the copy to know when to refresh.</p>
-  <p class="sc-prose"><code>rows.js</code> is the one exception for now. Its current contract is owned by project-wcard: take it from project-wcard <code>vendor/theme/rows.js</code> until branding carries that version, then from Drive with the rest of the theme.</p>
-  <pre class="sc-markup"><code>{layout.trim()}</code></pre>
+  {/* The theme is built in project-branding and shipped to the Drive assets/ release. palette.css ships
+       inside theme/ and also in assets/palette/. Copied files are never edited; changes go through branding.
+       rows.js comes from project-wcard vendor/theme/rows.js until branding carries that contract. */}
+  <ul class="sc-prose">
+    <li>Copy <code>assets/theme/</code> and <code>assets/fonts/</code> from the Drive <code>assets/</code> release, side by side: the theme loads fonts from <code>../fonts/woff2/</code>.</li>
+    <li>Ship the font licenses from <code>assets/fonts/licenses/</code>.</li>
+    <li>Do not edit copied files. Check the branding <code>CHANGELOG.md</code> for new versions and copy again.</li>
+    <li>For now, take <code>rows.js</code> from project-wcard <code>vendor/theme/rows.js</code>.</li>
+  </ul>
 
   <h3 class="sc-subhead">Include order</h3>
-  <p class="sc-prose">The theme needs no framework and no build step. Link the files in this order and leave out the optional ones a page does not use.</p>
-  <pre class="sc-markup"><code>{order.trim()}</code></pre>
+  <Notes markup={order} extra={layout} />
   <table>
     <caption>Theme files</caption>
-    <thead><tr><th>File</th><th>Need</th><th>What it adds</th></tr></thead>
+    <thead><tr><th>File</th><th>What it adds</th></tr></thead>
     <tbody>
-      {files.map(([f, need, what]) => (<tr><td><code>{f}</code></td><td>{need}</td><td>{what}</td></tr>))}
+      {files.map(([f, need, what]) => (<tr><td><code>{f}</code></td><td>{need}. {what}</td></tr>))}
     </tbody>
   </table>
-  <p class="sc-prose">The app shell, <code>column.css</code> through <code>kv.css</code>, is optional: include <code>column.css</code> and the parts a page uses. A site's own content stays in that site: the label or logo in the root crumb, the actions in the bar and the content of the footer are never part of <code>theme/</code>.</p>
+  <p class="sc-prose">The root crumb's label or logo, the bar's actions and the footer's content belong to the site, not to <code>theme/</code>.</p>
 
   <h3 class="sc-subhead">Rules</h3>
   <ul class="sc-prose">
-    <li>Colors come only from the <code>--ui-*</code> variables of the palette. Theme roles are <code>--r-*</code> custom properties: retune a role by pointing it at another token, never by writing a color value.</li>
-    <li>Theme classes start with <code>r-</code>, so they cannot clash with an app's own classes.</li>
-    <li>Element rules in <code>base.css</code> sit inside <code>:where()</code> and weigh nothing, so an app's own rules win without <code>!important</code>.</li>
+    <li>Colors only from <code>--ui-*</code>. Theme roles are <code>--r-*</code>.</li>
+    <li>Theme classes start with <code>r-</code>.</li>
+    <li>Element rules sit in <code>:where()</code>, so the app's own rules win.</li>
   </ul>
   <Notes
     markup={rules}
-    do="Point a role token at another token, as in the second rule."
-    dont="Write hex values, add `!important`, or wrap the theme in a cascade layer."
+    do="Retune a role by pointing it at another token."
+    dont="Write hex values, `!important` or cascade layers."
   />
 
   <h3 class="sc-subhead">The name</h3>
   <p class="sc-name-sample"><DarkR /></p>
+  {/* This site's painting of the pattern is src/components/DarkR.astro (adds .sc-aw for Audiowide). */}
   <Notes
     markup={name}
-    classes="`.r-name-r` paints the ® in Enterprsr, the picture of the R. `.r-vh` hides the readable text visually."
-    attributes={`\`aria-hidden="true"\` on the picture. On a control, the name can be its \`aria-label\` instead of \`.r-vh\` text.`}
-    do="Give readers the text Dark-R, and set Dark- in Audiowide as this site does in `src/components/DarkR.astro`."
-    dont="Type a plain ® glyph from another face, or let a screen reader read the picture."
+    classes="`.r-name-r`, `.r-vh`."
+    attributes={`\`aria-hidden="true"\` on the picture.`}
+    do="Let readers hear the text Dark-R."
+    dont="Type a plain ® from another face."
   />
 
-  <h3 class="sc-subhead">Showcase only</h3>
-  <p class="sc-prose">This page lays itself out with classes that start with <code>sc-</code>, and paints static hover and focus samples with <code>.is-hover</code> and <code>.is-focus</code>. They live in this site's <code>src/styles/ui.css</code>, are not part of <DarkR />, and do not belong in another site.</p>
+  <p class="sc-note">Classes starting with <code>sc-</code>, and <code>.is-hover</code> / <code>.is-focus</code>, are this page's only. They are not part of <DarkR />.</p>
 </section>

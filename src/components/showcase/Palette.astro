@@ -1,5 +1,6 @@
 ---
 // Palette: the --ui-* tokens from the palette source, and how a page uses them.
+import DarkR from "../DarkR.astro";
 import Notes from "./Notes.astro";
 import palette from "../../styles/palette.json";
 
@@ -15,10 +16,21 @@ const use = `
   <h2 class="sc-label">Palette</h2>
   <div class="sc-brand-box">
     <h3 class="sc-subhead sc-top">Amber (Accent)</h3>
-    <div class="sc-swatches">
-      {accent.map((c) => (
-        <div class="sc-swatch"><i style={`background:var(${c.var})`}></i><div><b>{c.name}</b><code>{c.hex}</code><small>{c.var} · {c.use}</small></div></div>
-      ))}
+    <div class="sc-accent">
+      <div class="sc-swatches">
+        {accent.map((c) => (
+          <div class="sc-swatch"><i style={`background:var(${c.var})`}></i><div><b>{c.name}</b><code>{c.hex}</code><small>{c.var} · {c.use}</small></div></div>
+        ))}
+      </div>
+      {/* Branding's animated badge (logo/svg/logo-normal-badge-pulse.svg); with reduced motion the still
+           spectrum badge (logo-normal-badge-spectrum.svg) replaces it. Both copied unmodified. */}
+      <figure class="sc-badge">
+        <picture>
+          <source media="(prefers-reduced-motion: reduce)" srcset="/assets/logo-badge-spectrum.svg">
+          <img src="/assets/logo-badge-pulse.svg" width="144" height="144" alt="Enterprise-R badge">
+        </picture>
+        <figcaption class="sc-cap">The <DarkR /> spectrum</figcaption>
+      </figure>
     </div>
   </div>
   {groups.map((g) => (<>
@@ -29,8 +41,8 @@ const use = `
   </>))}
   <Notes
     markup={use}
-    tokens="`--ui-bg` through `--ui-brown` (the colors above), `--ui-striped` (the striped gradient) and `--ui-separator` (the separator gradient), all from `palette.css`."
-    do="Use a token by its variable; the hex values above are for reference only."
-    dont="Copy a hex value into a stylesheet; a palette change would not reach it."
+    tokens="`--ui-*` from `palette.css`."
+    do="Use a token by its variable."
+    dont="Copy a hex value into a stylesheet."
   />
 </section>
