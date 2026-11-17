@@ -40,7 +40,7 @@ main.showcase + footer p {
 .sc-section > h2.sc-label {
   margin-bottom: 1.1rem;
   font-family: var(--r-font-text); font-size: 0.95rem; font-weight: 700;
-  letter-spacing: 0.22em; text-transform: uppercase; color: var(--ui-accent);
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--r-heading-4);
 }
 
 .sc-grid { display: grid; gap: 1rem; }
