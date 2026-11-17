@@ -41,7 +41,7 @@ The app shell, `column.css` to `kv.css`, is optional: include `column.css` and t
 | `bar.css` | The app bar (`.r-bar`), fixed across the top on the Border fill: the root on the left (a trail of `.r-crumbs`, or any element), `.r-bar-end` on the right with an actions pill (`.r-group`) and the mark menu (`.r-mark`, a framed picture as tall as a button, sized by `--r-mark-view`, `--r-mark-plate` and `--r-mark-round`). Below `52rem` a trail meets the window edge, square, 8px deep. `--r-bar-pad`, `--r-bar-gap`. | Shipped |
 | `foot.css` | The footer stripe (`.r-foot`): the Border fill, the company word in Enterprsr, linked. | Shipped |
 | `kv.css` | The key/value table (`.r-kv`): right-aligned keys against a rule, nested tables flush in their cells, `--r-kv-line`. | Shipped |
-| `rows.js` | Plain script that enhances any `.r-rows` fieldset: add and remove, keyboard, live-region announcements and `data-name` templates. No dependencies, no build step. | Shipped |
+| `rows.js` | Plain script that enhances any `.r-rows` fieldset: add and remove, keyboard, live-region announcements, `data-name` templates, template rows and size caps. No dependencies, no build step. | Shipped |
 | `guard.js` | Plain script that guards button clicks. Moving the pointer (or stopping) accepts presses immediately, including during movement, for `--r-guard-gap2` (10s); the window restarts on each movement. After 10s with no movement, presses stay off until the pointer moves again. An accepted press turns clicks off for `--r-guard-cool` (400ms), then off until movement again. Touch and keyboard use the cooldown only. Only trusted events are judged; clicks a script dispatches, such as `el.click()`, pass through. Acceptance is decided on button press, not release; a discarded press also suppresses the click. A discarded press flashes the waiting cursor for 300ms. Opt out with `.r-unguarded` on the button or an ancestor. No dependencies, no build step. | Shipped |
 | `icons/` | Waiting icons: `icons/wait.svg` (animated) and `icons/wait-static.svg` (the full W, unanimated, 128). `icons/wait-cursor.svg` is the same W at 32 CSS px for the `.r-wait` cursor (hotspot 16 16, `progress` fallback). Disabled controls use that cursor too, never the system not-allowed pointer. `--r-icon-wait`, `--r-icon-wait-static` and `--r-icon-wait-cursor` in `base.css`. | Shipped |
 
@@ -50,9 +50,15 @@ The app shell, `column.css` to `kv.css`, is optional: include `column.css` and t
 Two heading scales share the fonts. Both use Monaspace Neon (`--r-font-mono`) for code.
 
 - **Web** (`base.css`): the default for pages and apps. Audiowide for h1-h3, Rajdhani for h4-h6 and for text.
-- **Document** (`doc.css`, inside `.r-doc`): for long text. Audiowide for h1 only, Rajdhani for h2-h6, Saira for the body.
+- **Document** (`doc.css`, inside `.r-doc`): for long text. Audiowide for h1 only, Rajdhani for h2-h6, Saira at 400 for the body.
+
+The all-caps h4 labels use `--r-heading-4` (Yellow), the same gold as visited links.
 
 `palette/typography.odt` sets both scales side by side.
+
+## Links
+
+Unvisited links use `--r-link` (Bright magenta). Visited links use `--r-link-visited` (Yellow). Hover, visited or not, uses `--r-link-hover` (Bright yellow).
 
 ## Buttons, pills and choices
 
@@ -88,8 +94,9 @@ Radios and checkboxes share `--r-choice-size` (1.5rem), `--r-choice-bg`, `--r-ch
 
 - `data-name` and optional `data-id` / `data-label` on each field are templates. `{i}` is the 0-based index, `{n}` the 1-based row number. The script writes `name`, `id` and `aria-label` from them whenever rows change.
 - Optional attributes on the fieldset: `data-remove` (default `Remove row {n}`, used for the × button's `aria-label`), `data-added` and `data-removed` (live-region announcements, default `Row added` and `Row removed`).
-- Keyboard: Enter in the last row adds a row and focuses its first field. Backspace at the start of an empty row (every field blank, more than one row) removes it and focuses the previous row's last field.
-- The last remaining row cannot be removed, and its remove control is hidden. The ghost row is not in the tab order (`disabled`, `tabindex="-1"`, `aria-hidden`). `.r-vh` hides the live region visually. Reduced motion drops the row-in animation; forced colours keep the control edges visible.
+- Keyboard: Enter in the last row adds a row and focuses its first field. Backspace at the start of an empty row (every field blank, above the minimum) removes it and focuses the previous row's last field.
+- A new row is cloned from a `<template>` holding an `.r-row` inside the fieldset, or from the last row when there is none. Its fields are reset: text empty, boxes off, selects on their first option.
+- `data-min` and `data-max` on the fieldset cap the list. At the minimum the rows cannot be removed and their remove controls are hidden; at the maximum the add button is disabled. The minimum defaults to none with a template and to one row without. The ghost row is not in the tab order (`disabled`, `tabindex="-1"`, `aria-hidden`). `.r-vh` hides the live region visually. Reduced motion drops the row-in animation; forced colours keep the control edges visible.
 - Below `30rem` of its own width the list stacks: each row is one column of fields beside its ×, the header row goes and the placeholders name the fields. The ghost row stacks the same way; its fields (inputs, selects, textareas) fill their columns and keep the default pointer.
 
 ## App shell

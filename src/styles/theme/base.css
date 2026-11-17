@@ -51,11 +51,12 @@
   --r-heading: var(--ui-green);
   --r-heading-2: var(--ui-fg-bright);
   --r-heading-3: var(--ui-magenta);
-  --r-heading-4: var(--ui-accent);
+  --r-heading-4: var(--ui-yellow);
   --r-heading-5: var(--ui-fg-light);
   --r-heading-6: var(--ui-fg-dark);
   --r-link: var(--ui-magenta-bright);
-  --r-link-hover: var(--ui-fg-bright);
+  --r-link-visited: var(--ui-yellow);
+  --r-link-hover: var(--ui-yellow-bright);
   --r-focus: var(--ui-fg-bright);
   /* Focused field: Active border line and a soft ring of the same colour. */
   --r-hl-line: var(--ui-border-active);
@@ -143,6 +144,7 @@
   text-decoration-thickness: from-font;
   text-underline-offset: 0.2em;
 }
+:where(a:visited) { color: var(--r-link-visited); }
 :where(a:hover) { color: var(--r-link-hover); }
 :where(a:focus-visible, button:focus-visible, summary:focus-visible) {
   outline: 2px solid var(--r-focus);
