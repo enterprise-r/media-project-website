@@ -124,7 +124,7 @@
           "name": "Bright blue",
           "var": "--ui-blue-bright",
           "hex": "#BDCBD9",
-          "use": "logo ship-trail, wordmark text"
+          "use": "logo ship-trail, Clear button"
         },
         {
           "name": "Magenta",
