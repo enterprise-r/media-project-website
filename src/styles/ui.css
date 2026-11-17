@@ -14,11 +14,9 @@ main.showcase {
   text-align: left;
 }
 
-.sc-hero { display: grid; grid-template-columns: minmax(0, 40rem) minmax(0, 1fr); column-gap: 3rem; align-items: center; }
-.sc-hero-text { grid-column: 1; grid-row: 1; }
-.sc-title { grid-column: 2; grid-row: 1; margin: 0; line-height: 0; }
+.sc-title { margin: 0 0 0.75rem; line-height: 0; }
 .sc-title picture { display: contents; }
-.sc-title img { display: block; width: 100%; max-width: 32rem; height: auto; margin-inline-start: auto; }
+.sc-title img { display: block; width: min(24.68rem, 100%); height: auto; margin-inline-start: auto; }
 .sc-aw { font-family: var(--r-font-heading); }
 .sc-brand { font-family: var(--r-font-brand); letter-spacing: 0; }
 /* Anchors the visually hidden name Dark-R next to its picture. */
@@ -274,9 +272,6 @@ a.sc-closer-fill:hover {
   .sc-span-2 { grid-column: auto; }
   .sc-type { grid-template-columns: 1fr; }
   .sc-type > .sc-cap { text-align: left; }
-  .sc-hero { grid-template-columns: 1fr; row-gap: 1rem; }
-  .sc-title, .sc-hero-text { grid-column: 1; grid-row: auto; }
-  .sc-title img { max-width: 24.68rem; margin-inline-start: 0; }
 }
 @media (max-width: 40rem) {
   .sc-badge { float: none; width: 9rem; margin: 0 auto 1.2rem; }

@@ -48,23 +48,19 @@ const contents = [
 ---
 <Base title="UI showcase · Enterprise-R" description="Enterprise-R UI style guide." noindex header={false}>
   <main class="showcase">
-    <header class="sc-hero">
-    {/* The page heading is the big logo, set on the right from 900px: the animated wide lockup, with the
-         still one under reduced motion (as on the home page). */}
+    {/* The page heading is the big logo, right-aligned: the animated wide lockup, with the still one under
+         reduced motion (as on the home page). */}
     <h1 class="sc-title">
       <picture>
         <source media="(prefers-reduced-motion: reduce)" srcset="/assets/logo-wide.svg">
         <img src="/assets/logo-wide-pulse.svg" width="320" height="56" alt="Enterprise-R">
       </picture>
     </h1>
-    <div class="sc-hero-text">
     <p class="sc-subtitle">UI showcase</p>
     <Greeting />
     <p class="sc-lede"><DarkR />, the <span class="sc-brand">Enterprise-R</span> theme. Plain elements and the r- components, on the palette.</p>
     <p class="sc-lede"><DarkR /> is futuristic with a hint of retro, on a fresh palette you don't often see in everyday interfaces. It is made for night mode and for night-light filters that warm the screen in the evening. Its purples and magentas carry a lot of blue, so <DarkR /> changes more than most themes when the night light comes on.</p>
     <p class="sc-lede">Each part below is a live example. Open Code for the markup to copy; the list under it names what the part needs.</p>
-    </div>
-    </header>
     <nav class="sc-contents" aria-label="Contents">
       <ol>{contents.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ol>
     </nav>
