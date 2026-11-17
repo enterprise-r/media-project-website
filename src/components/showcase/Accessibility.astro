@@ -1,6 +1,7 @@
 ---
 // Accessibility: the contrast table, reduced motion, forced colors, print and narrow screens.
 import DarkR from "../DarkR.astro";
+import Notes from "./Notes.astro";
 import palette from "../../styles/palette.json";
 
 const colours = palette.groups.flatMap((g) => g.colours);
@@ -32,7 +33,7 @@ const wcagPairs = [
   ["h1 Green on Background", "--ui-green", "--ui-bg", "text"],
   ["h2 Bright on Background", "--ui-fg-bright", "--ui-bg", "text"],
   ["h3 Magenta on Background", "--ui-magenta", "--ui-bg", "text"],
-  ["h4 Amber on Background", "--ui-accent", "--ui-bg", "text"],
+  ["h4 Yellow on Background", "--ui-yellow", "--ui-bg", "text"],
   ["h5 Light on Background", "--ui-fg-light", "--ui-bg", "text"],
   ["h6 Dark on Background", "--ui-fg-dark", "--ui-bg", "text"],
   ["Link (Bright magenta) on Background", "--ui-magenta-bright", "--ui-bg", "text"],
@@ -60,15 +61,16 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
   <h2 class="sc-label">Accessibility</h2>
   <p><DarkR /> meets WCAG 2.2 AA throughout and is effectively AAA most of the time. The few exceptions are intentional and only used when visibility is not the priority. <DarkR /> is meant to be easy on the eyes and optimized for fast use.</p>
   <p>Borders and focus rings clear 3:1. Links are underlined, targets are at least 24px, motion stops when you ask for less, and high-contrast mode keeps every edge visible.</p>
-  <table>
-    <caption>Contrast scores for <DarkR /></caption>
-    <thead>
-      <tr>
-        <th>Pair</th>
-        <th class="r-num">Ratio</th>
-        <th>WCAG</th>
-      </tr>
-    </thead>
+  <Notes>
+    <table>
+      <caption>Contrast scores for <DarkR /></caption>
+      <thead>
+        <tr>
+          <th>Pair</th>
+          <th class="r-num">Ratio</th>
+          <th>WCAG</th>
+        </tr>
+      </thead>
     <tbody>
       {wcagRows.map((row) => (
         <tr>
@@ -85,6 +87,7 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
       ))}
     </tbody>
   </table>
+  </Notes>
   {/* Ratios are computed at build time from the palette hex values. */}
 
   <h3 class="sc-subhead">Reduced motion</h3>
@@ -98,13 +101,15 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
   <p class="sc-dialog-open"><span class="r-group"><button type="button" class="r-btn" id="sc-print">Print this page</button></span></p>
 
   <h3 class="sc-subhead">Narrow screens</h3>
-  <table>
-    <caption>Breakpoints the theme defines</caption>
-    <thead><tr><th>Width</th><th>Measured on</th><th>What changes</th></tr></thead>
-    <tbody>
-      <tr><td><code>40rem</code></td><td>The window</td><td>One inset for bar and column; smaller buttons.</td></tr>
-      <tr><td><code>52rem</code></td><td>The window</td><td>Crumbs meet the left edge.</td></tr>
-      <tr><td><code>30rem</code></td><td>The list's own width</td><td><code>.r-rows</code> stacks its fields.</td></tr>
-    </tbody>
-  </table>
+  <Notes>
+    <table>
+      <caption>Breakpoints the theme defines</caption>
+      <thead><tr><th>Width</th><th>Measured on</th><th>What changes</th></tr></thead>
+      <tbody>
+        <tr><td><code>40rem</code></td><td>The window</td><td>One inset for bar and column; smaller buttons.</td></tr>
+        <tr><td><code>52rem</code></td><td>The window</td><td>Crumbs meet the left edge.</td></tr>
+        <tr><td><code>30rem</code></td><td>The list's own width</td><td><code>.r-rows</code> stacks its fields.</td></tr>
+      </tbody>
+    </table>
+  </Notes>
 </section>

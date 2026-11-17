@@ -74,14 +74,14 @@ const pills = `
     do="Use one `.r-primary` per form."
     dont="Use the not-allowed cursor; disabled controls show the W."
   />
-
   <h3 class="sc-subhead">Button tokens</h3>
-  <p class="sc-prose">Below <code>40rem</code> the minimum width, padding and tracking scale down.</p>
   <Notes
     markup={tokens}
     do="Retune the tokens on `:root` or a container."
     dont="Set width, padding or height on `.r-btn` directly."
-  />
+  >
+    <p>Below <code>40rem</code> the minimum width, padding and tracking scale down.</p>
+  </Notes>
 
   <h3 class="sc-subhead">Group</h3>
   <div class="sc-states">
@@ -105,7 +105,6 @@ const pills = `
     do="Wrap a single button to give it two round ends."
     dont="Hide a grouped button with a class."
   />
-
   <h3 class="sc-subhead">Form actions</h3>
   <div class="r-group r-end">
     <button type="button" class="r-btn r-clear">Clear</button>
@@ -117,7 +116,6 @@ const pills = `
     do="Use it for a form's actions."
     dont="Push the group right with your own margin."
   />
-
   <h3 class="sc-subhead">Status pills</h3>
   <div class="sc-states">
     <span class="r-pill">Standby</span><span class="r-pill r-primary">Online</span><span class="r-pill r-clear">Draft</span><span class="r-pill r-cancel">Offline</span>

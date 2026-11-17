@@ -33,10 +33,10 @@ const guard = `
      by the script); touch and keyboard use the cooldown only; tokens are read once from the root.
      The wait cursor is 32 CSS px, hotspot 16 16, with progress as the fallback. */}
 <section class="sc-section" id="working">
-  <h2 class="sc-label">Working</h2>
+  <h2 class="sc-label">Working/Waiting</h2>
   <div class="sc-wait-row">
     <figure><div class="r-card sc-working" role="status"><img src={waitIcon} width="32" height="32" alt=""><span>Working</span></div><figcaption class="sc-cap">Animated W</figcaption></figure>
-    <figure><div class="r-card sc-working"><img src={waitStatic} width="32" height="32" alt=""></div><figcaption class="sc-cap">Still W</figcaption></figure>
+    <figure><div class="r-card sc-working"><img src={waitStatic} width="32" height="32" alt=""><span>Waiting</span></div><figcaption class="sc-cap">Still W</figcaption></figure>
     <figure><div class="r-card r-wait sc-working"><span>Point here</span></div><figcaption class="sc-cap">W cursor, <code>.r-wait</code></figcaption></figure>
   </div>
   <p class="sc-note">Disabled controls show the W cursor.</p>
@@ -48,7 +48,6 @@ const guard = `
     do="Give the animated icon an empty `alt` and words beside it, in a `role=status` element."
     dont="Use `cursor: not-allowed`."
   />
-
   <h3 class="sc-subhead">Click guard</h3>
   <p class="sc-prose">The guard drops a button press made without recent pointer movement, or too soon after the last one.</p>
   <div class="sc-guard">
@@ -63,10 +62,6 @@ const guard = `
       <p class="sc-cap">Accepted: <output id="sc-free-n">0</output></p>
     </div>
   </div>
-  <ul class="sc-prose">
-    <li>Hold the pointer still on Guarded for ten seconds, then press: dropped.</li>
-    <li>Double-press Guarded: the second press is dropped.</li>
-  </ul>
   <Notes
     markup={guard}
     classes="`.r-unguarded` on a control or an ancestor opts out."
@@ -75,4 +70,8 @@ const guard = `
     do="Keep the guard on for actions. Opt out where quick repeated presses are normal, such as the dynamic list."
     dont="Test it with `el.click()`; script clicks always pass."
   />
+  <ul class="sc-prose">
+    <li>Hold the pointer still on Guarded for ten seconds, then press: dropped.</li>
+    <li>Double-press Guarded: the second press is dropped.</li>
+  </ul>
 </section>
