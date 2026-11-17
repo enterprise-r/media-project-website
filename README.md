@@ -2,7 +2,7 @@
 
 The Enterprise-R website. Public repo (needed for GitHub Pages on the Free tier). Built with [Astro](https://astro.build), plain HTML/CSS, no frameworks.
 
-Part of [enterprise-r/project-foundation](https://github.com/enterprise-r/project-foundation). Logos, palette, fonts and Dark-R come from [enterprise-r/project-branding](https://github.com/enterprise-r/project-branding), shipped to Google Drive `assets/`. This repo copies them in.
+Part of [enterprise-r/project-foundation](https://github.com/enterprise-r/project-foundation). Brand files come from [enterprise-r/project-branding](https://github.com/enterprise-r/project-branding). The imported files are recorded in `vendor/MANIFEST`.
 
 Pages: Home (`/`), About (`/about/`), Login (`/r/`), 404 (`/404.html`) and `/showcase/`. The showcase is the web UI, linked from the login page. It is `noindex` and not in the sitemap. `/login/` redirects to `/r/`. Nav links say Login. On `/r/` the breadcrumb says Login until Enter, then `demo@ra.hq`.
 
@@ -35,30 +35,6 @@ npm ci
 npm run dev      # http://127.0.0.1:4321
 npm run build    # output in dist/
 ```
-
-## Brand assets
-
-Brand files come from the project-branding [v1.0.2](https://github.com/enterprise-r/project-branding/releases/tag/v1.0.2) build (`build.sh`), shipped to Drive `assets/`. To refresh one, copy it in again. Do not edit a copied file here.
-
-| In this repo | From |
-|---|---|
-| `public/assets/logo-wide.svg`, `logo-wide-pulse.svg`, `logo-wide-black.svg`, `logo-compact-black.svg`, `logo-chipped.svg`, `favicon.svg` | Drive `assets/logos/svg/` `logo-wide-transparent-color.svg`, `logo-wide-transparent-pulse.svg`, `logo-wide-transparent-black.svg`, `logo-compact-transparent-black.svg`, `logo-normal-chipped-color.svg`, `logo-normal-chipped-color-low.svg`, renamed |
-| `public/assets/favicon.ico`, `favicon-32.png` | Drive `assets/logos/favicon/` |
-| `public/assets/apple-touch-icon.png`, `icon-192.png`, `icon-512.png` | Drive `assets/logos/favicon/` `favicon-180.png`, `favicon-192.png`, `favicon-512.png`, renamed |
-| `public/assets/warpchi.*`, `hyper-j.*` | Showcase terminal sample (warpchi). Site wallpaper is hyper-j, set once in `bar.css`. Sources are project-branding `wallpapers/`, saved here as jpg, avif and webp |
-| `public/assets/logo-badge-pulse.svg`, `logo-badge-spectrum.svg` | Showcase palette badge, animated, with the still spectrum badge for reduced motion. Source is project-branding `logo/svg/` `logo-normal-badge-pulse.svg` and `logo-normal-badge-spectrum.svg`, renamed |
-| `public/assets/engy.png`, `engy.webp`, `engy.avif` | Showcase greeting avatar. Source is Drive `assets/badges/engy.png`, scaled to 256px and saved here as png, webp and avif |
-| `src/styles/theme/` | Drive `assets/theme/`, the whole directory except `palette.css` (see below), copied as-is |
-| `src/styles/theme/rows.js` | project-wcard `vendor/theme/rows.js`, until branding carries that version; then Drive `assets/theme/` with the rest |
-| `src/styles/fonts/woff2/*.woff2` | Drive `assets/fonts/woff2/` |
-| `public/fonts/OFL-*.txt` | Drive `assets/fonts/licenses/` |
-| `src/styles/palette.css`, `palette.json` | Drive `assets/palette/palette.css` and project-branding `palette/palette.json` |
-
-`palette.css` is generated from `palette.json`. Change a colour in project-branding, then copy both files again. A colour's `use` line says where this site uses it.
-
-Dark-R is `src/styles/theme/`. Where the showcase paints the name, the R is ® in Enterprsr and that character is not read. What it does is in `theme/README.md`. It loads fonts from `../fonts/woff2/`. This site imports `src/styles/palette.css`. The `palette.css` inside `assets/theme/` is for a project that links the theme on its own.
-
-A lockup is the wordmark and the mark together (wide and compact). The plate is the inactive-border shape behind the mark. Geometry is in project-branding [`logo/README.md`](https://github.com/enterprise-r/project-branding/blob/main/logo/README.md).
 
 ## Pages
 
