@@ -1,0 +1,48 @@
+---
+import DarkR from "../DarkR.astro";
+
+const variants = [
+  { id: "a", face: "Saira", setting: "font-weight 500, current" },
+  { id: "b", face: "Saira", setting: "font-weight 400" },
+  { id: "c", face: "Saira", setting: "font-weight 300" },
+  { id: "d", face: "Saira", setting: "font-weight 400, 1.2rem, line-height 1.7, letter-spacing 0.01em" },
+  { id: "e", face: "Monaspace Neon", setting: "font-weight 400" },
+];
+
+const golds = [
+  { id: "yellow", token: "--ui-yellow", name: "Yellow" },
+  { id: "yellow-bright", token: "--ui-yellow-bright", name: "Bright yellow" },
+];
+---
+<section class="sc-section sc-specimen" id="specimen">
+  <h2 class="sc-label">Specimen</h2>
+  <p class="sc-prose">Cyan is where you stand. Amber is a choice still open, green a road taken, red a road refused. Lilac is the trail of what we know, magenta the way we move. Gold is a place already valued and revisited.</p>
+
+  <h3 class="sc-subhead">Document face</h3>
+  <p class="sc-note">A is the document scale as it ships. The others change only the body.</p>
+  <div class="sc-grid cols-2 sc-faces">
+    {variants.map((v) => (
+      <figure class="sc-face">
+        <figcaption class="sc-cap"><b>{v.id.toUpperCase()}</b> {v.face}, {v.setting}</figcaption>
+        <article class={`r-doc sc-face-${v.id}`}>
+          <h2>A quiet view from orbit</h2>
+          <h3>Engineering log</h3>
+          <p><DarkR /> is futuristic with a hint of retro, on a fresh palette you don't often see in everyday interfaces. It is made for night mode and for night-light filters that warm the screen in the evening. Its purples and magentas carry a lot of blue, so <DarkR /> changes more than most themes when the night light comes on.</p>
+          <p>Read the <a href="#specimen-new">flight plan</a> before you start, and keep the <em>crew notes</em> at hand. The <a class="is-visited" href="#type">previous pass</a> is already in the log.</p>
+        </article>
+      </figure>
+    ))}
+  </div>
+
+  <h3 class="sc-subhead">Visited gold</h3>
+  <p class="sc-note">Unvisited links stay bright magenta. A link with the <code>is-visited</code> class is a static demo; the one after it uses <code>:visited</code>. Amber sits beside them as a choice still open. Both golds are already in the palette, unused.</p>
+  <div class="sc-grid cols-2 sc-golds">
+    {golds.map((g) => (
+      <figure class={`sc-gold sc-gold-${g.id}`}>
+        <figcaption class="sc-cap"><b>{g.name}</b> <code>{g.token}</code></figcaption>
+        <p class="r-doc">The <a href="#specimen-unseen">open brief</a> is new. The <a class="is-visited" href="#palette">station log</a> we already know. Click <a href="#footer">this trail</a> to see <code>:visited</code> take the gold.</p>
+        <p><a class="r-btn" href="#buttons">This way</a></p>
+      </figure>
+    ))}
+  </div>
+</section>

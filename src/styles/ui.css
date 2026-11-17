@@ -272,8 +272,29 @@ a.sc-closer-fill:hover {
 /* Key/value sample: a column's width, with room for the step back. */
 .sc-measure { max-width: 46rem; padding-inline: var(--r-box-pad); }
 
+
+.sc-specimen { --sc-gold: var(--ui-yellow); }
+.sc-faces { align-items: start; margin: 1rem 0 0; }
+.sc-face { margin: 0; padding: 1rem 1.1rem 0.2rem; border: 1px solid var(--ui-border); border-radius: 0.8rem; }
+.sc-face > .sc-cap { margin: 0 0 0.8rem; }
+.sc-face .r-doc { max-width: none; }
+.sc-face-b { font-weight: 400; }
+.sc-face-c { font-weight: 300; }
+.sc-face-d { font-weight: 400; font-size: 1.2rem; line-height: 1.7; letter-spacing: 0.01em; }
+.sc-face-e { font-family: var(--r-font-mono); font-weight: 400; }
+.sc-specimen a.is-visited,
+.sc-specimen :where(a:not(.r-btn):visited) { color: var(--sc-gold); }
+.sc-golds { margin: 1rem 0 0; align-items: start; }
+.sc-gold { margin: 0; padding: 1rem 1.1rem; border: 1px solid var(--ui-border); border-radius: 0.8rem; }
+.sc-gold > .sc-cap { margin: 0 0 0.8rem; }
+.sc-gold .r-doc { max-width: none; }
+.sc-gold-yellow { --sc-gold: var(--ui-yellow); }
+.sc-gold-yellow-bright { --sc-gold: var(--ui-yellow-bright); }
+.sc-gold .r-btn { margin: 0.4rem 0 0; }
+
 @media (max-width: 900px) {
   main.showcase { padding: 2rem 1rem 4rem; }
+
   .sc-grid.cols-2, .sc-grid.cols-3, .sc-form, .sc-guard, .sc-spec { grid-template-columns: 1fr; }
   .sc-span-2 { grid-column: auto; }
   .sc-type { grid-template-columns: 1fr; }
