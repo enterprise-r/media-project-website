@@ -1,0 +1,15 @@
+---
+// Footer: the theme's footer stripe (foot.css), last in .r-page.
+import Notes from "./Notes.astro";
+
+const foot = `<footer class="r-foot"><a href="https://www.enterprise-r.com">Enterprise-R</a></footer>`;
+---
+<section class="sc-section" id="footer">
+  <h2 class="sc-label">Footer</h2>
+  <Notes
+    markup={foot}
+    classes="`.r-foot`."
+    do="Keep it last in `.r-page`."
+    dont="Expect it in print."
+  />
+</section>

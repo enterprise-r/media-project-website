@@ -18,11 +18,10 @@ import Code from "../components/showcase/Code.astro";
 import Separators from "../components/showcase/Separators.astro";
 import Palette from "../components/showcase/Palette.astro";
 import Accessibility from "../components/showcase/Accessibility.astro";
+import Foot from "../components/showcase/Foot.astro";
 // The optional parts of the shell and the document scale, on this page only.
 import "../styles/theme/foot.css";
 import "../styles/theme/swatch.css";
-import "../styles/theme/stripe.css";
-import "../styles/theme/listing.css";
 import "../styles/theme/kv.css";
 import "../styles/theme/doc.css";
 import "../styles/ui.css";
@@ -44,6 +43,7 @@ const contents = [
   ["separators", "Separators"],
   ["palette", "Palette"],
   ["accessibility", "Accessibility"],
+  ["footer", "Footer"],
 ];
 ---
 <Base title="UI showcase · Enterprise-R" description="Enterprise-R UI style guide." noindex header={false}>
@@ -74,10 +74,10 @@ const contents = [
     <hr><Separators />
     <hr><Palette />
     <hr><Accessibility />
-
-    <p class="sc-closer"><a class="sc-closer-fill" href="/" aria-label="Enterprise-R home"><DarkR /></a></p>
+    <hr><Foot />
   </main>
   <footer><p class="sc-brand">Enterprise-R</p></footer>
+  <p class="sc-closer"><a class="sc-closer-fill" href="/" aria-label="Enterprise-R home"><DarkR /></a></p>
   <script>
     import "../styles/theme/rows.js";
   </script>
@@ -135,15 +135,6 @@ const contents = [
       ["glow-a", "glow-b", "glow-c", "glow-d"].forEach((id) => rGlow(document.getElementById(id), b.dataset.glow));
     }));
     document.querySelector("[data-glow-shape]").addEventListener("click", () => rGlow(document.getElementById("glow-e"), "r-glow-run"));
-    // Status stripe: a change of status changes the role and flashes the border.
-    document.getElementById("sc-stripe-done").addEventListener("click", () => {
-      const stripe = document.getElementById("sc-stripe");
-      const done = stripe.classList.contains("r-warn");
-      stripe.classList.toggle("r-warn", !done);
-      stripe.classList.toggle("r-ok", done);
-      document.getElementById("sc-stripe-status").textContent = done ? "Done" : "Running";
-      rGlow(stripe, "r-glow");
-    });
     // Click guard samples: count the presses that reach the page.
     const count = (btn, out) => document.getElementById(btn).addEventListener("click", () => {
       const o = document.getElementById(out);
@@ -151,14 +142,6 @@ const contents = [
     });
     count("sc-guard-btn", "sc-guard-n");
     count("sc-free-btn", "sc-free-n");
-    document.getElementById("sc-guard-script").addEventListener("click", () => {
-      const say = document.getElementById("sc-guard-say");
-      say.textContent = "Clicking in 3 s…";
-      setTimeout(() => {
-        document.getElementById("sc-guard-btn").click();
-        say.textContent = "Clicked from a script: the guarded counter rose.";
-      }, 3000);
-    });
     // A dynamic list added after load, enhanced with the rows.js hook.
     document.getElementById("sc-print").addEventListener("click", () => window.print());
   </script>
