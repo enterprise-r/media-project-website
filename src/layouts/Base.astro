@@ -9,6 +9,7 @@ import "../styles/bar.css";
 import "../styles/footer.css";
 import Footer from "../components/Footer.astro";
 import enterprsr from "../styles/fonts/woff2/Enterprsr-Regular.woff2?url";
+import palette from "../styles/palette.json";
 
 interface Props {
   title: string;
@@ -42,6 +43,8 @@ const current = pages.find((p) => p.href === here);
 if (current) crumbs.push({ href: current.href, label: current.label });
 const nav = pages.filter((p) => p.href !== here);
 const url = new URL(Astro.url.pathname, Astro.site).href;
+// Browser chrome colour: the page background, read from the palette source.
+const themeColor = palette.groups.flatMap((g) => g.colours).find((c) => c.var === "--ui-bg").hex;
 ---
 <!DOCTYPE html>
 <html lang="en" class:list={[isHero && "is-home", isMissing && "not-found", isAbout && "is-about"]}>
@@ -49,7 +52,7 @@ const url = new URL(Astro.url.pathname, Astro.site).href;
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#0C040F">
+  <meta name="theme-color" content={themeColor}>
   <meta name="description" content={description}>
   {noindex && <meta name="robots" content="noindex, nofollow">}
   <title>{title}</title>
