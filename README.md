@@ -38,7 +38,7 @@ npm run build    # output in dist/
 
 ## Brand assets
 
-Brand files come from the project-branding build (`build.sh`), shipped to Drive `assets/`. To refresh one, copy it in again. Do not edit a copied file here.
+Brand files come from the project-branding [v1.0.2](https://github.com/enterprise-r/project-branding/releases/tag/v1.0.2) build (`build.sh`), shipped to Drive `assets/`. To refresh one, copy it in again. Do not edit a copied file here.
 
 | In this repo | From |
 |---|---|
