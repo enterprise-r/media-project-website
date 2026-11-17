@@ -244,9 +244,12 @@ a.sc-closer-fill:hover {
 
 /* Tutorial notes: the markup to copy, then a list of what the part needs. */
 .sc-prose { max-width: 52rem; }
-.sc-notes { display: grid; gap: 0.8rem; margin: 1rem 0 0; }
+.sc-notes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.8rem; margin: 1rem 0 0; }
 /* Code to copy: closed by default in the theme's details box; left out of print. */
-.sc-code { margin: 0; }
+.sc-code { margin: 0; min-width: 0; }
+/* Open, the details frame steps aside so the code block is the only box. */
+.sc-code[open] { padding: 0; border-color: transparent; }
+.sc-code[open] > summary { padding: 0.5rem 0.8rem 0; }
 .sc-code > pre { margin: 0; }
 .sc-code > pre + pre { margin-top: 0.8rem; }
 @media print { .sc-code { display: none; } }
