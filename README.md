@@ -45,7 +45,7 @@ Brand files come from the project-branding build (`build.sh`), shipped to Drive 
 | `public/assets/favicon.ico`, `favicon-32.png` | Drive `assets/logos/favicon/` |
 | `public/assets/apple-touch-icon.png`, `icon-192.png`, `icon-512.png` | Drive `assets/logos/favicon/` `favicon-180.png`, `favicon-192.png`, `favicon-512.png`, renamed |
 | `public/assets/warpchi.*`, `hyper-j.*` | Showcase terminal sample (warpchi). Site wallpaper is hyper-j, set once in `bar.css`. Sources are project-branding `wallpapers/`, saved here as jpg, avif and webp |
-| `src/styles/theme/` | Drive `assets/theme/`, the whole directory, copied as-is |
+| `src/styles/theme/` | Drive `assets/theme/`, the whole directory except `palette.css` (see below), copied as-is |
 | `src/styles/fonts/woff2/*.woff2` | Drive `assets/fonts/woff2/` |
 | `public/fonts/OFL-*.txt` | Drive `assets/fonts/licenses/` |
 | `src/styles/palette.css`, `palette.json` | Drive `assets/palette/palette.css` and project-branding `palette/palette.json` |
