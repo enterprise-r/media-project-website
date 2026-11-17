@@ -21,8 +21,13 @@ import "../styles/login.css";
         <p>{page.disclaimer}</p>
         <p>{page.meantimeBefore}<a href={page.ui}>{page.meantimeLink}</a>{page.meantimeAfter}</p>
         <span class="r-group">
-          <a rel="nofollow" class="r-btn r-primary" href={page.enter}>Enter</a>
+          <a rel="nofollow" class="r-btn r-primary" href={page.enter} data-hq-enter>Enter</a>
         </span>
     </div>
   </main>
 </Base>
+<script>
+  import { enhanceEnter } from "../scripts/login-hq.js";
+  const enter = document.querySelector("[data-hq-enter]");
+  if (enter) enhanceEnter(enter);
+</script>
