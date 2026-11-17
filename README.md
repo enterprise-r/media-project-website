@@ -4,7 +4,7 @@ The Enterprise-R website. Public repo (needed for GitHub Pages on the Free tier)
 
 Part of [enterprise-r/project-foundation](https://github.com/enterprise-r/project-foundation). Logos, palette, fonts and Dark-R come from [enterprise-r/project-branding](https://github.com/enterprise-r/project-branding), shipped to Google Drive `assets/`. This repo copies them in.
 
-Pages: Home (`/`), About (`/about/`), Login (`/login/`), 404 (`/404.html`) and `/showcase/`. The showcase is the web UI, linked from the login page. It is `noindex` and not in the sitemap.
+Pages: Home (`/`), About (`/about/`), Login (`/r/`), 404 (`/404.html`) and `/showcase/`. The showcase is the web UI, linked from the login page. It is `noindex` and not in the sitemap. `/login/` redirects to `/r/`. Nav links say Login. On `/r/` the breadcrumb says Login until Enter, then `demo@ra.hq`.
 
 ## Where things are
 

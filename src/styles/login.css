@@ -41,3 +41,38 @@ main.login {
 .login-stack > .r-group {
   align-self: flex-end;
 }
+
+/* Headquarters shell: Enter fills the area between the bar and the footer. */
+html.is-hq,
+html.is-hq body {
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+html.is-hq body {
+  min-height: 0;
+}
+
+html.is-hq footer { flex-shrink: 0; }
+
+html.is-hq main.login {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+html.is-hq .login-stack { display: none; }
+
+.login-hq,
+.login-hq iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.login-hq iframe { background: var(--ui-bg); }
