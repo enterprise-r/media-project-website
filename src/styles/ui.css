@@ -14,9 +14,19 @@ main.showcase {
   text-align: left;
 }
 
+/* The title plate: a lone button's fill and pill ends from the theme tokens, scaled to the big logo.
+   Height = logo (24.68rem wide, 2350/13398 tall) + 2 × --sc-plate-pad; the ends are half of it. */
 .sc-title { margin: 0 0 0.75rem; line-height: 0; }
-.sc-title picture { display: contents; }
-.sc-title img { display: block; width: min(24.68rem, 100%); height: auto; margin-inline-start: auto; }
+.sc-title-plate {
+  --sc-plate-pad: 1rem;
+  --sc-plate-h: calc(24.68rem * 2350 / 13398 + 2 * var(--sc-plate-pad));
+  display: block;
+  max-width: 100%;
+  padding: var(--sc-plate-pad) calc(var(--sc-plate-h) / 2 * 0.7);
+  background-color: var(--r-btn);
+  border-radius: calc(var(--sc-plate-h) / 2);
+}
+.sc-title img { display: block; width: 24.68rem; max-width: 100%; height: auto; }
 .sc-aw { font-family: var(--r-font-heading); }
 .sc-brand { font-family: var(--r-font-brand); letter-spacing: 0; }
 /* Anchors the visually hidden name Dark-R next to its picture. */
