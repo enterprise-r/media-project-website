@@ -21,16 +21,13 @@ It needs no framework and no build step. Any page or app can use it with `<link>
 <link rel="stylesheet" href="theme/column.css">
 <link rel="stylesheet" href="theme/bar.css">
 <link rel="stylesheet" href="theme/foot.css">
-<link rel="stylesheet" href="theme/swatch.css">
-<link rel="stylesheet" href="theme/stripe.css">
-<link rel="stylesheet" href="theme/listing.css">
 <link rel="stylesheet" href="theme/kv.css">
 <link rel="stylesheet" href="theme/doc.css">
 <script src="theme/rows.js"></script>
 <script src="theme/guard.js"></script>
 ```
 
-The app shell, `column.css` to `kv.css`, is optional: include `column.css` and the parts a page uses. `bar.css`, `stripe.css` and `listing.css` read the tokens of `column.css`. `doc.css` is optional: include it only on pages that hold documents. `rows.js` is optional too: include it only on pages that use `.r-rows`. It runs on `DOMContentLoaded` (or immediately if the document is already ready) and enhances every `.r-rows` it finds. To enhance a list added later, call `rRows.enhance(element)` or `rRows.enhanceAll(container)`. `guard.js` is optional: include it once on pages that should guard button clicks. It listens on the document and applies to every `button` and `input` of type button, submit or reset, not to links. Add `.r-unguarded` on a control or an ancestor (for example a nav) to opt out.
+The app shell, `column.css` to `kv.css`, is optional: include `column.css` and the parts a page uses. `bar.css` reads the tokens of `column.css`. `doc.css` is optional: include it only on pages that hold documents. `rows.js` is optional too: include it only on pages that use `.r-rows`. It runs on `DOMContentLoaded` (or immediately if the document is already ready) and enhances every `.r-rows` it finds. To enhance a list added later, call `rRows.enhance(element)` or `rRows.enhanceAll(container)`. `guard.js` is optional: include it once on pages that should guard button clicks. It listens on the document and applies to every `button` and `input` of type button, submit or reset, not to links. Add `.r-unguarded` on a control or an ancestor (for example a nav) to opt out.
 
 ## Files
 
@@ -43,9 +40,6 @@ The app shell, `column.css` to `kv.css`, is optional: include `column.css` and t
 | `column.css` | The measure and the insets the shell shares: `--r-measure` (880px), `--r-text-min`, `--r-text-pad`, `--r-box-gap`, `--r-box-pad`, `--r-text-inline` and `--r-bar-inline`, one inset below `40rem`. The page (`.r-page`: bar, content, footer, at least the window tall), the column (`.r-column`: the content under the bar, clearing `--r-bar-h`), and the step back (`.r-step-back`: a box whose words line up with the text outside it). | Shipped |
 | `bar.css` | The app bar (`.r-bar`), fixed across the top on the Border fill: the root on the left (a trail of `.r-crumbs`, or any element), `.r-bar-end` on the right with an actions pill (`.r-group`) and the mark menu (`.r-mark`, a framed picture as tall as a button, sized by `--r-mark-view`, `--r-mark-plate` and `--r-mark-round`). Below `52rem` a trail meets the window edge, square, 8px deep. `--r-bar-pad`, `--r-bar-gap`. | Shipped |
 | `foot.css` | The footer stripe (`.r-foot`): the Border fill, the company word in Enterprsr, linked. | Shipped |
-| `swatch.css` | Theme choices that show the page they set (`.r-swatch`, with `--r-swatch-bg`, `--r-swatch-fg` and `--r-swatch-font`); `.r-swatch-dark-r` is Dark-R's page. | Shipped |
-| `stripe.css` | The status stripe (`.r-stripe` on a `dl.r-notice`): keys and values on two sides under the bar, the value `.r-role` in the role color, `.r-nowrap` on one line. | Shipped |
-| `listing.css` | The listing table (`table.r-listing`): an entry per `tbody`, a detail row (`.r-detail`), an id cell (`.r-id`) across both, banded entries, two-line ids below `40rem` (`--r-listing-id`). | Shipped |
 | `kv.css` | The key/value table (`.r-kv`): right-aligned keys against a rule, nested tables flush in their cells, `--r-kv-line`. | Shipped |
 | `rows.js` | Plain script that enhances any `.r-rows` fieldset: add and remove, keyboard, live-region announcements and `data-name` templates. No dependencies, no build step. | Shipped |
 | `guard.js` | Plain script that guards button clicks. Moving the pointer (or stopping) accepts presses immediately, including during movement, for `--r-guard-gap2` (10s); the window restarts on each movement. After 10s with no movement, presses stay off until the pointer moves again. An accepted press turns clicks off for `--r-guard-cool` (400ms), then off until movement again. Touch and keyboard use the cooldown only. Only trusted events are judged; clicks a script dispatches, such as `el.click()`, pass through. Acceptance is decided on button press, not release; a discarded press also suppresses the click. A discarded press flashes the waiting cursor for 300ms. Opt out with `.r-unguarded` on the button or an ancestor. No dependencies, no build step. | Shipped |
@@ -117,8 +111,8 @@ The shell is the frame of a page: the bar, the column, the footer. A site and an
           <details class="r-menu r-side">
             <summary class="r-btn r-clear" role="menuitem" aria-haspopup="menu">Theme</summary>
             <div class="r-menu-list" role="menu" aria-label="Theme">
-              <button type="button" class="r-btn r-swatch" role="menuitemradio" aria-checked="false" style="--r-swatch-bg: var(--app-light-bg); --r-swatch-fg: var(--app-light-fg)">Light</button>
-              <button type="button" class="r-btn r-swatch r-swatch-dark-r" role="menuitemradio" aria-checked="true" aria-label="Dark-R"><span aria-hidden="true">Dark-<span class="r-name-r">®</span></span></button>
+              <button type="button" class="r-btn" role="menuitemradio" aria-checked="false">Light</button>
+              <button type="button" class="r-btn" role="menuitemradio" aria-checked="true" aria-label="Dark-R"><span aria-hidden="true">Dark-<span class="r-name-r">®</span></span></button>
             </div>
           </details>
         </div>
@@ -133,36 +127,8 @@ The shell is the frame of a page: the bar, the column, the footer. A site and an
 - **Column.** The text is `--r-measure` (880px) wide, centered, at least `--r-text-min` (26px) from the window: `--r-text-inline`. A box pads its sides by `--r-box-pad` and steps back by the same length (`.r-step-back`), so its words line up with the text outside it; `--r-box-gap` (4px) stays outside its border for the glow. The bar's inset, `--r-bar-inline`, lines it up with the boxes. Below `40rem` the text and the bar share `--r-text-pad` (1rem). `.r-column` starts a button's height below the bar; a page whose bar wraps sets `--r-bar-h` to the bar's measured height.
 - **Bar.** The root comes first and stays on the left; `.r-bar-end` stays on the right, also when the bar wraps. In the bar a trail's labels sit against the slant. The actions pill ends square against the mark. A disabled button takes the page ground, as the theme's disabled fill is the bar's. Below `52rem` a trail meets the left edge of the window: the first crumb is square, 8px deep, and a lone first crumb is square on the left with its right end still round, never a whole pill. Any other root keeps the inset.
 - **Mark.** A menu whose button is a square picture as tall as a button, framed like an active card. The picture is a square view box with a rounded plate centered in it: `--r-mark-view`, `--r-mark-plate` and `--r-mark-round` (128, 120 and 26 by default) fit the plate to the square and the frame to its curve. Focus draws the frame in the focus color. A second level (`.r-menu.r-side`) fills the list's width and opens to its left.
-- **Swatches.** Each theme choice is the page it sets, also on hover: the app sets `--r-swatch-bg`, `--r-swatch-fg` and `--r-swatch-font` for each of its own pages. `.r-swatch-dark-r` is Dark-R's: the ground, sage ink, the title face. The checked choice has a Green inner ring; pointing at another draws it in the dim ink.
 - **Footer.** The Border fill, the company word in Enterprsr in the darkest ink; pointing at it fills the word with the striped gradient. Inside `.r-page` it stays on the bottom of the window.
-- Print drops the bar, the footer and the stripe, and the column keeps the page edge.
-
-## Status stripe
-
-A notice under the bar with a few keys and values. It takes the notice's roles; the value `.r-role` takes the role color. The pairs fill a left and a right side in reading order; a side's keys are right-aligned and its values left-aligned and wrapping, `.r-nowrap` on one line. Three equal gaps share the free space. Add `.r-glow` when the status changes.
-
-```html
-<dl class="r-notice r-stripe r-warn" role="status">
-  <div><dt>Status</dt><dd class="r-role">Running</dd></div>
-  <div><dt>Started</dt><dd><time datetime="2026-11-15T09:30Z">09:30</time></dd></div>
-  <div><dt>Run</dt><dd class="r-nowrap"><code>a1b2c3d4e5f6</code></dd></div>
-  <div><dt>Duration</dt><dd>2 minutes</dd></div>
-</dl>
-```
-
-## Listing
-
-A table of entries, one `tbody` each: a main row and a detail row, with the id cell across both. The id is in the code face, drawn plain and underlined while pointed at. Every other entry is banded. The table steps back like a box. Below `40rem` the id column is `--r-listing-id` wide (7ch), so a longer id breaks onto equal lines.
-
-```html
-<table class="r-listing">
-  <thead><tr><th>Run</th><th>Status</th><th>Started</th></tr></thead>
-  <tbody>
-    <tr><td class="r-id" rowspan="2"><a href="/runs/a1b2c3d4e5f6">a1b2c3d4e5f6</a></td><td>Done</td><td>09:30</td></tr>
-    <tr class="r-detail"><td><span class="r-tag">Version</span> 3</td><td><span class="r-tag">Duration</span> 2 minutes</td></tr>
-  </tbody>
-</table>
-```
+- Print drops the bar and the footer, and the column keeps the page edge.
 
 ## Key/value table
 

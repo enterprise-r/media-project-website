@@ -268,7 +268,6 @@ a.sc-closer-fill:hover {
 /* The app shell in a frame: the page is as tall as its content, and the bar (static here) takes no room above the column. */
 .sc-frame { min-height: 0; --r-bar-h: 0px; margin: 1rem 0; border: 1px solid var(--ui-border); border-radius: 1rem; overflow: clip; }
 .sc-mark { --r-mark-view: 1024; --r-mark-plate: 1024; --r-mark-round: 102; }
-.sc-swatch-light { --r-swatch-bg: var(--ui-fg-bright); --r-swatch-fg: var(--ui-bg); }
 
 /* Key/value sample: a column's width, with room for the step back. */
 .sc-measure { max-width: 46rem; padding-inline: var(--r-box-pad); }
