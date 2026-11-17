@@ -53,7 +53,7 @@
           "name": "Bright foreground",
           "var": "--ui-fg-bright",
           "hex": "#FFF3E6",
-          "use": "keyboard focus outline, link hover"
+          "use": "keyboard focus outline"
         }
       ]
     },
@@ -74,12 +74,14 @@
         {
           "name": "Yellow",
           "var": "--ui-yellow",
-          "hex": "#E4D58B"
+          "hex": "#E4D58B",
+          "use": "visited links, h4 labels"
         },
         {
           "name": "Bright yellow",
           "var": "--ui-yellow-bright",
-          "hex": "#EFE3A6"
+          "hex": "#EFE3A6",
+          "use": "link hover"
         },
         {
           "name": "Orange",
@@ -135,7 +137,8 @@
         {
           "name": "Bright magenta",
           "var": "--ui-magenta-bright",
-          "hex": "#D2BCED"
+          "hex": "#D2BCED",
+          "use": "unvisited links"
         },
         {
           "name": "Brown",
