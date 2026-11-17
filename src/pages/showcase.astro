@@ -166,11 +166,6 @@ const contents = [
       }, 3000);
     });
     // A dynamic list added after load, enhanced with the rows.js hook.
-    document.getElementById("sc-rows-add-list").addEventListener("click", () => {
-      const later = document.getElementById("sc-rows-later");
-      later.append(document.getElementById("sc-rows-tpl").content.cloneNode(true));
-      window.rRows.enhance(later.lastElementChild);
-    });
     document.getElementById("sc-print").addEventListener("click", () => window.print());
   </script>
 </Base>

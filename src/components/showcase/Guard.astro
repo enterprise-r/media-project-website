@@ -34,13 +34,10 @@ const guard = `
      The wait cursor is 32 CSS px, hotspot 16 16, with progress as the fallback. */}
 <section class="sc-section" id="working">
   <h2 class="sc-label">Working</h2>
-  <div class="sc-states">
-    <div class="r-card sc-working" role="status">
-      <img src={waitIcon} width="32" height="32" alt="">
-      <span>Working</span>
-    </div>
-    <figure><img class="sc-icon" src={waitStatic} width="32" height="32" alt=""><figcaption class="sc-cap">Still W</figcaption></figure>
-    <figure><span class="r-card r-wait sc-working">Point here</span><figcaption class="sc-cap">W cursor, <code>.r-wait</code></figcaption></figure>
+  <div class="sc-wait-row">
+    <figure><div class="r-card sc-working" role="status"><img src={waitIcon} width="32" height="32" alt=""><span>Working</span></div><figcaption class="sc-cap">Animated W</figcaption></figure>
+    <figure><div class="r-card sc-working"><img src={waitStatic} width="32" height="32" alt=""></div><figcaption class="sc-cap">Still W</figcaption></figure>
+    <figure><div class="r-card r-wait sc-working"><span>Point here</span></div><figcaption class="sc-cap">W cursor, <code>.r-wait</code></figcaption></figure>
   </div>
   <p class="sc-note">Disabled controls show the W cursor.</p>
   <Notes
