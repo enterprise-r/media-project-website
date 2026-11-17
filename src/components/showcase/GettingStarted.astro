@@ -43,27 +43,29 @@ const name = `
 <section class="sc-section" id="getting-started">
   <h2 class="sc-label">Getting started</h2>
   <h3 class="sc-subhead">Include order</h3>
-  <Notes markup={order} extra={layout} />
-  <table>
-    <caption>Theme files</caption>
-    <thead><tr><th>File</th><th>What it adds</th></tr></thead>
-    <tbody>
-      {files.map(([f, need, what]) => (<tr><td><code>{f}</code></td><td>{need}. {what}</td></tr>))}
-    </tbody>
-  </table>
-  <p class="sc-prose">The root crumb's label or logo, the bar's actions and the footer's content belong to the site, not to <code>theme/</code>.</p>
+  <Notes markup={order} extra={layout}>
+    <table>
+      <caption>Theme files</caption>
+      <thead><tr><th>File</th><th>What it adds</th></tr></thead>
+      <tbody>
+        {files.map(([f, need, what]) => (<tr><td><code>{f}</code></td><td>{need}. {what}</td></tr>))}
+      </tbody>
+    </table>
+    <p class="sc-prose">The root crumb's label or logo, the bar's actions and the footer's content belong to the site, not to <code>theme/</code>.</p>
+  </Notes>
 
   <h3 class="sc-subhead">Rules</h3>
-  <ul class="sc-prose">
-    <li>Colors only from <code>--ui-*</code>. Theme roles are <code>--r-*</code>.</li>
-    <li>Theme classes start with <code>r-</code>.</li>
-    <li>Element rules sit in <code>:where()</code>, so the app's own rules win.</li>
-  </ul>
   <Notes
     markup={rules}
     do="Retune a role by pointing it at another token."
     dont="Write hex values, `!important` or cascade layers."
-  />
+  >
+    <ul>
+      <li>Colors only from <code>--ui-*</code>. Theme roles are <code>--r-*</code>.</li>
+      <li>Theme classes start with <code>r-</code>.</li>
+      <li>Element rules sit in <code>:where()</code>, so the app's own rules win.</li>
+    </ul>
+  </Notes>
 
   <h3 class="sc-subhead">The name</h3>
   <p class="sc-name-sample"><DarkR /></p>
@@ -75,6 +77,5 @@ const name = `
     do="Let readers hear the text Dark-R."
     dont="Type a plain ® from another face."
   />
-
   <p class="sc-note">Classes starting with <code>sc-</code>, and <code>.is-hover</code> / <code>.is-focus</code>, are this page's only. They are not part of <DarkR />.</p>
 </section>

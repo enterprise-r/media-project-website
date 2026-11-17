@@ -1,7 +1,4 @@
 ---
-// Tutorial notes for one part of the theme. The code to copy sits in a closed details box
-// (the theme's own details style), so the page reads as a showcase first; print leaves it out.
-// Below it, a short list of what the part needs. Text in backticks is set as code.
 import { md } from "./md";
 
 interface Props {
@@ -23,18 +20,22 @@ const rows = [
   ["Do", p.do],
   ["Don't", p.dont],
 ].filter(([, v]) => v) as [string, string][];
+const hasCopy = Boolean(p.markup || p.extra);
+const hasDocs = rows.length > 0;
+const hasExtra = Astro.slots.has("default");
 ---
-<div class="sc-notes">
-  {(p.markup || p.extra) && (
+{(hasCopy || hasDocs || hasExtra) && (
+  <div class="sc-notes">
     <details class="sc-code">
       <summary>Code</summary>
       {p.markup && <pre><code>{p.markup.trim()}</code></pre>}
       {p.extra && <pre><code>{p.extra.trim()}</code></pre>}
+      {hasDocs && (
+        <dl class="sc-spec">
+          {rows.map(([k, v]) => (<><dt>{k}</dt><dd set:html={md(v)} /></>))}
+        </dl>
+      )}
+      {hasExtra && <div class="sc-docs"><slot /></div>}
     </details>
-  )}
-  {rows.length > 0 && (
-    <dl class="sc-spec">
-      {rows.map(([k, v]) => (<><dt>{k}</dt><dd set:html={md(v)} /></>))}
-    </dl>
-  )}
-</div>
+  </div>
+)}

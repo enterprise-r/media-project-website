@@ -39,6 +39,7 @@ const measure = `
 <section class="sc-section" id="shell">
   <h2 class="sc-label">App shell</h2>
   <p class="sc-prose">The bar, the column and the footer. Only the root crumb differs from site to site.</p>
+  <h3 class="sc-subhead">Page, column and step back</h3>
   <div class="r-page sc-frame">
     <header class="r-bar">
       <nav class="r-crumbs" aria-label="Breadcrumb"><ol>
@@ -71,8 +72,6 @@ const measure = `
   {/* The frame (.sc-frame, ui.css) keeps the bar in place with --r-bar-h at 0, so the column starts a
        button's height below it. The mark is branding's hi-res chipped logo, which fills its view box, so
        .sc-mark sets the mark tokens to 1024, 1024 and 102. This site's public pages use their own bar and footer. */}
-
-  <h3 class="sc-subhead">Page, column and step back</h3>
   <Notes
     markup={page}
     extra={measure}
@@ -81,5 +80,4 @@ const measure = `
     do="Set `--r-bar-h` when the bar wraps."
     dont="Give boxes in the column their own side margins."
   />
-
 </section>
