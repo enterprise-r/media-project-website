@@ -15,6 +15,22 @@ const order = (colours) => {
 const groups = palette.groups.map((g) => ({ ...g, colours: order(g.colours.filter((c) => c.var !== "--ui-accent")) }));
 const accent = palette.groups.flatMap((g) => g.colours).filter((c) => c.var === "--ui-accent");
 
+const pairColours = (colours) => {
+  const pairs = [];
+  for (let i = 0; i < colours.length; ) {
+    const a = colours[i];
+    const b = colours[i + 1];
+    if (b) {
+      pairs.push([a, b]);
+      i += 2;
+    } else {
+      pairs.push([a]);
+      i += 1;
+    }
+  }
+  return pairs;
+};
+
 const use = `
 .app-status { color: var(--ui-cyan); border-color: var(--ui-border); }
 .app-hero { background: var(--ui-striped); }
@@ -39,9 +55,21 @@ const use = `
   </div>
   {groups.map((g) => (<>
     <h3 class="sc-subhead">{g.title}</h3>
-    <div class="sc-swatches">
-      {g.colours.map((c) => (<div class="sc-swatch"><i style={`background:var(${c.var})`}></i><div><b>{c.name}</b><code>{c.hex}</code><small>{c.var}{c.use && ` · ${c.use}`}</small></div></div>))}
-    </div>
+    {g.title === "Named colours" ? (
+      <div class="sc-swatch-pairs">
+        {pairColours(g.colours).map((pair) => (
+          <div class="sc-swatch-pair">
+            {pair.map((c) => (
+              <div class="sc-swatch"><i style={`background:var(${c.var})`}></i><div><b>{c.name}</b><code>{c.hex}</code><small>{c.var}{c.use && ` · ${c.use}`}</small></div></div>
+            ))}
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="sc-swatches">
+        {g.colours.map((c) => (<div class="sc-swatch"><i style={`background:var(${c.var})`}></i><div><b>{c.name}</b><code>{c.hex}</code><small>{c.var}{c.use && ` · ${c.use}`}</small></div></div>))}
+      </div>
+    )}
   </>))}
   <Notes
     markup={use}
