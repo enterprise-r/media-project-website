@@ -55,9 +55,15 @@ html:not(:has(.showcase, main.login)) body {
 
 /* Open stripes on the wallpaper (Home, the 404, About) so the picture shows
    through the bar and the footer. Icons are Background, meant for the stripe;
-   on the picture they switch to Foreground. Login and the style guide stay solid. */
+   on the picture they switch to Foreground. Login and the style guide stay solid.
+   The bar is fixed. bar.js adds .is-solid once the page leaves the top, and the
+   bar takes the Border fill. The footer stays open: it sits on the picture. */
 html:not(:has(.showcase, main.login)) :is(header, footer) {
   background-color: transparent;
+}
+
+html:not(:has(.showcase, main.login)) header.is-solid {
+  background-color: var(--ui-border);
 }
 
 /* The theme bar is fixed. One row of it stays clear of the page. */
