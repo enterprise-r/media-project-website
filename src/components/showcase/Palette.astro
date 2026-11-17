@@ -14,23 +14,21 @@ const use = `
 ---
 <section class="sc-section" id="palette">
   <h2 class="sc-label">Palette</h2>
+    {/* Branding's animated badge (logo/svg/logo-normal-badge-pulse.svg); with reduced motion the still
+         spectrum badge (logo-normal-badge-spectrum.svg) replaces it. Both copied unmodified. */}
+    <figure class="sc-badge">
+      <picture>
+        <source media="(prefers-reduced-motion: reduce)" srcset="/assets/logo-badge-spectrum.svg">
+        <img src="/assets/logo-badge-pulse.svg" width="144" height="144" alt="Enterprise-R badge">
+      </picture>
+      <figcaption class="sc-cap">The <DarkR /> spectrum</figcaption>
+    </figure>
   <div class="sc-brand-box">
     <h3 class="sc-subhead sc-top">Amber (Accent)</h3>
-    <div class="sc-accent">
-      <div class="sc-swatches">
+    <div class="sc-swatches">
         {accent.map((c) => (
           <div class="sc-swatch"><i style={`background:var(${c.var})`}></i><div><b>{c.name}</b><code>{c.hex}</code><small>{c.var} · {c.use}</small></div></div>
         ))}
-      </div>
-      {/* Branding's animated badge (logo/svg/logo-normal-badge-pulse.svg); with reduced motion the still
-           spectrum badge (logo-normal-badge-spectrum.svg) replaces it. Both copied unmodified. */}
-      <figure class="sc-badge">
-        <picture>
-          <source media="(prefers-reduced-motion: reduce)" srcset="/assets/logo-badge-spectrum.svg">
-          <img src="/assets/logo-badge-pulse.svg" width="144" height="144" alt="Enterprise-R badge">
-        </picture>
-        <figcaption class="sc-cap">The <DarkR /> spectrum</figcaption>
-      </figure>
     </div>
   </div>
   {groups.map((g) => (<>
