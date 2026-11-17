@@ -1,0 +1,1310 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="690"
+   height="590"
+   viewBox="0 0 690 590"
+   role="img"
+   version="1.1"
+   id="svg60"
+   sodipodi:docname="ui-language-roads.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview60"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.1130435"
+     inkscape:cx="316.69922"
+     inkscape:cy="322.08984"
+     inkscape:window-width="1322"
+     inkscape:window-height="900"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg60" />
+  <title
+     id="title1">UI language as a landscape of roads</title>
+  <desc
+     id="desc1">A figure stands on a pool of light cyan. Ahead, amber-edged roads fan out: one green road leads to arrival, red roads lead to abort, and a cyan loop returns to stay. Behind, a magenta trail with a dark lilac route has yellow lampposts and branches marking visited links.</desc>
+  <defs
+     id="defs13">
+    <style
+       id="style1">
+@font-face {
+  font-family: Rajdhani;
+  font-weight: 600;
+  font-style: normal;
+  src: url(data:font/woff2;base64,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);
+}
+text {
+  font-family: Rajdhani, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+}
+    </style>
+    <linearGradient
+       id="refuse-stop"
+       gradientUnits="userSpaceOnUse"
+       x1="340"
+       y1="335"
+       x2="127.47051"
+       y2="191.91755">
+      <stop
+         offset="0"
+         stop-color="#F4B965"
+         id="stop8" />
+      <stop
+         offset="1"
+         stop-color="#EC8790"
+         id="stop9" />
+    </linearGradient>
+    <linearGradient
+       id="refuse-abort"
+       gradientUnits="userSpaceOnUse"
+       x1="340"
+       y1="335"
+       x2="235"
+       y2="105">
+      <stop
+         offset="0"
+         stop-color="#F4B965"
+         id="stop10" />
+      <stop
+         offset="1"
+         stop-color="#EC8790"
+         id="stop11" />
+    </linearGradient>
+    <linearGradient
+       id="refuse-cancel"
+       gradientUnits="userSpaceOnUse"
+       x1="340"
+       y1="335"
+       x2="560"
+       y2="120">
+      <stop
+         offset="0"
+         stop-color="#F4B965"
+         id="stop12" />
+      <stop
+         offset="1"
+         stop-color="#EC8790"
+         id="stop13" />
+    </linearGradient>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask60">
+      <g
+         id="g67">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect60" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect61" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect62" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect63" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect64" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect65" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect66" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect67" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask67">
+      <g
+         id="g75">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect68" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect69" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect70" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect71" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect72" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect73" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect74" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect75" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask75">
+      <g
+         id="g83">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect76" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect77" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect78" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect79" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect80" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect81" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect82" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect83" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask83">
+      <g
+         id="g91">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect84" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect85" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect86" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect87" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect88" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect89" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect90" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect91" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask91">
+      <g
+         id="g99">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect92" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect93" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect94" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect95" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect96" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect97" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect98" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect99" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask99">
+      <g
+         id="g107">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect100" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect101" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect102" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect103" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect104" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect105" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect106" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect107" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask107">
+      <g
+         id="g115">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect108" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect109" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect110" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect111" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect112" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect113" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect114" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect115" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask115">
+      <g
+         id="g123">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect116" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect117" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect118" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect119" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect120" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect121" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect122" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect123" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask123">
+      <g
+         id="g131">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect124" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect125" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect126" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect127" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect128" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect129" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect130" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect131" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask131">
+      <g
+         id="g139">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect132" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect133" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect134" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect135" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect136" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect137" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect138" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect139" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask139">
+      <g
+         id="g147">
+        <rect
+           x="0"
+           y="0"
+           width="690"
+           height="590"
+           fill="#ffffff"
+           id="rect140" />
+        <rect
+           x="301.83749"
+           y="38"
+           width="76.574997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect141" />
+        <rect
+           x="89.599998"
+           y="184"
+           width="40.799999"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect142" />
+        <rect
+           x="214.375"
+           y="66"
+           width="41.249996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect143" />
+        <rect
+           x="536.1875"
+           y="82"
+           width="47.624996"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect144" />
+        <rect
+           x="488"
+           y="292"
+           width="67.125"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect145" />
+        <rect
+           x="159.925"
+           y="343"
+           width="80.324997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect146" />
+        <rect
+           x="436"
+           y="531"
+           width="77.449997"
+           height="19.599998"
+           fill="#000000"
+           rx="2"
+           id="rect147" />
+      </g>
+    </mask>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter147"
+       x="-0.25387781"
+       y="-0.25387781"
+       width="1.5077556"
+       height="1.5077556">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.6925187"
+         id="feGaussianBlur147" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter148"
+       x="-0.22566916"
+       y="-0.16925187"
+       width="1.4513383"
+       height="1.3385037">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.6925187"
+         id="feGaussianBlur148" />
+    </filter>
+  </defs>
+  <rect
+     x="0"
+     y="0"
+     width="680"
+     height="580"
+     rx="12"
+     fill="#181820"
+     id="rect13" />
+  <path
+     d="M 340,335 Q 290,230 235,105"
+     stroke="#f0a202"
+     stroke-width="14"
+     opacity="0.55"
+     id="path37"
+     style="fill:none;stroke-linecap:round"
+     mask="url(#mask131)" />
+  <path
+     d="M 340,335 Q 290,230 235,105"
+     stroke="url(#refuse-abort)"
+     stroke-width="5"
+     stroke-dasharray="2, 10"
+     id="path42"
+     style="fill:none;stroke:url(#refuse-abort);stroke-linecap:round"
+     mask="url(#mask91)" />
+  <path
+     d="M 340,335 Q 440,190 560,120"
+     stroke="#f0a202"
+     stroke-width="14"
+     opacity="0.55"
+     id="path38"
+     style="fill:none;stroke-linecap:round"
+     mask="url(#mask123)" />
+  <path
+     d="M340 440 Q 250 450 110 505"
+     fill="none"
+     stroke="#BA9EDA"
+     stroke-width="22"
+     stroke-linecap="round"
+     id="path13" />
+  <path
+     d="M340 440 Q 250 450 110 505"
+     fill="none"
+     stroke="#3F2C53"
+     stroke-width="3"
+     stroke-linecap="round"
+     id="path14" />
+  <path
+     d="M345 420 Q 450 430 570 485"
+     fill="none"
+     stroke="#BA9EDA"
+     stroke-width="20"
+     stroke-linecap="round"
+     id="path15" />
+  <path
+     d="M345 420 Q 450 430 570 485"
+     fill="none"
+     stroke="#3F2C53"
+     stroke-width="3"
+     stroke-linecap="round"
+     id="path16" />
+  <polygon
+     points="326,350 354,350 394,560 286,560"
+     fill="#BA9EDA"
+     id="polygon16" />
+  <path
+     d="M340 350 L340 560"
+     fill="none"
+     stroke="#3F2C53"
+     stroke-width="6"
+     id="path17" />
+  <circle
+     cx="110"
+     cy="505"
+     r="22"
+     fill="#E4D58B"
+     opacity="0.2"
+     id="circle17" />
+  <circle
+     cx="110"
+     cy="505"
+     r="7"
+     fill="#E4D58B"
+     id="circle18" />
+  <circle
+     cx="570"
+     cy="485"
+     r="22"
+     fill="#E4D58B"
+     opacity="0.2"
+     id="circle19" />
+  <circle
+     cx="570"
+     cy="485"
+     r="7"
+     fill="#E4D58B"
+     id="circle20" />
+  <line
+     x1="302"
+     y1="409"
+     x2="302"
+     y2="385"
+     id="line20"
+     style="fill:none;stroke:#e4d58b;stroke-width:2" />
+  <line
+     x1="380"
+     y1="409"
+     x2="380"
+     y2="385"
+     id="line21"
+     style="fill:none;stroke:#e4d58b;stroke-width:2" />
+  <line
+     x1="280"
+     y1="492"
+     x2="280"
+     y2="462"
+     id="line22"
+     style="fill:none;stroke:#e4d58b;stroke-width:2" />
+  <line
+     x1="400"
+     y1="492"
+     x2="400"
+     y2="462"
+     id="line23"
+     style="fill:none;stroke:#e4d58b;stroke-width:2" />
+  <line
+     x1="266"
+     y1="552"
+     x2="266"
+     y2="516"
+     id="line24"
+     style="fill:none;stroke:#e4d58b;stroke-width:2" />
+  <line
+     x1="414"
+     y1="552"
+     x2="414"
+     y2="516"
+     id="line25"
+     style="fill:none;stroke:#e4d58b;stroke-width:2" />
+  <circle
+     cx="302"
+     cy="383"
+     r="13"
+     id="circle25"
+     style="opacity:0.2;fill:#e4d58b" />
+  <circle
+     cx="380"
+     cy="383"
+     r="13"
+     id="circle26"
+     style="opacity:0.2;fill:#e4d58b" />
+  <circle
+     cx="280"
+     cy="460"
+     r="15"
+     id="circle27"
+     style="opacity:0.2;fill:#e4d58b" />
+  <circle
+     cx="400"
+     cy="460"
+     r="15"
+     id="circle28"
+     style="opacity:0.2;fill:#e4d58b" />
+  <circle
+     cx="266"
+     cy="514"
+     r="17"
+     id="circle29"
+     style="opacity:0.2;fill:#e4d58b" />
+  <circle
+     cx="414"
+     cy="514"
+     r="17"
+     id="circle30"
+     style="opacity:0.2;fill:#e4d58b" />
+  <circle
+     cx="302"
+     cy="381"
+     r="4"
+     id="circle31"
+     style="fill:#efe3a6" />
+  <circle
+     cx="380"
+     cy="381"
+     r="4"
+     id="circle32"
+     style="fill:#efe3a6" />
+  <circle
+     cx="280"
+     cy="460"
+     r="5"
+     id="circle33"
+     style="fill:#efe3a6" />
+  <circle
+     cx="400"
+     cy="460"
+     r="5"
+     id="circle34"
+     style="fill:#efe3a6" />
+  <circle
+     cx="266"
+     cy="514"
+     r="6"
+     id="circle35"
+     style="fill:#efe3a6" />
+  <circle
+     cx="414"
+     cy="514"
+     r="6"
+     id="circle36"
+     style="fill:#efe3a6" />
+  <path
+     d="M 340,335 C 246.66667,311.66667 187.47051,278.58421 127.47051,191.91755"
+     stroke="url(#refuse-stop)"
+     stroke-width="6"
+     stroke-dasharray="2, 10"
+     id="path41"
+     style="fill:none;stroke:url(#refuse-stop);stroke-linecap:round"
+     mask="url(#mask99)" />
+  <path
+     d="M 340,335 C 246.66667,311.66667 189.05874,280.17244 129.05874,193.50578"
+     stroke="#f0a202"
+     stroke-width="16"
+     opacity="0.55"
+     id="path36"
+     style="fill:none;stroke-linecap:round"
+     mask="url(#mask139)" />
+  <path
+     d="m 388,345 c 82,-5 92,-75 37,-70 -30,3 -45,45 -53,63"
+     stroke="#f0a202"
+     stroke-width="14"
+     opacity="0.55"
+     id="path40"
+     style="fill:none;stroke-linecap:round;stroke:#bdcbd9;stroke-opacity:1"
+     mask="url(#mask107)" />
+  <path
+     d="M 340,335 Q 440,190 560,120"
+     stroke="url(#refuse-cancel)"
+     stroke-width="5"
+     stroke-dasharray="2, 10"
+     id="path43"
+     style="fill:none;stroke:url(#refuse-cancel);stroke-linecap:round"
+     mask="url(#mask83)" />
+  <path
+     d="M 340,335 V 85"
+     stroke="#f0a202"
+     stroke-width="22"
+     opacity="0.7"
+     id="path39"
+     style="fill:none;stroke-linecap:round"
+     mask="url(#mask115)" />
+  <path
+     d="M 340,335 V 85"
+     stroke="#77af8a"
+     stroke-width="14"
+     id="path44"
+     style="fill:none;stroke-linecap:round"
+     mask="url(#mask75)" />
+  <path
+     d="M 340,335 V 85"
+     stroke="#9add6d"
+     stroke-width="2"
+     stroke-dasharray="10, 12"
+     id="path45"
+     style="fill:none;stroke-linecap:round"
+     mask="url(#mask67)" />
+  <path
+     d="m 388,345 c 82,-5 92,-75 37,-70 -30,3 -45,45 -53,63"
+     stroke="#cad9e7"
+     stroke-width="6"
+     id="path46"
+     style="fill:none;stroke-linecap:round"
+     mask="url(#mask60)" />
+  <ellipse
+     cx="340"
+     cy="352"
+     rx="92"
+     ry="30"
+     fill="#96C5CF"
+     opacity="0.25"
+     id="ellipse46" />
+  <ellipse
+     cx="340"
+     cy="352"
+     rx="62"
+     ry="20"
+     fill="#CAD9E7"
+     stroke="#96C5CF"
+     stroke-width="1.5"
+     opacity="0.3"
+     id="ellipse47"
+     style="stroke:#fff3ef;stroke-opacity:1;fill:#fff3e6;fill-opacity:1" />
+  <ellipse
+     cx="340"
+     cy="350"
+     rx="14"
+     ry="4"
+     fill="#0C040F"
+     opacity="0.5"
+     id="ellipse48"
+     style="fill:#3f2c5f;fill-opacity:1;opacity:1" />
+  <rect
+     x="331.08829"
+     y="325.07053"
+     width="18"
+     height="24"
+     rx="7"
+     fill="#cad9e7"
+     id="rect48-6"
+     style="mix-blend-mode:normal;fill:#181820;fill-opacity:1;filter:url(#filter148)"
+     transform="matrix(1,0,0,0.98019834,0,7.7867258)" />
+  <rect
+     x="331"
+     y="326"
+     width="18"
+     height="24"
+     rx="7"
+     fill="#CAD9E7"
+     id="rect48" />
+  <circle
+     cx="340.08829"
+     cy="317.07053"
+     r="8"
+     fill="#cad9e7"
+     id="circle48-7"
+     style="mix-blend-mode:normal;fill:#181820;fill-opacity:1;filter:url(#filter147)"
+     transform="matrix(1,0,0,0.98019834,0,7.7867258)" />
+  <circle
+     cx="340"
+     cy="318"
+     r="8"
+     fill="#CAD9E7"
+     id="circle48" />
+  <g
+     fill="#EC8790"
+     id="g51">
+    <circle
+       cx="126.51757"
+       cy="192.2352"
+       r="13"
+       id="circle49" />
+    <circle
+       cx="235"
+       cy="105"
+       r="12"
+       id="circle50" />
+    <circle
+       cx="560"
+       cy="120"
+       r="12"
+       id="circle51" />
+  </g>
+  <circle
+     cx="340"
+     cy="85"
+     r="18"
+     fill="#77AF8A"
+     stroke="#9ADD6D"
+     stroke-width="2.5"
+     id="circle53" />
+  <text
+     x="350.78125"
+     y="60.085938"
+     text-anchor="middle"
+     fill="#9add6d"
+     id="text54"
+     style="font-size:16px">SEND - OK - CONFIRM</text>
+  <text
+     x="123.47656"
+     y="171.94531"
+     text-anchor="middle"
+     fill="#ffa5ad"
+     id="text55"
+     style="font-size:16px">STOP</text>
+  <text
+     x="230.50781"
+     y="86.289062"
+     text-anchor="middle"
+     fill="#ffa5ad"
+     id="text56"
+     style="font-size:16px">ABORT</text>
+  <text
+     x="563.59375"
+     y="101.39062"
+     text-anchor="middle"
+     fill="#ffa5ad"
+     id="text57"
+     style="font-size:16px">CANCEL</text>
+  <text
+     x="459.65625"
+     y="270.0625"
+     text-anchor="start"
+     fill="#cad9e7"
+     id="text58"
+     style="font-size:16px"><tspan
+       x="459.65625"
+       y="270.0625"
+       id="tspan57"
+       style="font-size:16px">CLEAR - STAY</tspan></text>
+  <text
+     x="236"
+     y="357"
+     text-anchor="end"
+     fill="#cad9e7"
+     id="text59"
+     style="font-size:16px">You are here</text>
+  <text
+     x="440"
+     y="545"
+     text-anchor="start"
+     fill="#e4d58b"
+     id="text60"
+     style="font-size:16px">Visited links</text>
+</svg>
