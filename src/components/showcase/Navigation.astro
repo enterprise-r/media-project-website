@@ -1,0 +1,149 @@
+---
+// Navigation: the bar's crumbs and menus, as the theme ships them.
+// The root crumb in the first bar holds this site's black logo (sized by src/styles/bar.css); the theme
+// paints only its striped fill at rest. Crumb focus is an inner ring because the slant clips an outline.
+// The lone-crumb shape below 52rem is the edge case in bar.css.
+import Notes from "./Notes.astro";
+
+const crumbs = `
+<nav class="r-crumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a class="r-btn r-crumb-root" href="/">Home</a></li>
+    <li>
+      <details class="r-menu">
+        <summary class="r-btn">Docs</summary>
+        <div class="r-menu-list">
+          <a class="r-btn" href="/guide/">Guide</a>
+          <a class="r-btn" href="/reference/">Reference</a>
+        </div>
+      </details>
+    </li>
+    <li><a class="r-btn" href="/guide/" aria-current="page">Guide</a></li>
+  </ol>
+</nav>`;
+
+const menus = `
+<details class="r-menu r-to-right">
+  <summary class="r-btn">Sort</summary>
+  <div class="r-menu-list" role="menu" aria-label="Sort">
+    <button type="button" class="r-btn" role="menuitemradio" aria-checked="true">Newest</button>
+    <button type="button" class="r-btn" role="menuitemradio" aria-checked="false">Oldest</button>
+  </div>
+</details>
+
+<details class="r-menu">
+  <summary class="r-btn r-clear" aria-haspopup="menu">View</summary>
+  <div class="r-menu-list" role="menu" aria-label="View">
+    <a class="r-btn" role="menuitem" href="/print/">Print</a>
+    <details class="r-menu r-side">
+      <summary class="r-btn r-clear" role="menuitem" aria-haspopup="menu">Density</summary>
+      <div class="r-menu-list" role="menu" aria-label="Density">
+        <button type="button" class="r-btn" role="menuitemradio" aria-checked="true">Normal</button>
+        <button type="button" class="r-btn" role="menuitemradio" aria-checked="false">Compact</button>
+      </div>
+    </details>
+  </div>
+</details>`;
+
+const script = `
+// One menu open at a time (a submenu and its parents stay open together); an outside click or Escape closes them.
+const menus = [...document.querySelectorAll("details.r-menu")];
+const close = (keep) => menus.forEach((m) => { if (!keep || !(m === keep || m.contains(keep) || keep.contains(m))) m.open = false; });
+menus.forEach((m) => m.addEventListener("toggle", () => { if (m.open) close(m); }));
+document.addEventListener("click", (e) => { if (!e.target.closest("details.r-menu")) close(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });`;
+
+const lone = `
+<header class="r-bar">
+  <nav class="r-crumbs" aria-label="Breadcrumb">
+    <ol><li><a class="r-btn r-crumb-root" href="/" aria-current="page">Home</a></li></ol>
+  </nav>
+</header>`;
+---
+<section class="sc-section" id="navigation">
+  <h2 class="sc-label">Navigation</h2>
+  <header class="r-bar">
+    <nav class="r-crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a class="r-btn r-crumb-root" href="/"><picture><source media="(min-width: 48rem)" srcset="/assets/logo-wide-black.svg" width="320" height="56"><img src="/assets/logo-compact-black.svg" width="320" height="120" alt="Enterprise-R"></picture></a></li>
+        <li>
+          <details class="r-menu">
+            <summary class="r-btn">Docs</summary>
+            <div class="r-menu-list">
+              <a class="r-btn" href="#navigation">Guide</a>
+              <a class="r-btn" href="#navigation">Reference</a>
+            </div>
+          </details>
+        </li>
+        <li><a class="r-btn" href="#navigation" aria-current="page">Guide</a></li>
+      </ol>
+    </nav>
+    <div class="r-bar-end">
+      <span class="r-group">
+        <details class="r-menu">
+          <summary class="r-btn">Docs</summary>
+          <div class="r-menu-list">
+            <a class="r-btn" href="#navigation">Guide</a>
+            <a class="r-btn" href="#navigation">Reference</a>
+          </div>
+        </details>
+        <a class="r-btn" href="/">Home</a>
+      </span>
+    </div>
+  </header>
+  <p class="sc-note">Crumbs lead, the group sits at the end. Parents are Magenta, the current page Green.</p>
+
+  <h3 class="sc-subhead">Breadcrumbs</h3>
+  <Notes
+    markup={crumbs}
+    classes="`.r-crumbs`, `.r-btn` on each crumb, `.r-crumb-root` on the first."
+    attributes={`\`aria-current="page"\` on the current crumb.`}
+    do="Put the site's label or logo in the root crumb."
+    dont="Style the root as a separate badge."
+  />
+
+  <h3 class="sc-subhead">Menus</h3>
+  <div class="sc-row sc-split">
+    <details class="r-menu r-to-right">
+      <summary class="r-btn">Sort</summary>
+      <div class="r-menu-list" role="menu" aria-label="Sort">
+        <button type="button" class="r-btn" role="menuitemradio" aria-checked="true">Newest</button>
+        <button type="button" class="r-btn" role="menuitemradio" aria-checked="false">Oldest</button>
+      </div>
+    </details>
+    <details class="r-menu">
+      <summary class="r-btn r-clear" aria-haspopup="menu">View</summary>
+      <div class="r-menu-list" role="menu" aria-label="View">
+        <a class="r-btn" role="menuitem" href="#navigation">Print</a>
+        <details class="r-menu r-side">
+          <summary class="r-btn r-clear" role="menuitem" aria-haspopup="menu">Density</summary>
+          <div class="r-menu-list" role="menu" aria-label="Density">
+            <button type="button" class="r-btn" role="menuitemradio" aria-checked="true">Normal</button>
+            <button type="button" class="r-btn" role="menuitemradio" aria-checked="false">Compact</button>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+  <Notes
+    markup={menus}
+    extra={script}
+    classes="`.r-menu` on a `details`, `.r-menu-list` for the items. `.r-to-right` opens from the left edge; `.r-side` makes a second level that opens to the left."
+    attributes={`A checked \`role="menuitemradio"\` is Green.`}
+    js="Closing menus is the page's job; a sample script is in the code box."
+    do="Use `.r-side` for a menu at the right edge of the window."
+    dont="Expect the theme to close menus."
+  />
+
+  <h3 class="sc-subhead">Lone root crumb</h3>
+  <header class="r-bar">
+    <nav class="r-crumbs" aria-label="Breadcrumb">
+      <ol><li><a class="r-btn r-crumb-root" href="#navigation" aria-current="page">Home</a></li></ol>
+    </nav>
+  </header>
+  <Notes
+    markup={lone}
+    do="Narrow the window below 52rem: the crumb meets the edge, square on the left and round on the right."
+    dont="Expect it to become a whole pill."
+  />
+</section>

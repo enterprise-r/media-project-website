@@ -15,6 +15,7 @@ Pages: Home (`/`), About (`/about/`), Login (`/login/`), 404 (`/404.html`) and `
 | Styles | `src/styles/`: `palette.css` (colours), `theme/` (Dark-R), `bar.css` (title bar), `footer.css`, `home.css`, `about.css`, `login.css`, `ui.css` (style guide) |
 | Shared head, title bar and navigation | `src/layouts/Base.astro` |
 | Social links | the `social` list in `src/components/Footer.astro` |
+| Showcase sections and tutorial notes | `src/components/showcase/`, one component per section, put in order by `src/pages/showcase.astro` |
 | Home and 404 terminal | `src/components/HomeWait.astro` and `src/styles/home.css` |
 | Page not found | `src/pages/404.astro` |
 | Search engines | `public/robots.txt`, and the indexed pages in `src/pages/sitemap.xml.ts` |
@@ -45,7 +46,10 @@ Brand files come from the project-branding build (`build.sh`), shipped to Drive 
 | `public/assets/favicon.ico`, `favicon-32.png` | Drive `assets/logos/favicon/` |
 | `public/assets/apple-touch-icon.png`, `icon-192.png`, `icon-512.png` | Drive `assets/logos/favicon/` `favicon-180.png`, `favicon-192.png`, `favicon-512.png`, renamed |
 | `public/assets/warpchi.*`, `hyper-j.*` | Showcase terminal sample (warpchi). Site wallpaper is hyper-j, set once in `bar.css`. Sources are project-branding `wallpapers/`, saved here as jpg, avif and webp |
+| `public/assets/logo-badge-pulse.svg`, `logo-badge-spectrum.svg` | Showcase palette badge, animated, with the still spectrum badge for reduced motion. Source is project-branding `logo/svg/` `logo-normal-badge-pulse.svg` and `logo-normal-badge-spectrum.svg`, renamed |
+| `public/assets/engy.png`, `engy.webp`, `engy.avif` | Showcase greeting avatar. Source is Drive `assets/badges/engy.png`, scaled to 256px and saved here as png, webp and avif |
 | `src/styles/theme/` | Drive `assets/theme/`, the whole directory except `palette.css` (see below), copied as-is |
+| `src/styles/theme/rows.js` | project-wcard `vendor/theme/rows.js`, until branding carries that version; then Drive `assets/theme/` with the rest |
 | `src/styles/fonts/woff2/*.woff2` | Drive `assets/fonts/woff2/` |
 | `public/fonts/OFL-*.txt` | Drive `assets/fonts/licenses/` |
 | `src/styles/palette.css`, `palette.json` | Drive `assets/palette/palette.css` and project-branding `palette/palette.json` |

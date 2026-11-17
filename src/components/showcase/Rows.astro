@@ -1,0 +1,98 @@
+---
+// The dynamic list: .r-rows markup from components.css, behavior from rows.js
+// (the project-wcard vendor/theme/rows.js contract).
+// Each list carries .r-unguarded: rapid + and × presses are the normal use of a list, so guard.js must not
+// discard them. On the fieldset it also covers rows added later from the template.
+// Rows contract details kept out of the page: data-added / data-removed announce changes (defaults
+// "Row added" / "Row removed"); data-remove defaults to "Remove row {n}"; without a template the minimum
+// is 1 and the last row is cloned; below 30rem of its own width the list stacks; reduced motion drops the
+// row-in animation; forced colors keep the control edges. Hooks: rRows.enhance(el), rRows.enhanceAll(container);
+// a list is enhanced once however often passed.
+import Notes from "./Notes.astro";
+
+const roles = ["Chief medical officer", "Chief engineer", "Pilot"];
+const crew = [["Beverly Crusher", "Chief medical officer"], ["Geordi La Forge", "Chief engineer"]];
+
+const markup = `
+<fieldset class="r-rows r-unguarded" data-max="4" data-remove="Remove member {n}">
+  <legend>Team members</legend>
+  <div class="r-rows-head" aria-hidden="true"><span></span><span>Name</span><span>Role</span></div>
+  <div class="r-rows-list">
+    <div class="r-row">
+      <span class="r-row-bubble"><button type="button" class="r-row-remove"><span class="r-row-glyph" aria-hidden="true">×</span></button></span>
+      <input data-name="team[{i}][name]" data-id="team-{n}-name" data-label="Name, row {n}" placeholder="Name" autocomplete="off">
+      <select data-name="team[{i}][role]" data-label="Role, row {n}"><option value="">Role</option><option>Pilot</option></select>
+    </div>
+  </div>
+  <template>
+    <div class="r-row">
+      <span class="r-row-bubble"><button type="button" class="r-row-remove"><span class="r-row-glyph" aria-hidden="true">×</span></button></span>
+      <input data-name="team[{i}][name]" data-id="team-{n}-name" data-label="Name, row {n}" placeholder="Name" autocomplete="off">
+      <select data-name="team[{i}][role]" data-label="Role, row {n}"><option value="">Role</option><option>Pilot</option></select>
+    </div>
+  </template>
+  <div class="r-rows-foot">
+    <span class="r-row-bubble"><button type="button" class="r-row-add" aria-label="Add row"><span class="r-row-glyph" aria-hidden="true">+</span></button></span>
+    <div class="r-row-ghost" aria-hidden="true">
+      <input placeholder="Name" disabled tabindex="-1" aria-hidden="true" autocomplete="off">
+      <select disabled tabindex="-1" aria-hidden="true"><option>Role</option></select>
+    </div>
+  </div>
+  <p class="r-rows-live r-vh" aria-live="polite"></p>
+</fieldset>
+<script src="theme/rows.js"></script>`;
+
+---
+<section class="sc-section" id="rows">
+  <h2 class="sc-label">Dynamic list</h2>
+  <form onsubmit="return false" class="sc-rows-demo">
+    <fieldset class="r-rows r-unguarded" data-max="4" data-remove="Remove member {n}">
+      <legend>Team members</legend>
+      <div class="r-rows-head" aria-hidden="true"><span></span><span>Name</span><span>Role</span></div>
+      <div class="r-rows-list">
+        {crew.map(([who, role], i) => (
+          <div class="r-row">
+            <span class="r-row-bubble"><button type="button" class="r-row-remove" aria-label={`Remove member ${i + 1}`}><span class="r-row-glyph" aria-hidden="true">×</span></button></span>
+            <input data-name="team[{i}][name]" data-id="team-{n}-name" data-label="Name, row {n}" name={`team[${i}][name]`} id={`team-${i + 1}-name`} value={who} placeholder="Name" autocomplete="off">
+            <select data-name="team[{i}][role]" data-label="Role, row {n}" name={`team[${i}][role]`}>
+              <option value="">Role</option>
+              {roles.map((r) => <option selected={r === role}>{r}</option>)}
+            </select>
+          </div>
+        ))}
+      </div>
+      <template>
+        <div class="r-row">
+          <span class="r-row-bubble"><button type="button" class="r-row-remove"><span class="r-row-glyph" aria-hidden="true">×</span></button></span>
+          <input data-name="team[{i}][name]" data-id="team-{n}-name" data-label="Name, row {n}" placeholder="Name" autocomplete="off">
+          <select data-name="team[{i}][role]" data-label="Role, row {n}">
+            <option value="">Role</option>
+            {roles.map((r) => <option>{r}</option>)}
+          </select>
+        </div>
+      </template>
+      <div class="r-rows-foot">
+        <span class="r-row-bubble"><button type="button" class="r-row-add" aria-label="Add row"><span class="r-row-glyph" aria-hidden="true">+</span></button></span>
+        <div class="r-row-ghost" aria-hidden="true">
+          <input placeholder="Name" disabled tabindex="-1" aria-hidden="true" autocomplete="off">
+          <select disabled tabindex="-1" aria-hidden="true"><option>Role</option></select>
+        </div>
+      </div>
+      <p class="r-rows-live r-vh" aria-live="polite"></p>
+    </fieldset>
+  </form>
+  <p class="sc-note">Up to four members. Remove every row to see the empty list: the disabled row and the +.</p>
+  <Notes
+    markup={markup}
+    classes="`.r-rows.r-unguarded` on the fieldset; `.r-rows-list`, `.r-row`, `.r-row-bubble` with `.r-row-remove` or `.r-row-add` and a `.r-row-glyph`; optional `.r-rows-head`, `.r-rows-foot`, `.r-row-ghost`, `.r-rows-live.r-vh`."
+    attributes="On the fieldset `data-max`, `data-remove`, optional `data-min`. On each field `data-name`, `data-id`, `data-label`, where `{i}` is the index from 0 and `{n}` the row number."
+    js="Include `rows.js`. For a list inserted after load, call `rRows.enhance(element)`."
+    do="Put `.r-unguarded` on the `.r-rows`, so the click guard never drops a quick add or remove. Put one `.r-row` in a `template` as the source for new rows."
+    dont="Expect a new row to keep values; it starts empty."
+  />
+  <ul class="sc-prose">
+    <li>With a template the list can go to zero; at <code>data-max</code> the + is off.</li>
+    <li>Enter in the last row adds a row; Backspace in an empty row removes it.</li>
+  </ul>
+
+</section>

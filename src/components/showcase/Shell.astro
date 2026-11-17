@@ -1,0 +1,157 @@
+---
+// App shell: page, column, step back, bar, mark, swatches, footer and status stripe.
+// Shown in a frame on this page; on a real page the shell is the body.
+import Notes from "./Notes.astro";
+
+const page = `
+<body class="r-page">
+  <header class="r-bar">
+    <nav class="r-crumbs" aria-label="Breadcrumb"><ol>
+      <li><a class="r-btn r-crumb-root" href="/">Home</a></li>
+      <li><a class="r-btn" href="/jobs/" aria-current="page">Jobs</a></li>
+    </ol></nav>
+    <div class="r-bar-end">
+      <div class="r-group"><button type="button" class="r-btn r-cancel">Cancel</button><button type="button" class="r-btn">Run again</button></div>
+      <details class="r-menu r-mark">…</details>
+    </div>
+  </header>
+  <main class="r-column">
+    <dl class="r-notice r-stripe r-warn" role="status">…</dl>
+    <p>Text, at most --r-measure wide.</p>
+    <div class="r-card r-step-back">…</div>
+  </main>
+  <footer class="r-foot"><a href="https://www.enterprise-r.com">Enterprise-R</a></footer>
+</body>`;
+
+const measure = `
+:root {
+  --r-measure: 880px;     /* the text width */
+  --r-text-min: 26px;     /* the least inset from the window */
+  --r-text-pad: 1rem;     /* the one inset below 40rem */
+  --r-box-gap: 4px;       /* room for the glow outside a box */
+  --r-box-pad: calc(var(--r-text-pad) - var(--r-box-gap));
+  --r-text-inline: max(var(--r-text-min), calc((100% - var(--r-measure)) / 2));
+  --r-bar-inline: calc(var(--r-text-inline) - var(--r-box-pad));
+}
+/* A page whose bar wraps measures it and sets: */
+:root { --r-bar-h: 5.3rem; }`;
+
+const mark = `
+<details class="r-menu r-mark" style="--r-mark-view: 1024; --r-mark-plate: 1024; --r-mark-round: 102">
+  <summary aria-label="Menu" aria-haspopup="menu"><img src="mark.svg" alt="" width="32" height="32"></summary>
+  <div class="r-menu-list" role="menu" aria-label="Menu">
+    <details class="r-menu r-side">
+      <summary class="r-btn r-clear" role="menuitem" aria-haspopup="menu">Theme</summary>
+      <div class="r-menu-list" role="menu" aria-label="Theme">
+        <button type="button" class="r-btn r-swatch" role="menuitemradio" aria-checked="false"
+          style="--r-swatch-bg: var(--ui-fg-bright); --r-swatch-fg: var(--ui-bg)">Light</button>
+        <button type="button" class="r-btn r-swatch r-swatch-dark-r" role="menuitemradio" aria-checked="true"
+          aria-label="Dark-R"><span aria-hidden="true">Dark-<span class="r-name-r">®</span></span></button>
+      </div>
+    </details>
+  </div>
+</details>`;
+
+const stripe = `
+<dl class="r-notice r-stripe r-warn" role="status">
+  <div><dt>Status</dt><dd class="r-role">Running</dd></div>
+  <div><dt>Started</dt><dd><time datetime="2026-11-15T09:30Z">09:30</time></dd></div>
+  <div><dt>Run</dt><dd class="r-nowrap"><code>a1b2c3d4e5f6</code></dd></div>
+  <div><dt>Duration</dt><dd>2 minutes</dd></div>
+</dl>`;
+
+const foot = `<footer class="r-foot"><a href="https://www.enterprise-r.com">Enterprise-R</a></footer>`;
+---
+<section class="sc-section" id="shell">
+  <h2 class="sc-label">App shell</h2>
+  <p class="sc-prose">The bar, the column and the footer. Only the root crumb differs from site to site.</p>
+  <div class="r-page sc-frame">
+    <header class="r-bar">
+      <nav class="r-crumbs" aria-label="Breadcrumb"><ol>
+        <li><a class="r-btn r-crumb-root" href="#shell">Home</a></li>
+        <li><a class="r-btn" href="#shell" aria-current="page">Jobs</a></li>
+      </ol></nav>
+      <div class="r-bar-end">
+        <div class="r-group"><button type="button" class="r-btn r-cancel">Cancel</button><button type="button" class="r-btn">Run again</button></div>
+        <details class="r-menu r-mark sc-mark">
+          <summary aria-label="Menu" aria-haspopup="menu"><img src="/assets/favicon.svg" alt="" width="32" height="32"></summary>
+          <div class="r-menu-list" role="menu" aria-label="Menu">
+            <details class="r-menu r-side">
+              <summary class="r-btn r-clear" role="menuitem" aria-haspopup="menu">Theme</summary>
+              <div class="r-menu-list" role="menu" aria-label="Theme">
+                <button type="button" class="r-btn r-swatch sc-swatch-light" role="menuitemradio" aria-checked="false">Light</button>
+                <button type="button" class="r-btn r-swatch r-swatch-dark-r" role="menuitemradio" aria-checked="true" aria-label="Dark-R"><span aria-hidden="true">Dark-<span class="r-name-r">®</span></span></button>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </header>
+    <main class="r-column">
+      <dl class="r-notice r-stripe r-warn" role="status" id="sc-stripe">
+        <div><dt>Status</dt><dd class="r-role" id="sc-stripe-status">Running</dd></div>
+        <div><dt>Started</dt><dd><time datetime="2026-11-15T09:30Z">09:30</time></dd></div>
+        <div><dt>Run</dt><dd class="r-nowrap"><code>a1b2c3d4e5f6</code></dd></div>
+        <div><dt>Duration</dt><dd>2 minutes</dd></div>
+      </dl>
+      <h3>Jobs</h3>
+      <p>The column is at most <code>--r-measure</code> wide.</p>
+      <div class="r-card r-step-back"><p>A card with <code>.r-step-back</code>.</p></div>
+      <p class="sc-dialog-open"><span class="r-group"><button type="button" class="r-btn" id="sc-stripe-done">Finish the run</button></span></p>
+    </main>
+    <footer class="r-foot"><a href="https://www.enterprise-r.com">Enterprise-R</a></footer>
+  </div>
+  {/* The frame (.sc-frame, ui.css) keeps the bar in place with --r-bar-h at 0, so the column starts a
+       button's height below it. "Finish the run" swaps the stripe's role and plays .r-glow (page script).
+       This site's public pages use their own bar and footer. */}
+
+  <h3 class="sc-subhead">Page, column and step back</h3>
+  <Notes
+    markup={page}
+    extra={measure}
+    classes="`.r-page` on the body, `.r-column` on the content, `.r-step-back` on a box in the column."
+    tokens="`--r-measure`, `--r-bar-h`, `--r-box-gap`."
+    do="Set `--r-bar-h` when the bar wraps."
+    dont="Give boxes in the column their own side margins."
+  />
+
+  <h3 class="sc-subhead">Bar and mark</h3>
+  {/* The mark tokens default to 128, 120 and 26; this site's chipped logo fills its view box, so .sc-mark sets 1024, 1024 and 102. */}
+  <Notes
+    markup={mark}
+    classes="`.r-bar`, `.r-bar-end`, `.r-mark` on the last `.r-menu`."
+    attributes={`\`aria-label\` on the mark's \`summary\`, an empty \`alt\` on its picture.`}
+    tokens="`--r-mark-view`, `--r-mark-plate`, `--r-mark-round`."
+    do="Put the site's logo or label in the root crumb."
+    dont="Put the mark anywhere but last."
+  />
+
+  <h3 class="sc-subhead">Theme swatches</h3>
+  <p class="sc-prose">Open the mark menu above, then Theme. "Light" is an example an app defines.</p>
+  <Notes
+    classes="`.r-swatch` on a menu `.r-btn`; `.r-swatch-dark-r` for Dark-R."
+    attributes={`\`role="menuitemradio"\` and \`aria-checked\`.`}
+    tokens="`--r-swatch-bg`, `--r-swatch-fg`, `--r-swatch-font`."
+    js="Applying the choice is the app's job."
+    do="Set the swatch tokens from palette tokens."
+    dont="Put a light palette in `theme/`."
+  />
+
+  <h3 class="sc-subhead">Footer</h3>
+  <Notes
+    markup={foot}
+    classes="`.r-foot`."
+    do="Keep it last in `.r-page`."
+    dont="Expect it in print."
+  />
+
+  <h3 class="sc-subhead">Status stripe</h3>
+  <Notes
+    markup={stripe}
+    classes="`.r-stripe` on a `dl.r-notice` with a role; `.r-role`, `.r-nowrap` on values."
+    attributes={`\`role="status"\`.`}
+    js="Add `.r-glow` when the status changes."
+    do="Keep it to a few pairs."
+    dont="Put it outside the column."
+  />
+</section>

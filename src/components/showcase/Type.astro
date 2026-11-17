@@ -1,0 +1,113 @@
+---
+// Type: the web scale of base.css, the document scale of doc.css, the fonts and the prompt.
+// The woff2 files are subset to Latin and Latin Extended by the branding build.
+import DarkR from "../DarkR.astro";
+import Notes from "./Notes.astro";
+
+const tiers = `
+:root {
+  --r-font-heading: Audiowide, Rajdhani, sans-serif; /* h1, and h2 to h3 by default */
+  --r-font-sub: var(--r-font-heading);               /* h2 to h3 */
+  --r-font-minor: var(--r-font-text);                /* h4 to h6 */
+}
+/* Rajdhani for h2 and h3 only: */
+:root { --r-font-sub: var(--r-font-text); }`;
+
+const doc = `
+<link rel="stylesheet" href="theme/doc.css">
+
+<article class="r-doc">
+  <h1>Mission control</h1>
+  <p>Long text reads in Saira, at most 68 characters wide.</p>
+</article>`;
+
+const fonts = `
+fonts/woff2/Enterprsr-Regular.woff2    Enterprsr, the ® of the name and the footer word
+fonts/woff2/Audiowide-Regular.woff2    Audiowide, headings
+fonts/woff2/Rajdhani-Medium.woff2      Rajdhani 500, text
+fonts/woff2/Rajdhani-SemiBold.woff2    Rajdhani 600, labels and buttons
+fonts/woff2/MonaspaceNeon.woff2        Monaspace Neon, code
+fonts/woff2/Saira.woff2                Saira roman, document body (doc.css)
+fonts/woff2/Saira-Italic.woff2         Saira italic, document body (doc.css)`;
+
+const prompt = `<span class="r-prompt">Click or press</span>`;
+---
+<section class="sc-section" id="type">
+  <h2 class="sc-label">Type</h2>
+  <div class="sc-type">
+    <span class="sc-cap"><b>h1</b> Audiowide, Green</span><h1>Mission control</h1>
+    <span class="sc-cap"><b>h2</b> Audiowide, Bright</span><h2>A quiet view from orbit</h2>
+    <span class="sc-cap"><b>h3</b> Audiowide, Magenta</span><h3>Engineering log</h3>
+    <span class="sc-cap"><b>h4</b> label caps, Amber</span><h4>Surfaces</h4>
+    <span class="sc-cap"><b>h5</b> label caps, Light</span><h5>Instruments</h5>
+    <span class="sc-cap"><b>h6</b> label caps, Dark</span><h6>Footnotes</h6>
+    <span class="sc-cap"><b>Body</b> Rajdhani 1.2rem</span><p>We build small, careful things and send them a long way. This is how body text reads on our dark background.</p>
+    <span class="sc-cap"><b>Small</b></span><small>info<span class="at">@</span>enterprise-r.com · small print and captions</small>
+    <span class="sc-cap"><b>Link</b></span><p>Read the <a href="#type">mission notes</a> before you start.</p>
+    <span class="sc-cap"><b>Mark</b></span><p>The <mark>launch window</mark> opens at dawn.</p>
+    <span class="sc-cap"><b>Keys</b></span><p>Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search.</p>
+    <span class="sc-cap"><b>Prompt</b></span><p><span class="r-prompt">Click or press</span></p>
+    <span class="sc-cap"><b>Code</b></span><p><code>--r-text</code></p>
+    <span class="sc-cap"><b>Quote</b></span><blockquote>Make it so, but make it small.</blockquote>
+    <span class="sc-cap"><b>List</b></span><ul><li>Plain lists keep the body text.</li><li>Nested items indent.</li></ul>
+    <span class="sc-cap"><b>Definitions</b></span><dl><dt>Orbit</dt><dd>The path around a body.</dd><dt>Root</dt><dd>The lone R<span aria-hidden="true">, <span class="r-name-r">®</span></span>.</dd></dl>
+    <span class="sc-cap"><b>Details</b></span><details><summary>Show the checklist</summary>Fuel, comms, crew.</details>
+    <span class="sc-cap"><b>Figure</b></span><figure><img src="/assets/logo-wide.svg" width="320" height="56" alt="Enterprise-R"><figcaption>A figure scales down to its container.</figcaption></figure>
+    <span class="sc-cap"><b>Selection</b></span><p>Select this line to see the selection colors.</p>
+  </div>
+  <p class="sc-note">Audiowide down to h3, then Rajdhani label caps. One variable per tier switches the font.</p>
+  <Notes
+    markup={tiers}
+    classes="None: `base.css` styles plain elements."
+    tokens="`--r-font-heading` (h1), `--r-font-sub` (h2 to h3), `--r-font-minor` (h4 to h6), `--r-font-text`, `--r-font-mono`."
+    do="Write plain semantic HTML."
+    dont="Pick a heading level for its look."
+  />
+
+  <h3 class="sc-subhead">Web and document</h3>
+  <div class="sc-grid cols-2 sc-scales">
+    <div>
+      <p class="sc-cap"><b>Web</b> <code>base.css</code></p>
+      <div>
+        <h1>Mission control</h1>
+        <h2>A quiet view from orbit</h2>
+        <h3>Engineering log</h3>
+        <p><DarkR /> is futuristic with a hint of retro, on a fresh palette you don't often see in everyday interfaces. It is made for night mode and for night-light filters that warm the screen in the evening. Its purples and magentas carry a lot of blue, so <DarkR /> changes more than most themes when the night light comes on.</p>
+      </div>
+    </div>
+    <div>
+      <p class="sc-cap"><b>Document</b> <code>.r-doc</code> in <code>doc.css</code></p>
+      <div class="r-doc">
+        <h1>Mission control</h1>
+        <h2>A quiet view from orbit</h2>
+        <h3>Engineering log</h3>
+        <p><DarkR /> is futuristic with a hint of retro, on a fresh palette you don't often see in everyday interfaces. It is made for night mode and for night-light filters that warm the screen in the evening. Its purples and magentas carry a lot of blue, so <DarkR /> changes more than most themes when the night light comes on.</p>
+      </div>
+    </div>
+  </div>
+  <p class="sc-note">The web scale is the default. The document scale is for long text, with Saira for the body.</p>
+  <Notes
+    markup={doc}
+    classes="`.r-doc` around the document."
+    tokens="`--r-font-doc`, `--r-doc-measure` (68ch)."
+    do="Link `doc.css` after `base.css`, only where documents are."
+    dont="Put app controls inside `.r-doc`."
+  />
+
+  <h3 class="sc-subhead">Fonts</h3>
+  <p class="sc-prose">The theme loads Enterprsr, Audiowide, Rajdhani (Medium, SemiBold), Monaspace Neon and Saira (roman, italic) from <code>../fonts/woff2/</code>.</p>
+  <Notes
+    markup={fonts}
+    do="Ship the licenses with the fonts."
+    dont="Load the same faces from a font service as well."
+  />
+
+  <h3 class="sc-subhead">Prompt</h3>
+  <p><span class="r-prompt">Click or press</span></p>
+  <Notes
+    markup={prompt}
+    classes="`.r-prompt`."
+    do="Use it for a short call to act."
+    dont="Use it for a heading."
+  />
+</section>

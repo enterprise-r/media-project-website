@@ -1,0 +1,83 @@
+---
+// Working: the waiting icons and cursor, and the click guard (theme/guard.js).
+import Notes from "./Notes.astro";
+import waitIcon from "../../styles/theme/icons/wait.svg?url";
+import waitStatic from "../../styles/theme/icons/wait-static.svg?url";
+
+const icons = `
+<img src="theme/icons/wait.svg" width="32" height="32" alt="">          <!-- animated -->
+<img src="theme/icons/wait-static.svg" width="32" height="32" alt="">   <!-- still -->
+
+<div class="r-wait">…</div>   <!-- the W cursor on any element -->`;
+
+const iconTokens = `
+:root {
+  --r-icon-wait: url(icons/wait.svg);
+  --r-icon-wait-static: url(icons/wait-static.svg);
+  --r-icon-wait-cursor: url(icons/wait-cursor.svg); /* 32 CSS px, hotspot 16 16 */
+}
+.app-busy { cursor: var(--r-icon-wait-cursor) 16 16, progress; }`;
+
+const guard = `
+<script src="theme/guard.js"></script>   <!-- once per page -->
+
+<nav class="r-unguarded">…</nav>          <!-- opt out for a safe area -->
+
+:root {
+  --r-guard-gap2: 10s;    /* how long presses stay accepted after the pointer moves */
+  --r-guard-cool: 400ms;  /* the pause after an accepted press */
+}`;
+---
+{/* Guard details kept out of the page: the movement window restarts on each move; acceptance is decided
+     on press, and a dropped press also suppresses its click and flashes the W (.r-guard-wait, 300ms, set
+     by the script); touch and keyboard use the cooldown only; tokens are read once from the root.
+     The wait cursor is 32 CSS px, hotspot 16 16, with progress as the fallback. */}
+<section class="sc-section" id="working">
+  <h2 class="sc-label">Working</h2>
+  <div class="sc-wait-row">
+    <figure><div class="r-card sc-working" role="status"><img src={waitIcon} width="32" height="32" alt=""><span>Working</span></div><figcaption class="sc-cap">Animated W</figcaption></figure>
+    <figure><div class="r-card sc-working"><img src={waitStatic} width="32" height="32" alt=""></div><figcaption class="sc-cap">Still W</figcaption></figure>
+    <figure><div class="r-card r-wait sc-working"><span>Point here</span></div><figcaption class="sc-cap">W cursor, <code>.r-wait</code></figcaption></figure>
+  </div>
+  <p class="sc-note">Disabled controls show the W cursor.</p>
+  <Notes
+    markup={icons}
+    extra={iconTokens}
+    classes="`.r-wait` on any element; disabled controls need no class."
+    tokens="`--r-icon-wait`, `--r-icon-wait-static`, `--r-icon-wait-cursor`."
+    do="Give the animated icon an empty `alt` and words beside it, in a `role=status` element."
+    dont="Use `cursor: not-allowed`."
+  />
+
+  <h3 class="sc-subhead">Click guard</h3>
+  <p class="sc-prose">The guard drops a button press made without recent pointer movement, or too soon after the last one.</p>
+  <div class="sc-guard">
+    <div class="r-card">
+      <p class="sc-cap"><b>Guarded</b></p>
+      <span class="r-group"><button type="button" class="r-btn r-primary" id="sc-guard-btn">Press</button></span>
+      <p class="sc-cap">Accepted: <output id="sc-guard-n">0</output></p>
+    </div>
+    <div class="r-card r-unguarded">
+      <p class="sc-cap"><b>Unguarded</b> <code>.r-unguarded</code></p>
+      <span class="r-group"><button type="button" class="r-btn" id="sc-free-btn">Press</button></span>
+      <p class="sc-cap">Accepted: <output id="sc-free-n">0</output></p>
+    </div>
+    <div class="r-card">
+      <p class="sc-cap"><b>Script click</b> <code>el.click()</code></p>
+      <span class="r-group"><button type="button" class="r-btn r-clear" id="sc-guard-script">Click it in 3 s</button></span>
+      <p class="sc-cap" id="sc-guard-say" aria-live="polite">Waits, then clicks the guarded button from a script.</p>
+    </div>
+  </div>
+  <ul class="sc-prose">
+    <li>Hold the pointer still on Guarded for ten seconds, then press: dropped.</li>
+    <li>Double-press Guarded: the second press is dropped.</li>
+  </ul>
+  <Notes
+    markup={guard}
+    classes="`.r-unguarded` on a control or an ancestor opts out."
+    tokens="`--r-guard-gap2` (10s), `--r-guard-cool` (400ms)."
+    js="Include `guard.js` once. It covers buttons, not links."
+    do="Keep the guard on for actions. Opt out where quick repeated presses are normal, such as the dynamic list."
+    dont="Test it with `el.click()`; script clicks always pass."
+  />
+</section>
