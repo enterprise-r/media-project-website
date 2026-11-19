@@ -31,9 +31,8 @@ main.showcase + footer p {
 }
 .sc-subtitle {
   margin: 0.1rem 0 0.6rem;
-  font-family: var(--r-font-heading);
+  font-family: var(--r-font-text);
   font-size: 1.05rem;
-  letter-spacing: 0.08em;
   color: var(--ui-fg-light);
 }
 .sc-lede { margin: 0 0 1.5rem; color: var(--ui-fg-light); font-size: 1.05rem; max-width: 52rem; }
@@ -41,14 +40,14 @@ main.showcase + footer p {
 .sc-section { margin-top: 0; }
 .sc-section > h2.sc-label {
   margin-bottom: 1.1rem;
-  font-family: var(--r-font-text); font-size: 0.95rem; font-weight: 700;
+  font-family: var(--r-font-ui); font-size: 0.95rem; font-weight: 700;
   letter-spacing: 0.22em; text-transform: uppercase; color: var(--r-heading-4);
 }
 
 .sc-grid { display: grid; gap: 1rem; }
 .sc-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .sc-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.r-card h3 { margin-bottom: 0.4rem; font-family: var(--r-font-heading); font-size: 1.15rem; letter-spacing: 0.05em; }
+.r-card h3 { margin-bottom: 0.4rem; font-family: var(--r-font-text); font-size: 1.15rem; }
 .r-card p { margin: 0; color: var(--ui-fg-light); }
 .r-card .r-pill { margin-top: 0.8rem; }
 .sc-meters { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 0.7rem 1rem; align-items: center; max-width: 36rem; }
@@ -130,7 +129,7 @@ main.showcase + footer p {
 }
 .sc-swatch-pair > .sc-swatch { margin: 0; }
 .sc-swatch-pair:has(> :only-child) { grid-template-columns: minmax(0, 1fr); }
-.sc-subhead { margin: 1.8rem 0 0.7rem; color: var(--ui-magenta); font-family: var(--r-font-text); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.sc-subhead { margin: 1.8rem 0 0.7rem; color: var(--ui-magenta); font-family: var(--r-font-ui); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 /* The palette badge floats at the right of the section; the accent swatches flow beside it. */
 .sc-badge { float: right; width: 12rem; margin: 0 0 1rem 2rem; display: grid; justify-items: center; gap: 0.4rem; text-align: center; }
 .sc-badge picture { display: contents; }
@@ -186,16 +185,14 @@ main.showcase + footer p {
 }
 .sc-term-stack { position: absolute; left: 1.4rem; right: 1.4rem; top: 50%; transform: translateY(-50%); z-index: 2; display: flex; flex-direction: column; gap: 0.5rem; }
 .sc-term-stack .r-term { max-width: 34rem; }
-.sc-term-stack .about-heading { margin: 0; font-family: var(--r-font-heading); font-size: 2.2rem; letter-spacing: 0.08em; color: transparent; line-height: 1.1; }
+.sc-term-stack .about-heading { margin: 0; font-size: 2.2rem; letter-spacing: 0.08em; color: transparent; line-height: 1.1; }
 
 /* Decorative closer: Dark-R at h2 size, filled with the striped logo gradient. The ® is the picture. */
 .sc-closer {
   margin: 2rem;
   text-align: center;
-  font-family: var(--r-font-heading);
   font-size: 1.6rem;
   font-weight: 400;
-  letter-spacing: 0.04em;
   line-height: 1.15;
 }
 .sc-closer-fill {
@@ -262,10 +259,11 @@ a.sc-closer-fill:hover {
 /* Each font name set in its own face. */
 .sc-fonts { margin-bottom: 1rem; }
 .sc-fonts > p { font-size: 1.6rem; line-height: 1.2; }
-.sc-f-text { font-family: var(--r-font-text); font-weight: 500; }
-.sc-f-label { font-family: var(--r-font-text); font-weight: 600; }
+.sc-f-text { font-family: var(--r-font-text); }
+.sc-f-ui { font-family: var(--r-font-ui); font-weight: 600; }
 .sc-f-mono { font-family: var(--r-font-mono); }
-.sc-f-doc { font-family: var(--r-font-doc); }
+.sc-scale :is(h1, h2, h3),
+.sc-plain :is(h1, h2, h3) { font-family: var(--r-font-text); font-stretch: unset; }
 .sc-top { margin-top: 0; }
 .sc-flush { margin: 0; }
 .sc-panel { margin-top: 1rem; }

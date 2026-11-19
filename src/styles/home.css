@@ -115,6 +115,7 @@ html.is-home .home-wait {
   justify-self: center;
   position: relative;
   width: max-content;
+  min-width: min(19.9287rem, calc(100vw - 2rem));
   max-width: 100%;
   min-height: 0;
   aspect-ratio: 1.618 / 1;
@@ -266,7 +267,7 @@ html.home-still .home-words > .home-still-line { display: block; }
   100% { opacity: 0; transform: translateX(-0.6em); }
 }
 
-/* Theme .r-prompt: Bright green, heading font, widely tracked, uppercase.
+/* Theme .r-prompt: Bright green, Rajdhani, widely tracked, uppercase.
    A static line in the bottom row, near the edge, with the panel padding as the margin. */
 .home-status {
   display: block;

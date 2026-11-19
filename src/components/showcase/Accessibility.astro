@@ -1,5 +1,5 @@
 ---
-// Accessibility: the contrast table, reduced motion, forced colors, print and narrow screens.
+// Accessibility: the contrast table, reduced motion, forced colors, print, narrow screens and character sets.
 import DarkR from "../DarkR.astro";
 import Notes from "./Notes.astro";
 import palette from "../../styles/palette.json";
@@ -112,4 +112,13 @@ const wcagRows = wcagPairs.map(([label, fg, bg, kind]) => {
       </tbody>
     </table>
   </Notes>
+
+  <h3 class="sc-subhead">Character sets</h3>
+  <div class="sc-type">
+    <span class="sc-cap"><b>Latin</b></span><p lang="fr">Voix ambiguë d’un cœur qui au zéphyr préfère les jattes de kiwi.</p>
+    <span class="sc-cap"><b>Latin Extended</b></span><p lang="pl">Zażółć gęślą jaźń.</p>
+    <span class="sc-cap"><b>Latin Extended Additional</b></span><p lang="vi">Do bạch kim rất quý nên sẽ dùng để lắp vô xương.</p>
+    <span class="sc-cap"><b>Latin caps</b></span><h4 lang="mul">Crème brûlée, piña colada, ångström</h4>
+    <span class="sc-cap"><b>Devanagari</b></span><p class="sc-f-ui" lang="sa">अलम् इदम् प्रधानाय</p>
+  </div>
 </section>

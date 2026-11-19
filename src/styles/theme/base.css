@@ -1,9 +1,9 @@
 /* Dark-R base. Fonts and plain HTML elements, on the --ui-* variables of palette.css (link that first).
    Element selectors sit inside :where(), so they weigh nothing and an app's own rules always win.
    Enterprsr is the brand font (the ® root mark). .r-name-r paints ® in that face: the picture of the R in the name Dark-R. The name that is read is the text Dark-R.
-   Audiowide for the top headings (h1-h3), Rajdhani for text
-   and minor headings (h4-h6), Monaspace Neon for code. Three font variables pick the heading font per tier (see :root).
-   This is the web scale; doc.css adds the document scale for long text.
+   Saira for text, including headings (latin, latin-ext, Vietnamese); Rajdhani SemiBold for uppercase UI and h4-h6 (latin, latin-ext, Devanagari);
+   Audiowide for impact (`.r-impact`, and for h1 by default); Monaspace Neon for code.
+   `.r-doc` in doc.css is the document measure, not a second typography.
    Fonts load from ../fonts/woff2/, the fonts/ folder that ships next to theme/ in the assets. */
 @font-face {
   font-family: "Enterprsr";
@@ -22,17 +22,108 @@
 @font-face {
   font-family: "Rajdhani";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-display: swap;
-  src: url(../fonts/woff2/Rajdhani-Medium.woff2) format("woff2");
+  src: url(../fonts/woff2/Rajdhani-SemiBold-devanagari.woff2) format("woff2");
+  unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
 }
 @font-face {
   font-family: "Rajdhani";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(../fonts/woff2/Rajdhani-SemiBold.woff2) format("woff2");
+  src: url(../fonts/woff2/Rajdhani-SemiBold-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+@font-face {
+  font-family: "Rajdhani";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../fonts/woff2/Rajdhani-SemiBold-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Rajdhani";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../fonts/woff2/Rajdhani-SemiBold-symbols.woff2) format("woff2");
+  unicode-range: U+02D8-02D9, U+02DB, U+039C, U+03A0, U+03A3, U+2126, U+2202, U+2206, U+2248, U+2260, U+2264-2265;
+}
+@font-face {
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 50% 125%;
+  font-display: swap;
+  src: url(../fonts/woff2/Saira-vietnamese.woff2) format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 50% 125%;
+  font-display: swap;
+  src: url(../fonts/woff2/Saira-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 50% 125%;
+  font-display: swap;
+  src: url(../fonts/woff2/Saira-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 50% 125%;
+  font-display: swap;
+  src: url(../fonts/woff2/Saira-symbols.woff2) format("woff2");
+  unicode-range: U+02D8-02D9, U+02DB, U+0302, U+0306-0307, U+030A-030C, U+030F, U+0311-0312, U+031B, U+0324, U+0326-0328, U+032E, U+0331, U+0335-0336, U+0394, U+03A9, U+03BC, U+03C0, U+2070, U+2074-2079, U+2080-2089, U+2116, U+2126, U+212E, U+2153-2154, U+215B-215E, U+2190, U+2192, U+2194-2195, U+21A8, U+2202, U+2206, U+220F, U+2211, U+2219-221A, U+221E, U+222B, U+2248, U+2260, U+2264-2265, U+2302, U+25CA, U+27E8-27E9, U+FB01-FB02;
+}
+@font-face {
+  font-family: "Saira";
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 50% 125%;
+  font-display: swap;
+  src: url(../fonts/woff2/Saira-Italic-vietnamese.woff2) format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: "Saira";
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 50% 125%;
+  font-display: swap;
+  src: url(../fonts/woff2/Saira-Italic-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Saira";
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 50% 125%;
+  font-display: swap;
+  src: url(../fonts/woff2/Saira-Italic-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Saira";
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 50% 125%;
+  font-display: swap;
+  src: url(../fonts/woff2/Saira-Italic-symbols.woff2) format("woff2");
+  unicode-range: U+02D8-02D9, U+02DB, U+0302, U+0306-0307, U+030A-030C, U+030F, U+0311-0312, U+031B, U+0324, U+0326-0328, U+032E, U+0331, U+0335-0336, U+0394, U+03A9, U+03BC, U+03C0, U+2070, U+2074-2079, U+2080-2089, U+2116, U+2126, U+212E, U+2153-2154, U+215B-215E, U+2190, U+2192, U+2194-2195, U+21A8, U+2202, U+2206, U+220F, U+2211, U+2219-221A, U+221E, U+222B, U+2248, U+2260, U+2264-2265, U+2302, U+25CA, U+27E8-27E9, U+FB01-FB02;
+}
+
 @font-face {
   font-family: "Monaspace Neon";
   font-style: normal;
@@ -72,13 +163,10 @@
   --r-choice-dot: 0.7rem;
   --r-font-brand: Enterprsr, Audiowide, Rajdhani, sans-serif;
   --r-font-heading: Audiowide, Rajdhani, sans-serif;
-  /* Heading fonts by tier, so an app can switch Audiowide off where it wants:
-     h1 uses --r-font-heading, h2-h3 --r-font-sub, h4-h6 --r-font-minor.
-     All headings in Rajdhani: --r-font-heading: var(--r-font-text). Only h2-h3: --r-font-sub: var(--r-font-text). */
-  --r-font-sub: var(--r-font-heading);
-  --r-font-minor: var(--r-font-text);
-  --r-font-text: Rajdhani, "Segoe UI", sans-serif;
+  --r-font-ui: Rajdhani, "Segoe UI", sans-serif;
+  --r-font-text: Saira, Rajdhani, sans-serif;
   --r-font-mono: "Monaspace Neon", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --r-label-tracking: 0.16em;
   /* Waiting icons in theme/icons/. The animated file is --r-icon-wait; the full W is --r-icon-wait-static;
      --r-icon-wait-cursor is the same W at 32 CSS px, for the pointer. */
   --r-icon-wait: url(icons/wait.svg);
@@ -106,7 +194,21 @@
   color: var(--r-text);
   font-family: var(--r-font-text);
   font-size: 1.2rem;
+  font-weight: 400;
+  font-stretch: 100%;
   line-height: 1.4;
+}
+
+:where(em, i, cite) { font-style: italic; }
+
+.r-compact { font-stretch: 85%; }
+
+.r-impact { font-family: var(--r-font-heading); font-stretch: 100%; }
+.r-impact :is(h1, h2, h3) { font-family: var(--r-font-heading); font-stretch: 100%; }
+
+@media (max-width: 40rem) {
+  :root { --r-label-tracking: 0.08em; }
+  :where(body) { font-stretch: 85%; }
 }
 
 ::selection { background-color: var(--ui-border); color: var(--ui-fg-bright); }
@@ -118,9 +220,9 @@
   line-height: 1.15;
 }
 :where(h1, h2, h3) { letter-spacing: 0.04em; }
-:where(h1) { font-family: var(--r-font-heading); }
-:where(h2, h3) { font-family: var(--r-font-sub); }
-:where(h4, h5, h6) { font-family: var(--r-font-minor); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+:where(h1) { font-family: var(--r-font-heading); font-stretch: 100%; }
+:where(h2, h3) { font-family: var(--r-font-text); }
+:where(h4, h5, h6) { font-family: var(--r-font-ui); font-weight: 600; letter-spacing: var(--r-label-tracking); text-transform: uppercase; font-stretch: 100%; }
 :where(h1) { font-size: 2rem; color: var(--r-heading); }
 :where(h2) { font-size: 1.6rem; color: var(--r-heading-2); }
 :where(h3) { font-size: 1.3rem; color: var(--r-heading-3); }
@@ -131,11 +233,11 @@
 :where(small) { color: var(--r-text-small); }
 :where(mark) { padding: 0 0.15em; color: var(--ui-bg); background: var(--ui-blue); border-radius: 0.2em; }
 :where(blockquote) { padding: 0.2rem 0 0.2rem 1rem; color: var(--r-text-small); border-left: 4px solid var(--ui-border); }
-:where(dt) { color: var(--r-text-small); font-weight: 600; }
+:where(dt) { color: var(--r-text-small); font-family: var(--r-font-ui); font-weight: 600; }
 :where(dd) { margin: 0 0 0.5rem 1rem; }
 :where(figcaption) { margin-top: 0.4rem; color: var(--r-text-small); font-size: 0.95rem; }
 :where(details) { padding: 0.5rem 0.8rem; border: 1px solid var(--ui-border); border-radius: 0.6rem; }
-:where(summary) { cursor: pointer; color: var(--r-text-small); font-weight: 600; }
+:where(summary) { cursor: pointer; color: var(--r-text-small); font-family: var(--r-font-ui); font-weight: 600; }
 :where(details[open] > summary) { margin-bottom: 0.5rem; }
 
 :where(a) {
@@ -193,7 +295,7 @@
   border-bottom: 1px solid var(--ui-border);
   background-clip: padding-box;
 }
-:where(th) { color: var(--r-text-small); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.04em; }
+:where(th) { color: var(--r-text-small); font-family: var(--r-font-ui); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.04em; }
 :where(thead th) { background: var(--ui-border); }
 :where(table > :last-child > tr:last-child > *, table > tr:last-child > *) { border-bottom: 0; }
 :where(tbody tr:hover > *) { background: var(--ui-bg-lighter); }
@@ -217,7 +319,7 @@
 }
 
 /* Form fields */
-:where(label) { color: var(--r-text-small); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.04em; }
+:where(label) { color: var(--r-text-small); font-family: var(--r-font-ui); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.04em; }
 :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="submit"], [type="reset"], [type="button"], [type="image"]), textarea, select) {
   width: 100%;
   padding: 0.55rem 0.8rem;
@@ -309,7 +411,7 @@
 
 /* Field groups */
 :where(fieldset) { min-width: 0; padding: 0.8rem 1rem 1rem; border: 1px solid var(--ui-border); border-radius: 0.6rem; }
-:where(legend) { padding: 0 0.4rem; color: var(--r-text-small); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.04em; }
+:where(legend) { padding: 0 0.4rem; color: var(--r-text-small); font-family: var(--r-font-ui); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.04em; }
 
 /* Progress and meter: a slim rounded track on Lighter background. Progress fills with the striped
    gradient; a meter is Green when good, Yellow when fair, Red when poor. */
