@@ -12,8 +12,9 @@ main.about {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   min-height: 0;
-  padding: 2.5rem 1.25rem 3rem;
+  padding: 2.5rem var(--r-text-inline) 3rem;
 }
 
 .about-stack {
@@ -21,7 +22,7 @@ main.about {
   flex-direction: column;
   align-items: center;
   gap: 0.7rem;
-  width: min(34rem, 100%);
+  width: 100%;
 }
 
 .about-stack .r-term.term-head {
@@ -82,9 +83,8 @@ main.about {
 @media (min-width: 60rem) {
   main.about {
     padding: 0;
-    --about-inset-r: clamp(3.5rem, calc(16vw - 1rem), 17rem);
-    /* 21.5rem keeps "1 readable source" on one line at the wide breakpoint. */
-    --about-plate-w: min(34rem, max(21.5rem, 34vw));
+    --about-inset-r: var(--r-text-inline);
+    --about-plate-w: var(--r-measure);
     --about-body-top: calc(clamp(4rem, calc(var(--about-h) * 0.53), calc(var(--about-h) - 22rem)) + var(--wall-shift));
     --about-head-lead: 7.6rem;
     --about-head-top: max(4.75rem, calc(var(--about-body-top) - var(--about-head-lead)));

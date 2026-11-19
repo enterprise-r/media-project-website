@@ -22,8 +22,9 @@ main.home {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   min-height: 0;
-  padding: 2rem 1rem;
+  padding: 2rem var(--r-text-inline);
 }
 
 /* The terminal sets the width. The logo contributes no width of its own

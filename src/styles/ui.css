@@ -7,10 +7,13 @@ html:has(.showcase) body { height: auto; }
 
 main.showcase {
   display: block;
-  max-width: 76rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
   min-height: 0;
-  margin: 0 auto;
-  padding: 3rem 2.5rem 5rem;
+  margin: 0;
+  padding: 3rem var(--r-text-inline) 5rem;
+  overflow-x: auto;
   text-align: left;
 }
 
@@ -34,7 +37,7 @@ main.showcase + footer p {
   letter-spacing: 0.08em;
   color: var(--ui-fg-light);
 }
-.sc-lede { margin: 0 0 1.5rem; color: var(--ui-fg-light); font-size: 1.05rem; max-width: 52rem; }
+.sc-lede { margin: 0 0 1.5rem; color: var(--ui-fg-light); font-size: 1.05rem; }
 
 .sc-section { margin-top: 0; }
 .sc-section > h2.sc-label {
@@ -242,7 +245,7 @@ a.sc-closer-fill:hover {
 .sc-contents ol { columns: 3 12rem; margin: 0 0 1.5rem; padding-left: 1.4rem; }
 
 /* Tutorial notes: the markup to copy and what the part needs, in a closed details. */
-.sc-prose { max-width: 52rem; }
+.sc-prose { max-width: none; }
 .sc-notes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.8rem; margin: 1rem 0 0; }
 .sc-code { margin: 0; min-width: 0; }
 .sc-code[open] { padding: 0; border-color: transparent; }
@@ -253,7 +256,7 @@ a.sc-closer-fill:hover {
 .sc-code > .sc-docs { margin-top: 0.8rem; }
 @media print { .sc-code { display: none; } }
 .sc-notes + ul { margin-top: 1rem; }
-.sc-spec { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 0.4rem 1.2rem; max-width: 64rem; margin: 0; }
+.sc-spec { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 0.4rem 1.2rem; max-width: 100%; margin: 0; }
 .sc-spec dt { margin: 0; }
 .sc-spec dd { margin: 0; color: var(--r-text-small); }
 .sc-name-sample { font-size: 2rem; }
@@ -282,10 +285,10 @@ a.sc-closer-fill:hover {
 .sc-mark { --r-mark-view: 1024; --r-mark-plate: 1024; --r-mark-round: 102; }
 
 /* Key/value sample: a column's width, with room for the step back. */
-.sc-measure { max-width: 46rem; padding-inline: var(--r-box-pad); }
+.sc-measure { max-width: 100%; padding-inline: var(--r-box-pad); }
 
 @media (max-width: 900px) {
-  main.showcase { padding: 2rem 1rem 4rem; }
+  main.showcase { padding-block: 2rem 4rem; }
   .sc-grid.cols-2, .sc-grid.cols-3, .sc-form, .sc-guard, .sc-spec { grid-template-columns: 1fr; }
   .sc-span-2 { grid-column: auto; }
   .sc-type { grid-template-columns: 1fr; }
