@@ -60,10 +60,21 @@ const contents = [
     </nav>
     <div class="r-bar-end">
       <div class="sc-temp">
-        <label class="sc-temp-name" for="sc-temp">Temperature</label>
-        <span class="sc-temp-end" aria-hidden="true">Warm</span>
-        <input id="sc-temp" class="sc-temp-range" type="range" min="-1" max="1" step="0.05" value="0" aria-valuetext="Neutral">
-        <span class="sc-temp-end" aria-hidden="true">Cool</span>
+        <span class="sc-temp-name" id="sc-temp-label">Temperature</span>
+        <div class="r-group" id="sc-temp" role="radiogroup" aria-labelledby="sc-temp-label">
+          <button type="button" class="r-btn" role="radio" aria-checked="false" tabindex="-1" data-temp="warm">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><ellipse cx="12" cy="10" rx="8" ry="8" fill="#FFD2A0" opacity="0.35"/><path fill="#FFD2A0" d="M12 3.2c-3.15 0-5.6 2.45-5.6 5.5 0 2.2 1.25 3.7 2.25 5.05.4.55.75 1.05.75 1.55h5.2c0-.5.35-1 .75-1.55 1-1.35 2.25-2.85 2.25-5.05 0-3.05-2.45-5.5-5.6-5.5z"/><path fill="#4A4036" d="M9.3 15.8h5.4v1.05H9.3zm.5 1.35h4.4v.7h-4.4zm.55.95h3.3v.7h-3.3z"/></svg>
+            <span>Warm</span>
+          </button>
+          <button type="button" class="r-btn" role="radio" aria-checked="true" tabindex="0" data-temp="neutral">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><ellipse cx="12" cy="10" rx="8" ry="8" fill="#F3F1EC" opacity="0.35"/><path fill="#F3F1EC" d="M12 3.2c-3.15 0-5.6 2.45-5.6 5.5 0 2.2 1.25 3.7 2.25 5.05.4.55.75 1.05.75 1.55h5.2c0-.5.35-1 .75-1.55 1-1.35 2.25-2.85 2.25-5.05 0-3.05-2.45-5.5-5.6-5.5z"/><path fill="#4A4036" d="M9.3 15.8h5.4v1.05H9.3zm.5 1.35h4.4v.7h-4.4zm.55.95h3.3v.7h-3.3z"/></svg>
+            <span>Neutral</span>
+          </button>
+          <button type="button" class="r-btn" role="radio" aria-checked="false" tabindex="-1" data-temp="cool">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><ellipse cx="12" cy="10" rx="8" ry="8" fill="#D5E6F8" opacity="0.35"/><path fill="#D5E6F8" d="M12 3.2c-3.15 0-5.6 2.45-5.6 5.5 0 2.2 1.25 3.7 2.25 5.05.4.55.75 1.05.75 1.55h5.2c0-.5.35-1 .75-1.55 1-1.35 2.25-2.85 2.25-5.05 0-3.05-2.45-5.5-5.6-5.5z"/><path fill="#4A4036" d="M9.3 15.8h5.4v1.05H9.3zm.5 1.35h4.4v.7h-4.4zm.55.95h3.3v.7h-3.3z"/></svg>
+            <span>Cool</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -165,25 +176,37 @@ const contents = [
     // A dynamic list added after load, enhanced with the rows.js hook.
     document.getElementById("sc-print").addEventListener("click", () => window.print());
     (() => {
-      const slider = document.getElementById("sc-temp");
       const matrix = document.querySelector("#sc-temp-filter feColorMatrix");
-      const apply = () => {
-        const t = Number(slider.value);
-        slider.setAttribute("aria-valuetext", t === 0 ? "Neutral" : t < 0 ? "Warm" : "Cool");
-        if (t === 0) {
-          document.body.classList.remove("sc-temp-shift");
-          matrix.setAttribute("values", "1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0");
-          return;
-        }
-        const k = Math.abs(t);
-        const r = t < 0 ? 1 + 0.08 * k : 1 - 0.22 * k;
-        const g = 1 - 0.05 * k;
-        const b = t < 0 ? 1 - 0.35 * k : 1 + 0.18 * k;
-        const n = (x) => x.toFixed(3);
-        matrix.setAttribute("values", `${n(r)} 0 0 0 0  0 ${n(g)} 0 0 0  0 0 ${n(b)} 0 0  0 0 0 1 0`);
-        document.body.classList.add("sc-temp-shift");
+      const group = document.getElementById("sc-temp");
+      const buttons = [...group.querySelectorAll("[role=radio]")];
+      const values = {
+        warm: "1.040 0 0 0 0  0 0.975 0 0 0  0 0 0.825 0 0  0 0 0 1 0",
+        neutral: "1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0",
+        cool: "0.890 0 0 0 0  0 0.975 0 0 0  0 0 1.090 0 0  0 0 0 1 0",
       };
-      slider.addEventListener("input", apply);
+      const apply = (btn) => {
+        buttons.forEach((b) => {
+          const on = b === btn;
+          b.setAttribute("aria-checked", String(on));
+          b.tabIndex = on ? 0 : -1;
+        });
+        matrix.setAttribute("values", values[btn.dataset.temp]);
+        document.body.classList.toggle("sc-temp-shift", btn.dataset.temp !== "neutral");
+      };
+      group.addEventListener("click", (e) => {
+        const btn = e.target.closest("[role=radio]");
+        if (btn) apply(btn);
+      });
+      group.addEventListener("keydown", (e) => {
+        const i = buttons.indexOf(document.activeElement);
+        if (i < 0) return;
+        const dir = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+        if (!dir && e.key !== "Home" && e.key !== "End") return;
+        e.preventDefault();
+        const j = e.key === "Home" ? 0 : e.key === "End" ? buttons.length - 1 : (i + dir + buttons.length) % buttons.length;
+        buttons[j].focus();
+        apply(buttons[j]);
+      });
     })();
   </script>
 </Base>
