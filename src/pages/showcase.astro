@@ -59,23 +59,22 @@ const contents = [
       </ol>
     </nav>
     <div class="r-bar-end">
-      <div class="sc-temp">
-        <span class="sc-temp-name" id="sc-temp-label">Temperature</span>
-        <div class="r-group" id="sc-temp" role="radiogroup" aria-labelledby="sc-temp-label">
-          <button type="button" class="r-btn" role="radio" aria-checked="false" tabindex="-1" data-temp="warm">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><ellipse cx="12" cy="10" rx="8" ry="8" fill="#FFD2A0" opacity="0.35"/><path fill="#FFD2A0" d="M12 3.2c-3.15 0-5.6 2.45-5.6 5.5 0 2.2 1.25 3.7 2.25 5.05.4.55.75 1.05.75 1.55h5.2c0-.5.35-1 .75-1.55 1-1.35 2.25-2.85 2.25-5.05 0-3.05-2.45-5.5-5.6-5.5z"/><path fill="#4A4036" d="M9.3 15.8h5.4v1.05H9.3zm.5 1.35h4.4v.7h-4.4zm.55.95h3.3v.7h-3.3z"/></svg>
-            <span>Warm</span>
+      <details class="r-menu sc-temp" id="sc-temp">
+        <summary class="r-btn" aria-label="Temperature" aria-haspopup="menu">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><ellipse class="sc-temp-light" cx="12" cy="10" rx="8" ry="8" fill="#F3F1EC" opacity="0.35"/><path class="sc-temp-light" fill="#F3F1EC" d="M12 3.2c-3.15 0-5.6 2.45-5.6 5.5 0 2.2 1.25 3.7 2.25 5.05.4.55.75 1.05.75 1.55h5.2c0-.5.35-1 .75-1.55 1-1.35 2.25-2.85 2.25-5.05 0-3.05-2.45-5.5-5.6-5.5z"/><path fill="#4A4036" d="M9.3 15.8h5.4v1.05H9.3zm.5 1.35h4.4v.7h-4.4zm.55.95h3.3v.7h-3.3z"/></svg>
+        </summary>
+        <div class="r-menu-list" role="menu" aria-label="Temperature">
+          <button type="button" class="r-btn" role="menuitemradio" aria-checked="false" aria-label="Warm" data-temp="warm">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><ellipse cx="12" cy="10" rx="8" ry="8" fill="#FFD2A0" opacity="0.35"/><path fill="#FFD2A0" d="M12 3.2c-3.15 0-5.6 2.45-5.6 5.5 0 2.2 1.25 3.7 2.25 5.05.4.55.75 1.05.75 1.55h5.2c0-.5.35-1 .75-1.55 1-1.35 2.25-2.85 2.25-5.05 0-3.05-2.45-5.5-5.6-5.5z"/><path fill="#4A4036" d="M9.3 15.8h5.4v1.05H9.3zm.5 1.35h4.4v.7h-4.4zm.55.95h3.3v.7h-3.3z"/></svg>
           </button>
-          <button type="button" class="r-btn" role="radio" aria-checked="true" tabindex="0" data-temp="neutral">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><ellipse cx="12" cy="10" rx="8" ry="8" fill="#F3F1EC" opacity="0.35"/><path fill="#F3F1EC" d="M12 3.2c-3.15 0-5.6 2.45-5.6 5.5 0 2.2 1.25 3.7 2.25 5.05.4.55.75 1.05.75 1.55h5.2c0-.5.35-1 .75-1.55 1-1.35 2.25-2.85 2.25-5.05 0-3.05-2.45-5.5-5.6-5.5z"/><path fill="#4A4036" d="M9.3 15.8h5.4v1.05H9.3zm.5 1.35h4.4v.7h-4.4zm.55.95h3.3v.7h-3.3z"/></svg>
-            <span>Neutral</span>
+          <button type="button" class="r-btn" role="menuitemradio" aria-checked="true" aria-label="Neutral" data-temp="neutral">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><ellipse cx="12" cy="10" rx="8" ry="8" fill="#F3F1EC" opacity="0.35"/><path fill="#F3F1EC" d="M12 3.2c-3.15 0-5.6 2.45-5.6 5.5 0 2.2 1.25 3.7 2.25 5.05.4.55.75 1.05.75 1.55h5.2c0-.5.35-1 .75-1.55 1-1.35 2.25-2.85 2.25-5.05 0-3.05-2.45-5.5-5.6-5.5z"/><path fill="#4A4036" d="M9.3 15.8h5.4v1.05H9.3zm.5 1.35h4.4v.7h-4.4zm.55.95h3.3v.7h-3.3z"/></svg>
           </button>
-          <button type="button" class="r-btn" role="radio" aria-checked="false" tabindex="-1" data-temp="cool">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><ellipse cx="12" cy="10" rx="8" ry="8" fill="#D5E6F8" opacity="0.35"/><path fill="#D5E6F8" d="M12 3.2c-3.15 0-5.6 2.45-5.6 5.5 0 2.2 1.25 3.7 2.25 5.05.4.55.75 1.05.75 1.55h5.2c0-.5.35-1 .75-1.55 1-1.35 2.25-2.85 2.25-5.05 0-3.05-2.45-5.5-5.6-5.5z"/><path fill="#4A4036" d="M9.3 15.8h5.4v1.05H9.3zm.5 1.35h4.4v.7h-4.4zm.55.95h3.3v.7h-3.3z"/></svg>
-            <span>Cool</span>
+          <button type="button" class="r-btn" role="menuitemradio" aria-checked="false" aria-label="Cool" data-temp="cool">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><ellipse cx="12" cy="10" rx="8" ry="8" fill="#D5E6F8" opacity="0.35"/><path fill="#D5E6F8" d="M12 3.2c-3.15 0-5.6 2.45-5.6 5.5 0 2.2 1.25 3.7 2.25 5.05.4.55.75 1.05.75 1.55h5.2c0-.5.35-1 .75-1.55 1-1.35 2.25-2.85 2.25-5.05 0-3.05-2.45-5.5-5.6-5.5z"/><path fill="#4A4036" d="M9.3 15.8h5.4v1.05H9.3zm.5 1.35h4.4v.7h-4.4zm.55.95h3.3v.7h-3.3z"/></svg>
           </button>
         </div>
-      </div>
+      </details>
     </div>
   </header>
   <main class="showcase">
@@ -177,35 +176,39 @@ const contents = [
     document.getElementById("sc-print").addEventListener("click", () => window.print());
     (() => {
       const matrix = document.querySelector("#sc-temp-filter feColorMatrix");
-      const group = document.getElementById("sc-temp");
-      const buttons = [...group.querySelectorAll("[role=radio]")];
+      const menu = document.getElementById("sc-temp");
+      const lights = menu.querySelectorAll(".sc-temp-light");
+      const items = [...menu.querySelectorAll("[role=menuitemradio]")];
       const values = {
         warm: "1.040 0 0 0 0  0 0.975 0 0 0  0 0 0.825 0 0  0 0 0 1 0",
         neutral: "1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0",
         cool: "0.890 0 0 0 0  0 0.975 0 0 0  0 0 1.090 0 0  0 0 0 1 0",
       };
-      const apply = (btn) => {
-        buttons.forEach((b) => {
-          const on = b === btn;
-          b.setAttribute("aria-checked", String(on));
-          b.tabIndex = on ? 0 : -1;
-        });
-        matrix.setAttribute("values", values[btn.dataset.temp]);
-        document.body.classList.toggle("sc-temp-shift", btn.dataset.temp !== "neutral");
+      const colors = { warm: "#FFD2A0", neutral: "#F3F1EC", cool: "#D5E6F8" };
+      const apply = (item) => {
+        items.forEach((b) => b.setAttribute("aria-checked", String(b === item)));
+        const temp = item.dataset.temp;
+        lights.forEach((el) => el.setAttribute("fill", colors[temp]));
+        matrix.setAttribute("values", values[temp]);
+        document.body.classList.toggle("sc-temp-shift", temp !== "neutral");
+        menu.open = false;
       };
-      group.addEventListener("click", (e) => {
-        const btn = e.target.closest("[role=radio]");
-        if (btn) apply(btn);
+      items.forEach((item) => item.addEventListener("click", () => apply(item)));
+      menu.addEventListener("toggle", () => {
+        if (menu.open) {
+          const current = items.find((b) => b.getAttribute("aria-checked") === "true") || items[1];
+          current.focus();
+        }
       });
-      group.addEventListener("keydown", (e) => {
-        const i = buttons.indexOf(document.activeElement);
+      menu.addEventListener("keydown", (e) => {
+        if (!menu.open) return;
+        const i = items.indexOf(document.activeElement);
         if (i < 0) return;
         const dir = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
         if (!dir && e.key !== "Home" && e.key !== "End") return;
         e.preventDefault();
-        const j = e.key === "Home" ? 0 : e.key === "End" ? buttons.length - 1 : (i + dir + buttons.length) % buttons.length;
-        buttons[j].focus();
-        apply(buttons[j]);
+        const j = e.key === "Home" ? 0 : e.key === "End" ? items.length - 1 : (i + dir + items.length) % items.length;
+        items[j].focus();
       });
     })();
   </script>
