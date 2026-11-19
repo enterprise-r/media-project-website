@@ -46,6 +46,27 @@ const contents = [
 ];
 ---
 <Base title="UI showcase · Enterprise-R" description="Enterprise-R UI style guide." noindex header={false}>
+  <svg class="sc-temp-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="sc-temp-filter" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+    </filter>
+  </svg>
+  <header class="r-bar">
+    <nav class="r-crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a class="r-btn r-crumb-root" href="/"><picture><source media="(min-width: 48rem)" srcset="/assets/logo-wide-black.svg" width="320" height="56"><img src="/assets/logo-compact-black.svg" width="320" height="120" alt="Enterprise-R"></picture></a></li>
+        <li><a class="r-btn" href="/showcase/" aria-current="page">Showcase</a></li>
+      </ol>
+    </nav>
+    <div class="r-bar-end">
+      <div class="sc-temp">
+        <label class="sc-temp-name" for="sc-temp">Temperature</label>
+        <span class="sc-temp-end" aria-hidden="true">Warm</span>
+        <input id="sc-temp" class="sc-temp-range" type="range" min="-1" max="1" step="0.05" value="0" aria-valuetext="Neutral">
+        <span class="sc-temp-end" aria-hidden="true">Cool</span>
+      </div>
+    </div>
+  </header>
   <main class="showcase">
     <h1 class="sc-title">
       <img src="/assets/logo-wide.svg" width="320" height="56" alt="Enterprise-R">
@@ -143,5 +164,26 @@ const contents = [
     count("sc-free-btn", "sc-free-n");
     // A dynamic list added after load, enhanced with the rows.js hook.
     document.getElementById("sc-print").addEventListener("click", () => window.print());
+    (() => {
+      const slider = document.getElementById("sc-temp");
+      const matrix = document.querySelector("#sc-temp-filter feColorMatrix");
+      const apply = () => {
+        const t = Number(slider.value);
+        slider.setAttribute("aria-valuetext", t === 0 ? "Neutral" : t < 0 ? "Warm" : "Cool");
+        if (t === 0) {
+          document.body.classList.remove("sc-temp-shift");
+          matrix.setAttribute("values", "1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0");
+          return;
+        }
+        const k = Math.abs(t);
+        const r = t < 0 ? 1 + 0.08 * k : 1 - 0.22 * k;
+        const g = 1 - 0.05 * k;
+        const b = t < 0 ? 1 - 0.35 * k : 1 + 0.18 * k;
+        const n = (x) => x.toFixed(3);
+        matrix.setAttribute("values", `${n(r)} 0 0 0 0  0 ${n(g)} 0 0 0  0 0 ${n(b)} 0 0  0 0 0 1 0`);
+        document.body.classList.add("sc-temp-shift");
+      };
+      slider.addEventListener("input", apply);
+    })();
   </script>
 </Base>
