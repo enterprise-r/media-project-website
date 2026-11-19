@@ -2,7 +2,7 @@
    The first pixel of scroll fills it. The class is read by bar.css. */
 (function () {
   var header = document.querySelector("body > header.r-bar");
-  if (!header || document.querySelector(".showcase, main.login")) return;
+  if (!header || !document.documentElement.matches(".is-home, .is-about")) return;
 
   var paint = function () {
     header.classList.toggle("is-solid", window.scrollY > 0);

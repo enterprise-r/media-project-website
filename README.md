@@ -12,7 +12,7 @@ Pages: Home (`/`), About (`/about/`), Login (`/r/`), 404 (`/404.html`) and `/sho
 |---|---|
 | Page text (title, heading, contact email) | the `page` block at the top of the page in `src/pages/` |
 | Logo and favicons | `public/assets/`. The root breadcrumb shows `logo-wide-black.svg` from 48rem and `logo-compact-black.svg` below |
-| Styles | `src/styles/`: `palette.css` (colours), `theme/` (Dark-R), `bar.css` (title bar), `footer.css`, `home.css`, `about.css`, `login.css`, `ui.css` (style guide) |
+| Styles | `src/styles/`: `palette.css` (colours), `theme/` (Dark-R), `bar.css` (title bar), `footer.css`, `home.css`, `about.css`, `login.css`, `showcase.css` (style guide) |
 | Shared head, title bar and navigation | `src/layouts/Base.astro` |
 | Social links | the `social` list in `src/components/Footer.astro` |
 | Showcase sections and tutorial notes | `src/components/showcase/`, one component per section, put in order by `src/pages/showcase.astro` |
