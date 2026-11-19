@@ -53,6 +53,11 @@
    so its label sits just off the glass and the row keeps the inset it gives back. A lone first crumb
    is the whole trail: square on the left, its right end still round, never a whole pill. A bar whose root is not a trail keeps its inset. */
 @media (max-width: 52rem) {
+  .r-bar {
+    font-stretch: 85%;
+    --r-btn-tracking: 0.04em;
+    --r-pill-tracking: 0.05em;
+  }
   .r-bar:has(> .r-crumbs:first-child) { padding-left: 0; }
   .r-bar > .r-crumbs:first-child li:first-child > .r-btn,
   .r-bar > .r-crumbs:first-child li:first-child > .r-menu > summary {

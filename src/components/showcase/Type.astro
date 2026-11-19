@@ -1,48 +1,57 @@
 ---
-// Type: the web scale of base.css, the document scale of doc.css, and the fonts.
+// Type: one typography, with impact and compact as optional levels.
 // The woff2 files are subset to Latin and Latin Extended by the branding build.
 import DarkR from "../DarkR.astro";
 import Notes from "./Notes.astro";
 import Enterprsr from "./Enterprsr.astro";
 
-const tiers = `
-:root {
-  --r-font-heading: Audiowide, Rajdhani, sans-serif; /* h1, and h2 to h3 by default */
-  --r-font-sub: var(--r-font-heading);               /* h2 to h3 */
-  --r-font-minor: var(--r-font-text);                /* h4 to h6 */
-}
-/* Rajdhani for h2 and h3 only: */
-:root { --r-font-sub: var(--r-font-text); }`;
+const scale = `
+<p>Headings and body use Saira. Uppercase labels use Rajdhani.</p>`;
 
-const doc = `
-<link rel="stylesheet" href="theme/doc.css">
+const impact = `
+<h1 class="r-impact">Mission control</h1>
 
-<article class="r-doc">
+<div class="r-impact">
   <h1>Mission control</h1>
-  <p>Long text reads in Saira, at most 68 characters wide.</p>
-</article>`;
+  <h2>A quiet view from orbit</h2>
+  <h3>Engineering log</h3>
+</div>`;
+
+const compact = `
+<p class="r-compact">We build small, careful things and send them a long way.</p>`;
 
 const fonts = `
-fonts/woff2/Enterprsr-Regular.woff2    Enterprsr, the ® of the name and the footer word
-fonts/woff2/Audiowide-Regular.woff2    Audiowide, headings
-fonts/woff2/Rajdhani-Medium.woff2      Rajdhani 500, text
-fonts/woff2/Rajdhani-SemiBold.woff2    Rajdhani 600, labels and buttons
-fonts/woff2/MonaspaceNeon.woff2        Monaspace Neon, code
-fonts/woff2/Saira.woff2                Saira roman, document body (doc.css)
-fonts/woff2/Saira-Italic.woff2         Saira italic, document body (doc.css)`;
+fonts/woff2/Enterprsr-Regular.woff2             Enterprsr, the ® of the name and the footer word
+fonts/woff2/Saira-latin.woff2                   Saira, latin
+fonts/woff2/Saira-latin-ext.woff2               Saira, latin-ext
+fonts/woff2/Saira-vietnamese.woff2              Saira, Vietnamese
+fonts/woff2/Saira-symbols.woff2                 Saira, symbols
+fonts/woff2/Saira-Italic-latin.woff2            Saira italic, latin
+fonts/woff2/Saira-Italic-latin-ext.woff2        Saira italic, latin-ext
+fonts/woff2/Saira-Italic-vietnamese.woff2       Saira italic, Vietnamese
+fonts/woff2/Saira-Italic-symbols.woff2          Saira italic, symbols
+fonts/woff2/Rajdhani-SemiBold-latin.woff2       Rajdhani 600, latin
+fonts/woff2/Rajdhani-SemiBold-latin-ext.woff2   Rajdhani 600, latin-ext
+fonts/woff2/Rajdhani-SemiBold-devanagari.woff2  Rajdhani 600, Devanagari
+fonts/woff2/Rajdhani-SemiBold-symbols.woff2     Rajdhani 600, symbols
+fonts/woff2/Audiowide-Regular.woff2             Audiowide, impact
+fonts/woff2/MonaspaceNeon.woff2                 Monaspace Neon, code`;
 
+const body = "We build small, careful things and send them a long way. This is how body text reads on our dark background.";
 ---
 <section class="sc-section" id="type">
   <h2 class="sc-label">Type</h2>
-  <p class="sc-prose">Two typefaces carry the interface. Audiowide, the face the logotype is drawn from, is wide and geometric, so it is kept for headings, where a few words should stand out. Rajdhani is narrower and holds up at small sizes, so it sets body text, labels and buttons. Together they keep the look of the logo without making long text tiring to read.</p>
-  <div class="sc-type">
-    <span class="sc-cap"><b>h1</b> Audiowide, Green</span><h1>Mission control</h1>
-    <span class="sc-cap"><b>h2</b> Audiowide, Bright</span><h2>A quiet view from orbit</h2>
-    <span class="sc-cap"><b>h3</b> Audiowide, Magenta</span><h3>Engineering log</h3>
+
+  <h3 class="sc-subhead">The scale</h3>
+  <p class="sc-prose">Saira sets the headings and the body. Rajdhani sets the uppercase labels.</p>
+  <div class="sc-type sc-scale">
+    <span class="sc-cap"><b>h1</b> Green</span><h1>Mission control</h1>
+    <span class="sc-cap"><b>h2</b> Bright</span><h2>A quiet view from orbit</h2>
+    <span class="sc-cap"><b>h3</b> Magenta</span><h3>Engineering log</h3>
     <span class="sc-cap"><b>h4</b> label caps, Yellow</span><h4>Surfaces</h4>
     <span class="sc-cap"><b>h5</b> label caps, Light</span><h5>Instruments</h5>
     <span class="sc-cap"><b>h6</b> label caps, Dark</span><h6>Footnotes</h6>
-    <span class="sc-cap"><b>Body</b> Rajdhani 1.2rem</span><p>We build small, careful things and send them a long way. This is how body text reads on our dark background.</p>
+    <span class="sc-cap"><b>Body</b></span><p>{body}</p>
     <span class="sc-cap"><b>Small</b></span><small>info<span class="at">@</span>enterprise-r.com · small print and captions</small>
     <span class="sc-cap"><b>Link</b></span><p>Read the <a href="#type">mission notes</a> before you start.</p>
     <span class="sc-cap"><b>Mark</b></span><p>The <mark>launch window</mark> opens at dawn.</p>
@@ -56,59 +65,76 @@ fonts/woff2/Saira-Italic.woff2         Saira italic, document body (doc.css)`;
     <span class="sc-cap"><b>Figure</b></span><figure><img src="/assets/ui-language-roads.svg" width="690" height="590" alt="The roads of the UI language"><figcaption>A figure scales down to its container.</figcaption></figure>
     <span class="sc-cap"><b>Selection</b></span><p>Select this line to see the selection colors.</p>
   </div>
-  <p class="sc-note">Audiowide down to h3, then Rajdhani label caps. One variable per tier switches the font.</p>
   <Notes
-    markup={tiers}
-    classes="None: `base.css` styles plain elements."
-    tokens="`--r-font-heading` (h1), `--r-font-sub` (h2 to h3), `--r-font-minor` (h4 to h6), `--r-font-text`, `--r-font-mono`."
-    do="Write plain semantic HTML."
-    dont="Pick a heading level for its look."
+    markup={scale}
+    classes="`.r-doc` around a document, for its measure and spacing only."
+    tokens="`--r-font-text`, `--r-font-ui`, `--r-font-mono`, `--r-doc-measure` (68ch)."
+    do="Write plain semantic HTML. Link `doc.css` after `base.css` only where documents are."
+    dont="Pick a heading level for its look. Put app controls inside `.r-doc`."
   />
-  <h3 class="sc-subhead">Web and document</h3>
-  <div class="sc-grid cols-2 sc-scales">
+
+  <h3 class="sc-subhead">Impact</h3>
+  <p class="sc-prose">Audiowide, the face the logotype is drawn from, is for a few words that should stand out.</p>
+  <div class="sc-grid cols-2">
     <div>
-      <p class="sc-cap"><b>Web</b> <code>base.css</code></p>
-      <div>
+      <p class="sc-cap"><b>Normal</b></p>
+      <div class="sc-plain">
         <h1>Mission control</h1>
         <h2>A quiet view from orbit</h2>
         <h3>Engineering log</h3>
-        <p><DarkR /> is futuristic with a hint of retro, on a fresh palette you don't often see in everyday interfaces. It is made for night mode and for night-light filters that warm the screen in the evening. Its purples and magentas carry a lot of blue, so <DarkR /> changes more than most themes when the night light comes on.</p>
       </div>
     </div>
     <div>
-      <p class="sc-cap"><b>Document</b> <code>.r-doc</code> in <code>doc.css</code></p>
-      <div class="r-doc">
+      <p class="sc-cap"><b>Impact</b> <code>.r-impact</code></p>
+      <div class="r-impact">
         <h1>Mission control</h1>
         <h2>A quiet view from orbit</h2>
         <h3>Engineering log</h3>
-        <p><DarkR /> is futuristic with a hint of retro, on a fresh palette you don't often see in everyday interfaces. It is made for night mode and for night-light filters that warm the screen in the evening. Its purples and magentas carry a lot of blue, so <DarkR /> changes more than most themes when the night light comes on.</p>
       </div>
     </div>
   </div>
-  <p class="sc-note">The web scale is the default. The document scale is for long text, with Saira for the body.</p>
   <Notes
-    markup={doc}
-    classes="`.r-doc` around the document."
-    tokens="`--r-font-doc`, `--r-doc-measure` (68ch)."
-    do="Link `doc.css` after `base.css`, only where documents are."
-    dont="Put app controls inside `.r-doc`."
+    markup={impact}
+    classes="`.r-impact` on a heading, or on a wrapper for h1 to h3. A page h1 uses it by default; an h1 in `.r-doc` does not."
+    tokens="`--r-font-heading`."
+    do="Use impact for a few words that should stand out."
+    dont="Set a whole page in impact."
   />
+
+  <h3 class="sc-subhead">Compact</h3>
+  <p class="sc-prose">Compact narrows the text so more of a line fits.</p>
+  <div class="sc-grid cols-2">
+    <div class="sc-plain">
+      <p class="sc-cap"><b>Normal</b></p>
+      <h2>A quiet view from orbit</h2>
+      <p>{body}</p>
+    </div>
+    <div class="sc-plain r-compact">
+      <p class="sc-cap"><b>Compact</b> <code>.r-compact</code></p>
+      <h2>A quiet view from orbit</h2>
+      <p>{body}</p>
+    </div>
+  </div>
+  <p class="sc-note">It switches on by itself on small screens.</p>
+  <Notes
+    markup={compact}
+    classes="`.r-compact` when you want it on a wide screen. Body text uses it below 40rem, the bar below 52rem."
+    do="Leave compact to the breakpoints unless you want it on a wide screen."
+    dont="Force compact on impact lettering."
+  />
+
   <h3 class="sc-subhead">Fonts</h3>
-  <p class="sc-prose"><Enterprsr /> is the logotype font. It is drawn from Audiowide and holds only the characters of the name: E, n, t, e, r, p, i and s, the hyphen, R and ®. Its R is the logo's mark, and its ® is the lone R that paints the R in <DarkR />. It has no other characters, so it is for the name only.</p>
   <div class="sc-type sc-fonts">
-    <span class="sc-cap"><b>Name</b></span><p><Enterprsr /></p>
-    <span class="sc-cap"><b>Headings</b></span><p class="sc-aw">Audiowide</p>
-    <span class="sc-cap"><b>Text</b> 500</span><p class="sc-f-text">Rajdhani Medium</p>
-    <span class="sc-cap"><b>Labels</b> 600</span><p class="sc-f-label">Rajdhani SemiBold</p>
+    <span class="sc-cap"><b>Text</b></span><p class="sc-f-text">Saira</p>
+    <span class="sc-cap"><b>Interface</b></span><p class="sc-f-ui">Rajdhani</p>
+    <span class="sc-cap"><b>Impact</b></span><p class="sc-aw">Audiowide</p>
     <span class="sc-cap"><b>Code</b></span><p class="sc-f-mono">Monaspace Neon</p>
-    <span class="sc-cap"><b>Documents</b></span><p class="sc-f-doc">Saira</p>
-    <span class="sc-cap"><b>Documents</b> italic</span><p class="sc-f-doc"><i>Saira Italic</i></p>
   </div>
   <Notes
     markup={fonts}
     do="Ship the licenses with the fonts."
     dont="Load the same faces from a font service as well."
   >
-    <p>The theme loads <Enterprsr />, Audiowide, Rajdhani (Medium, SemiBold), Monaspace Neon and Saira (roman, italic) from <code>../fonts/woff2/</code>.</p>
+    <p>The theme loads <Enterprsr />, Saira (latin, latin-ext, Vietnamese), Rajdhani SemiBold (latin, latin-ext, Devanagari), Audiowide and Monaspace Neon from <code>../fonts/woff2/</code>. Saira includes a real italic. Faces are split by <code>unicode-range</code>.</p>
   </Notes>
 </section>

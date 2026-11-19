@@ -28,6 +28,7 @@
   --r-btn-pad-x: 0.75rem;
   --r-btn-pad-b: 0.2rem;
   --r-btn-tracking: 0.1em;
+  --r-pill-tracking: 0.12em;
   /* Group ends are a semicircle: more padding on the curve, the same as the sides until a narrow screen. */
   --r-btn-pad-flat: var(--r-btn-pad-x);
   --r-btn-pad-curve: var(--r-btn-pad-x);
@@ -46,9 +47,10 @@
   background-color: var(--r-btn);
   border: 0;
   border-radius: 0.25rem;
-  font-family: inherit;
+  font-family: var(--r-font-ui);
   font-size: 0.95rem;
   font-weight: 600;
+  font-stretch: 100%;
   letter-spacing: var(--r-btn-tracking);
   text-transform: uppercase;
   text-decoration: none;
@@ -116,10 +118,11 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
 @media (max-width: 40rem) {
   :root {
     --r-btn-min: 4.75rem;
-    --r-btn-pad-x: 0.6rem;
-    --r-btn-pad-flat: 0.5rem;
+    --r-btn-pad-x: 0.5rem;
+    --r-btn-pad-flat: 0.4rem;
     --r-btn-pad-curve: max(var(--r-btn-pad-x), calc(var(--r-pill-r) * 0.7));
-    --r-btn-tracking: 0.08em;
+    --r-btn-tracking: 0.04em;
+    --r-pill-tracking: 0.05em;
   }
 }
 
@@ -291,9 +294,11 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
   color: var(--r-btn-text);
   background: var(--r-btn);
   border-radius: 999px;
+  font-family: var(--r-font-ui);
   font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  font-stretch: 100%;
+  letter-spacing: var(--r-pill-tracking);
   line-height: 1.4;
   text-transform: uppercase;
 }
@@ -341,7 +346,7 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
 .r-prompt {
   display: inline-block;
   color: var(--ui-green-bright);
-  font-family: var(--r-font-heading);
+  font-family: var(--r-font-ui);
   font-size: 0.95rem;
   font-weight: 400;
   letter-spacing: 0.18em;
@@ -481,7 +486,7 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
 
 /* Dynamic list: a fieldset of rows with a quiet add/remove control in a
    left column the size of a radio (--r-choice-size, 1.5rem). The × and + are
-   Audiowide, in Clear silver; hover turns × red (and the row's fields) and +
+   Rajdhani, in Clear silver; hover turns × red (and the row's fields) and +
    sage (and shows a reserved ghost row in --r-clear).
    Keyboard and live-region announcements come from theme/rows.js.
    <fieldset class="r-rows">
@@ -562,7 +567,7 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
   cursor: pointer;
 }
 .r-row-glyph {
-  font-family: var(--r-font-heading);
+  font-family: var(--r-font-ui);
   font-weight: 400;
   font-size: calc(var(--r-choice-size) * 0.6);
   line-height: 1;
