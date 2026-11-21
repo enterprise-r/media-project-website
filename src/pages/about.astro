@@ -29,5 +29,9 @@ import "../styles/about.css";
         </p>
       </div>
     </div>
+    <button type="button" class="about-qr" onclick="document.getElementById('about-qr-big').showModal()"><img src="/assets/logo-qr-pulse.svg" width="1147" height="1147" alt="QR code for www.enterprise-r.com"></button>
+    <dialog id="about-qr-big" class="about-qr-big" closedby="any">
+      <form method="dialog"><button><img src="/assets/logo-qr-pulse.svg" width="1147" height="1147" alt="QR code for www.enterprise-r.com"></button></form>
+    </dialog>
   </main>
 </Base>

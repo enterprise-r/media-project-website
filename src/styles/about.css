@@ -10,8 +10,8 @@
    the text readable over the picture. */
 main.about {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   min-height: 0;
   padding: 2.5rem 1.25rem 3rem;
 }
@@ -22,6 +22,7 @@ main.about {
   align-items: center;
   gap: 0.7rem;
   width: min(34rem, 100%);
+  margin-block: auto;
 }
 
 .about-stack .r-term.term-head {
@@ -48,6 +49,46 @@ main.about {
 
 .about-stack .r-term > :last-child {
   margin-bottom: 0;
+}
+
+.about-qr {
+  display: block;
+  align-self: flex-start;
+  width: 4.5rem;
+  margin-top: 2rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.about-qr img,
+.about-qr-big img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.3rem;
+}
+
+.about-qr-big img {
+  border-radius: 0.9rem;
+}
+
+.about-qr-big {
+  width: min(32rem, calc(100vw - 2rem), calc(100dvh - 2rem));
+  max-width: none;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.about-qr-big button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-out;
 }
 
 .email {
@@ -107,5 +148,9 @@ main.about {
 
   .about-stack > .r-term:not(.term-head) {
     top: var(--about-body-top);
+  }
+
+  .about-qr {
+    margin: auto 0 1.5rem 1.5rem;
   }
 }
