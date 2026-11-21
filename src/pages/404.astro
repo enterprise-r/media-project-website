@@ -11,10 +11,10 @@ const parts = [
 const prompt = "NOT FOUND";
 
 import Base from "../layouts/Base.astro";
-import HomeWait from "../components/HomeWait.astro";
+import NotFound from "../components/NotFound.astro";
 ---
 <Base title={page.title} description={page.description} noindex hero>
-  <HomeWait parts={parts} prompt={prompt} sentence="404" throwable />
+  <NotFound parts={parts} prompt={prompt} />
 </Base>
 <script>
   import { throwLogo } from "../scripts/throw-logo.js";
