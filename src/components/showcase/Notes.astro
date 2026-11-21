@@ -28,8 +28,8 @@ const hasExtra = Astro.slots.has("default");
   <div class="sc-notes">
     <details class="sc-code">
       <summary>Code</summary>
-      {p.markup && <pre><code>{p.markup.trim()}</code></pre>}
-      {p.extra && <pre><code>{p.extra.trim()}</code></pre>}
+      {p.markup && <pre tabindex="0"><code>{p.markup.trim()}</code></pre>}
+      {p.extra && <pre tabindex="0"><code>{p.extra.trim()}</code></pre>}
       {hasDocs && (
         <dl class="sc-spec">
           {rows.map(([k, v]) => (<><dt>{k}</dt><dd set:html={md(v)} /></>))}
