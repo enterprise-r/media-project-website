@@ -7,7 +7,7 @@ const hex = (v: string) => colours.find((c) => c.var === v)!.hex;
 ---
 <section class="sc-section" id="code">
   <h2 class="sc-label">Code</h2>
-  <pre><code><span class="k">:root</span> {"{"}
+  <pre tabindex="0"><code><span class="k">:root</span> {"{"}
   <span class="k">--r-primary</span>: <span class="v">var(--ui-green)</span>;              <span class="c">/* Green (sage) {hex("--ui-green")} */</span>
   <span class="k">--r-primary-hover</span>: <span class="v">var(--ui-green-bright)</span>; <span class="c">/* Bright green {hex("--ui-green-bright")} */</span>
   <span class="k">--r-btn</span>: <span class="v">var(--ui-orange)</span>;                 <span class="c">/* Orange {hex("--ui-orange")} */</span>
@@ -15,5 +15,5 @@ const hex = (v: string) => colours.find((c) => c.var === v)!.hex;
   <span class="k">--r-text</span>: <span class="v">var(--ui-fg)</span>;                    <span class="c">/* {hex("--ui-fg")} */</span>
 {"}"}</code></pre>
   {/* The token colors inside the sample (.k, .v, .c) are this page's, from showcase.css, not the theme's. */}
-  <p class="sc-note">A plain <code>pre</code> is a code block.</p>
+  <p class="sc-note">A plain <code>pre</code> is a code block. Give it <code>tabindex="0"</code>: a long line scrolls, and the keyboard needs to reach it.</p>
 </section>

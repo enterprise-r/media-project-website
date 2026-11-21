@@ -354,3 +354,13 @@ body.sc-temp-shift > * { filter: url(#sc-temp-filter); }
   outline-offset: 2px;
 }
 .sc-temp svg { display: block; }
+
+/* Code blocks carry tabindex="0" so the keyboard can scroll a long line. They take the theme's
+   focus ring. theme/base.css is vendored from project-branding, so the rule lives here. */
+.showcase pre[tabindex]:focus-visible {
+  outline: 2px solid var(--r-focus);
+  outline-offset: 3px;
+}
+@media (forced-colors: active) {
+  .showcase pre[tabindex]:focus-visible { outline-color: Highlight; }
+}
