@@ -1,4 +1,5 @@
-/* Home and the 404 share this terminal and a mote field (Motes.astro).
+/* Home and the 404 each draw their own terminal (HomeWait.astro, NotFound.astro).
+   They share this stylesheet and a mote field (Motes.astro).
    The wallpaper is the site cover in bar.css. The 404 turns the terminal
    45 degrees. The mote layer is fixed at z-index 0, so the bar, the footer
    and the terminal sit above it. Do not raise main itself: it fills the
@@ -184,6 +185,15 @@ html.not-found .home-words {
   font-size: clamp(2.25rem, 6vw, 4.5rem);
   font-weight: 600;
   line-height: 1.3;
+}
+
+/* The 404 sentence is an h1. It keeps the paragraph's colour, tracking and
+   width. The theme heading would colour it, track it out, and set the
+   stretch to 100% while a narrow page draws body text at 85%. */
+h1.home-sentence {
+  color: inherit;
+  letter-spacing: normal;
+  font-stretch: inherit;
 }
 
 /* Words stack in one slot as wide as the longest word, each centred on the others. */

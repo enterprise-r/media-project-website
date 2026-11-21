@@ -1,0 +1,61 @@
+---
+// 404 terminal. Its own wait: the digits, the still line and the minute timer live here.
+// Home has HomeWait.astro. The two share home.css and the mote field, nothing else.
+// The sentence is this page's h1. Home's h1 is the logo crumb.
+// throw-logo.js flies the wide logo from the box this layout leaves it in.
+import Motes from "./Motes.astro";
+import "../styles/home.css";
+import waitIcon from "../styles/theme/icons/wait.svg?url";
+import waitStatic from "../styles/theme/icons/wait-static.svg?url";
+
+interface Part {
+  text: string;
+  tone: string;
+}
+
+interface Props {
+  parts: Part[];
+  // The static line under the digits.
+  prompt: string;
+}
+
+const { parts, prompt } = Astro.props;
+---
+<Motes />
+<main class="home">
+  <div class="home-stage">
+    <div class="r-term home-wait">
+      <div class="home-line">
+        <img class="home-wait-icon" src={waitIcon} data-still={waitStatic} width="32" height="32" alt="">
+        <h1 class="home-sentence">{parts.map((p) => p.text).join("")}</h1>
+        <span class="home-words home-words-3" aria-hidden="true">
+          {parts.map((p) => <span><span class={`home-w home-w-${p.tone}`}>{p.text}</span></span>)}
+          <span class="home-still-line">
+            {parts.map((p) => <span class={`home-w home-w-${p.tone}`}>{p.text}</span>)}
+          </span>
+        </span>
+      </div>
+      <p class="r-prompt home-status">{prompt}</p>
+    </div>
+    <img
+      class="home-logo"
+      src="/assets/logo-wide-pulse.svg"
+      data-still="/assets/logo-wide.svg"
+      width="320"
+      height="56"
+      alt=""
+      draggable="false"
+      data-throwable=""
+    >
+  </div>
+</main>
+<script>
+  // After a minute: stop every animation and leave the joined digits, the static W and the static logo.
+  setTimeout(() => {
+    document.querySelectorAll<HTMLImageElement>(".home [data-still]").forEach((img) => {
+      img.src = img.dataset.still!;
+    });
+    document.documentElement.classList.add("home-still");
+    document.dispatchEvent(new Event("home-still"));
+  }, 60000);
+</script>

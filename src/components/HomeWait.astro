@@ -1,6 +1,7 @@
 ---
-// Home and 404 terminal: waiting icon, word carousel, static prompt.
+// Home terminal: waiting icon, word carousel, static prompt.
 // After a minute everything stops: the words join into one line, and the icon and logo go static.
+// The 404 has its own terminal (NotFound.astro). The two share home.css, not this component.
 import Motes from "./Motes.astro";
 import "../styles/home.css";
 import waitIcon from "../styles/theme/icons/wait.svg?url";
@@ -15,17 +16,9 @@ interface Props {
   parts: Part[];
   // The static line under the words.
   prompt: string;
-  // Screen-reader sentence, also shown when motion is reduced. Defaults to the words joined up.
-  sentence?: string;
-  // 404 only. The wide logo stays in this layout. throw-logo.js then flies that box.
-  throwable?: boolean;
 }
 
-const { parts, prompt, sentence, throwable = false } = Astro.props;
-const phrase = sentence ?? parts.map((p) => p.text).join(" ");
-// The still line joins the words with spaces; a sentence like "404" joins them without.
-const joiner = sentence ? "" : " ";
-const countClass = parts.length === 3 ? "home-words home-words-3" : "home-words";
+const { parts, prompt } = Astro.props;
 
 // W-words colour only the first W; every other tinted item is coloured in full.
 const mark = (p: Part) =>
@@ -42,20 +35,20 @@ const mark = (p: Part) =>
       <div class="home-line">
         <img class="home-wait-icon" src={waitIcon} data-still={waitStatic} width="32" height="32" alt="">
         <p class="home-sentence">
-          {sentence ? phrase : parts.map((p, i) => {
+          {parts.map((p, i) => {
             const m = mark(p);
             return <>{i > 0 && " "}{m.tone ? <><span class={`home-w home-w-${m.tone}`}>{m.letter}</span>{m.rest}</> : m.letter}</>;
           })}
         </p>
-        <span class={countClass} aria-hidden="true">
+        <span class="home-words" aria-hidden="true">
           {parts.map((p) => {
             const m = mark(p);
             return <span>{m.tone ? <><span class={`home-w home-w-${m.tone}`}>{m.letter}</span>{m.rest}</> : m.letter}</span>;
           })}
-          <span class={sentence ? "home-still-line" : "home-still-line home-still-text"}>
+          <span class="home-still-line home-still-text">
             {parts.map((p, i) => {
               const m = mark(p);
-              return <>{i > 0 && joiner}{m.tone ? <><span class={`home-w home-w-${m.tone}`}>{m.letter}</span>{m.rest}</> : m.letter}</>;
+              return <>{i > 0 && " "}{m.tone ? <><span class={`home-w home-w-${m.tone}`}>{m.letter}</span>{m.rest}</> : m.letter}</>;
             })}
           </span>
         </span>
@@ -69,8 +62,6 @@ const mark = (p: Part) =>
       width="320"
       height="56"
       alt=""
-      draggable={throwable ? "false" : undefined}
-      data-throwable={throwable ? "" : undefined}
     >
   </div>
 </main>
