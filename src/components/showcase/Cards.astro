@@ -30,25 +30,11 @@ const glow = `
   }
 </script>`;
 
-// The mask box reaches --r-glow-reach (20px) past the element, so the outline is drawn 18px to 20px
-// in from its edges. Only the mask's opacity counts, so any opaque token color (here --ui-fg) works;
-// a token keeps the no-literal-colors rule.
-const shape = `
-<div class="app-tab r-glow-run r-glow-shape" style="--r-glow-mask:
-  linear-gradient(var(--ui-fg) 0 0) left 18px top 18px / calc(100% - 36px) 2px no-repeat,
-  linear-gradient(var(--ui-fg) 0 0) left 18px top 18px / 2px calc(100% - 38px) no-repeat,
-  linear-gradient(var(--ui-fg) 0 0) right 18px top 18px / 2px calc(100% - 38px) no-repeat">…</div>`;
-
 const term = `
 <div class="r-term">
   <p>Text over a picture.</p>
 </div>`;
 
-const shapeMask = [
-  "linear-gradient(var(--ui-fg) 0 0) left 18px top 18px / calc(100% - 36px) 2px no-repeat",
-  "linear-gradient(var(--ui-fg) 0 0) left 18px top 18px / 2px calc(100% - 38px) no-repeat",
-  "linear-gradient(var(--ui-fg) 0 0) right 18px top 18px / 2px calc(100% - 38px) no-repeat",
-].join(", ");
 ---
 {/* Terminal sample: the photo and the green heading are this site's; the backing is {termBg} at 72%. */}
 <section class="sc-section" id="cards">
@@ -95,20 +81,6 @@ const shapeMask = [
     dont="Glow a box that uses `::before` or `::after`."
   />
 
-  <h3 class="sc-subhead">Glow on any shape</h3>
-  <div class="sc-tab r-glow-shape" id="glow-e" style={`--r-glow-mask: ${shapeMask}`}>
-    <p>A tab with no bottom side.</p>
-  </div>
-  <div class="sc-glow-actions">
-    <span class="r-group"><button class="r-btn" type="button" data-glow-shape>Glow the tab</button></span>
-  </div>
-  <Notes
-    markup={shape}
-    classes="`.r-glow-shape` with `.r-glow` or `.r-glow-run`."
-    tokens="`--r-glow-mask`: a mask of the outline."
-    do="Use it for a box that is not a rounded rectangle."
-    dont="Use a color value in the mask; use a token."
-  />
   <h3 class="sc-subhead" id="terminal">Terminal</h3>
   <figure class="sc-term-sample">
     <div class="sc-bd"><div class="photo"></div><div class="sc-term-stack"><div class="r-term term-head"><div class="about-heading r-impact">Heading</div></div><div class="r-term"><p class="sc-flush">A dark backing that hugs text on a picture.</p></div></div></div>

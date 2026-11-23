@@ -363,11 +363,13 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
    to its radius so the corners match. The glow sits just outside it: a thin crisp line (::after) and a
    soft halo (::before), so the box must not use those pseudo-elements itself.
    .r-glow-run takes --r-glow-run-time for two full laps of the band: the angle runs from 0 to 720deg.
-   A box that is not a rounded rectangle (an open side, an arc, an arrow) adds .r-glow-shape and sets
-   --r-glow-mask to a mask of its outline. Both pseudo-elements then reach --r-glow-reach past the box
-   on every side and are masked to that outline, which is placed in that larger box. The layers of the
-   mask add, so pieces may overlap. The halo is blurred first, so the mask holds it to the line.
-   <div class="r-glow-run r-glow-shape" style="--r-glow-mask: …">…</div> */
+   A box with an open side or a notch adds .r-glow-shape and sets --r-glow-mask to a mask of its
+   outline. Both pseudo-elements then reach --r-glow-reach past the box on every side and are masked
+   to that outline, which is placed in that larger box; anything past its edge, a blurred halo
+   included, is cut. The layers of the mask add, so pieces may overlap. The halo takes
+   --r-glow-halo-mask, a soft mask of the same outline that fades out before that edge (an SVG can
+   blur its own outline); without it, the halo is held to the line.
+   <div class="r-glow-run r-glow-shape" style="--r-glow-mask: …; --r-glow-halo-mask: …">…</div> */
 @property --r-glow-a {
   syntax: "<angle>";
   inherits: false;
@@ -425,6 +427,11 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
   -webkit-mask-composite: source-over;
   mask: var(--r-glow-mask);
   mask-composite: add;
+}
+.r-glow-shape:is(.r-glow, .r-glow-run)::before {
+  filter: none;
+  -webkit-mask: var(--r-glow-halo-mask, var(--r-glow-mask));
+  mask: var(--r-glow-halo-mask, var(--r-glow-mask));
 }
 
 .r-glow::before, .r-glow::after {

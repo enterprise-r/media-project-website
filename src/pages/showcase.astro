@@ -164,7 +164,6 @@ const contents = [
       v.textContent = (0.5 + Math.random() * 0.49).toFixed(2);
       ["glow-a", "glow-b", "glow-c", "glow-d"].forEach((id) => rGlow(document.getElementById(id), b.dataset.glow));
     }));
-    document.querySelector("[data-glow-shape]").addEventListener("click", () => rGlow(document.getElementById("glow-e"), "r-glow-run"));
     // Click guard samples: count the presses that reach the page.
     const count = (btn, out) => document.getElementById(btn).addEventListener("click", () => {
       const o = document.getElementById(out);

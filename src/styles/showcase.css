@@ -268,10 +268,6 @@ a.sc-closer-fill:hover {
 .sc-flush { margin: 0; }
 .sc-panel { margin-top: 1rem; }
 
-/* A box with no bottom side, for the glow on a shape. */
-.sc-tab { position: relative; max-width: 30rem; margin: 1.5rem 0 0; padding: 1rem 1.2rem 0.4rem; border: 1px solid var(--ui-fg-dark); border-bottom: 0; }
-.sc-tab > p { margin: 0 0 0.6rem; }
-
 /* Click guard samples. */
 .sc-guard { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; max-width: 46rem; }
 .sc-guard .r-card { display: grid; gap: 0.6rem; justify-items: start; align-content: start; }
