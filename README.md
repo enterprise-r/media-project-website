@@ -48,7 +48,7 @@ The preview also holds the secret `PROMOTE_TOKEN`, a token with Contents write o
 
 ## Deploy
 
-A push to the branch in `DEPLOY_BRANCH` runs `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages in about a minute. Files can be edited on github.com. A CI build without `SITE_URL` fails. Settings → Pages → Source must be **GitHub Actions**.
+A push or a `/fast-forward` land to the branch in `DEPLOY_BRANCH` runs `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages in about a minute. Files can be edited on github.com. A CI build without `SITE_URL` fails. Settings → Pages → Source must be **GitHub Actions**.
 
 ## Local (optional, Node 24)
 

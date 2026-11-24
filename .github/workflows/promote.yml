@@ -4,10 +4,8 @@ name: Promote
 on:
   push:
     branches: [main]
-  # A /fast-forward land pushes with GITHUB_TOKEN, which starts no push workflow.
-  workflow_run:
-    workflows: [Fast-forward]
-    types: [completed]
+  # Fast-forward dispatches it after a land.
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -18,7 +16,7 @@ concurrency:
 
 jobs:
   promote:
-    if: vars.PROMOTE_TO != '' && (github.event_name == 'push' || github.event.workflow_run.conclusion == 'success')
+    if: vars.PROMOTE_TO != '' && github.ref_name == 'main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

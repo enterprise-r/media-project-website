@@ -11,6 +11,7 @@ jobs:
     if: github.event.issue.pull_request && startsWith(github.event.comment.body, '/fast-forward')
     runs-on: ubuntu-latest
     permissions:
+      actions: write
       contents: write
       pull-requests: write
       issues: write
@@ -33,3 +34,15 @@ jobs:
             | select(.repository.owner.login + "/" + .repository.name == env.GITHUB_REPOSITORY)
             | .number
           ' | xargs -r gh issue close --repo "$GITHUB_REPOSITORY" --reason completed
+      # A push with GITHUB_TOKEN starts no push workflow, but a dispatch does.
+      # Deploy and Promote each skip a branch that is not theirs.
+      - name: Deploy and promote the landed branch
+        if: steps.fast-forward.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.issue.number }}
+        run: |
+          base=$(gh pr view "$PR" --repo "$GITHUB_REPOSITORY" --json baseRefName -q .baseRefName)
+          for w in deploy.yml promote.yml; do
+            gh workflow run "$w" --repo "$GITHUB_REPOSITORY" --ref "$base"
+          done
