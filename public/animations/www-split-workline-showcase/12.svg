@@ -1,0 +1,298 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 2244" width="1440" height="2244" role="img">
+  <title>www-split: the filed workline</title>
+  <desc>The armed www-split workline: how a change is promoted, and the filed issues in the order they can close.</desc>
+  <defs>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F4B965"/>
+      <stop offset="0.33" stop-color="#BA9EDA"/>
+      <stop offset="0.75" stop-color="#77AF8A"/>
+      <stop offset="1" stop-color="#77AF8A"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 1.1 L 9 5 L 0 8.9 Z" fill="#E0E6E2"/>
+    </marker>
+    <style>
+      @font-face {
+        font-family: "Audiowide";
+        src: url("fonts/woff2/Audiowide-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Rajdhani";
+        src: url("fonts/woff2/Rajdhani-SemiBold-latin.woff2") format("woff2");
+        font-weight: 600;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Saira";
+        src: url("fonts/woff2/Saira-latin.woff2") format("woff2");
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Monaspace Neon";
+        src: url("fonts/woff2/MonaspaceNeon.woff2") format("woff2");
+        font-weight: 400;
+        font-display: swap;
+      }
+      .display { font-family: "Audiowide", "Rajdhani", "Segoe UI", sans-serif; }
+      .head { font-family: "Rajdhani", "Segoe UI", sans-serif; font-weight: 600; }
+      .body { font-family: "Saira", "Segoe UI", sans-serif; }
+      .mono { font-family: "Monaspace Neon", ui-monospace, monospace; }
+    </style>
+  </defs>
+
+  <rect width="1440" height="2244" fill="#0C040F"/>
+  <rect x="0" y="0" width="1440" height="4" fill="url(#rule)"/>
+
+  <text class="display" x="32" y="48" fill="#FFF3E6" font-size="28">www-split</text>
+  <text class="body" x="220" y="46" fill="#9385A5" font-size="15">r-arch#61 open, In progress.</text>
+  <text class="mono" x="32" y="74" fill="#BA9EDA" font-size="13">r-arch#61</text>
+  <text class="body" x="220" y="74" fill="#6f647c" font-size="13">3 of 6 sub-issues done.</text>
+
+  <text class="mono" x="32" y="118" fill="#E4D58B" font-size="13">01</text>
+  <text class="head" x="64" y="120" fill="#FFF3E6" font-size="22">How a change gets to production</text>
+  <text class="body" x="32" y="150" fill="#B6C1CC" font-size="15">Work lands on www-ng branch ng. The Founder merges that branch into www-ng main.</text>
+  <text class="body" x="32" y="172" fill="#B6C1CC" font-size="15">That merge is the only promote button. A workflow fast-forwards the commit onto www-prod main, and production deploys it.</text>
+
+  <g>
+    <rect x="32" y="204" width="360" height="280" rx="8" fill="#181820" stroke="#F0A202" stroke-width="1.25"/>
+    <rect x="32" y="204" width="360" height="4" rx="2" fill="#F0A202"/>
+    <text class="mono" x="48" y="232" fill="#F0A202" font-size="12">STAGING · WORK</text>
+    <text class="head" x="48" y="264" fill="#FFF3E6" font-size="26">www-ng</text>
+    <rect x="272" y="246" width="104" height="22" rx="11" fill="#2a2114" stroke="#F0A202"/>
+    <text class="mono" x="324" y="262" fill="#F4B965" font-size="12" text-anchor="middle">branch ng</text>
+    <text class="body" x="48" y="300" fill="#E0E6E2" font-size="15">Work lands on this branch.</text>
+    <text class="body" x="48" y="324" fill="#E0E6E2" font-size="15">Pages deploys this branch.</text>
+    <text class="mono" x="48" y="352" fill="#96C5CF" font-size="14">ng.enterprise-r.com</text>
+    <text class="body" x="48" y="378" fill="#B6C1CC" font-size="14">noindex, robots disallow, no sitemap</text>
+    <text class="body" x="48" y="402" fill="#B6C1CC" font-size="14">DEPLOY_BRANCH = ng</text>
+    <text class="body" x="48" y="426" fill="#B6C1CC" font-size="14">PROMOTE_TO = enterprise-r/www-prod</text>
+    <text class="mono" x="48" y="460" fill="#6f647c" font-size="12">new sibling · public · not a fork</text>
+  </g>
+
+  <g>
+    <rect x="542" y="204" width="360" height="280" rx="8" fill="#181820" stroke="#BA9EDA" stroke-width="1.25"/>
+    <rect x="542" y="204" width="360" height="4" rx="2" fill="#BA9EDA"/>
+    <text class="mono" x="558" y="232" fill="#BA9EDA" font-size="12">STAGING · MIRROR</text>
+    <text class="head" x="558" y="264" fill="#FFF3E6" font-size="26">www-ng</text>
+    <rect x="782" y="246" width="104" height="22" rx="11" fill="#241c2c" stroke="#BA9EDA"/>
+    <text class="mono" x="834" y="262" fill="#D2BCED" font-size="12" text-anchor="middle">branch main</text>
+    <text class="body" x="558" y="300" fill="#E0E6E2" font-size="15">Starts equal to production main.</text>
+    <text class="body" x="558" y="324" fill="#E0E6E2" font-size="15">Pull request from ng is required.</text>
+    <text class="body" x="558" y="348" fill="#E0E6E2" font-size="15">/fast-forward may still land.</text>
+    <text class="body" x="558" y="380" fill="#B6C1CC" font-size="14">Pages does not deploy this branch.</text>
+    <text class="body" x="558" y="404" fill="#B6C1CC" font-size="14">promote.yml runs on this push,</text>
+    <text class="body" x="558" y="428" fill="#B6C1CC" font-size="14">because PROMOTE_TO is set.</text>
+    <text class="mono" x="558" y="460" fill="#6f647c" font-size="12">checkout upstream → www-prod</text>
+  </g>
+
+  <g>
+    <rect x="1052" y="204" width="360" height="280" rx="8" fill="#181820" stroke="#77AF8A" stroke-width="1.25"/>
+    <rect x="1052" y="204" width="360" height="4" rx="2" fill="#77AF8A"/>
+    <text class="mono" x="1068" y="232" fill="#77AF8A" font-size="12">PRODUCTION</text>
+    <text class="head" x="1068" y="264" fill="#FFF3E6" font-size="26">www-prod</text>
+    <rect x="1292" y="246" width="104" height="22" rx="11" fill="#14241c" stroke="#77AF8A"/>
+    <text class="mono" x="1344" y="262" fill="#9ADD6D" font-size="12" text-anchor="middle">branch main</text>
+    <text class="body" x="1068" y="300" fill="#E0E6E2" font-size="15">Was media-project-website.</text>
+    <text class="body" x="1068" y="324" fill="#E0E6E2" font-size="15">Pages deploys this branch.</text>
+    <text class="mono" x="1068" y="352" fill="#96C5CF" font-size="14">www.enterprise-r.com</text>
+    <text class="body" x="1068" y="378" fill="#B6C1CC" font-size="14">indexable · apex redirects here</text>
+    <text class="body" x="1068" y="402" fill="#B6C1CC" font-size="14">pushes and pull requests blocked</text>
+    <text class="body" x="1068" y="426" fill="#B6C1CC" font-size="14">only enterprise-r-bots may push</text>
+    <text class="mono" x="1068" y="460" fill="#6f647c" font-size="12">promote.yml is here and no-ops</text>
+  </g>
+
+  <line x1="400" y1="344" x2="534" y2="344" stroke="#E0E6E2" stroke-width="1.25" marker-end="url(#arrow)"/>
+  <rect x="407" y="322" width="120" height="44" rx="6" fill="#14241c" stroke="#77AF8A" stroke-width="2.5"/>
+  <text class="mono" x="467" y="340" fill="#F4B965" font-size="12" text-anchor="middle">1 · PR</text>
+  <text class="body" x="467" y="356" fill="#E0E6E2" font-size="12" text-anchor="middle">Founder merges</text>
+
+  <line x1="910" y1="344" x2="1044" y2="344" stroke="#E0E6E2" stroke-width="1.25" marker-end="url(#arrow)"/>
+  <rect x="917" y="322" width="120" height="44" rx="6" fill="#14241c" stroke="#77AF8A" stroke-width="2.5"/>
+  <text class="mono" x="977" y="340" fill="#9ADD6D" font-size="12" text-anchor="middle">2 · ff-only</text>
+  <text class="body" x="977" y="356" fill="#E0E6E2" font-size="12" text-anchor="middle">promote.yml</text>
+
+  <rect x="32" y="500" width="1376" height="96" rx="8" fill="#181820" stroke="#3F2C53"/>
+  <rect x="32" y="500" width="4" height="96" fill="url(#rule)"/>
+  <text class="body" x="52" y="526" fill="#E0E6E2" font-size="14">The same deploy.yml, promote.yml, and site code are in both repositories. Git does not name the site.</text>
+  <text class="body" x="52" y="548" fill="#E0E6E2" font-size="14">URL, noindex, and deploy branch are repository variables, so a promote cannot carry ng's noindex or canonicals onto production.</text>
+  <text class="body" x="52" y="572" fill="#B6C1CC" font-size="14">If www-prod main has moved ahead, the fast-forward fails and does not force-push. www-ng main has already moved, so it stops mirroring until the two are reconciled. Company links stay www.enterprise-r.com.</text>
+
+  <text class="mono" x="32" y="632" fill="#E4D58B" font-size="13">02</text>
+  <text class="head" x="64" y="634" fill="#FFF3E6" font-size="22">What must differ, and must not be in git</text>
+  <text class="body" x="32" y="662" fill="#B6C1CC" font-size="14">website#59 sets the production variables before the new workflow lands. sys-github#28 sets www-ng's variables and does not store PROMOTE_TOKEN.</text>
+  <text class="body" x="32" y="684" fill="#B6C1CC" font-size="14">Both sites stay public. GitHub Free serves Pages only from public repositories.</text>
+
+  <g>
+    <rect x="32" y="704" width="1376" height="340" rx="8" fill="#140c18" stroke="#3F2C53"/>
+    <rect x="32" y="704" width="1376" height="36" rx="8" fill="#221828"/>
+    <rect x="32" y="728" width="1376" height="12" fill="#221828"/>
+    <text class="head" x="48" y="728" fill="#9385A5" font-size="14">Setting</text>
+    <text class="head" x="270" y="728" fill="#F0A202" font-size="14">www-ng · staging preview</text>
+    <text class="head" x="860" y="728" fill="#77AF8A" font-size="14">www-prod · production</text>
+    <g stroke="#3F2C53">
+      <line x1="250" y1="740" x2="250" y2="1028"/>
+      <line x1="840" y1="740" x2="840" y2="1028"/>
+      <line x1="48" y1="772" x2="1392" y2="772"/>
+      <line x1="48" y1="804" x2="1392" y2="804"/>
+      <line x1="48" y1="836" x2="1392" y2="836"/>
+      <line x1="48" y1="868" x2="1392" y2="868"/>
+      <line x1="48" y1="900" x2="1392" y2="900"/>
+      <line x1="48" y1="932" x2="1392" y2="932"/>
+      <line x1="48" y1="964" x2="1392" y2="964"/>
+      <line x1="48" y1="996" x2="1392" y2="996"/>
+    </g>
+    <g class="body" font-size="13">
+      <text class="mono" x="48" y="761" fill="#B6C1CC">What it is</text>
+      <text x="270" y="761" fill="#F4B965">Public staging preview</text>
+      <text x="860" y="761" fill="#9ADD6D">Public production site</text>
+
+      <text class="mono" x="48" y="793" fill="#B6C1CC">How it appears</text>
+      <text x="270" y="793" fill="#E0E6E2">History copy onto main and ng. Not a fork.</text>
+      <text x="860" y="793" fill="#E0E6E2">Rename of media-project-website</text>
+
+      <text class="mono" x="48" y="825" fill="#B6C1CC">SITE_URL</text>
+      <text class="mono" x="270" y="825" fill="#F4B965">https://ng.enterprise-r.com</text>
+      <text class="mono" x="860" y="825" fill="#9ADD6D">https://www.enterprise-r.com</text>
+
+      <text class="mono" x="48" y="857" fill="#B6C1CC">SITE_NOINDEX</text>
+      <text class="mono" x="270" y="857" fill="#F4B965">true</text>
+      <text class="mono" x="860" y="857" fill="#9ADD6D">unset, or not true</text>
+
+      <text class="mono" x="48" y="889" fill="#B6C1CC">DEPLOY_BRANCH</text>
+      <text class="mono" x="270" y="889" fill="#F4B965">ng</text>
+      <text class="mono" x="860" y="889" fill="#9ADD6D">main</text>
+
+      <text class="mono" x="48" y="921" fill="#B6C1CC">PROMOTE_TO</text>
+      <text class="mono" x="270" y="921" fill="#F4B965">enterprise-r/www-prod</text>
+      <text class="mono" x="860" y="921" fill="#9ADD6D">unset, so promote.yml no-ops</text>
+
+      <text class="mono" x="48" y="953" fill="#B6C1CC">PROMOTE_TOKEN</text>
+      <text x="270" y="953" fill="#E0E6E2">Founder stores it after sys-github#28 closes.</text>
+      <text x="860" y="953" fill="#E0E6E2">Not set</text>
+
+      <text class="mono" x="48" y="985" fill="#B6C1CC">Pages</text>
+      <text x="270" y="985" fill="#E0E6E2">ng.enterprise-r.com · Actions · HTTPS</text>
+      <text x="860" y="985" fill="#E0E6E2">www.enterprise-r.com · unchanged</text>
+
+      <text class="mono" x="48" y="1017" fill="#B6C1CC">Ruleset on main</text>
+      <text x="270" y="1017" fill="#E0E6E2">PR required. Actions may /fast-forward.</text>
+      <text x="860" y="1017" fill="#E0E6E2">Pushes and PRs blocked. Bot bypasses.</text>
+    </g>
+  </g>
+
+  <rect x="32" y="1060" width="1376" height="56" rx="8" fill="#181820" stroke="#3F2C53"/>
+  <text class="mono" x="48" y="1084" fill="#96C5CF" font-size="13">DNS</text>
+  <text class="body" x="96" y="1084" fill="#E0E6E2" font-size="14">docs#27, assigned to enterprise-r-bots, after the Pages domain is set. ng CNAME enterprise-r.github.io.</text>
+  <text class="body" x="96" y="1104" fill="#B6C1CC" font-size="14">No new challenge TXT, and no CNAME file in git. A Squarespace sign-in goes to the Founder. Mounts stay under /r/media/projects/.</text>
+
+  <text class="mono" x="32" y="1152" fill="#E4D58B" font-size="13">03</text>
+  <text class="head" x="64" y="1154" fill="#FFF3E6" font-size="22">Filed, and the order they can close</text>
+  <text class="body" x="32" y="1182" fill="#B6C1CC" font-size="14">website#59 lands first. sys-github#28 follows that landing, and it does not store the promote token.</text>
+  <text class="body" x="32" y="1204" fill="#B6C1CC" font-size="14">docs#26 can proceed now. The mounts, the DNS issue, and the token wait until www-ng exists. There is still no issue on www-ng.</text>
+
+  <a href="https://github.com/enterprise-r/r-arch/issues/61">
+    <rect x="32" y="1228" width="1376" height="92" rx="8" fill="#24180e" stroke="#F0A202" stroke-width="2" />
+    <text class="mono" x="48" y="1258" fill="#BA9EDA" font-size="13">r-arch#61 · parent · In progress</text>
+    <text class="head" x="48" y="1284" fill="#FFF3E6" font-size="18">www-split</text>
+    <text class="body" x="200" y="1284" fill="#B6C1CC" font-size="14">3 of 6 sub-issues closed. neg3ntropy leads. The Founder merges the promote pull request.</text>
+    <rect x="1224" y="1244" width="164" height="22" rx="11" fill="#241c2c" stroke="#BA9EDA"/>
+    <text class="mono" x="1306" y="1260" fill="#D2BCED" font-size="11" text-anchor="middle">neg3ntropy</text>
+  </a>
+
+  <text class="mono" x="32" y="1352" fill="#9385A5" font-size="12">NOT WAITING ON THE RENAME · docs#26 IS UNBLOCKED NOW</text>
+
+  <a href="https://github.com/enterprise-r/docs/issues/26">
+    <rect x="32" y="1368" width="680" height="132" rx="8" fill="#14241c" stroke="#77AF8A" stroke-width="2" />
+    <text class="mono" x="48" y="1396" fill="#B6C1CC" font-size="12">docs#26 · Done</text>
+    <text class="head" x="48" y="1422" fill="#FFF3E6" font-size="16">Record the names in git.md</text>
+    <text class="body" x="48" y="1450" fill="#B6C1CC" font-size="13">The mounts, the copied history, and the promote</text>
+    <text class="body" x="48" y="1470" fill="#B6C1CC" font-size="13">exception. The ng CNAME is docs#27, not this issue.</text>
+    <rect x="548" y="1384" width="144" height="22" rx="11" fill="#241c2c" stroke="#BA9EDA"/>
+    <text class="mono" x="620" y="1400" fill="#D2BCED" font-size="11" text-anchor="middle">neg3ntropy</text>
+  </a>
+  <a href="https://github.com/enterprise-r/r-media/issues/3">
+    <rect x="728" y="1368" width="680" height="132" rx="8" fill="#24180e" stroke="#F0A202" stroke-width="2" />
+    <text class="mono" x="744" y="1396" fill="#B6C1CC" font-size="12">r-media#3 · In progress</text>
+    <text class="head" x="744" y="1422" fill="#FFF3E6" font-size="16">List both sites</text>
+    <text class="body" x="744" y="1450" fill="#B6C1CC" font-size="13">Names both mounts, branch ng, and the promote.</text>
+    <text class="body" x="744" y="1470" fill="#B6C1CC" font-size="13">The parent states no predecessor.</text>
+    <rect x="1244" y="1384" width="144" height="22" rx="11" fill="#241c2c" stroke="#BA9EDA"/>
+    <text class="mono" x="1316" y="1400" fill="#D2BCED" font-size="11" text-anchor="middle">neg3ntropy</text>
+  </a>
+
+  <text class="mono" x="32" y="1532" fill="#F0A202" font-size="12">LAND FIRST · BEFORE www-ng EXISTS</text>
+
+  <a href="https://github.com/enterprise-r/media-project-website/issues/59">
+    <rect x="32" y="1548" width="1376" height="112" rx="8" fill="#14241c" stroke="#77AF8A" stroke-width="2" />
+    <text class="mono" x="48" y="1576" fill="#F0A202" font-size="13">media-project-website#59 · Done</text>
+    <text class="head" x="48" y="1602" fill="#FFF3E6" font-size="18">Drive URL, noindex, and deploy from variables</text>
+    <text class="body" x="48" y="1630" fill="#B6C1CC" font-size="14">Land this on production main before www-ng is created, so the history copy includes it. Set the production variables before the new deploy workflow.</text>
+    <rect x="1212" y="1564" width="176" height="22" rx="11" fill="#2a2114" stroke="#F0A202"/>
+    <text class="mono" x="1300" y="1580" fill="#F4B965" font-size="11" text-anchor="middle">neg3ntropy</text>
+  </a>
+
+  <line x1="64" y1="1660" x2="64" y2="1684" stroke="#3F2C53" stroke-width="1.25"/>
+
+  <a href="https://github.com/enterprise-r/sys-github/issues/28">
+    <rect x="32" y="1684" width="1376" height="124" rx="8" fill="#24180e" stroke="#F0A202" stroke-width="2" />
+    <text class="mono" x="48" y="1712" fill="#96C5CF" font-size="13">sys-github#28 · In progress · after website#59 has landed</text>
+    <text class="head" x="48" y="1738" fill="#FFF3E6" font-size="18">Rename to www-prod and create www-ng</text>
+    <text class="body" x="48" y="1766" fill="#B6C1CC" font-size="14">Public sibling, history copied onto main and ng, not a fork. Variables and Pages, then the rulesets. Do not create PROMOTE_TOKEN.</text>
+    <text class="body" x="48" y="1788" fill="#B6C1CC" font-size="14">This issue configures the Pages domain. The certificate and the live staging URL wait on docs#27.</text>
+    <rect x="1212" y="1700" width="176" height="22" rx="11" fill="#142026" stroke="#96C5CF"/>
+    <text class="mono" x="1300" y="1716" fill="#CAD9E7" font-size="11" text-anchor="middle">neg3ntropy</text>
+  </a>
+
+  <text class="mono" x="32" y="1840" fill="#9385A5" font-size="12">ONCE www-ng EXISTS · THESE DO NOT WAIT ON EACH OTHER</text>
+
+  <a href="https://github.com/enterprise-r/r/issues/38">
+    <rect x="32" y="1856" width="448" height="156" rx="8" fill="#14241c" stroke="#77AF8A" stroke-width="2" />
+    <text class="mono" x="48" y="1884" fill="#B6C1CC" font-size="12">r#38 · Done</text>
+    <text class="head" x="48" y="1910" fill="#FFF3E6" font-size="16">Mount both projects</text>
+    <text class="body" x="48" y="1938" fill="#B6C1CC" font-size="13">After both repositories exist.</text>
+    <text class="body" x="48" y="1958" fill="#B6C1CC" font-size="13">mani.yaml: website becomes www-prod.</text>
+    <text class="body" x="48" y="1978" fill="#B6C1CC" font-size="13">Add www-ng beside it.</text>
+    <rect x="316" y="1872" width="144" height="22" rx="11" fill="#241c2c" stroke="#BA9EDA"/>
+    <text class="mono" x="388" y="1888" fill="#D2BCED" font-size="11" text-anchor="middle">neg3ntropy</text>
+  </a>
+  <a href="https://github.com/enterprise-r/docs/issues/27">
+    <rect x="496" y="1856" width="448" height="156" rx="8" fill="#24180e" stroke="#F0A202" stroke-width="2" />
+    <text class="mono" x="512" y="1884" fill="#96C5CF" font-size="12">docs#27 · In progress</text>
+    <text class="head" x="512" y="1910" fill="#FFF3E6" font-size="16">Add ng.enterprise-r.com</text>
+    <text class="body" x="512" y="1938" fill="#B6C1CC" font-size="13">After the Pages domain is set.</text>
+    <text class="body" x="512" y="1958" fill="#B6C1CC" font-size="13">Squarespace CNAME, and the dns.md row.</text>
+    <text class="body" x="512" y="1978" fill="#B6C1CC" font-size="13">A sign-in goes to the Founder.</text>
+    <rect x="748" y="1872" width="176" height="22" rx="11" fill="#142026" stroke="#96C5CF"/>
+    <text class="mono" x="836" y="1888" fill="#CAD9E7" font-size="11" text-anchor="middle">enterprise-r-bots</text>
+  </a>
+  <g>
+    <rect x="960" y="1856" width="448" height="156" rx="8" fill="#14241c" stroke="#77AF8A" stroke-dasharray="5 4" stroke-width="2" />
+    <text class="mono" x="976" y="1884" fill="#F4B965" font-size="12">FOUNDER · STORED</text>
+    <text class="head" x="976" y="1910" fill="#FFF3E6" font-size="16">Store PROMOTE_TOKEN</text>
+    <text class="body" x="976" y="1938" fill="#E0E6E2" font-size="13">As soon as sys-github#28 closes.</text>
+    <text class="body" x="976" y="1958" fill="#B6C1CC" font-size="13">Contents write on www-prod only.</text>
+    <text class="body" x="976" y="1978" fill="#B6C1CC" font-size="13">Does not wait on the other issues.</text>
+  </g>
+
+  <rect x="32" y="2028" width="1376" height="88" rx="8" fill="#181820" stroke="#3F2C53"/>
+  <text class="mono" x="48" y="2056" fill="#E4D58B" font-size="12">AFTER THE MOUNTS EXIST</text>
+  <text class="body" x="48" y="2082" fill="#B6C1CC" font-size="14">Each machine runs mani sync, adds upstream on the www-ng checkout, and deletes the old website checkout. Point engy's look path at /r/media/projects/www-prod.</text>
+  <text class="body" x="48" y="2104" fill="#B6C1CC" font-size="14">Confirm www and the apex still serve production and stay indexable.</text>
+
+  <rect x="32" y="2132" width="1376" height="48" rx="8" fill="#181820" stroke="#3F2C53"/>
+  <text class="mono" x="48" y="2162" fill="#9385A5" font-size="12">NOT THIS WORKLINE</text>
+  <text class="body" x="200" y="2162" fill="#B6C1CC" font-size="14">Pointing www at the preview. A second pull request or an Approve environment on www-prod. A GitHub fork. A sub-issue on www-ng. A later deploy system (r-arch#59).</text>
+
+  <text class="body" x="32" y="2210" fill="#6f647c" font-size="12">First promote has landed on www. The ng DNS record is not on main yet.</text>
+
+  <g id="frame-clock">
+    <rect x="1036" y="16" width="376" height="44" rx="4" fill="#050308" stroke="#77AF8A"/>
+    <text class="mono" x="1052" y="46" fill="#9ADD6D" font-size="22">11:36:20</text>
+    <text class="mono" x="1196" y="45" fill="#77AF8A" font-size="13">CET</text>
+    <text class="mono" x="1252" y="45" fill="#B6C1CC" font-size="13">2026-11-24</text>
+  </g>
+</svg>
+

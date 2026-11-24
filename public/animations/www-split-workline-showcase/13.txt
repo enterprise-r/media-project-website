@@ -1,0 +1,3 @@
+2026-11-24 11:36:22 CET
+
+At 11:36:22 docs#27 closes on that same merge. The ng DNS record is on main.

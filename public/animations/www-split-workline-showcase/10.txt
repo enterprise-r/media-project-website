@@ -1,0 +1,3 @@
+2026-11-24 11:12:44 CET
+
+At 11:12 docs#27 goes In progress. The ng DNS row is on the branch. PROMOTE_TOKEN is already stored on www-ng.

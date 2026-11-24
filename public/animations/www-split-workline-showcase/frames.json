@@ -1,0 +1,98 @@
+[
+  {
+    "file": "01.png",
+    "svg": "01.svg",
+    "time": "2026-11-24T02:26:44+01:00",
+    "prompt": "At 02:26 the workline is armed. r-arch#61 and the six sub-issues are filed, assigned, and on the board as Todo."
+  },
+  {
+    "file": "02.png",
+    "svg": "02.svg",
+    "time": "2026-11-24T09:57:17+01:00",
+    "prompt": "At 09:57 website#59 goes In progress. Pull request www-prod#60 is open."
+  },
+  {
+    "file": "03.png",
+    "svg": "03.svg",
+    "time": "2026-11-24T10:00:16+01:00",
+    "prompt": "At 10:00 www-prod#60 merges to main and website#59 closes. The env-driven site is on production."
+  },
+  {
+    "file": "04.png",
+    "svg": "04.svg",
+    "time": "2026-11-24T10:03:10+01:00",
+    "prompt": "At 10:03 the parent issue goes In progress."
+  },
+  {
+    "file": "05.png",
+    "svg": "05.svg",
+    "time": "2026-11-24T10:05:49+01:00",
+    "prompt": "At 10:05 docs#26 goes In progress. Pull request docs#28 is open."
+  },
+  {
+    "file": "06.png",
+    "svg": "06.svg",
+    "time": "2026-11-24T10:05:50+01:00",
+    "prompt": "One second later r-media#3 goes In progress. Pull request r-media#4 is open."
+  },
+  {
+    "file": "07.png",
+    "svg": "07.svg",
+    "time": "2026-11-24T10:06:50+01:00",
+    "prompt": "At 10:06 r#38 goes In progress. Pull request r#39 is open."
+  },
+  {
+    "file": "08.png",
+    "svg": "08.svg",
+    "time": "2026-11-24T10:37:49+01:00",
+    "prompt": "At 10:37 sys-github#28 goes In progress. The rename and the www-ng record are on sys-github#29."
+  },
+  {
+    "file": "09.png",
+    "svg": "09.svg",
+    "time": "2026-11-24T10:49:34+01:00",
+    "prompt": "At 10:49 www-ng#1 merges into ng. The first promote fast-forwards production, and www deploys. No issue closes for this."
+  },
+  {
+    "file": "10.png",
+    "svg": "10.svg",
+    "time": "2026-11-24T11:12:44+01:00",
+    "prompt": "At 11:12 docs#27 goes In progress. The ng DNS row is on the branch. PROMOTE_TOKEN is already stored on www-ng."
+  },
+  {
+    "file": "11.png",
+    "svg": "11.svg",
+    "time": "2026-11-24T11:36:19+01:00",
+    "prompt": "At 11:36:19 r#39 merges to main and r#38 is Done. The mounts are on main."
+  },
+  {
+    "file": "12.png",
+    "svg": "12.svg",
+    "time": "2026-11-24T11:36:20+01:00",
+    "prompt": "At 11:36:20 docs#28 merges and docs#26 is Done."
+  },
+  {
+    "file": "13.png",
+    "svg": "13.svg",
+    "time": "2026-11-24T11:36:22+01:00",
+    "prompt": "At 11:36:22 docs#27 closes on that same merge. The ng DNS record is on main."
+  },
+  {
+    "file": "14.png",
+    "svg": "14.svg",
+    "time": "2026-11-24T11:36:30+01:00",
+    "prompt": "At 11:36:30 sys-github#29 merges and sys-github#28 closes."
+  },
+  {
+    "file": "15.png",
+    "svg": "15.svg",
+    "time": "2026-11-24T11:36:38+01:00",
+    "prompt": "At 11:36:38 r-media#4 merges and r-media#3 closes. bots#16 has landed too. Every sub-issue is Done. The parent is still open."
+  },
+  {
+    "file": "16.png",
+    "svg": "16.svg",
+    "time": "2026-11-24T11:49:45+01:00",
+    "prompt": "At 11:49 the parent closes. www answers over HTTPS and the apex redirects to it. ng answers over HTTP. The ng certificate is still pending, and mysys will poll."
+  }
+]
