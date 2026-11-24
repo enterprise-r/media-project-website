@@ -18,22 +18,44 @@ Pages: Home (`/`), About (`/about/`), Login (`/r/`), 404 (`/404.html`) and `/sho
 | Showcase sections and tutorial notes | `src/components/showcase/`, one component per section, put in order by `src/pages/showcase.astro` |
 | Home terminal | `src/components/HomeWait.astro` and `src/styles/home.css` |
 | Page not found | `src/pages/404.astro` and `src/components/NotFound.astro`. The look is `src/styles/home.css` |
-| Search engines | `public/robots.txt`, and the indexed pages in `src/pages/sitemap.xml.ts` |
+| Search engines | `src/pages/robots.txt.ts`, and the indexed pages in `src/pages/sitemap.xml.ts` |
 | Fonts | `src/styles/fonts/woff2/`. The theme loads them from `../fonts/woff2/` |
 | Custom domain | repo Settings → Pages → Custom domain (Pages source is GitHub Actions, so there is no `CNAME` file) |
 
 A new page is a file in `src/pages/` that uses the `Base` layout. About imports `src/styles/about.css`. Login imports `src/styles/login.css`.
 
+## Sites
+
+The same code serves two sites from two repositories:
+
+| Repository | Site | Deploys from |
+|---|---|---|
+| `enterprise-r/www-prod` | `https://www.enterprise-r.com/` (production) | `main` |
+| `enterprise-r/www-ng` | `https://ng.enterprise-r.com/` (staging preview) | `ng` |
+
+Work lands on `ng` in `www-ng`. Merging the `ng` → `main` pull request in `www-ng` promotes it: `.github/workflows/promote.yml` fast-forwards `www-ng` `main` to `www-prod` `main`, which then deploys. The push never forces. If `www-prod` `main` has moved ahead, the promotion fails and the two `main` branches need reconciling by hand. On a `www-ng` checkout, `origin` is `www-ng` and `upstream` is `www-prod`.
+
+What differs between the sites is not committed, so a promotion cannot carry it. Each repository sets it in Settings → Secrets and variables → Actions:
+
+| Variable | Production | Preview |
+|---|---|---|
+| `SITE_URL` | `https://www.enterprise-r.com` | `https://ng.enterprise-r.com` |
+| `DEPLOY_BRANCH` | `main` | `ng` |
+| `SITE_NOINDEX` | unset | `true`: every page `noindex`, and `robots.txt` disallows all with no sitemap |
+| `PROMOTE_TO` | unset | `enterprise-r/www-prod` |
+
+The preview also holds the secret `PROMOTE_TOKEN`, a token with Contents write on `www-prod`. Company links in the content (QR, footer, contact) stay `www.enterprise-r.com` on both sites.
+
 ## Deploy
 
-Every push to `main` runs `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages in about a minute. Files can be edited on github.com. Settings → Pages → Source must be **GitHub Actions**.
+A push to the branch in `DEPLOY_BRANCH` runs `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages in about a minute. Files can be edited on github.com. A CI build without `SITE_URL` fails. Settings → Pages → Source must be **GitHub Actions**.
 
 ## Local (optional, Node 24)
 
 ```sh
 npm ci
 npm run dev      # http://127.0.0.1:4321
-npm run build    # output in dist/
+npm run build    # output in dist/; SITE_URL defaults to http://127.0.0.1:4321
 ```
 
 ## Pages

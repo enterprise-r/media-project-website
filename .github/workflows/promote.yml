@@ -1,0 +1,37 @@
+name: Promote
+
+# Fast-forwards main to the repository in PROMOTE_TO. Unset, as on production, it does nothing.
+on:
+  push:
+    branches: [main]
+  # A /fast-forward land pushes with GITHUB_TOKEN, which starts no push workflow.
+  workflow_run:
+    workflows: [Fast-forward]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: promote
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    if: vars.PROMOTE_TO != '' && (github.event_name == 'push' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+      # A plain push is refused unless it fast-forwards. Nothing here forces.
+      - env:
+          PROMOTE_TO: ${{ vars.PROMOTE_TO }}
+          PROMOTE_TOKEN: ${{ secrets.PROMOTE_TOKEN }}
+        run: |
+          auth=$(printf 'x-access-token:%s' "$PROMOTE_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" \
+            push "https://github.com/$PROMOTE_TO.git" HEAD:refs/heads/main

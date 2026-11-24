@@ -1,7 +1,11 @@
 import { defineConfig } from "astro/config";
 
+// Each repository sets its own origin (repository variable SITE_URL).
+const site = process.env.SITE_URL || (process.env.CI ? undefined : "http://127.0.0.1:4321");
+if (!site) throw new Error("SITE_URL is not set");
+
 export default defineConfig({
-  site: "https://www.enterprise-r.com",
+  site,
   redirects: {
     "/login": "/r/",
   },
