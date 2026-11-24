@@ -1,0 +1,19 @@
+---
+const page = {
+  title: "Hello world · Enterprise-R",
+  description: "hello world",
+  heading: "Hello world",
+  text: "hello world",
+};
+
+import Base from "../../layouts/Base.astro";
+import "../../styles/theme/doc.css";
+---
+<Base title={page.title} description={page.description} trail={[{ href: "/blog/hello-world/", label: "Hello world" }]}>
+  <main class="r-column">
+    <article class="r-doc">
+      <h1>{page.heading}</h1>
+      <p>{page.text}</p>
+    </article>
+  </main>
+</Base>

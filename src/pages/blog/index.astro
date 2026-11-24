@@ -1,0 +1,25 @@
+---
+const page = {
+  title: "Blog · Enterprise-R",
+  description: "Blog",
+  heading: "Blog",
+};
+const posts = [
+  { href: "/blog/hello-world/", title: "Hello world" },
+];
+
+import Base from "../../layouts/Base.astro";
+import "../../styles/theme/doc.css";
+---
+<Base title={page.title} description={page.description}>
+  <main class="r-column">
+    <div class="r-doc">
+      <h1>{page.heading}</h1>
+      <ul>
+        {posts.map((p) => (
+          <li><a href={p.href}>{p.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  </main>
+</Base>

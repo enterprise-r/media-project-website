@@ -22,8 +22,9 @@ interface Props {
   header?: boolean;
   // Wallpaper, open stripes, and the home bar class. The 404 sets this.
   hero?: boolean;
+  trail?: { href: string; label: string }[];
 }
-const { title, description, noindex = false, header = true, hero = false } = Astro.props;
+const { title, description, noindex = false, header = true, hero = false, trail = [] } = Astro.props;
 
 const here = Astro.url.pathname.replace(/\/?$/, "/");
 const isHome = here === "/";
@@ -36,14 +37,16 @@ const isMissing = hero && !isHome;
 // The page you are on is not listed there. It is the last breadcrumb, a self-link.
 const pages = [
   { href: "/about/", label: "About" },
+  { href: "/blog/", label: "Blog" },
   { href: "/r/", label: "Login" },
 ];
 const crumbs = [
   { href: "/", label: "Home", root: true },
 ];
-const current = pages.find((p) => p.href === here);
-if (current) crumbs.push({ href: current.href, label: current.label });
-const nav = pages.filter((p) => p.href !== here);
+const section = pages.find((p) => here === p.href || here.startsWith(p.href));
+if (section) crumbs.push({ href: section.href, label: section.label });
+crumbs.push(...trail);
+const nav = pages.filter((p) => here !== p.href && !here.startsWith(p.href));
 const url = new URL(Astro.url.pathname, Astro.site).href;
 // Browser chrome colour: the page background, read from the palette source.
 const themeColor = palette.groups.flatMap((g) => g.colours).find((c) => c.var === "--ui-bg").hex;
