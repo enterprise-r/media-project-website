@@ -71,6 +71,8 @@ body:has(> .r-bar) {
   padding-top: calc(var(--r-btn-h) + 2 * var(--r-bar-pad));
 }
 
+.r-bar { flex-wrap: wrap-reverse; }
+
 /* Root crumb: the black logo, as tall as the crumb, so the crumb drops its vertical
    padding and clips the picture to its shape. Wide from 48rem, a little before the trail meets
    the window edge at 52rem; compact below. Fill, hover, shape and focus stay with the theme.
