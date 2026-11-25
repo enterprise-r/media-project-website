@@ -1,14 +1,16 @@
 ---
+import { postBySlug, postHref } from "../../blog";
+const post = postBySlug("r-log-issue-one-202611-24");
 const page = {
-  title: "R-log issue one 202611.24 · Enterprise-R",
-  description: "R-log issue one 202611.24",
+  title: `${post.title} · Enterprise-R`,
+  description: post.description,
 };
 
 import Base from "../../layouts/Base.astro";
 import "../../styles/blog-embed.css";
 ---
-<Base title={page.title} description={page.description} trail={[{ href: "/blog/r-log-issue-one-202611-24/", label: "R-log issue one 202611.24" }]}>
+<Base title={page.title} description={page.description} trail={[{ href: postHref(post), label: post.title }]}>
   <main class="blog-embed">
-    <iframe src="/blog/rlog-202611.24.pdf" title="R-log issue one 202611.24"></iframe>
+    <iframe src="/blog/rlog-202611.24.pdf" title={post.title}></iframe>
   </main>
 </Base>

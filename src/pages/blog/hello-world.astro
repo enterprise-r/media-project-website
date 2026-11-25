@@ -1,14 +1,16 @@
 ---
+import { postBySlug, postHref } from "../../blog";
+const post = postBySlug("hello-world");
 const page = {
-  title: "Hello world · Enterprise-R",
-  description: "hello world",
+  title: `${post.title} · Enterprise-R`,
+  description: post.description,
 };
 
 import Base from "../../layouts/Base.astro";
 import "../../styles/blog-embed.css";
 ---
-<Base title={page.title} description={page.description} trail={[{ href: "/blog/hello-world/", label: "Hello world" }]}>
+<Base title={page.title} description={page.description} trail={[{ href: postHref(post), label: post.title }]}>
   <main class="blog-embed">
-    <iframe src="/animations/www-split-workline-showcase/index.html" title="Hello world"></iframe>
+    <iframe src="/animations/www-split-workline-showcase/index.html" title={post.title}></iframe>
   </main>
 </Base>

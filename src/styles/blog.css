@@ -1,0 +1,38 @@
+.blog-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-bottom: 0.8em;
+}
+
+.blog-title h1 {
+  margin-bottom: 0;
+}
+
+.blog-rss {
+  display: flex;
+  color: var(--r-heading);
+  text-decoration: none;
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.blog-rss:visited {
+  color: var(--r-heading);
+}
+
+.blog-rss:hover,
+.blog-rss:focus-visible {
+  color: var(--ui-accent);
+}
+
+.blog-rss:focus-visible {
+  outline: 2px solid var(--r-focus);
+  outline-offset: 3px;
+}
+
+.blog-rss svg {
+  width: 1cap;
+  height: 1cap;
+  fill: currentColor;
+}

@@ -11,6 +11,7 @@ import Footer from "../components/Footer.astro";
 import enterprsr from "../styles/fonts/woff2/Enterprsr-Regular.woff2?url";
 import palette from "../styles/palette.json";
 import { siteNoindex } from "../site";
+import { feed } from "../blog";
 
 interface Props {
   title: string;
@@ -66,6 +67,7 @@ const themeColor = palette.groups.flatMap((g) => g.colours).find((c) => c.var ==
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:url" content={url}>
+  <link rel="alternate" type="application/rss+xml" title={feed.title} href={new URL(feed.href, Astro.site).href}>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
