@@ -8,9 +8,12 @@
   /* Generic action and other pages: Orange, Amber on hover. */
   --r-btn: var(--ui-orange);
   --r-btn-hover: var(--ui-accent);
-  /* Primary action and the current page: Green (sage), Bright green on hover. */
+  /* Primary action (Send): Green (sage), Bright green on hover. */
   --r-primary: var(--ui-green);
   --r-primary-hover: var(--ui-green-bright);
+  /* The current page and a chosen control: Green (sage), Bright green on hover. */
+  --r-selected: var(--ui-green);
+  --r-selected-hover: var(--ui-green-bright);
   /* Clear (reset the fields): Bright blue, the ship-trail of the logo, Bright cyan on hover. */
   --r-clear: var(--ui-blue-bright);
   --r-clear-hover: var(--ui-cyan-bright);
@@ -26,7 +29,11 @@
   /* Button width: a roomy min width and side padding, label tucked to the right. */
   --r-btn-min: 7rem;
   --r-btn-pad-x: 0.75rem;
-  --r-btn-pad-b: 0.2rem;
+  --r-btn-pad-top: 0;
+  --r-btn-pad-bottom: 0.3rem;
+  --r-btn-form-h: 2.5rem;
+  --r-btn-form-pad-top: 0.2rem;
+  --r-btn-form-pad-bottom: 0.4rem;
   --r-btn-tracking: 0.1em;
   --r-pill-tracking: 0.12em;
   /* Group ends are a semicircle: more padding on the curve, the same as the sides until a narrow screen. */
@@ -42,7 +49,7 @@
   justify-content: flex-end;
   min-width: var(--r-btn-min);
   height: var(--r-btn-h);
-  padding: 0 var(--r-btn-pad-x) var(--r-btn-pad-b);
+  padding: var(--r-btn-pad-top) var(--r-btn-pad-x) var(--r-btn-pad-bottom);
   color: var(--r-btn-text);
   background-color: var(--r-btn);
   border: 0;
@@ -60,9 +67,9 @@
 }
 .r-btn:hover:not(:disabled, [aria-disabled="true"]) { color: var(--r-btn-text); background-color: var(--r-btn-hover); }
 .r-btn:focus-visible { outline: 2px solid var(--r-focus); outline-offset: 3px; }
-.r-btn[aria-current="page"],
+.r-btn[aria-current="page"] { background-color: var(--r-selected); }
 .r-btn.r-primary { background-color: var(--r-primary); }
-.r-btn[aria-current="page"]:hover:not(:disabled, [aria-disabled="true"]),
+.r-btn[aria-current="page"]:hover:not(:disabled, [aria-disabled="true"]) { background-color: var(--r-selected-hover); }
 .r-btn.r-primary:hover:not(:disabled, [aria-disabled="true"]) { background-color: var(--r-primary-hover); }
 .r-btn.r-clear,
 button.r-btn[type="reset"] { background-color: var(--r-clear); }
@@ -75,6 +82,12 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
   color: var(--r-disabled-text);
   background-color: var(--r-disabled);
   cursor: var(--r-icon-wait-cursor) 16 16, progress;
+}
+
+:is(form .r-btn, .r-group.r-end .r-btn) {
+  --r-btn-h: var(--r-btn-form-h);
+  --r-btn-pad-top: var(--r-btn-form-pad-top);
+  --r-btn-pad-bottom: var(--r-btn-form-pad-bottom);
 }
 
 /* Group: buttons side by side, joined into one pill. <span class="r-group">r-btn…</span>
@@ -138,7 +151,7 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
 .r-menu > summary::before {
   content: "";
   margin-right: auto;
-  margin-bottom: 0.3rem;
+  margin-bottom: var(--r-btn-pad-bottom);
   border-left: 0.28rem solid transparent;
   border-right: 0.28rem solid transparent;
   border-top: 0.32rem solid currentColor;
@@ -146,7 +159,7 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
 }
 .r-menu[open] > summary::before { transform: rotate(180deg); }
 .r-menu[open] > summary { background-color: var(--r-btn-hover); }
-.r-menu[open] > summary[aria-current="page"] { background-color: var(--r-primary-hover); }
+.r-menu[open] > summary[aria-current="page"] { background-color: var(--r-selected-hover); }
 .r-menu-list {
   position: absolute;
   top: calc(100% + var(--r-gap));
@@ -166,9 +179,9 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
 .r-menu[open] > summary.r-primary { background-color: var(--r-primary-hover); }
 .r-menu[open] > summary.r-clear { background-color: var(--r-clear-hover); }
 .r-menu[open] > summary.r-cancel { background-color: var(--r-cancel-hover); }
-/* A choice in a list (role="menuitemradio") that is checked is the current one: Green. */
-.r-menu-list > .r-btn[aria-checked="true"] { background-color: var(--r-primary); }
-.r-menu-list > .r-btn[aria-checked="true"]:hover:not(:disabled, [aria-disabled="true"]) { background-color: var(--r-primary-hover); }
+/* A choice in a list (role="menuitemradio") that is checked is the current one: Green (sage). */
+.r-menu-list > .r-btn[aria-checked="true"] { background-color: var(--r-selected); }
+.r-menu-list > .r-btn[aria-checked="true"]:hover:not(:disabled, [aria-disabled="true"]) { background-color: var(--r-selected-hover); }
 /* A second level: a menu inside a list fills its width and opens beside it, to the left, top-aligned,
    for a menu at the right edge of the window. Its caret points left, at the list, and stays put.
    <details class="r-menu r-side"><summary class="r-btn r-clear">Theme</summary><div class="r-menu-list">…</div></details> */
@@ -249,7 +262,7 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
 .r-crumbs .r-btn:not([aria-current="page"]) { background-color: var(--r-crumb); }
 .r-crumbs .r-btn:not([aria-current="page"]):hover,
 .r-crumbs .r-menu[open] > summary:not([aria-current="page"]) { background-color: var(--r-crumb-hover); }
-/* Current crumb: Green at rest. Hover, and an open menu, take Clear's hover (Bright cyan, dark label). */
+/* Current crumb: Green (sage) at rest. Hover, and an open menu, take Clear's hover (Bright cyan, dark label). */
 .r-crumbs .r-btn[aria-current="page"]:hover,
 .r-crumbs .r-menu[open] > summary[aria-current="page"] {
   color: var(--r-btn-text);
@@ -260,8 +273,8 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
 .r-crumbs li > .r-btn:focus-visible,
 .r-crumbs li > .r-menu > summary:focus-visible {
   outline: none;
-  /* Dual inset ring: dark against the fill, bright against the dark, so it holds on orange/green/magenta. */
-  box-shadow: inset 0 0 0 2px var(--ui-bg), inset 0 0 0 4px var(--ui-fg-bright);
+  /* Dual inset ring: dark against the fill, cyan against the dark, so it holds on orange/green/magenta. */
+  box-shadow: inset 0 0 0 2px var(--ui-bg), inset 0 0 0 4px var(--r-focus);
 }
 
 /* Separators. A plain <hr> is already the separator (base.css); .r-sep is the same rule on any element.
@@ -274,17 +287,17 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
 .r-num { text-align: right; font-variant-numeric: tabular-nums; }
 
 /* Panels and cards. A panel is a page-background box with a Border line; a card sits on Lighter
-   background. .r-active is the item in focus (Active border); .r-selected a chosen card
+   background. .r-active is the item in focus (Cyan); .r-selected a chosen card
    (Border fill, Active outline).
    <section class="r-panel">…</section>  <div class="r-card r-active">…</div> */
 .r-panel { padding: 1.25rem 1.4rem; background: var(--ui-bg); border: 1px solid var(--ui-fg-dark); border-radius: 1rem; --r-glow-r: 1rem; }
 .r-card { padding: 1.2rem 1.3rem; background: var(--ui-bg-lighter); border: 1px solid var(--ui-fg-dark); border-radius: 1rem; --r-glow-r: 1rem; }
-.r-card.r-active { border-color: var(--ui-border-active); box-shadow: 0 0 0 1px var(--ui-border-active) inset; }
+.r-card.r-active { border-color: var(--ui-cyan); box-shadow: 0 0 0 1px var(--ui-cyan) inset; }
 .r-card.r-selected { background: var(--ui-border); border-color: var(--ui-border-active); }
 :is(.r-panel, .r-card) > :last-child { margin-bottom: 0; }
 
 /* Status pills: a small uppercase label, in the button roles. No role class is generic (Orange);
-   .r-primary Green, .r-clear Bright blue, .r-cancel Red.
+   .r-primary Amber, .r-clear Bright blue, .r-cancel Amber.
    Rajdhani caps sit 0.03em above the middle of the line box, so the padding moves them down by that.
    Where text-box trim is supported the box is trimmed to the caps and padded evenly to the same height.
    <span class="r-pill r-primary">Online</span> */
@@ -493,8 +506,8 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
 
 /* Dynamic list: a fieldset of rows with a quiet add/remove control in a
    left column the size of a radio (--r-choice-size, 1.5rem). The × and + are
-   Rajdhani, in Clear silver; hover turns × red (and the row's fields) and +
-   sage (and shows a reserved ghost row in --r-clear).
+   Rajdhani, in Clear silver; hover turns × red (and the row's fields) and + sage
+   (and a reserved ghost row in --r-clear).
    Keyboard and live-region announcements come from theme/rows.js.
    <fieldset class="r-rows">
      <legend>Team members</legend>
@@ -596,7 +609,7 @@ button.r-btn[type="reset"]:hover:not(:disabled, [aria-disabled="true"]) { backgr
   pointer-events: none;
 }
 
-/* Delete preview: the row's fields turn dark red. No ring around the row. */
+/* Delete preview: the row's fields turn red. No ring around the row. */
 .r-rows .r-row:has(.r-row-remove:focus-visible:not(:disabled)) :is(input, textarea, select) {
   border-color: var(--ui-red);
 }

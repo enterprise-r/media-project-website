@@ -14,6 +14,7 @@
 :root {
   --r-bar-pad: 0.65rem;
   --r-bar-gap: 0.3rem;
+  --r-bar-row-gap: var(--r-bar-gap);
 }
 .r-bar {
   position: fixed;
@@ -24,7 +25,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--r-bar-gap);
+  gap: var(--r-bar-row-gap) var(--r-bar-gap);
   padding: var(--r-bar-pad) var(--r-bar-inline);
   background-color: var(--ui-border);
   /* A disabled button's fill is the bar's own; it takes the page ground instead. */
@@ -57,6 +58,7 @@
     font-stretch: 85%;
     --r-btn-tracking: 0.04em;
     --r-pill-tracking: 0.05em;
+    --r-bar-row-gap: 0.8rem;
   }
   .r-bar:has(> .r-crumbs:first-child) { padding-left: 0; }
   .r-bar > .r-crumbs:first-child li:first-child > .r-btn,

@@ -2,7 +2,7 @@
 
 The Enterprise-R website. Public repo (needed for GitHub Pages on the Free tier). Built with [Astro](https://astro.build), plain HTML/CSS, no frameworks.
 
-Part of [enterprise-r/project-foundation](https://github.com/enterprise-r/project-foundation). Brand files come from [enterprise-r/project-branding](https://github.com/enterprise-r/project-branding). The imported files are recorded in `vendor/MANIFEST`.
+Part of [enterprise-r/project-foundation](https://github.com/enterprise-r/project-foundation). Brand files come from [enterprise-r/project-branding](https://github.com/enterprise-r/project-branding), vendored from git or from a release. Each `vendor/MANIFEST` line is taken verbatim from branding's `MANIFEST` for that file.
 
 Pages: Home (`/`), About (`/about/`), Login (`/r/`), 404 (`/404.html`) and `/showcase/`. The showcase is the web UI, linked from the login page. It is `noindex` and not in the sitemap. `/login/` redirects to `/r/`. Nav links say Login. On `/r/` the breadcrumb says Login until Enter, then `demo@ra.hq`.
 

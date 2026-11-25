@@ -1,5 +1,5 @@
 /* Footer: the same stripe as the title bar, slim, with the social links in the middle.
-   Icons are bare Background. Amber (Accent) on hover. */
+   Icons are bare Background. Amber on hover. */
 footer {
   display: flex;
   justify-content: center;

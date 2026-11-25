@@ -148,11 +148,11 @@
   --r-link: var(--ui-magenta-bright);
   --r-link-visited: var(--ui-yellow);
   --r-link-hover: var(--ui-yellow-bright);
-  --r-focus: var(--ui-fg-bright);
-  /* Focused field: Active border line and a soft ring of the same colour. */
-  --r-hl-line: var(--ui-border-active);
+  --r-focus: var(--ui-cyan);
+  /* Focused field: Cyan line and a soft ring of the same colour. */
+  --r-hl-line: var(--ui-cyan);
   --r-hl-ring-w: 3px;
-  --r-hl-ring: rgb(from var(--ui-border-active) r g b / 0.25);
+  --r-hl-ring: rgb(from var(--ui-cyan) r g b / 0.25);
   /* Radios and checkboxes: same size and field look, shared with other circular controls. */
   --r-choice-size: 1.5rem;
   --r-choice-bg: var(--ui-bg-lighter);
@@ -211,7 +211,7 @@
   :where(body) { font-stretch: 85%; }
 }
 
-::selection { background-color: var(--ui-border); color: var(--ui-fg-bright); }
+::selection { background-color: var(--ui-green); color: var(--ui-bg); }
 
 /* Text */
 :where(h1, h2, h3, h4, h5, h6) {

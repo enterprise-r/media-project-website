@@ -23,7 +23,7 @@
 
 .blog-rss:hover,
 .blog-rss:focus-visible {
-  color: var(--ui-accent);
+  color: var(--ui-green-bright);
 }
 
 .blog-rss:focus-visible {

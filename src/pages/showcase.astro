@@ -147,9 +147,9 @@ const contents = [
       };
       const label = v("--r-btn-text");
       document.getElementById("contrast").textContent =
-        `Label contrast (WCAG AA needs 4.5:1): on current ${ratio(label, v("--r-primary"))}:1, on other ${ratio(label, v("--r-btn"))}:1, ` +
-        `on current hover ${ratio(label, v("--r-primary-hover"))}:1, on other hover ${ratio(label, v("--r-btn-hover"))}:1, ` +
-        `on clear ${ratio(label, v("--r-clear"))}:1 (hover ${ratio(label, v("--r-clear-hover"))}:1), on cancel ${ratio(label, v("--r-cancel"))}:1 (hover ${ratio(label, v("--r-cancel-hover"))}:1). ` +
+        `Label contrast (WCAG AA needs 4.5:1): on current ${ratio(label, v("--r-selected"))}:1, on other ${ratio(label, v("--r-btn"))}:1, ` +
+        `on current hover ${ratio(label, v("--r-selected-hover"))}:1, on other hover ${ratio(label, v("--r-btn-hover"))}:1, ` +
+        `on primary ${ratio(label, v("--r-primary"))}:1, on clear ${ratio(label, v("--r-clear"))}:1 (hover ${ratio(label, v("--r-clear-hover"))}:1), on cancel ${ratio(label, v("--r-cancel"))}:1 (hover ${ratio(label, v("--r-cancel-hover"))}:1). ` +
         `Body text on the page background ${ratio(v("--r-text"), v("--ui-bg"))}:1.`;
       probe.remove();
     })();

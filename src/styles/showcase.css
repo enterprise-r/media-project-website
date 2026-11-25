@@ -86,7 +86,7 @@ main.showcase + footer p {
 
 /* Static samples of states the theme only paints on a real hover or focus. */
 .showcase .r-btn.is-hover { color: var(--r-btn-text); background-color: var(--r-btn-hover); }
-.showcase .r-btn[aria-current="page"].is-hover,
+.showcase .r-btn[aria-current="page"].is-hover { background-color: var(--r-selected-hover); }
 .showcase .r-btn.r-primary.is-hover { background-color: var(--r-primary-hover); }
 .showcase .r-btn.r-clear.is-hover,
 .showcase button.r-btn[type="reset"].is-hover { background-color: var(--r-clear-hover); }

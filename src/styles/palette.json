@@ -53,7 +53,7 @@
           "name": "Bright foreground",
           "var": "--ui-fg-bright",
           "hex": "#FFF3E6",
-          "use": "keyboard focus outline"
+          "use": "h2 and selected text"
         }
       ]
     },
@@ -80,8 +80,7 @@
         {
           "name": "Bright yellow",
           "var": "--ui-yellow-bright",
-          "hex": "#EFE3A6",
-          "use": "link hover"
+          "hex": "#EFE3A6"
         },
         {
           "name": "Orange",
@@ -90,27 +89,28 @@
           "use": "other-page buttons, striped gradient start, separator centre"
         },
         {
-          "name": "Amber (Accent)",
+          "name": "Amber",
           "var": "--ui-accent",
           "hex": "#F0A202",
-          "use": "other-page button hover, footer icon hover, accent text"
+          "use": "generic actions and menus"
         },
         {
           "name": "Green (sage)",
           "var": "--ui-green",
           "hex": "#77AF8A",
-          "use": "logo R, current-page button, headings, striped gradient end, separator edges"
+          "use": "logo R, current-page and selected controls, headings, striped gradient end, separator edges"
         },
         {
           "name": "Bright green",
           "var": "--ui-green-bright",
           "hex": "#9ADD6D",
-          "use": "Home mark (®), current-page button hover, prompt text"
+          "use": "Home mark (®)"
         },
         {
           "name": "Cyan",
           "var": "--ui-cyan",
-          "hex": "#96C5CF"
+          "hex": "#96C5CF",
+          "use": "focus ring, active card"
         },
         {
           "name": "Bright cyan",
