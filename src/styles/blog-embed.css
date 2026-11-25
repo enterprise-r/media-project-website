@@ -1,23 +1,23 @@
-html:has(main.hello-world),
-html:has(main.hello-world) body {
+html:has(main.blog-embed),
+html:has(main.blog-embed) body {
   height: 100%;
   height: 100dvh;
   overflow: hidden;
 }
 
-html:has(main.hello-world) body {
+html:has(main.blog-embed) body {
   padding-top: 0;
   min-height: 0;
 }
 
-html:has(main.hello-world) .r-bar {
+html:has(main.blog-embed) .r-bar {
   position: static;
   flex-shrink: 0;
 }
 
-html:has(main.hello-world) footer { flex-shrink: 0; }
+html:has(main.blog-embed) footer { flex-shrink: 0; }
 
-main.hello-world {
+main.blog-embed {
   flex: 1 1 auto;
   min-height: 0;
   padding: 0;
@@ -25,7 +25,7 @@ main.hello-world {
   overflow: hidden;
 }
 
-main.hello-world iframe {
+main.blog-embed iframe {
   position: absolute;
   inset: 0;
   width: 100%;

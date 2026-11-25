@@ -5,10 +5,10 @@ const page = {
 };
 
 import Base from "../../layouts/Base.astro";
-import "../../styles/hello-world.css";
+import "../../styles/blog-embed.css";
 ---
 <Base title={page.title} description={page.description} trail={[{ href: "/blog/hello-world/", label: "Hello world" }]}>
-  <main class="hello-world">
+  <main class="blog-embed">
     <iframe src="/animations/www-split-workline-showcase/index.html" title="Hello world"></iframe>
   </main>
 </Base>

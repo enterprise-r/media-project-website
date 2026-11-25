@@ -1,0 +1,14 @@
+---
+const page = {
+  title: "R-log issue one 202611.24 · Enterprise-R",
+  description: "R-log issue one 202611.24",
+};
+
+import Base from "../../layouts/Base.astro";
+import "../../styles/blog-embed.css";
+---
+<Base title={page.title} description={page.description} trail={[{ href: "/blog/r-log-issue-one-202611-24/", label: "R-log issue one 202611.24" }]}>
+  <main class="blog-embed">
+    <iframe src="/blog/rlog-202611.24.pdf" title="R-log issue one 202611.24"></iframe>
+  </main>
+</Base>
